@@ -43,4 +43,11 @@ option is impossible to follow.
 
 ## License
 
-Site content and configuration are GPL-3.0-or-later, matching the project.
+| What | Licence | File |
+|---|---|---|
+| Documentation in `src/content/docs/` | CC BY-SA 4.0 | `LICENSE-docs` |
+| Site code, config, styles, scripts | GPL-3.0-or-later | `LICENSE` |
+
+CC BY-SA 4.0 is listed by Creative Commons as one-way compatible with GPLv3, so
+documentation text can move into the GPL-licensed project tree. The reverse does
+not hold.

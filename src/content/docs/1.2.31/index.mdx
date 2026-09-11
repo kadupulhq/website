@@ -1,0 +1,43 @@
+---
+title: Network monitoring and graphing
+description: Network monitoring and graphing. Poll devices over SNMP and
+  scripts, store the results in RRD files, and graph them.
+template: splash
+hero:
+  tagline: Poll your network, keep the history, graph what happened. A fork of Cacti.
+  image:
+    file: ../../../assets/1.2.31/logo.png
+  actions:
+    - text: What Kadupul is
+      link: /1.2.31/start/what-kadupul-is/
+      icon: right-arrow
+    - text: Source on GitHub
+      link: https://github.com/kadupulhq
+      icon: external
+      variant: minimal
+slug: 1.2.31
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Start here" icon="rocket">
+    Four short pages take you from nothing to a graph you can read. Begin with
+    [what Kadupul is](/1.2.31/start/what-kadupul-is/).
+  </Card>
+
+  <Card title="Concepts" icon="open-book">
+    Why the poller writes to round-robin archives, what a data source really is,
+    and how templates avoid repeating yourself.
+  </Card>
+
+  <Card title="Reference" icon="list-format">
+    Requirements, command line tools, and configuration, stated precisely enough
+    to act on without guessing.
+  </Card>
+
+  <Card title="Coming from Cacti" icon="right-arrow">
+    Kadupul stays API compatible with Cacti for the foreseeable future. See
+    [what that promise covers](/project/compatibility-with-cacti/).
+  </Card>
+</CardGrid>

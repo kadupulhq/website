@@ -4,7 +4,7 @@ description: How to report a vulnerability, and how reports will be handled.
 banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 sidebar:
-  order: 4
+  order: 5
 ---
 
 :::caution[No release to report against]

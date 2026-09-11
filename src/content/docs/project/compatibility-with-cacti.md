@@ -2,7 +2,7 @@
 title: Compatibility with Cacti
 description: The scope of the API compatibility promise.
 sidebar:
-  order: 1
+  order: 2
 banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 ---

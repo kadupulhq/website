@@ -2,7 +2,7 @@
 title: License
 description: GPL-3.0-or-later, and the reasoning behind it.
 sidebar:
-  order: 2
+  order: 3
 banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 ---
@@ -33,3 +33,24 @@ Moving to version 3 resolves that conflict rather than creating one.
 
 Upstream copyright notices stay as they are in every file carried over. Version 3
 applies to the work as distributed by this project.
+
+## Documentation
+
+The documentation on this site is licensed
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The site's own
+code, meaning the configuration, styles, and build scripts, stays GPL-3.0-or-later
+with the rest of the project.
+
+Two reasons for the split. A content licence answers questions a software licence
+answers badly, such as what counts as a derivative of a paragraph. And CC BY-SA is
+listed by Creative Commons as one-way compatible with GPLv3, so documentation text
+can move into the GPL-licensed tree when that is useful, while the reverse is
+blocked.
+
+Reuse is welcome under two conditions: credit the project, and license what you
+build from it the same way.
+
+This choice is deliberate given how these pages came to exist. Cacti's own
+documentation carries no licence at all, which means all rights reserved and no
+right to adapt it. That is why nothing here was adapted from it, and why this
+project states its terms instead of leaving readers to guess.

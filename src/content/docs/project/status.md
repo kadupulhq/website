@@ -2,7 +2,7 @@
 title: Status
 description: Where the project actually is, stated plainly.
 sidebar:
-  order: 3
+  order: 4
 banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 ---

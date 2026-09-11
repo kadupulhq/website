@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightVersions from 'starlight-versions';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
@@ -13,6 +14,18 @@ export default defineConfig({
 			logo: { src: './src/assets/logo.png', alt: '' },
 			favicon: '/favicon.png',
 			customCss: ['./src/styles/brand.css'],
+			components: { Footer: './src/components/Footer.astro' },
+			plugins: [
+				starlightVersions({
+					// `main` tracks the development line. Archived versions are
+					// snapshots and are not edited after they are cut.
+					current: { label: 'main' },
+					versions: [{ slug: '1.2.31', label: '1.2.31' }],
+					// Project pages describe the project, not a release, so they
+					// always serve the latest copy across every version.
+					exclude: ['project/**'],
+				}),
+			],
 			editLink: { baseUrl: 'https://github.com/kadupulhq/website/edit/main/' },
 			lastUpdated: true,
 			social: [

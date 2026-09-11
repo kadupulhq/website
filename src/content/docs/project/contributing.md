@@ -4,7 +4,7 @@ description: What the project needs, and the standard a change is held to.
 banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 sidebar:
-  order: 5
+  order: 6
 ---
 
 :::caution[Not open yet]

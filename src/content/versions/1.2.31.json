@@ -1,0 +1,73 @@
+{
+  "sidebar": [
+    {
+      "label": "Start here",
+      "items": [
+        {
+          "label": "What Kadupul is",
+          "slug": "start/what-kadupul-is"
+        },
+        {
+          "label": "Install",
+          "slug": "start/install"
+        },
+        {
+          "label": "Add your first device",
+          "slug": "start/first-device"
+        },
+        {
+          "label": "Read your first graph",
+          "slug": "start/first-graph"
+        }
+      ]
+    },
+    {
+      "label": "How-to guides",
+      "items": [
+        {
+          "autogenerate": {
+            "directory": "guides"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Concepts",
+      "items": [
+        {
+          "autogenerate": {
+            "directory": "concepts"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Reference",
+      "items": [
+        {
+          "autogenerate": {
+            "directory": "reference"
+          }
+        }
+      ]
+    },
+    {
+      "label": "Project",
+      "items": [
+        {
+          "autogenerate": {
+            "directory": "project"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    "project/compatibility-with-cacti",
+    "project/contributing",
+    "project/license",
+    "project/security",
+    "project/status",
+    "project/why-this-fork"
+  ]
+}
