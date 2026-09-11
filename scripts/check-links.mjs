@@ -12,9 +12,11 @@
  */
 import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
+const DIST = process.env.CHECK_LINKS_DIST
+	? (process.env.CHECK_LINKS_DIST.endsWith('/') ? process.env.CHECK_LINKS_DIST : process.env.CHECK_LINKS_DIST + '/')
+	: fileURLToPath(new URL('../dist/', import.meta.url));
 
 function walk(dir) {
 	return readdirSync(dir).flatMap((n) => {
@@ -23,8 +25,20 @@ function walk(dir) {
 	});
 }
 
-/** Split an href into its path, fragment and query. Returns null for non-routes. */
-export function classify(href) {
+/** Extensions that are files rather than routes. Anything else falls through to
+ *  the route lookup, so a path like /1.2.31 is not mistaken for an asset. */
+const ASSET_EXT = new Set([
+	'png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'avif', 'ico', 'css', 'js', 'mjs',
+	'json', 'xml', 'txt', 'woff', 'woff2', 'ttf', 'otf', 'eot', 'pdf', 'zip', 'gz',
+	'map', 'webmanifest',
+]);
+
+/** Split an href into its path, fragment and query. Returns null for non-routes.
+ *  `from` supplies the current page so a same-page "#x" resolves against it. */
+export function classify(href, from = '') {
+	if (href.startsWith('#')) {
+		return { path: '/' + from, fragment: href.slice(1), samePage: true };
+	}
 	if (!href.startsWith('/')) return null;
 	const hash = href.indexOf('#');
 	const query = href.indexOf('?');
@@ -33,7 +47,8 @@ export function classify(href) {
 	if (query !== -1) cut = Math.min(cut, query);
 	let path = href.slice(0, cut);
 	const fragment = hash === -1 ? '' : href.slice(hash + 1);
-	if (/\.[a-z0-9]{2,5}$/i.test(path) && !path.endsWith('.html')) return null;
+	const suffix = path.split('/').pop().split('.');
+	if (suffix.length > 1 && ASSET_EXT.has(suffix.pop().toLowerCase())) return null;
 	if (!path.endsWith('/') && !path.endsWith('.html')) path += '/';
 	return { path, fragment };
 }
@@ -64,7 +79,7 @@ export function check(dist) {
 		const from = p.slice(dist.length).replace(/index\.html$/, '');
 		const html = readFileSync(p, 'utf8');
 		for (const m of html.matchAll(/href="([^"]*)"/g)) {
-			const c = classify(m[1]);
+			const c = classify(m[1], from);
 			if (!c) continue;
 			checked++;
 			const key = c.path.replace(/^\//, '');
@@ -88,10 +103,17 @@ export function check(dist) {
 	return { pages: pages.length, checked, fragmentsChecked, broken, orphans };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// pathToFileURL, not string concatenation: import.meta.url is percent-encoded
+// and resolved through symlinks, so a naive compare can silently skip this
+// block and exit 0 having checked nothing.
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
 	const r = check(DIST);
 	if (r.fatal) {
 		console.error(`FATAL  ${r.fatal}`);
+		process.exit(2);
+	}
+	if (r.checked === 0) {
+		console.error('FATAL  no internal links were checked; the pattern or the build is wrong');
 		process.exit(2);
 	}
 	for (const b of r.broken) console.error(`BROKEN  ${b}`);
