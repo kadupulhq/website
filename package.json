@@ -12,9 +12,10 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint:prose": "node scripts/lint-prose.mjs",
-    "check:all": "npm run lint:prose && npm run build && npm run check:links",
+    "check:all": "npm run lint:prose && npm test && npm run build && npm run check:links",
     "build:map": "node scripts/build-map.mjs",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "test": "node --test \"scripts/__tests__/*.test.mjs\""
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

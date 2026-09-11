@@ -4,9 +4,10 @@
  * read as generated, and on frontmatter a page needs to be findable.
  */
 import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
 
-const ROOT = new URL('../src/content/docs/', import.meta.url).pathname;
+const ROOT = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
 const BANNED = [
 	'comprehensive', 'robust', 'seamless', 'powerful', 'leverage', 'delve',
@@ -37,10 +38,13 @@ for (const file of walk(ROOT)) {
 	// Heading checks. Starlight renders the frontmatter title as the page h1,
 	// so an h1 in the body makes a second one. Code fences are skipped because
 	// a shell comment starts with the same character as a heading.
-	const body = text.slice(text.indexOf('\n---\n', 4) + 5);
+	const bodyStart = text.indexOf('\n---\n', 4) + 5;
+	const bodyOffset = text.slice(0, bodyStart).split('\n').length - 1;
+	const body = text.slice(bodyStart);
 	let fence = null;
 	let seenH2 = false;
-	body.split('\n').forEach((line) => {
+	body.split('\n').forEach((line, bi) => {
+		const lineNo = bodyOffset + bi + 1;
 		const t = line.trim();
 		if (t.startsWith('```') || t.startsWith('~~~')) {
 			const tok = t.slice(0, 3);
@@ -51,9 +55,9 @@ for (const file of walk(ROOT)) {
 		const h = line.match(/^(#{1,4})\s/);
 		if (!h) return;
 		const level = h[1].length;
-		if (level === 1) report(0, 'h1 in body; the frontmatter title is the h1');
+		if (level === 1) report(lineNo, 'h1 in body; the frontmatter title is the h1');
 		if (level === 2) seenH2 = true;
-		if (level === 3 && !seenH2) report(0, 'h3 before any h2');
+		if (level === 3 && !seenH2) report(lineNo, 'h3 before any h2');
 	});
 
 	text.split('\n').forEach((line, i) => {
