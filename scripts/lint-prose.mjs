@@ -34,6 +34,28 @@ for (const file of walk(ROOT)) {
 	if (!/^title:/m.test(fm)) report(1, 'frontmatter has no title');
 	if (!/^description:/m.test(fm)) report(1, 'frontmatter has no description');
 
+	// Heading checks. Starlight renders the frontmatter title as the page h1,
+	// so an h1 in the body makes a second one. Code fences are skipped because
+	// a shell comment starts with the same character as a heading.
+	const body = text.slice(text.indexOf('\n---\n', 4) + 5);
+	let fence = null;
+	let seenH2 = false;
+	body.split('\n').forEach((line) => {
+		const t = line.trim();
+		if (t.startsWith('```') || t.startsWith('~~~')) {
+			const tok = t.slice(0, 3);
+			fence = fence === tok ? null : fence ?? tok;
+			return;
+		}
+		if (fence) return;
+		const h = line.match(/^(#{1,4})\s/);
+		if (!h) return;
+		const level = h[1].length;
+		if (level === 1) report(0, 'h1 in body; the frontmatter title is the h1');
+		if (level === 2) seenH2 = true;
+		if (level === 3 && !seenH2) report(0, 'h3 before any h2');
+	});
+
 	text.split('\n').forEach((line, i) => {
 		const n = i + 1;
 		if (line.includes('—')) report(n, 'em dash');
