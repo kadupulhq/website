@@ -86,12 +86,14 @@ export function check(dist) {
 		for (const m of html.matchAll(/href="([^"]*)"/g)) {
 			const c = classify(m[1], from);
 			if (!c) continue;
-			let key = c.path.replace(/^\//, '');
+			// Normalise the same way routes are built, so an explicit
+			// /sub/index.html link resolves to the same key as /sub/.
+			let key = c.path.replace(/^\//, '').replace(/index\.html$/, '');
 			// A dotted path is an asset only when it is a regular file inside the
 			// build. existsSync alone is true for directories, which silently
 			// swallowed links to dotted directories like the version tree, and it
 			// also followed ../ above the build root.
-			if (c.dotted && !routes.has(key) && isAssetFile(dist, key)) continue;
+			if (c.dotted && !routes.has(key) && !routes.has(key + '/') && isAssetFile(dist, key)) continue;
 			// A dotted path that is not a file may still be a route directory.
 			if (c.dotted && !routes.has(key) && routes.has(key + '/')) key += '/';
 			checked++;

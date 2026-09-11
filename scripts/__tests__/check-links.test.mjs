@@ -149,3 +149,23 @@ test('a traversing href cannot reach outside the build', () => {
 	assert.equal(r.broken.length, 1, 'traversal must be reported, not silently skipped');
 	rmSync(d, { recursive: true });
 });
+
+test('an explicit /path/index.html link is checked, not dropped', () => {
+	const d = build({
+		'index.html': '<a href="/sub/index.html#nope">x</a><a href="/sub/">ok</a>',
+		'sub/index.html': '<h2 id="real">R</h2>',
+	});
+	const r = check(d);
+	assert.equal(r.fragmentsChecked, 1, 'the anchor must be validated');
+	assert.equal(r.broken.length, 1, 'a bad anchor must be reported');
+	assert.match(r.broken[0], /no such anchor/);
+	rmSync(d, { recursive: true });
+});
+
+test('an index.html link counts as inbound, so the target is not an orphan', () => {
+	const d = build({ 'index.html': '<a href="/only/index.html">x</a>', 'only/index.html': 'y' });
+	const r = check(d);
+	assert.deepEqual(r.orphans, []);
+	assert.ok(r.checked >= 1);
+	rmSync(d, { recursive: true });
+});
