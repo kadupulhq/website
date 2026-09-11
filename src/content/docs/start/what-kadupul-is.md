@@ -43,6 +43,18 @@ and you would rather own the data than rent it. It suits you less if you are
 instrumenting your own microservices, where a metrics system built for high
 cardinality will serve you better.
 
+## The name
+
+Kadupul (කඩුපුල්) is the Sinhala name for *Epiphyllum oxypetalum*, a cactus that
+flowers at night. The bloom opens after dark and wilts before dawn, which is why the
+same plant is also called queen of the night.
+
+It being a cactus is the point. Cacti takes its name from the plant family. Kadupul
+is one species inside that family, so the name says where the project came from
+without claiming to stand in for the whole of it.
+
+The mark places a four-point metric trace at the center of the bloom.
+
 ## Its relationship to Cacti
 
 Kadupul is a fork of [Cacti](https://github.com/Cacti/cacti). It keeps Cacti's data

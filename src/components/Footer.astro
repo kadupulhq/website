@@ -5,15 +5,16 @@ import Default from '@astrojs/starlight/components/Footer.astro';
 <Default><slot /></Default>
 
 <p class="site-license">
-	Documentation is licensed
-	<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
-	Site code is licensed
-	<a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a>.
-	Kadupul is not affiliated with or endorsed by The Cacti Group.
+	<span>Documentation is licensed <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</span>
+	<span>Site code is licensed <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a>.</span>
+	<span>Kadupul is not affiliated with or endorsed by The Cacti Group.</span>
 </p>
 
 <style>
 	.site-license {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem 0.5rem;
 		margin-block-start: 1.5rem;
 		padding-block-start: 1rem;
 		border-top: 1px solid var(--sl-color-gray-5);
