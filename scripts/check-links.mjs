@@ -10,7 +10,7 @@
  * truncating, so every anchor link was skipped while the summary still printed
  * a count. A gate that fails open is worse than no gate.
  */
-import { readdirSync, readFileSync, statSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, existsSync, realpathSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -24,14 +24,6 @@ function walk(dir) {
 		return statSync(p).isDirectory() ? walk(p) : p.endsWith('.html') ? [p] : [];
 	});
 }
-
-/** Extensions that are files rather than routes. Anything else falls through to
- *  the route lookup, so a path like /1.2.31 is not mistaken for an asset. */
-const ASSET_EXT = new Set([
-	'png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', 'avif', 'ico', 'css', 'js', 'mjs',
-	'json', 'xml', 'txt', 'woff', 'woff2', 'ttf', 'otf', 'eot', 'pdf', 'zip', 'gz',
-	'map', 'webmanifest',
-]);
 
 /** Split an href into its path, fragment and query. Returns null for non-routes.
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
@@ -47,10 +39,11 @@ export function classify(href, from = '') {
 	if (query !== -1) cut = Math.min(cut, query);
 	let path = href.slice(0, cut);
 	const fragment = hash === -1 ? '' : href.slice(hash + 1);
-	const suffix = path.split('/').pop().split('.');
-	if (suffix.length > 1 && ASSET_EXT.has(suffix.pop().toLowerCase())) return null;
-	if (!path.endsWith('/') && !path.endsWith('.html')) path += '/';
-	return { path, fragment };
+	// Whether a dotted path is an asset or a route is decided by the build, not
+	// by an extension list that goes stale the first time someone adds a feed.
+	const dotted = /\.[^/]+$/.test(path);
+	if (!dotted && !path.endsWith('/')) path += '/';
+	return { path, fragment, dotted };
 }
 
 export function check(dist) {
@@ -81,8 +74,10 @@ export function check(dist) {
 		for (const m of html.matchAll(/href="([^"]*)"/g)) {
 			const c = classify(m[1], from);
 			if (!c) continue;
-			checked++;
 			const key = c.path.replace(/^\//, '');
+			// A dotted path that exists as a real file in the build is an asset.
+			if (c.dotted && !routes.has(key) && existsSync(join(dist, key))) continue;
+			checked++;
 			if (!routes.has(key)) {
 				broken.push(`${from || '/'}  ->  ${m[1]}  (no such route)`);
 				continue;
@@ -106,7 +101,11 @@ export function check(dist) {
 // pathToFileURL, not string concatenation: import.meta.url is percent-encoded
 // and resolved through symlinks, so a naive compare can silently skip this
 // block and exit 0 having checked nothing.
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+// Both sides must be realpath-resolved. Node resolves the main entry through
+// realpath, so on macOS a /var path (a symlink to /private/var) makes a naive
+// compare false and silently skips this whole block. Proven, not assumed.
+const entry = process.argv[1] ? pathToFileURL(realpathSync(process.argv[1])).href : '';
+if (import.meta.url === entry) {
 	const r = check(DIST);
 	if (r.fatal) {
 		console.error(`FATAL  ${r.fatal}`);

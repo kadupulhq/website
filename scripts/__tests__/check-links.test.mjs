@@ -6,20 +6,41 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { classify, check } from '../check-links.mjs';
 
+const pathOf = (h, from) => { const c = classify(h, from); return c && [c.path, c.fragment]; };
+
 test('classify splits fragments and queries off the path', () => {
-	assert.deepEqual(classify('/a/b/'), { path: '/a/b/', fragment: '' });
-	assert.deepEqual(classify('/a/b'), { path: '/a/b/', fragment: '' });
-	assert.deepEqual(classify('/a/b/#frag'), { path: '/a/b/', fragment: 'frag' });
-	assert.deepEqual(classify('/a/b#frag'), { path: '/a/b/', fragment: 'frag' });
-	assert.deepEqual(classify('/a/b/?x=1'), { path: '/a/b/', fragment: '' });
-	assert.deepEqual(classify('/a/b/?x=1#f'), { path: '/a/b/', fragment: 'f' });
+	assert.deepEqual(pathOf('/a/b/'), ['/a/b/', '']);
+	assert.deepEqual(pathOf('/a/b'), ['/a/b/', '']);
+	assert.deepEqual(pathOf('/a/b/#frag'), ['/a/b/', 'frag']);
+	assert.deepEqual(pathOf('/a/b#frag'), ['/a/b/', 'frag']);
+	assert.deepEqual(pathOf('/a/b/?x=1'), ['/a/b/', '']);
+	assert.deepEqual(pathOf('/a/b/?x=1#f'), ['/a/b/', 'f']);
 });
 
-test('classify ignores assets and external links', () => {
-	assert.equal(classify('/logo.png'), null);
-	assert.equal(classify('/font.woff2'), null);
+test('classify ignores anything that is not a site-absolute path', () => {
 	assert.equal(classify('https://example.com/'), null);
 	assert.equal(classify('mailto:a@b.c'), null);
+	assert.equal(classify('relative/page/'), null);
+});
+
+test('a dotted path is marked, and resolved against the build rather than a list', () => {
+	// No extension allowlist: an allowlist goes stale the first time someone
+	// adds a feed or a download. The build decides.
+	assert.equal(classify('/logo.png').dotted, true);
+	assert.equal(classify('/feed.atom').dotted, true);
+	assert.equal(classify('/1.2.31').dotted, true);
+	assert.equal(classify('/a/b/').dotted, false);
+});
+
+test('an asset present in the build is skipped, a missing one is reported', () => {
+	const d = build({
+		'index.html': '<a href="/real.png">a</a><a href="/gone.png">b</a>',
+		'real.png': 'binary',
+	});
+	const r = check(d);
+	assert.equal(r.broken.length, 1, 'a link to a missing file must be caught');
+	assert.match(r.broken[0], /gone\.png/);
+	rmSync(d, { recursive: true });
 });
 
 function build(files) {
@@ -75,11 +96,12 @@ test('same-page fragments resolve against the current page', () => {
 });
 
 test('classify handles same-page, .html routes and dotted route segments', () => {
-	assert.deepEqual(classify('#top', 'a/'), { path: '/a/', fragment: 'top', samePage: true });
-	assert.deepEqual(classify('/foo.html'), { path: '/foo.html', fragment: '' });
-	// A version directory must not be mistaken for a file extension.
-	assert.deepEqual(classify('/1.2.31'), { path: '/1.2.31/', fragment: '' });
-	assert.equal(classify('/a/b.png'), null);
+	assert.deepEqual(pathOf('#top', 'a/'), ['/a/', 'top']);
+	assert.equal(classify('#top', 'a/').samePage, true);
+	assert.deepEqual(pathOf('/foo.html'), ['/foo.html', '']);
+	// A version directory must not be forced into a trailing slash as if it
+	// were a route, nor dropped as if it were a file.
+	assert.equal(classify('/1.2.31').path, '/1.2.31');
 });
 
 test('the CLI entry point fails closed', async () => {
@@ -97,4 +119,15 @@ test('the CLI entry point fails closed', async () => {
 	const d = build({ 'index.html': '<a href="/nope/">x</a>' });
 	assert.equal(run(d), 1, 'a broken link must exit 1');
 	rmSync(d, { recursive: true });
+
+	// os.tmpdir() is /var/... on macOS, a symlink to /private/var/..., which is
+	// exactly the case where a naive entry guard skips the run and exits 0.
+	const { realpathSync } = await import('node:fs');
+	assert.notEqual(
+		join(tmpdir(), 'x'), join(realpathSync(tmpdir()), 'x'),
+		'this assertion only means anything on a platform where tmpdir is a symlink',
+	);
+	const via = build({ 'index.html': '<a href="/nope/">x</a>' });
+	assert.equal(run(via), 1, 'must still run when reached through a symlinked path');
+	rmSync(via, { recursive: true });
 });
