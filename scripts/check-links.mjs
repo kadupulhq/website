@@ -11,7 +11,7 @@
  * a count. A gate that fails open is worse than no gate.
  */
 import { readdirSync, readFileSync, statSync, existsSync, realpathSync } from 'node:fs';
-import { join, resolve, sep } from 'node:path';
+import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const DIST = process.env.CHECK_LINKS_DIST
@@ -29,8 +29,11 @@ function walk(dir) {
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
 export function classify(href, from = '') {
 	if (href.startsWith('#')) {
-		return { path: '/' + from, fragment: href.slice(1), samePage: true };
+		let f = href.slice(1);
+		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
+		return { path: '/' + from, fragment: f, samePage: true, dotted: false };
 	}
+	if (href.startsWith('//')) return null; // protocol-relative, external
 	if (!href.startsWith('/')) return null;
 	const hash = href.indexOf('#');
 	const query = href.indexOf('?');
@@ -38,7 +41,9 @@ export function classify(href, from = '') {
 	if (hash !== -1) cut = Math.min(cut, hash);
 	if (query !== -1) cut = Math.min(cut, query);
 	let path = href.slice(0, cut);
-	const fragment = hash === -1 ? '' : href.slice(hash + 1);
+	let fragment = hash === -1 ? '' : href.slice(hash + 1);
+	// ids in the HTML are literal; hrefs may be percent-encoded.
+	try { fragment = decodeURIComponent(fragment); } catch { /* keep raw */ }
 	// Whether a dotted path is an asset or a route is decided by the build, not
 	// by an extension list that goes stale the first time someone adds a feed.
 	const dotted = /\.[^/]+$/.test(path);
@@ -62,15 +67,19 @@ export function check(dist) {
 	if (!existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
 	}
-	const pages = walk(dist);
+	// Normalise once. Deriving keys by slicing the caller's raw string corrupts
+	// every route when the path carries ./ or ../ or lacks a trailing slash.
+	const root = resolve(dist);
+	const key0 = (p) => relative(root, p).split(sep).join('/');
+	const pages = walk(root);
 	if (pages.length === 0) {
 		return { fatal: `no HTML under ${dist}; the build produced nothing` };
 	}
 
-	const routes = new Set(pages.map((p) => p.slice(dist.length).replace(/index\.html$/, '')));
+	const routes = new Set(pages.map((p) => key0(p).replace(/index\.html$/, '')));
 	const ids = new Map();
 	for (const p of pages) {
-		const key = p.slice(dist.length).replace(/index\.html$/, '');
+		const key = key0(p).replace(/index\.html$/, '');
 		const html = readFileSync(p, 'utf8');
 		ids.set(key, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
 	}
@@ -81,7 +90,7 @@ export function check(dist) {
 	let fragmentsChecked = 0;
 
 	for (const p of pages) {
-		const from = p.slice(dist.length).replace(/index\.html$/, '');
+		const from = key0(p).replace(/index\.html$/, '');
 		const html = readFileSync(p, 'utf8');
 		for (const m of html.matchAll(/href="([^"]*)"/g)) {
 			const c = classify(m[1], from);
@@ -93,7 +102,7 @@ export function check(dist) {
 			// build. existsSync alone is true for directories, which silently
 			// swallowed links to dotted directories like the version tree, and it
 			// also followed ../ above the build root.
-			if (c.dotted && !routes.has(key) && !routes.has(key + '/') && isAssetFile(dist, key)) continue;
+			if (c.dotted && !routes.has(key) && !routes.has(key + '/') && isAssetFile(root, key)) continue;
 			// A dotted path that is not a file may still be a route directory.
 			if (c.dotted && !routes.has(key) && routes.has(key + '/')) key += '/';
 			checked++;

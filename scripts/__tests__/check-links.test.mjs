@@ -169,3 +169,24 @@ test('an index.html link counts as inbound, so the target is not an orphan', () 
 	assert.ok(r.checked >= 1);
 	rmSync(d, { recursive: true });
 });
+
+test('a protocol-relative href is external, not a site path', () => {
+	assert.equal(classify('//cdn.example.com/lib.js'), null);
+});
+
+test('a dist path with ./ or no trailing slash still yields correct keys', () => {
+	const d = build({ 'index.html': '<a href="/b/">x</a>', 'b/index.html': 'b' });
+	for (const variant of [d, d.replace(/\/$/, ''), d + './']) {
+		const r = check(variant);
+		assert.equal(r.broken.length, 0, `broken keys for dist variant ${variant}`);
+	}
+	rmSync(d, { recursive: true });
+});
+
+test('percent-encoded fragments match literal ids', () => {
+	const d = build({ 'index.html': '<h2 id="café">c</h2><a href="#caf%C3%A9">x</a>' });
+	const r = check(d);
+	assert.equal(r.broken.length, 0, 'an encoded fragment must match its literal id');
+	assert.equal(r.fragmentsChecked, 1);
+	rmSync(d, { recursive: true });
+});
