@@ -1,8 +1,10 @@
 name: Deploy
 
+# Manual until GitHub Pages is enabled on the repository. Running this on every
+# push while Pages does not exist fails the workflow every time, which teaches
+# people to ignore a red mark. Restore the push trigger once Pages is set to
+# build from Actions.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -15,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
