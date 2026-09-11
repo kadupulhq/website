@@ -109,9 +109,7 @@ test('the CLI entry point fails closed', async () => {
 	const script = fileURLToPath(new URL('../check-links.mjs', import.meta.url));
 	const run = (dir) => {
 		try {
-			execFileSync(process.execPath, [script], {
-				env: { ...process.env, CHECK_LINKS_DIST: dir }, encoding: 'utf8',
-			});
+			execFileSync(process.execPath, [script, dir], { encoding: 'utf8' });
 			return 0;
 		} catch (e) { return e.status; }
 	};
@@ -188,5 +186,54 @@ test('percent-encoded fragments match literal ids', () => {
 	const r = check(d);
 	assert.equal(r.broken.length, 0, 'an encoded fragment must match its literal id');
 	assert.equal(r.fragmentsChecked, 1);
+	rmSync(d, { recursive: true });
+});
+
+test('a ghost route through an unanchored index.html strip is reported', () => {
+	const d = build({ 'index.html': '<a href="/v/myindex.html">x</a>', 'v/my/index.html': 'y' });
+	const r = check(d);
+	assert.equal(r.broken.length, 1, '/v/myindex.html must not resolve onto /v/my/');
+	rmSync(d, { recursive: true });
+});
+
+test('percent-encoded non-ASCII routes and assets resolve', () => {
+	const d = build({
+		'index.html': '<a href="/caf%C3%A9/">r</a><a href="/caf%C3%A9.png">a</a>',
+		'café/index.html': 'x',
+		'café.png': 'binary',
+	});
+	const r = check(d);
+	assert.deepEqual(r.broken, [], 'an encoded non-ASCII path must match its literal name');
+	rmSync(d, { recursive: true });
+});
+
+test('an asset symlinked out of the build is not treated as present', async () => {
+	const { symlinkSync, writeFileSync: wf, mkdtempSync: mk } = await import('node:fs');
+	const outside = mk(join(tmpdir(), 'linkcheck-out-'));
+	wf(join(outside, 'real.png'), 'binary');
+	const d = build({ 'index.html': '<a href="/escape.png">x</a>' });
+	symlinkSync(join(outside, 'real.png'), join(d, 'escape.png'));
+	const r = check(d);
+	assert.equal(r.broken.length, 1, 'a symlink out of the build must not count as an asset');
+	rmSync(d, { recursive: true, force: true });
+	rmSync(outside, { recursive: true, force: true });
+});
+
+test('a build with no internal links is fatal, not a silent pass', async () => {
+	const { execFileSync } = await import('node:child_process');
+	const script = fileURLToPath(new URL('../check-links.mjs', import.meta.url));
+	const d = build({ 'index.html': '<p>no links</p>' });
+	let status = 0;
+	try { execFileSync(process.execPath, [script, d], { encoding: 'utf8' }); }
+	catch (e) { status = e.status; }
+	assert.equal(status, 2, 'checking nothing must not report success');
+	rmSync(d, { recursive: true });
+});
+
+test('check() is driven by its argument, not by process state', () => {
+	const d = build({ 'index.html': '<a href="/b/">x</a>', 'b/index.html': 'b' });
+	process.env.CHECK_LINKS_DIST = '/definitely/not/here/';
+	assert.equal(check(d).broken.length, 0, 'an ambient variable must not redirect the check');
+	delete process.env.CHECK_LINKS_DIST;
 	rmSync(d, { recursive: true });
 });

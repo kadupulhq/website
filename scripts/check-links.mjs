@@ -14,9 +14,9 @@ import { readdirSync, readFileSync, statSync, existsSync, realpathSync } from 'n
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const DIST = process.env.CHECK_LINKS_DIST
-	? (process.env.CHECK_LINKS_DIST.endsWith('/') ? process.env.CHECK_LINKS_DIST : process.env.CHECK_LINKS_DIST + '/')
-	: fileURLToPath(new URL('../dist/', import.meta.url));
+// Taken from argv, not the environment: an ambient variable must not be able to
+// redirect what a release gate inspects.
+const DIST = process.argv[2] || fileURLToPath(new URL('../dist/', import.meta.url));
 
 function walk(dir) {
 	return readdirSync(dir).flatMap((n) => {
@@ -31,6 +31,7 @@ export function classify(href, from = '') {
 	if (href.startsWith('#')) {
 		let f = href.slice(1);
 		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
+		f = f.normalize('NFC');
 		return { path: '/' + from, fragment: f, samePage: true, dotted: false };
 	}
 	if (href.startsWith('//')) return null; // protocol-relative, external
@@ -41,9 +42,14 @@ export function classify(href, from = '') {
 	if (hash !== -1) cut = Math.min(cut, hash);
 	if (query !== -1) cut = Math.min(cut, query);
 	let path = href.slice(0, cut);
+	// Decode and normalise the path too. Directory names read from disk are
+	// literal, and APFS hands back decomposed forms.
+	try { path = decodeURIComponent(path); } catch { /* keep raw */ }
+	path = path.normalize('NFC');
 	let fragment = hash === -1 ? '' : href.slice(hash + 1);
 	// ids in the HTML are literal; hrefs may be percent-encoded.
 	try { fragment = decodeURIComponent(fragment); } catch { /* keep raw */ }
+	fragment = fragment.normalize('NFC');
 	// Whether a dotted path is an asset or a route is decided by the build, not
 	// by an extension list that goes stale the first time someone adds a feed.
 	const dotted = /\.[^/]+$/.test(path);
@@ -53,10 +59,13 @@ export function classify(href, from = '') {
 
 /** True only for a regular file that stays inside the build root. */
 function isAssetFile(dist, key) {
-	const root = resolve(dist);
-	const target = resolve(root, key);
-	if (target !== root && !target.startsWith(root + sep)) return false;
 	try {
+		// realpath both sides: resolve() normalises ".." but does not follow
+		// symlinks, and statSync does, so a lexical check alone lets a link out
+		// of the build claim to be a present asset.
+		const root = realpathSync(resolve(dist));
+		const target = realpathSync(resolve(root, key));
+		if (target !== root && !target.startsWith(root + sep)) return false;
 		return statSync(target).isFile();
 	} catch {
 		return false;
@@ -70,18 +79,18 @@ export function check(dist) {
 	// Normalise once. Deriving keys by slicing the caller's raw string corrupts
 	// every route when the path carries ./ or ../ or lacks a trailing slash.
 	const root = resolve(dist);
-	const key0 = (p) => relative(root, p).split(sep).join('/');
+	const key0 = (p) => relative(root, p).split(sep).join('/').normalize('NFC');
 	const pages = walk(root);
 	if (pages.length === 0) {
 		return { fatal: `no HTML under ${dist}; the build produced nothing` };
 	}
 
-	const routes = new Set(pages.map((p) => key0(p).replace(/index\.html$/, '')));
+	const routes = new Set(pages.map((p) => key0(p).replace(/(^|\/)index\.html$/, '$1')));
 	const ids = new Map();
 	for (const p of pages) {
-		const key = key0(p).replace(/index\.html$/, '');
+		const key = key0(p).replace(/(^|\/)index\.html$/, '$1');
 		const html = readFileSync(p, 'utf8');
-		ids.set(key, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
+		ids.set(key, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1].normalize('NFC'))));
 	}
 
 	const broken = [];
@@ -90,14 +99,14 @@ export function check(dist) {
 	let fragmentsChecked = 0;
 
 	for (const p of pages) {
-		const from = key0(p).replace(/index\.html$/, '');
+		const from = key0(p).replace(/(^|\/)index\.html$/, '$1');
 		const html = readFileSync(p, 'utf8');
 		for (const m of html.matchAll(/href="([^"]*)"/g)) {
 			const c = classify(m[1], from);
 			if (!c) continue;
 			// Normalise the same way routes are built, so an explicit
 			// /sub/index.html link resolves to the same key as /sub/.
-			let key = c.path.replace(/^\//, '').replace(/index\.html$/, '');
+			let key = c.path.replace(/^\//, '').replace(/(^|\/)index\.html$/, '$1');
 			// A dotted path is an asset only when it is a regular file inside the
 			// build. existsSync alone is true for directories, which silently
 			// swallowed links to dotted directories like the version tree, and it
