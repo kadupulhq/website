@@ -1,0 +1,36 @@
+version: 2
+
+updates:
+  # Security fixes arrive as their own pull requests. Grouping is applied only to
+  # routine version bumps, so a vulnerability fix is never buried in a batch.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      astro:
+        patterns:
+          - astro
+          - "@astrojs/*"
+          - starlight-versions
+      dev-minor-and-patch:
+        update-types:
+          - minor
+          - patch
+        exclude-patterns:
+          - astro
+          - "@astrojs/*"
+
+  # Actions are pinned to commit SHAs, which Dependabot understands and updates
+  # in place, keeping the version comment alongside.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        patterns:
+          - "*"
