@@ -32,7 +32,12 @@ installed base to protect and no release promises to keep.
 ## What this is not
 
 This is not a disagreement with Cacti's maintainers, and it is not an attempt to
-replace Cacti. Fixes that suit upstream belong upstream and are sent there.
+replace Cacti. Kadupul does not send patches upstream. The licence moved to
+GPL-3.0-or-later, which makes that a one-way door, and a fix written against a
+changed internal shape would not apply to Cacti anyway. Security is the
+exception in one direction only: a vulnerability that also affects stock Cacti
+is reported to Cacti privately, because that protects every Cacti install rather
+than only this fork.
 
 It is also not a clean break from users. [Compatibility](/project/compatibility-with-cacti/)
 is a commitment rather than a courtesy. Plugins, templates, and the RRD files

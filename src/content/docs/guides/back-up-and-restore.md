@@ -22,7 +22,9 @@ A Kadupul backup has three parts. Any one of them alone restores nothing useful.
 
 ## Why a database-only backup is worthless
 
-The database holds no measurements. Not a summary of them, not a recent window.
+The database holds no historical archive. Not a summary of it, not a recent
+window. The exception is deferred samples: with Boost enabled, recent readings
+sit in the database until they are flushed to the files.
 None. See [Architecture](/concepts/architecture/) for why.
 
 Restore the database alone and you get a system that knows about four hundred
@@ -69,20 +71,49 @@ database, copy the RRA tree, start the launcher. You lose the samples for the
 duration, which appear as a gap.
 
 ```sh
-# stop the launcher first, then flush deferred writes
-php poller_boost.php --force
-mysqldump --single-transaction --routines cacti > cacti.sql
-tar -C /path/to/kadupul -cf rra.tar rra
+set -euo pipefail
+
+APP=/path/to/kadupul
+DEST=/var/backups/kadupul            # outside the served tree
+DB=$(php -r 'require "'"$APP"'/include/config.php"; echo $database_default;')
+STAMP=$(date -u +%Y%m%dT%H%M%SZ)
+
+install -d -m 0700 "$DEST"
+
+# Stop the launcher first, then flush deferred writes.
+php "$APP/poller_boost.php" --force
+
+# Wait for collectors and any other RRD writer to finish before touching files.
+
+( umask 077
+  mysqldump --single-transaction --routines "$DB" > "$DEST/db-$STAMP.sql"
+  tar -C "$APP" -cf "$DEST/rra-$STAMP.tar" rra )
 ```
 
-**Accept the skew and record it.** Dump the database first, then copy the files,
-and write down the window. A data source created inside that window will exist in
-the database and have no file. That is recoverable. A data source deleted inside
-the window leaves an orphan file, which is harmless.
+Three things in that are not decoration. The destination is outside the
+application directory, because a dump written next to the application can
+overwrite the shipped `cacti.sql` schema file and, if the directory is served,
+publish your database credentials over HTTP. The database name comes from the
+configuration rather than being assumed. And `set -e` with a restrictive `umask`
+means a failed dump stops the script instead of leaving a truncated file that
+looks like a backup.
 
-Never do it the other way round. Copying files first and dumping the database
-second produces the failure that is not recoverable: a file whose contents are
-newer than the database's idea of what that file is.
+**Accept the skew and record it.** Whichever part you capture first is the older
+one, and neither order makes a live pair consistent on its own. Write down the
+window; that is what makes the result recoverable.
+
+Dump the database first and copy the files second, and the files are newer. A
+data source deleted inside the window is still in the dump but its file is gone,
+leaving a reference the poller will recreate. A data source created inside the
+window arrives as a file the database does not know about, which is inert.
+
+Copy the files first and dump the database second, and the database is newer. A
+data source created inside the window is in the dump with no file behind it,
+which the poller recreates empty.
+
+Neither order loses history that existed before the window. What both lose is
+the samples collected during it, and a snapshot of the whole volume avoids that
+where the filesystem supports one.
 
 ## What is in the backup that you did not think about
 
@@ -131,9 +162,13 @@ a newer database does not backfill; the poller resumes at the current time and
 the interval between the backup and the restore is a permanent gap. This is also
 why you cannot merge two backups by copying files between them.
 
-**Restoring onto a different install path breaks every path in the database.**
-The file path is stored per data source, absolute. Moving the install means
-rewriting those paths, not only the setting.
+**Check whether your stored paths are tokenised before rewriting anything.**
+Generated data sources store the path as `<path_rra>/name.rrd`, and the token is
+expanded at read time from the RRD path setting. For those, moving the install
+means changing the setting and rebuilding the poller cache, not rewriting rows.
+Paths that were entered by hand are stored literally and do need rewriting.
+Check before you run an update across the table, because rewriting tokenised
+paths into absolute ones is the change that makes the next move harder.
 
 **Remote collectors have their own configuration file.** Each one holds its own
 database credentials and collector id. They are not in the central database

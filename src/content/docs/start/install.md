@@ -60,15 +60,19 @@ otherwise correct install refuses to proceed.
 
 ## Step 2: create the database and its user
 
-Create one database, and one user with rights to that database only. Kadupul does
-not need rights to anything else.
+Create one database, and one user with rights to that database. The user also
+needs read access to the server's time zone tables, which live in the `mysql`
+database. That is the one grant outside its own schema, and the check below
+fails without it.
 
 The database server also needs its time zone tables populated, and the Kadupul user
 needs to read them. Nothing about a monitoring system suggests this, and it is not
 optional.
 
 ```bash
+# Populate the tables, then grant the one extra read the installer needs.
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
+mysql -u root -p -e "GRANT SELECT ON mysql.time_zone_name TO 'kadupul'@'localhost';"
 ```
 
 **Check it.** Log in as the Kadupul database user and run:
@@ -123,6 +127,16 @@ then delete it. A permission that looks right in `ls -l` can still be denied by
 SELinux or AppArmor, and writing the file is the only check that covers that. Then
 request a file under the log directory over HTTP. You want a refusal.
 
+### If you cloned the repository rather than unpacking a release
+
+A release archive ships with its dependencies already in place. A source checkout
+does not, and the application will fail on its first request without them,
+because `include/global.php` loads Composer's autoloader.
+
+```bash
+composer install --no-dev --optimize-autoloader
+```
+
 ## Step 4: write the configuration file
 
 Copy the distributed configuration file into place and set the database host, name,
@@ -140,7 +154,19 @@ Every other setting has a working default, so read
 and the file parsed. A database error here means the credentials are wrong, and it
 is far easier to read now than in a log later.
 
-## Step 5: run the installer
+## Step 5: import the schema
+
+The installer expects the tables to exist already. Load the shipped schema into
+the database you created:
+
+```bash
+mysql -u kadupul -p kadupul < cacti.sql
+```
+
+Do this once, against an empty database. Running it against a populated one
+replaces what is there.
+
+## Step 6: run the installer
 
 Open the site in a browser and work through it. The installer walks a fixed
 sequence, and each step gates the next:
@@ -165,7 +191,7 @@ round-robin archives](/concepts/data-sources-and-rras/) before clicking past it.
 The interval offered there is either every minute or every five minutes, and
 whichever you pick has to match what you schedule next.
 
-## Step 6: schedule the poller
+## Step 7: schedule the poller
 
 The poller has to be started from outside. It decides internally whether a given
 run is due, so starting it more often than the collection interval is safe. Either
@@ -192,7 +218,7 @@ php -q /path/to/kadupul/poller.php --force --debug
 You want a clean finish with a summary line. Then leave the scheduler alone for two
 intervals and confirm a second run happened without you.
 
-## Step 7: change the default credentials
+## Step 8: change the default credentials
 
 The shipped schema seeds an administrator account named `admin` with the password
 `admin`, flagged so that the first login forces a change. It also seeds a disabled

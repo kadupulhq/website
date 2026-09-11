@@ -43,10 +43,15 @@ Bug fixes and security fixes that keep the interface identical.
 A security fix ships as a patch on every supported branch. It is never bundled
 with a feature, so an operator can take the fix without taking anything else.
 
-## Pre-1.0
+## Where the numbering starts
 
-Until `v1.0.0` there is no compatibility promise. The minor number carries
-breaking changes, which is what semantic versioning specifies for a zero major.
+This file covers the documentation site only. Kadupul's own versioning is
+defined once, in
+[VERSIONING.md](https://github.com/kadupulhq/kadupul/blob/main/VERSIONING.md) in
+the application repository, and that file is authoritative. It continues Cacti's
+line from the 1.2.31 fork point, with `v1.3.0` as the first planned release.
+
+Do not restate the policy here. Two copies drift, and this one already did.
 
 ## Commits and releases
 

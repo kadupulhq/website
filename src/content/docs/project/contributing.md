@@ -8,8 +8,8 @@ sidebar:
 ---
 
 :::caution[Not open yet]
-There is no code to contribute to. Governance and review are not settled. This page
-records the intended standard.
+The source is available but the project is not open to contributions yet.
+Governance and review are not settled. This page records the intended standard.
 :::
 
 ## The standard

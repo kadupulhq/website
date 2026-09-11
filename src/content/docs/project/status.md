@@ -7,11 +7,13 @@ banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 ---
 
-Kadupul has not shipped. There is no release, no installable artifact, and no fork
-point chosen yet.
+Kadupul has not shipped. There is no release and no installable artifact. The
+source is available: the fork is taken from Cacti 1.2.31 with its full history,
+and Cacti's later 1.2.x security fixes are backported on top.
 
-What exists today is the name, the identity, this documentation site, and the
-decision to fork Cacti under GPL-3.0-or-later.
+Source available and supported release are different claims. Nothing here is
+packaged, nothing is tested as a whole, and there is no upgrade path from an
+existing Cacti install. Do not run it in production.
 
 ## What is decided
 
