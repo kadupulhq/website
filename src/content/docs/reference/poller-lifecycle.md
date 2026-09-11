@@ -90,8 +90,8 @@ Two guards follow:
 
 | Guard | Behaviour |
 |---|---|
-| Running too often | If `(start - lastrun) * 1.3 < MAX_POLLER_RUNTIME` and `--force` was not given, log and exit. |
-| Running too rarely | If `start - lastrun - 10 > MAX_POLLER_RUNTIME`, log a warning and mail the primary admin. The run continues. |
+| Running too often | If a previous run is recorded, `(start - lastrun) * 1.3 < MAX_POLLER_RUNTIME`, and `--force` was not given, log and exit. |
+| Running too rarely | If a previous run is recorded and `start - lastrun - 10 > MAX_POLLER_RUNTIME`, log a warning and mail the primary admin. The run continues. |
 
 `poller_lastrun_<id>` is then written, and `poller_lastrun` as well for poller 1.
 PHP's execution limit is set to `MAX_POLLER_RUNTIME + 1` and its memory limit to
@@ -118,7 +118,7 @@ Repeated `poller_runs` times. One pass is one collection cycle.
 | 2 | `path_webroot` is rewritten to this run's directory. |
 | 3 | `max_threads` comes from the poller row, forced to 1 when `poller_type` is 1. |
 | 4 | Rows in `poller_time` with no end time mean processes that overran the previous cycle. They are logged and the primary admin is mailed. Completed rows are deleted. |
-| 5 | Leftover `poller_output` rows for this poller are logged (first 20 data source ids), mailed, and deleted. Data left here means a previous cycle never got a complete set of values for those data sources. |
+| 5 | Leftover `poller_output` rows for this poller are logged (first 20 data source ids), mailed, and deleted. On a remote poller only rows older than 600 seconds count, because other collectors insert asynchronously. Data left here means a previous cycle never got a complete set of values for those data sources. |
 | 6 | On poller 1 with `poller_refresh_output_table` on and only one poller, `poller_output` is swapped for a fresh table and converted back to the MEMORY engine if the swapped-in copy is not already MEMORY. |
 | 7 | If `poller_enabled` is off, the loop logs a warning and does nothing else. |
 | 8 | `hosts_per_process = ceil(devices / concurrent_processes)`. |
@@ -137,7 +137,7 @@ Then it loops:
 
 | Condition | Action |
 |---|---|
-| Finished collectors < started | Call `process_poller_output()` on whatever has arrived so far. Sleep to make each pass take at least a second. |
+| Finished collectors < started | Call `process_poller_output()` on whatever has arrived so far. If that pass took under a second, sleep one second. |
 | Elapsed > `MAX_POLLER_RUNTIME` | Log, mail, send an SNMP notification, fire the `poller_exiting` hook, record stats, break. |
 | Finished collectors >= started | Fire the `poller_finishing` hook, drain the remainder, record stats, break. |
 

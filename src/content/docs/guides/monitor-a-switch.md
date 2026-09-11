@@ -113,7 +113,7 @@ So the question is which field carries the value.
 
 The interface query declares a preference order: `ifName`, then `ifDescr`, then
 `ifHwAddr`, then `ifIndex`. Kadupul takes the first one that passes two tests
-against what the device just returned.
+against the values the device returned during discovery.
 
 1. Every discovered port has a value for it.
 2. No two ports share a value.

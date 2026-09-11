@@ -177,17 +177,22 @@ not on the list, and editing a definition invalidates its entry until the file i
 regenerated. Regenerating is a command line step, which is the point: it needs
 shell access on the host, not an administrative session in the browser.
 
+The check runs again when the poller cache is rebuilt. A data input that fails it
+produces no poller items, and any rows it left behind are deleted on the next
+flush, so the command is never handed to the poller. Creation and execution are
+both gated, not just creation.
+
 ```sh
 php cli/input_whitelist.php --audit
 php cli/input_whitelist.php --update
 ```
 
 It is off unless you configure it. On an internet-facing install, configure it.
-It raises the cost of a browser-side administrative compromise, because building
-new collection on an unapproved command now also needs filesystem write access on
-the poller host. Understand its limit: the gate is on creating graphs and data
-sources, so it is not a substitute for restricting who holds the permissions in
-the table above.
+It raises the cost of a browser-side administrative compromise, because putting a
+new command into collection now also needs filesystem write access on the poller
+host. It is still not a substitute for restricting who holds the permissions in
+the table above, since an attacker who can reach an already-approved command
+string does not need to add one.
 
 ## Authentication
 
