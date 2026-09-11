@@ -26,15 +26,22 @@ const DIST = process.argv[2] || fileURLToPath(new URL('../dist/', import.meta.ur
  * read as valid. Skipping links also makes a cycle impossible, which previously
  * crashed with exit 1, the same status as "broken links found".
  */
-function walk(dir, out = []) {
+function walk(dir, acc = { files: [], skipped: [] }) {
 	for (const name of readdirSync(dir)) {
 		const p = join(dir, name);
 		const st = lstatSync(p);
-		if (st.isSymbolicLink()) continue;
-		if (st.isDirectory()) walk(p, out);
-		else if (st.isFile()) out.push(p);
+		if (st.isSymbolicLink()) {
+			// Recorded, not silently dropped. Following it would let out-of-build
+			// pages satisfy links; ignoring it would hide every link inside the
+			// tree. Coverage the checker cannot claim must not read as a pass, so
+			// the caller turns a content-bearing symlink into a fatal.
+			acc.skipped.push(p);
+			continue;
+		}
+		if (st.isDirectory()) walk(p, acc);
+		else if (st.isFile()) acc.files.push(p);
 	}
-	return out;
+	return acc;
 }
 
 /** Split an href into its path, fragment and query. Returns null for non-routes.
@@ -54,10 +61,10 @@ export function classify(href, from = '') {
 	if (hash !== -1) cut = Math.min(cut, hash);
 	if (query !== -1) cut = Math.min(cut, query);
 	let path = href.slice(0, cut);
-	// Decode and normalise the path too. Directory names read from disk are
-	// literal, and APFS hands back decomposed forms.
+	// Decode, but do not normalise. A static host resolves a request against the
+	// stored filename bytes, so folding both sides would make a real mismatch
+	// compare equal. Normalisation is retried explicitly on a literal miss.
 	try { path = decodeURIComponent(path); } catch { /* keep raw */ }
-	path = path.normalize('NFC');
 	let fragment = hash === -1 ? '' : href.slice(hash + 1);
 	// ids in the HTML are literal; hrefs may be percent-encoded.
 	try { fragment = decodeURIComponent(fragment); } catch { /* keep raw */ }
@@ -84,15 +91,41 @@ export function check(dist) {
 	} catch {
 		return { fatal: `cannot read ${dist}` };
 	}
-	const key0 = (p) => relative(root, p).split(sep).join('/').normalize('NFC');
-	const files = walk(root);
+	const key0 = (p) => relative(root, p).split(sep).join('/');
+	let files, skipped;
+	try {
+		({ files, skipped } = walk(root));
+	} catch (e) {
+		// An I/O error must not surface as exit 1, which is "broken links found".
+		return { fatal: `cannot read the build: ${e.message}` };
+	}
+	for (const link of skipped) {
+		let target, st;
+		try {
+			target = realpathSync(link);
+			st = statSync(target);
+		} catch {
+			continue; // dangling: carries nothing, so no coverage is lost
+		}
+		// A link pointing back inside the build reaches content the walk already
+		// covered, including a self-referential cycle. Only a target outside the
+		// root is coverage this run cannot account for.
+		if (target === root || target.startsWith(root + sep)) continue;
+		if (st.isDirectory() || target.endsWith('.html')) {
+			return { fatal: `symlink leaves the build and carries pages that cannot be checked: ${key0(link)}` };
+		}
+	}
 	const assets = new Set(files.map(key0));
+	const assetsNFC = new Map(files.map((p) => [key0(p).normalize('NFC'), key0(p)]));
 	const pages = files.filter((p) => p.endsWith('.html'));
 	if (pages.length === 0) {
 		return { fatal: `no HTML under ${dist}; the build produced nothing` };
 	}
 
 	const routes = new Set(pages.map((p) => key0(p).replace(/(^|\/)index\.html$/, '$1')));
+	const routesNFC = new Map(
+		[...routes].map((r) => [r.normalize('NFC'), r]),
+	);
 	const ids = new Map();
 	for (const p of pages) {
 		const key = key0(p).replace(/(^|\/)index\.html$/, '$1');
@@ -118,12 +151,27 @@ export function check(dist) {
 			// build. existsSync alone is true for directories, which silently
 			// swallowed links to dotted directories like the version tree, and it
 			// also followed ../ above the build root.
-			if (c.dotted && !routes.has(key) && !routes.has(key + '/') && assets.has(key)) continue;
+			if (c.dotted && !routes.has(key) && !routes.has(key + '/')) {
+				if (assets.has(key)) continue;
+				// A normalisation-only asset match is reported, not skipped.
+				if (assetsNFC.has(key.normalize('NFC'))) {
+					checked++;
+					broken.push(`${from || '/'}  ->  ${m[1]}  (unicode normalisation mismatch)`);
+					continue;
+				}
+			}
 			// A dotted path that is not a file may still be a route directory.
 			if (c.dotted && !routes.has(key) && routes.has(key + '/')) key += '/';
 			checked++;
 			if (!routes.has(key)) {
-				broken.push(`${from || '/'}  ->  ${m[1]}  (no such route)`);
+				const viaNFC = routesNFC.get(key.normalize('NFC'));
+				if (viaNFC !== undefined) {
+					broken.push(
+						`${from || '/'}  ->  ${m[1]}  (unicode normalisation mismatch with ${viaNFC})`,
+					);
+				} else {
+					broken.push(`${from || '/'}  ->  ${m[1]}  (no such route)`);
+				}
 				continue;
 			}
 			if (key !== from) inbound.set(key, (inbound.get(key) || 0) + 1);

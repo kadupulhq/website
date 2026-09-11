@@ -246,7 +246,8 @@ test('a symlinked directory does not contribute routes', async () => {
 	const d = build({ 'index.html': '<a href="/vendor/">x</a>' });
 	symlinkSync(join(outside, 'vendor'), join(d, 'vendor'));
 	const r = check(d);
-	assert.equal(r.broken.length, 1, 'a page outside the build must not satisfy a link');
+	assert.ok(r.fatal, 'a symlinked page tree is coverage the checker cannot claim');
+	assert.match(r.fatal, /cannot be checked/);
 	rmSync(d, { recursive: true, force: true });
 	rmSync(outside, { recursive: true, force: true });
 });
@@ -270,4 +271,25 @@ test('a file argument is fatal, not a broken-link result', async () => {
 	catch (e) { status = e.status; }
 	assert.equal(status, 2, 'a non-directory argument must exit 2, not 1');
 	rmSync(d, { recursive: true });
+});
+
+test('a unicode normalisation mismatch is reported, not folded away', async () => {
+	const { mkdirSync: md, writeFileSync: wf } = await import('node:fs');
+	const d = build({ 'index.html': '<a href="/caf%C3%A9/">x</a>' });
+	// decomposed on disk, precomposed in the href
+	md(join(d, 'café'), { recursive: true });
+	wf(join(d, 'café', 'index.html'), 'y');
+	const r = check(d);
+	assert.equal(r.broken.length, 1, 'a byte-level mismatch must not compare equal');
+	assert.match(r.broken[0], /normalisation mismatch/);
+	rmSync(d, { recursive: true });
+});
+
+test('a dangling symlink does not make the run fatal', async () => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({ 'index.html': '<a href="/">x</a>' });
+	symlinkSync(join(d, 'nothing-here'), join(d, 'dangling'));
+	const r = check(d);
+	assert.ok(!r.fatal, 'a symlink carrying nothing is not lost coverage');
+	rmSync(d, { recursive: true, force: true });
 });
