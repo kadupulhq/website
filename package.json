@@ -8,11 +8,12 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/build-map.mjs && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "lint:prose": "node scripts/lint-prose.mjs",
-    "check:all": "npm run lint:prose && npm run build"
+    "check:all": "npm run build:map && npm run lint:prose && astro build",
+    "build:map": "node scripts/build-map.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

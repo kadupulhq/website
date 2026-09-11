@@ -1,16 +1,20 @@
 ---
 title: Network monitoring and graphing
-description: Network monitoring and graphing. Poll devices over SNMP and
-  scripts, store the results in RRD files, and graph them.
+description: Poll devices over SNMP and scripts, store the results in RRD files,
+  and graph them. A fork of Cacti.
 template: splash
 hero:
   tagline: Poll your network, keep the history, graph what happened. A fork of Cacti.
   image:
     file: ../../../assets/1.2.31/logo.png
   actions:
-    - text: What Kadupul is
+    - text: Start here
       link: /1.2.31/start/what-kadupul-is/
       icon: right-arrow
+    - text: Documentation map
+      link: /1.2.31/map/
+      icon: list-format
+      variant: minimal
     - text: Source on GitHub
       link: https://github.com/kadupulhq
       icon: external
@@ -20,24 +24,45 @@ slug: 1.2.31
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<CardGrid stagger>
+<CardGrid>
   <Card title="Start here" icon="rocket">
-    Four short pages take you from nothing to a graph you can read. Begin with
-    [what Kadupul is](/1.2.31/start/what-kadupul-is/).
+    Four pages, read in order, once. [What Kadupul is](/1.2.31/start/what-kadupul-is/),
+    then [install](/1.2.31/start/install/), [add a device](/1.2.31/start/first-device/), and
+    [read the graph](/1.2.31/start/first-graph/) it produces.
+  </Card>
+
+  <Card title="How-to guides" icon="setting">
+    Twenty-seven task pages for people who already have it running. Monitoring
+    specific kinds of hardware, [scaling the poller](/1.2.31/guides/scale-the-poller/),
+    [backups](/1.2.31/guides/back-up-and-restore/),
+    [upgrades](/1.2.31/guides/upgrade-safely/), and
+    [what to do when data stops arriving](/1.2.31/guides/troubleshoot-missing-data/).
   </Card>
 
   <Card title="Concepts" icon="open-book">
-    Why the poller writes to round-robin archives, what a data source really is,
-    and how templates avoid repeating yourself.
+    Why it works this way. [Architecture](/1.2.31/concepts/architecture/),
+    [data sources and archives](/1.2.31/concepts/data-sources-and-rras/),
+    [how graphs are drawn](/1.2.31/concepts/how-graphs-are-drawn/), and the
+    [security model](/1.2.31/concepts/security-model/).
   </Card>
 
   <Card title="Reference" icon="list-format">
-    Requirements, command line tools, and configuration, stated precisely enough
-    to act on without guessing.
+    Looked up, not read through. [Requirements](/1.2.31/reference/requirements/),
+    [settings](/1.2.31/reference/configuration/),
+    [command line tools](/1.2.31/reference/command-line-tools/),
+    [database schema](/1.2.31/reference/database-schema/), and the
+    [glossary](/1.2.31/reference/glossary/).
   </Card>
 
-  <Card title="Coming from Cacti" icon="right-arrow">
-    Kadupul stays API compatible with Cacti for the foreseeable future. See
-    [what that promise covers](/project/compatibility-with-cacti/).
+  <Card title="Project" icon="information">
+    [Why this fork exists](/project/why-this-fork/), what the
+    [compatibility promise](/project/compatibility-with-cacti/) covers, the
+    [licence](/project/license/), and [where the project actually is](/project/status/).
+  </Card>
+
+  <Card title="Coming from Cacti?" icon="right-arrow">
+    Kadupul keeps Cacti's data model, plugin interface, and templates. Read
+    [coming from Cacti](/1.2.31/guides/coming-from-cacti/) for what carries over and
+    what to check before moving.
   </Card>
 </CardGrid>

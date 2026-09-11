@@ -32,6 +32,7 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/kadupulhq' },
 			],
 			sidebar: [
+				{ label: 'Documentation map', slug: 'map' },
 				{
 					label: 'Start here',
 					items: [
