@@ -120,14 +120,32 @@ test('the CLI entry point fails closed', async () => {
 	assert.equal(run(d), 1, 'a broken link must exit 1');
 	rmSync(d, { recursive: true });
 
-	// os.tmpdir() is /var/... on macOS, a symlink to /private/var/..., which is
-	// exactly the case where a naive entry guard skips the run and exits 0.
-	const { realpathSync } = await import('node:fs');
-	assert.notEqual(
-		join(tmpdir(), 'x'), join(realpathSync(tmpdir()), 'x'),
-		'this assertion only means anything on a platform where tmpdir is a symlink',
-	);
-	const via = build({ 'index.html': '<a href="/nope/">x</a>' });
-	assert.equal(run(via), 1, 'must still run when reached through a symlinked path');
-	rmSync(via, { recursive: true });
+	// Build the symlink rather than depending on the host having one. On Linux
+	// os.tmpdir() is a real directory, so asserting otherwise would redden CI.
+	const { symlinkSync } = await import('node:fs');
+	const real = build({ 'index.html': '<a href="/nope/">x</a>' });
+	const link = mkdtempSync(join(tmpdir(), 'linkcheck-ln-')) + '/via';
+	symlinkSync(real, link);
+	assert.equal(run(link + '/'), 1, 'must still run when reached through a symlink');
+	rmSync(link, { recursive: true, force: true });
+	rmSync(real, { recursive: true });
+});
+
+test('a dotted directory is route-checked, not swallowed as an asset', () => {
+	const d = build({
+		'index.html': '<a href="/1.2.31">v</a><a href="/1.2.31#top">a</a>',
+		'1.2.31/index.html': '<h2 id="top">T</h2>',
+	});
+	const r = check(d);
+	assert.equal(r.broken.length, 0, 'the dotted directory resolves as a route');
+	assert.ok(r.checked >= 2, 'both links must be counted, not skipped');
+	assert.equal(r.fragmentsChecked, 1, 'the anchor on a dotted directory must be checked');
+	rmSync(d, { recursive: true });
+});
+
+test('a traversing href cannot reach outside the build', () => {
+	const d = build({ 'index.html': '<a href="/../escape.png">x</a>' });
+	const r = check(d);
+	assert.equal(r.broken.length, 1, 'traversal must be reported, not silently skipped');
+	rmSync(d, { recursive: true });
 });

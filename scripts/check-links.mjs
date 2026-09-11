@@ -11,7 +11,7 @@
  * a count. A gate that fails open is worse than no gate.
  */
 import { readdirSync, readFileSync, statSync, existsSync, realpathSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const DIST = process.env.CHECK_LINKS_DIST
@@ -46,6 +46,18 @@ export function classify(href, from = '') {
 	return { path, fragment, dotted };
 }
 
+/** True only for a regular file that stays inside the build root. */
+function isAssetFile(dist, key) {
+	const root = resolve(dist);
+	const target = resolve(root, key);
+	if (target !== root && !target.startsWith(root + sep)) return false;
+	try {
+		return statSync(target).isFile();
+	} catch {
+		return false;
+	}
+}
+
 export function check(dist) {
 	if (!existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
@@ -74,9 +86,14 @@ export function check(dist) {
 		for (const m of html.matchAll(/href="([^"]*)"/g)) {
 			const c = classify(m[1], from);
 			if (!c) continue;
-			const key = c.path.replace(/^\//, '');
-			// A dotted path that exists as a real file in the build is an asset.
-			if (c.dotted && !routes.has(key) && existsSync(join(dist, key))) continue;
+			let key = c.path.replace(/^\//, '');
+			// A dotted path is an asset only when it is a regular file inside the
+			// build. existsSync alone is true for directories, which silently
+			// swallowed links to dotted directories like the version tree, and it
+			// also followed ../ above the build root.
+			if (c.dotted && !routes.has(key) && isAssetFile(dist, key)) continue;
+			// A dotted path that is not a file may still be a route directory.
+			if (c.dotted && !routes.has(key) && routes.has(key + '/')) key += '/';
 			checked++;
 			if (!routes.has(key)) {
 				broken.push(`${from || '/'}  ->  ${m[1]}  (no such route)`);
