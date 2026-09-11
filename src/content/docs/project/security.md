@@ -26,15 +26,27 @@ unreproducible report is hard to act on and harder to prioritize.
 Not every security finding needs to be private, and treating them all the same
 wastes time.
 
+Report privately first, whatever it looks like. The handling is decided after
+triage, not by the reporter guessing which column they are in.
+
 | Situation | Handling |
 |---|---|
 | Affects a released version | Private advisory until a fix is available |
 | Pre-authentication, any released version | Private, and treated as the highest priority |
-| Affects only the development branch, never released | Public issue, fixed in the open |
+| Inherited from Cacti and present in a Cacti release | Private, and reported to Cacti first |
+| Exploitable, but only on unreleased code | Private triage, then usually fixed in the open |
 | Hardening with no exploitable path | Public issue |
 
-A development branch is not a release. Nobody is running it in production, so
-there is no embargo to protect and fixing it in public is faster.
+Two things decide the last two rows, and neither is obvious from the outside.
+
+Whether the code is inherited. Most of this tree came from Cacti, so a defect
+here is often a defect in a shipped Cacti release, and that is Cacti's
+disclosure timeline to run rather than ours.
+
+Whether anyone is exposed. An unreleased branch is not automatically unexposed:
+people run development code, and the absence of a release is not evidence of the
+absence of deployments. Ordinary hardening stays public, because keeping it
+private buys nothing and costs review.
 
 ## Credit
 

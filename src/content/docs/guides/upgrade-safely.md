@@ -50,6 +50,36 @@ setup discover this here.
 still running. A poller writing into a schema that is being altered underneath it
 produces errors that are difficult to attribute afterwards.
 
+## Replace the application
+
+The trailing dot matters more than anything else on this page.
+
+```bash
+# Copies the contents of the new tree over the old one.
+cp -a /path/to/new-release/. /path/to/kadupul/
+```
+
+Without it, `cp -a /path/to/new-release /path/to/kadupul` creates
+`kadupul/new-release/` and leaves every file of the old application exactly where
+it was. The upgrade appears to have worked, the interface still runs the old
+code, and the first sign of trouble is the schema migration refusing to match a
+version you thought you had replaced.
+
+A copy over the top leaves anything the new release does not ship: your
+configuration, your plugins, and the RRD tree. That is usually what you want, but
+it also means files removed upstream stay behind. If you would rather not carry
+them, stage the release beside the install, copy the configuration and plugins
+into the staged copy, and swap a symlink. Rollback is then swapping it back.
+
+**Check what you are actually running before you go on.**
+
+```bash
+php -r 'require "/path/to/kadupul/include/global.php"; print CACTI_VERSION . "\n";'
+```
+
+If that does not report the release you just deployed, stop. Everything after
+this point assumes the code has changed.
+
 ## The schema migration
 
 The database carries its own version, separate from the version in the code.
