@@ -10,7 +10,7 @@
  * truncating, so every anchor link was skipped while the summary still printed
  * a count. A gate that fails open is worse than no gate.
  */
-import { readdirSync, readFileSync, statSync, existsSync, realpathSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, lstatSync, existsSync, realpathSync } from 'node:fs';
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -18,11 +18,23 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 // redirect what a release gate inspects.
 const DIST = process.argv[2] || fileURLToPath(new URL('../dist/', import.meta.url));
 
-function walk(dir) {
-	return readdirSync(dir).flatMap((n) => {
-		const p = join(dir, n);
-		return statSync(p).isDirectory() ? walk(p) : p.endsWith('.html') ? [p] : [];
-	});
+/**
+ * Every regular file under the build, following no symlinks.
+ *
+ * lstat, not stat: a symlinked directory inside dist would otherwise contribute
+ * out-of-build pages to the route set, so links that 404 in production would
+ * read as valid. Skipping links also makes a cycle impossible, which previously
+ * crashed with exit 1, the same status as "broken links found".
+ */
+function walk(dir, out = []) {
+	for (const name of readdirSync(dir)) {
+		const p = join(dir, name);
+		const st = lstatSync(p);
+		if (st.isSymbolicLink()) continue;
+		if (st.isDirectory()) walk(p, out);
+		else if (st.isFile()) out.push(p);
+	}
+	return out;
 }
 
 /** Split an href into its path, fragment and query. Returns null for non-routes.
@@ -57,30 +69,25 @@ export function classify(href, from = '') {
 	return { path, fragment, dotted };
 }
 
-/** True only for a regular file that stays inside the build root. */
-function isAssetFile(dist, key) {
-	try {
-		// realpath both sides: resolve() normalises ".." but does not follow
-		// symlinks, and statSync does, so a lexical check alone lets a link out
-		// of the build claim to be a present asset.
-		const root = realpathSync(resolve(dist));
-		const target = realpathSync(resolve(root, key));
-		if (target !== root && !target.startsWith(root + sep)) return false;
-		return statSync(target).isFile();
-	} catch {
-		return false;
-	}
-}
-
 export function check(dist) {
 	if (!existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
 	}
 	// Normalise once. Deriving keys by slicing the caller's raw string corrupts
 	// every route when the path carries ./ or ../ or lacks a trailing slash.
-	const root = resolve(dist);
+	let root;
+	try {
+		root = realpathSync(resolve(dist));
+		if (!statSync(root).isDirectory()) {
+			return { fatal: `${dist} is not a directory` };
+		}
+	} catch {
+		return { fatal: `cannot read ${dist}` };
+	}
 	const key0 = (p) => relative(root, p).split(sep).join('/').normalize('NFC');
-	const pages = walk(root);
+	const files = walk(root);
+	const assets = new Set(files.map(key0));
+	const pages = files.filter((p) => p.endsWith('.html'));
 	if (pages.length === 0) {
 		return { fatal: `no HTML under ${dist}; the build produced nothing` };
 	}
@@ -111,7 +118,7 @@ export function check(dist) {
 			// build. existsSync alone is true for directories, which silently
 			// swallowed links to dotted directories like the version tree, and it
 			// also followed ../ above the build root.
-			if (c.dotted && !routes.has(key) && !routes.has(key + '/') && isAssetFile(root, key)) continue;
+			if (c.dotted && !routes.has(key) && !routes.has(key + '/') && assets.has(key)) continue;
 			// A dotted path that is not a file may still be a route directory.
 			if (c.dotted && !routes.has(key) && routes.has(key + '/')) key += '/';
 			checked++;

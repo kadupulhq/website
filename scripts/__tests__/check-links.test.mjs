@@ -237,3 +237,37 @@ test('check() is driven by its argument, not by process state', () => {
 	delete process.env.CHECK_LINKS_DIST;
 	rmSync(d, { recursive: true });
 });
+
+test('a symlinked directory does not contribute routes', async () => {
+	const { symlinkSync, mkdtempSync: mk, mkdirSync: md, writeFileSync: wf } = await import('node:fs');
+	const outside = mk(join(tmpdir(), 'linkcheck-ext-'));
+	md(join(outside, 'vendor'), { recursive: true });
+	wf(join(outside, 'vendor', 'index.html'), 'x');
+	const d = build({ 'index.html': '<a href="/vendor/">x</a>' });
+	symlinkSync(join(outside, 'vendor'), join(d, 'vendor'));
+	const r = check(d);
+	assert.equal(r.broken.length, 1, 'a page outside the build must not satisfy a link');
+	rmSync(d, { recursive: true, force: true });
+	rmSync(outside, { recursive: true, force: true });
+});
+
+test('a symlink cycle does not crash the walk', async () => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({ 'index.html': '<a href="/">x</a>' });
+	symlinkSync(d, join(d, 'self'));
+	const r = check(d);
+	assert.ok(!r.fatal, 'a cycle must not throw');
+	assert.equal(r.broken.length, 0);
+	rmSync(d, { recursive: true, force: true });
+});
+
+test('a file argument is fatal, not a broken-link result', async () => {
+	const { execFileSync } = await import('node:child_process');
+	const script = fileURLToPath(new URL('../check-links.mjs', import.meta.url));
+	const d = build({ 'index.html': '<a href="/">x</a>' });
+	let status = 0;
+	try { execFileSync(process.execPath, [script, join(d, 'index.html')], { encoding: 'utf8' }); }
+	catch (e) { status = e.status; }
+	assert.equal(status, 2, 'a non-directory argument must exit 2, not 1');
+	rmSync(d, { recursive: true });
+});
