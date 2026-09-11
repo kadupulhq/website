@@ -50,7 +50,6 @@ export function classify(href, from = '') {
 	if (href.startsWith('#')) {
 		let f = href.slice(1);
 		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
-		f = f.normalize('NFC');
 		return { path: '/' + from, fragment: f, samePage: true, dotted: false };
 	}
 	if (href.startsWith('//')) return null; // protocol-relative, external
@@ -68,7 +67,6 @@ export function classify(href, from = '') {
 	let fragment = hash === -1 ? '' : href.slice(hash + 1);
 	// ids in the HTML are literal; hrefs may be percent-encoded.
 	try { fragment = decodeURIComponent(fragment); } catch { /* keep raw */ }
-	fragment = fragment.normalize('NFC');
 	// Whether a dotted path is an asset or a route is decided by the build, not
 	// by an extension list that goes stale the first time someone adds a feed.
 	const dotted = /\.[^/]+$/.test(path);
@@ -99,6 +97,7 @@ export function check(dist) {
 		// An I/O error must not surface as exit 1, which is "broken links found".
 		return { fatal: `cannot read the build: ${e.message}` };
 	}
+	const aliases = [];
 	for (const link of skipped) {
 		let target, st;
 		try {
@@ -108,14 +107,25 @@ export function check(dist) {
 			continue; // dangling: carries nothing, so no coverage is lost
 		}
 		// A link pointing back inside the build reaches content the walk already
-		// covered, including a self-referential cycle. Only a target outside the
-		// root is coverage this run cannot account for.
-		if (target === root || target.startsWith(root + sep)) continue;
+		// covered, including a self-referential cycle. Record it as an alias so
+		// the path it is served under still resolves; skipping it outright turned
+		// a valid /latest/ into a false broken link.
+		if (target === root || target.startsWith(root + sep)) {
+			aliases.push([key0(link), key0(target)]);
+			continue;
+		}
 		if (st.isDirectory() || target.endsWith('.html')) {
 			return { fatal: `symlink leaves the build and carries pages that cannot be checked: ${key0(link)}` };
 		}
 	}
 	const assets = new Set(files.map(key0));
+	// Expand each in-build symlink into the keys it serves.
+	for (const [from, to] of aliases) {
+		for (const k of [...assets]) {
+			if (k === to) assets.add(from);
+			else if (k.startsWith(to + '/')) assets.add(from + k.slice(to.length));
+		}
+	}
 	const assetsNFC = new Map(files.map((p) => [key0(p).normalize('NFC'), key0(p)]));
 	const pages = files.filter((p) => p.endsWith('.html'));
 	if (pages.length === 0) {
@@ -123,6 +133,12 @@ export function check(dist) {
 	}
 
 	const routes = new Set(pages.map((p) => key0(p).replace(/(^|\/)index\.html$/, '$1')));
+	for (const [from, to] of aliases) {
+		for (const r of [...routes]) {
+			if (r === to + '/') routes.add(from + '/');
+			else if (r.startsWith(to + '/')) routes.add(from + r.slice(to.length));
+		}
+	}
 	const routesNFC = new Map(
 		[...routes].map((r) => [r.normalize('NFC'), r]),
 	);
@@ -130,7 +146,8 @@ export function check(dist) {
 	for (const p of pages) {
 		const key = key0(p).replace(/(^|\/)index\.html$/, '$1');
 		const html = readFileSync(p, 'utf8');
-		ids.set(key, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1].normalize('NFC'))));
+		const found = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+		ids.set(key, { literal: new Set(found), nfc: new Set(found.map((i) => i.normalize('NFC'))) });
 	}
 
 	const broken = [];
@@ -177,8 +194,15 @@ export function check(dist) {
 			if (key !== from) inbound.set(key, (inbound.get(key) || 0) + 1);
 			if (c.fragment) {
 				fragmentsChecked++;
-				if (!ids.get(key)?.has(c.fragment)) {
-					broken.push(`${from || '/'}  ->  ${m[1]}  (no such anchor on target)`);
+				const target = ids.get(key);
+				if (!target?.literal.has(c.fragment)) {
+					// Literal first here too. Folding both sides would hide exactly
+					// the mismatch that makes an anchor fail in a real browser.
+					const only = target?.nfc.has(c.fragment.normalize('NFC'));
+					broken.push(
+						`${from || '/'}  ->  ${m[1]}  ` +
+							(only ? '(unicode normalisation mismatch with the id)' : '(no such anchor on target)'),
+					);
 				}
 			}
 		}

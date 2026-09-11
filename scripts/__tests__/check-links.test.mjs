@@ -293,3 +293,21 @@ test('a dangling symlink does not make the run fatal', async () => {
 	assert.ok(!r.fatal, 'a symlink carrying nothing is not lost coverage');
 	rmSync(d, { recursive: true, force: true });
 });
+
+test('a decomposed id against a precomposed fragment is reported', () => {
+	const d = build({ 'index.html': '<h2 id="café">c</h2><a href="#caf%C3%A9">x</a>' });
+	const r = check(d);
+	assert.equal(r.broken.length, 1, 'a fragment mismatch must not be folded away');
+	assert.match(r.broken[0], /normalisation mismatch with the id/);
+	rmSync(d, { recursive: true });
+});
+
+test('an in-build directory symlink resolves and is not fatal', async () => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({ 'index.html': '<a href="/latest/">x</a>', 'v1/index.html': 'y' });
+	symlinkSync(join(d, 'v1'), join(d, 'latest'));
+	const r = check(d);
+	assert.ok(!r.fatal, 'a symlink inside the build is already covered');
+	assert.deepEqual(r.broken, [], 'the path the symlink is served under must resolve');
+	rmSync(d, { recursive: true, force: true });
+});
