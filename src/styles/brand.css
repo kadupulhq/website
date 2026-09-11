@@ -1,0 +1,30 @@
+/* Kadupul palette. Forest green #004C38, gold #FBBB02, ivory #FDFAF1. */
+:root {
+	--kadupul-green: #004c38;
+	--kadupul-gold: #fbbb02;
+	--kadupul-ivory: #fdfaf1;
+
+	/* Dark is Starlight's default state. Accents are lightened so they clear
+	   4.5:1 against the dark surface; the raw brand green does not. */
+	--sl-color-accent-low: #00291e;
+	--sl-color-accent: #046b4f;
+	--sl-color-accent-high: #a8dccb;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d7ece4;
+	--sl-color-accent: #00543d;
+	--sl-color-accent-high: #00291e;
+}
+
+.site-title img {
+	padding-block: 0.15rem;
+}
+
+/* Gold is for emphasis only. It fails contrast as a text or link color. */
+.sl-markdown-content mark {
+	background: var(--kadupul-gold);
+	color: #1a1400;
+	padding-inline: 0.2em;
+	border-radius: 2px;
+}
