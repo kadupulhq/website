@@ -31,6 +31,21 @@ Mixing these is the usual reason documentation feels unusable. A reference page 
 explains its reasoning is slow to look things up in, and a tutorial that lists every
 option is impossible to follow.
 
+## Versioning
+
+`main` is the live documentation and the only thing you edit. Archived versions
+live in `src/content/docs/<slug>/`, are generated, and are frozen once cut. Fixing
+something in an archived version means editing that version's own file on purpose,
+not editing `main` and expecting it to flow backwards.
+
+Pages under `project/` are excluded from versioning. They describe the project
+rather than a release, so they always serve the latest copy.
+
+The snapshot is cut by the build. If you are part way through a large documentation
+change, comment out the `starlightVersions` block first, or any `npm run build`
+will freeze a half-written version. Delete the generated directory and rebuild if
+that happens.
+
 ## Writing rules
 
 - Every page states what it is for in its `description`. That text is the meta
