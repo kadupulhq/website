@@ -30,8 +30,8 @@ only when the account holds the matching realm.
 
 The `Name` column is the key: the variable name in `include/config.php`, or the
 `settings.name` value in the database. It is what `read_config_option()` takes
-and what a CLI script or a support thread will name. The `Setting` column is the
-label on the form.
+and what a CLI script or a support thread will name. The `Setting` column describes the control; it is not a verbatim interface label.
+Use the stable `Name` key to identify a setting across builds.
 
 | Type | Form control | Stored as |
 |---|---|---|

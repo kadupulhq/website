@@ -15,7 +15,8 @@ They are not the literal output of the current main branch or the archived
 :::
 
 
-You have a line from the log and you want to know what it means. Find it here.
+Use this reference to interpret application log messages. Search for a distinctive
+phrase in your message; product labels vary between builds.
 
 For where the log lives, the line format, verbosity levels, selective debug and
 rotation, read [Logging](/reference/logging/). This page is the message list
@@ -23,9 +24,10 @@ only.
 
 ## How to read these tables
 
-Messages use the Kadupul development interface. Values the software interpolates
-are shown as `<name>`; the real line carries the value in that position. Technical
-identifiers, including log filenames and function names, remain unchanged.
+Messages are normalized patterns, not verbatim quotations. `<application>` stands
+for the product label printed by your build. Other `<name>` placeholders represent
+values interpolated at runtime. Search for the text surrounding placeholders.
+Technical identifiers, including log filenames and function names, remain unchanged.
 
 The subsystem headings follow the log's environment tag, which is the word after
 the timestamp on each line.
@@ -57,7 +59,7 @@ Tag `POLLER`. Written by `poller.php`, `cmd.php`, and the poller library.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: The Kadupul Data Collector is currently disabled!` | `poller_enabled` is off. | Settings, Poller tab. |
+| `WARNING: The <application> Data Collector is currently disabled!` | `poller_enabled` is off. | Settings, Poller tab. |
 | `WARNING: System Polling is Disabled!  Therefore, data collection from the poller will be suspended till re-enabled.` | Same condition, reported by the master poller. | Settings, Poller tab. |
 | `WARNING: Poller <id> is Disabled.  Therefore, data collection for this Poller will be suspended till it's re-enabled.` | One data collector is disabled while others run. | The collector's own record under Data Collectors. |
 | `ERROR: The spine path: <path> is invalid.  Poller can not continue!` | `poller_type` selects spine and `path_spine` does not point at an executable file. | `path_spine` in Settings, Paths. |
@@ -65,16 +67,16 @@ Tag `POLLER`. Written by `poller.php`, `cmd.php`, and the poller library.
 | `FATAL: The last host in the host range is invalid!` | Same, for the last host argument. | The command line. |
 | `FATAL: The first host must always be less or equal to the last host!` | The host range runs backwards. | The command line. |
 | `FATAL: The poller needs to be a positive numeric value` | `cmd.php` was given a bad poller id. | The command line. |
-| `WARNING: Kadupul Master Poller process terminated by user` | The master poller caught an interrupt or termination signal. | Expected after Ctrl-C or a service stop. |
-| `WARNING: Kadupul Poller process terminated by user` | A `cmd.php` child caught the same. | As above. |
+| `WARNING: <application> Master Poller process terminated by user` | The master poller caught an interrupt or termination signal. | Expected after Ctrl-C or a service stop. |
+| `WARNING: <application> Poller process terminated by user` | A `cmd.php` child caught the same. | As above. |
 | `WARNING: Termination poller process with pid '<pid>'` | The master is killing a child during shutdown. | As above. |
-| `WARNING: Kadupul Daemon PID[<pid>] Terminated on Device[<hostname>]` | The `cactid` service process exited. Tag `CACTID`. | The service unit and the system log. |
+| `WARNING: <application> Daemon PID[<pid>] Terminated on Device[<hostname>]` | The `cactid` service process exited. Tag `CACTID`. | The service unit and the system log. |
 
 ### Timing and overrun
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: Kadupul Polling Cycle Exceeded Poller Interval by <seconds> seconds` | One cycle took longer than `poller_interval`. | Process and thread counts, slow devices, script timeouts. |
+| `WARNING: <application> Polling Cycle Exceeded Poller Interval by <seconds> seconds` | One cycle took longer than `poller_interval`. | Process and thread counts, slow devices, script timeouts. |
 | `WARNING: cmd.php poller has run over its polling interval and therefore is ending` | A `cmd.php` child abandoned its remaining work. | The same. |
 | `WARNING: <task> is out of sync with the Poller Interval!  The Poller Interval is '<seconds>' seconds, with a maximum of a '<seconds>' second <task>, but <seconds> seconds have passed since the last poll!` | `cron_interval` and `poller_interval` disagree with the schedule that actually launches the poller. | The crontab or systemd timer against Settings, Poller. |
 | `WARNING: There are <n> processes detected as overrunning a polling cycle, please investigate` | Collector processes from an earlier cycle are still alive. | The process registry and the devices those processes held. |
@@ -242,7 +244,7 @@ Tag `BOOST`.
 | `ERROR: Boost Cache Directory is not writable!  Can not cache images` | `boost_png_cache_directory` cannot be written. | Permissions on that directory. |
 | `ERROR: Boost Cache Directory does not exist! Can not cache images` | It does not exist. | Create it, or clear the setting. |
 | `ERROR: Boost Cache Directory variable is not set! Can not cache images` | Image caching is on with no directory set. | `boost_png_cache_directory`. |
-| `ERROR: Boost PNG Cache Directory '<path>' is outside of Kadupul base path. Purge aborted.` | The purge refused to delete outside the install. | That setting. |
+| `ERROR: Boost PNG Cache Directory '<path>' is outside of <application> base path. Purge aborted.` | The purge refused to delete outside the install. | That setting. |
 | `WARNING: Boost log '<path>' is not writable!` | `path_boost_log` cannot be written. | Permissions, or clear the setting. |
 | `WARNING: Boost Debug Log <path> is not writable.  Change the path to a writable location` | The same check at startup. | As above. |
 | `WARNING: Boost Poller forced by command line.` | The boost poller was started with `--force`. | Expected. |
@@ -402,12 +404,12 @@ Tag `UPGRADE`, from `cli/audit_database.php`.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: Kadupul Upgrade Encountered Errors.  Messages below.  Details are below, but also in Kadupul upgrade log.` | The upgrade finished with errors. | The lines that follow, and the upgrade log. |
-| `WARNING: Kadupul Plugin <name> Upgrade Encountered Errors.` | One plugin's upgrade failed. | That plugin. |
+| `WARNING: <application> Upgrade Encountered Errors.  Messages below.  Details are below, but also in <application> upgrade log.` | The upgrade finished with errors. | The lines that follow, and the upgrade log. |
+| `WARNING: <application> Plugin <name> Upgrade Encountered Errors.` | One plugin's upgrade failed. | That plugin. |
 | `WARNING: Plugin <name> lacks an upgrade function.` | The plugin's setup file defines no upgrade entry point. | The plugin author. |
 | `WARNING: Plugin <name> lacks a setup file.` | No setup file was found. | The plugin's installation. |
 | `WARNING: Plugin <name> lacks an INFO file.  Can not upgrade!` | No INFO file was found. | As above. |
-| `ANALYSIS STATS: Analyzing Kadupul Tables Complete.  Total time <seconds> seconds.` | End of `cli/analyze_database.php`. | Nothing. |
+| `ANALYSIS STATS: Analyzing <application> Tables Complete.  Total time <seconds> seconds.` | End of `cli/analyze_database.php`. | Nothing. |
 
 ### Sequence checks
 
@@ -430,10 +432,10 @@ Tags `AUTH`, `SECURITY`, `WEBUI`.
 | `FATAL: CSPRNG failed. Cannot generate secure placeholder password for user copy.` | The same, while copying a user. | As above. |
 | `ERROR: No username passed with Web Basic Authentication enabled.` | The web server did not set a remote user. | The web server's authentication configuration. |
 | `WARNING: Username <name> not found in basic mapfile.` | Basic authentication mapping did not cover this user. | `path_basic_mapfile`. |
-| `WARNING: User attempted to access Kadupul from unknown URL` | The password change page was reached from a host the install does not recognise. | `$url_path` and the reverse proxy. |
-| `ERROR: Browser did not return the Kadupul session cookie during CSRF validation; verify url_path and cacti_cookie_domain.` | The session cookie was not sent back. | `$url_path` and `$cacti_cookie_domain`. |
+| `WARNING: User attempted to access <application> from unknown URL` | The password change page was reached from a host the install does not recognise. | `$url_path` and the reverse proxy. |
+| `ERROR: Browser did not return the <application> session cookie during CSRF validation; verify url_path and cacti_cookie_domain.` | The session cookie was not sent back. | `$url_path` and `$cacti_cookie_domain`. |
 | `Session "<id>" start failed! <backtrace>` or `Session "<id>" restart failed! <backtrace>` | The PHP session could not start, or could not restart after regeneration. The severity here sits in the environment field, which the call sets to `WARNING:`, not in the message. | The session save path and its permissions. |
-| `ERROR: Invalid Kadupul User ID <id> is being used in a permission that does not exist` | A permission row names a user that is gone. | The permission tables. |
+| `ERROR: Invalid <application> User ID <id> is being used in a permission that does not exist` | A permission row names a user that is gone. | The permission tables. |
 | `WARNING: Invalid view parameter '<view>' in is_view_allowed()` | A page asked about a view name that does not exist. | The plugin or page that called it. |
 
 ### Request handling
@@ -482,9 +484,9 @@ Tag `IMPORT`.
 |---|---|---|
 | `FATAL: Unable to parse package XML structure.` | The package's outer XML did not parse. | The file, and whether it is truncated. |
 | `FATAL: Unable to parse XML structure.` | A template XML inside the package did not parse. | As above. |
-| `FATAL: Unable to read Kadupul Package <filename>` | The file could not be read. | Permissions and the upload directory. |
+| `FATAL: Unable to read <application> Package <filename>` | The file could not be read. | Permissions and the upload directory. |
 | `FATAL: Unable to open file <filename>` | The file could not be opened. | As above. |
-| `FATAL: Package Public Key is not Official Kadupul Public Key for Package <filename>` | The package is signed with a key the install does not treat as official. | Where the package came from. |
+| Package public key rejected | The package key does not match the built-in trusted key set checked by `is_cacti_public_key()`. | Where the package came from. |
 | `FATAL: Could not Verify Signature.` | The signature check failed. | As above. |
 | `FATAL: Could not Verify Signature for file: <name>` | One file inside the package failed its check. | As above. |
 | `FATAL: Package signature validation failed for <file>` | The validation pass failed. | As above. |
@@ -500,10 +502,10 @@ Tag `IMPORT`.
 | Message | Condition | Where to look |
 |---|---|---|
 | `ERROR: Import or Preview failed for XML file <name>!` | The template import failed. | The lines above it for the reason. |
-| `ERROR: <hash_version> Current Kadupul Version does not exist!` | The file names a version this install does not know. | The XML's version attribute. |
+| `ERROR: <hash_version> Current <application> Version does not exist!` | The file names a version this install does not know. | The XML's version attribute. |
 | `ERROR: <hash_version> hash version does not exist!` | The hash carries a version code that is not defined. | The XML. |
 | `ERROR: <hash_version_code> > <current_version_code>` | The detail line for the message below. | The XML. |
-| `ERROR: <hash_version> hash version is for a newer Kadupul!` | The file was exported by a newer version. | Export it again from a matching version. |
+| `ERROR: <hash_version> hash version is for a newer <application>!` | The file was exported by a newer version. | Export it again from a matching version. |
 | `<function> ERROR type or version not found for hash: <hash>` | A hash did not decompose into a type and version. | The XML. |
 | `<function> ERROR wrong hash format for hash: <hash>` | A hash is the wrong shape. | The XML. |
 | `ERROR: Refusing to import data input method '<hash>' - input_string contains shell metacharacters` | The data input command holds characters the install does not allow. | `allow_unsafe_metachars`, and the command itself. |
@@ -535,7 +537,7 @@ Tags `REINDEX`, `PCACHE`, `AUTOM8`, `WEBUI`.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `ERROR: Kadupul Data Query DQ[<id>] XML file may be missing or not readable.` | The data query's XML file is gone or unreadable. | The path on the data query, under `resource/`. |
+| `ERROR: <application> Data Query DQ[<id>] XML file may be missing or not readable.` | The data query's XML file is gone or unreadable. | The path on the data query, under `resource/`. |
 | `FATAL: Malicious path traversal detected in Data Query script path: <path>` | A data query script path tried to escape the script roots. | The data query definition. |
 | `ERROR: Malformed or complex regex in Data Query (ReDoS prevented): <regex>` | A field parse regex was rejected before it could run away. | The data query XML. |
 | `ERROR: Re-Indexing failed due to a NULL sort field for Device[<id>] and DQ[<id>].  Can not continue with Re-Index.` | The data query has no sort field set. | The data query's index settings. |
@@ -565,7 +567,7 @@ Tags `REINDEX`, `PCACHE`, `AUTOM8`, `WEBUI`.
 | `ERROR: Rejected an empty PHP binary.` | The same, with nothing configured. | As above. |
 | `ERROR: Rejected PHP binary starting with dash: <path>` | The configured binary looks like a command line option. | As above. |
 | `WARNING: Deprecated script push_out_hosts.php. Please use rebuild_poller_cache.php.` | The old script name was used. It re-executes the new one. | Update the caller. |
-| `WARNING: Could not find Kadupul default matching hash for unknown system hash "<hash>" for <data_input_id>.  No repair performed.` | A repair pass met a hash it does not recognise. | The data input method. |
+| `WARNING: Could not find <application> default matching hash for unknown system hash "<hash>" for <data_input_id>.  No repair performed.` | A repair pass met a hash it does not recognise. | The data input method. |
 
 ## Automation
 
@@ -573,7 +575,7 @@ Tag `AUTOM8`.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: Main Kadupul database <hostname> offline or in recovery.  Can not run automation` | A remote collector cannot reach the main database. | Connectivity and the main server. |
+| `WARNING: Main <application> database <hostname> offline or in recovery.  Can not run automation` | A remote collector cannot reach the main database. | Connectivity and the main server. |
 | `ERROR: Network ID <id> not found in automation_networks` | The named network is gone. | The networks list. |
 | `ERROR: Network ID <id> not found for notification` | The same, at notification time. | As above. |
 | `ERROR: Automation can not run for Network '<name>' since the SNMP ID is not set.` | The network has no SNMP option set selected. | That network's definition. |
@@ -612,7 +614,7 @@ themselves.
 | `ERROR: PHP Source File '<path>': <output>` | The detail line for the message above. | The quoted output. |
 | `ERROR: Directory does not exist '<path>'` | A cache target directory is missing. | The install tree on the collector. |
 | `WARNING: Cache cannot update permissions on '<path>'` | `chmod` on a cached file failed. | File ownership on the collector. |
-| `WARNING: Unable to read file '<path>' into Kadupul resource cache.` | A source file could not be read into the cache. | Permissions on the main server. |
+| `WARNING: Unable to read file '<path>' into <application> resource cache.` | A source file could not be read into the cache. | Permissions on the main server. |
 | `WARNING: INFO file does not exist for plugin directory '<path>'` | A plugin directory has no INFO file, so it cannot be replicated. | That plugin. |
 | `WARNING: Replicate Out Unable to get Table Schema for <table>.  Table does not exist!` | A table to replicate is missing on the collector. | Run the collector's database upgrade. |
 | `WARNING: Another Sync Operations is already running` | A sync was requested while one runs. Tag `POLLER`. | Wait, or clear the stale status. |
@@ -625,10 +627,10 @@ Tag `MAINT`.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `Kadupul Log Rotation - ERROR: Could not rename <name> Log "<file>" to "<file>-<ext>"` | The rename step of rotation failed. | Permissions on the log directory. |
-| `Kadupul Log Rotation - ERROR: Permissions issue.  Please check your <name> Log directory : <dir>` | The directory is not writable. | As above. |
-| `Kadupul Log Rotation - ERROR: Permissions issue.  Please check your <name> Log as directory or file are not writable : <path>` | Neither the file nor its directory can be written. | As above. |
-| `Kadupul Log Rotation - ERROR: Can not purge <name> Log : <file>` | An expired log could not be deleted. | As above. |
+| `<application> Log Rotation - ERROR: Could not rename <name> Log "<file>" to "<file>-<ext>"` | The rename step of rotation failed. | Permissions on the log directory. |
+| `<application> Log Rotation - ERROR: Permissions issue.  Please check your <name> Log directory : <dir>` | The directory is not writable. | As above. |
+| `<application> Log Rotation - ERROR: Permissions issue.  Please check your <name> Log as directory or file are not writable : <path>` | Neither the file nor its directory can be written. | As above. |
+| `<application> Log Rotation - ERROR: Can not purge <name> Log : <file>` | An expired log could not be deleted. | As above. |
 
 Rotation runs only when `logrotate_enabled` is on and
 `$disable_log_rotation` is false. See [Logging](/reference/logging/).
@@ -670,15 +672,15 @@ configuration problem.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: Kadupul Form field '<field>' does not include a 'value' Column.  Using default.` | A form definition omits `value`. | The page or plugin that defines the form. |
-| `WARNING: Kadupul Form field '<field>' does not include a 'default' Column.  Using empty string.` | It omits `default`. | As above. |
-| `WARNING: Kadupul Form field '<field>' does not include a 'default' Column.  Using '0'.` | The same, on a numeric field. | As above. |
-| `WARNING: Kadupul Form field '<field>' does not include a 'default' Column.  Using ''.` | The same, on a checkbox group. | As above. |
-| `WARNING: Kadupul Form field '<field>' does not include a sub_checkbox 'value' Column.  Using default` | The same, on a sub-checkbox. | As above. |
+| `WARNING: <application> Form field '<field>' does not include a 'value' Column.  Using default.` | A form definition omits `value`. | The page or plugin that defines the form. |
+| `WARNING: <application> Form field '<field>' does not include a 'default' Column.  Using empty string.` | It omits `default`. | As above. |
+| `WARNING: <application> Form field '<field>' does not include a 'default' Column.  Using '0'.` | The same, on a numeric field. | As above. |
+| `WARNING: <application> Form field '<field>' does not include a 'default' Column.  Using ''.` | The same, on a checkbox group. | As above. |
+| `WARNING: <application> Form field '<field>' does not include a sub_checkbox 'value' Column.  Using default` | The same, on a sub-checkbox. | As above. |
 | `ERROR: Field Name: <field> includes Method: <method> does not include a value 'value' element.` | A field of that method type must carry a value and does not. | As above. |
-| `ERROR: Kadupul Error Message Id '<id>' Not Defined` | Code raised an interface message id that is not in the registry. | The page or plugin that raised it. |
+| `ERROR: <application> Error Message Id '<id>' Not Defined` | Code raised an interface message id that is not in the registry. | The page or plugin that raised it. |
 | `ERROR: unable to determine current_page` | Page resolution failed. | The request URL. |
-| `WARNING: Key Kadupul Include File <path> missing.  Please locate and replace this file` | A core include is absent. | The installation. |
+| `WARNING: Key <application> Include File <path> missing.  Please locate and replace this file` | A core include is absent. | The installation. |
 | `ERROR: Invalid format file path rejected: <path>` | A report format file path failed validation. Tag `REPORTS`. | The report's format setting. |
 | `ERROR: Copy node requires either a host or a graph, Function copy_node` | A tree copy carried neither. | The tree operation. |
 | `ERROR: Copy node host data invalid, Function copy_node` | The device data failed validation. | As above. |
@@ -745,15 +747,15 @@ Levels are info, error, or CSRF.
 | 6 | `You must have built in user authentication turned on to use this feature.` | error |
 | 7 | `XML parse error.` | error |
 | 8 | `The directory highlighted does not exist.  Please enter a valid directory.` | error |
-| 9 | `The Kadupul log file must have the extension '.log'` | error |
+| 9 | `The <application> log file must have the extension '.log'` | error |
 | 10 | `Data Input for method does not appear to be whitelisted.` | error |
 | 11 | `Data Source does not exist.` | error |
 | 12 | `Username already in use.` | error |
 | 13 | `The SNMP v3 Privacy Passphrases do not match` | error |
 | 14 | `The SNMP v3 Authentication Passphrases do not match` | error |
-| 15 | `XML: Kadupul version does not exist.` | error |
+| 15 | `XML: <application> version does not exist.` | error |
 | 16 | `XML: Hash version does not exist.` | error |
-| 17 | `XML: Generated with a newer version of Kadupul.` | error |
+| 17 | `XML: Generated with a newer version of <application>.` | error |
 | 18 | `XML: Cannot locate type code.` | error |
 | 19 | `Username already exists.` | error |
 | 20 | `Username change not permitted for designated template or guest user.` | error |
@@ -790,9 +792,9 @@ Levels are info, error, or CSRF.
 | `input_save_w_ds` | `Data Input Saved.  You must update the Data Templates referencing this Data Input Method before the Data Collectors will start using any new or modified Data Input - Input Fields.` | info |
 | `input_field_save_wo_ds` | `Data Input Field Saved.  You must update the Data Templates referencing this Data Input Method before creating Graphs or Data Sources.` | info |
 | `input_field_save_w_ds` | `Data Input Field Saved.  You must update the Data Templates referencing this Data Input Method before the Data Collectors will start using any new or modified Data Input - Input Fields.` | info |
-| `clog_invalid` | `Log file specified is not a Kadupul log or archive file.` | info |
-| `clog_remove` | `Log file specified was Kadupul archive file and was removed.` | info |
-| `clog_purged` | `Kadupul log purged successfully` | info |
+| `clog_invalid` | `Log file specified is not a <application> log or archive file.` | info |
+| `clog_remove` | `Log file specified was <application> archive file and was removed.` | info |
+| `clog_purged` | `<application> log purged successfully` | info |
 | `clog_permissions` | `Unable to clear log, no write permissions` | error |
 | `clog_missing` | `Unable to clear log, file does not exist` | error |
 | `password_change` | `If you force a password change, you must also allow the user to change their password.` | error |
@@ -807,8 +809,8 @@ Levels are info, error, or CSRF.
 | `poller_sync` | `Data Collector(s) synchronized for offline operation` | info |
 | `poller_notfound` | `Data Collector(s) not found when attempting synchronization` | error |
 | `poller_noconnect` | `Unable to establish MySQL connection with Remote Data Collector.` | error |
-| `poller_nosync` | `Data Collector synchronization must be initiated from the main Kadupul server.` | error |
-| `poller_nomain` | `Synchronization does not include the Central Kadupul Database server.` | error |
+| `poller_nosync` | `Data Collector synchronization must be initiated from the main <application> server.` | error |
+| `poller_nomain` | `Synchronization does not include the Central <application> Database server.` | error |
 | `poller_nodupe` | `When saving a Remote Data Collector, the Database Hostname must be unique from all others.` | error |
 | `poller_dbhost` | `Your Remote Database Hostname must be something other than 'localhost' for each Remote Data Collector.` | error |
 | `poller_paths` | `Path variables on this page were only saved locally.` | info |
