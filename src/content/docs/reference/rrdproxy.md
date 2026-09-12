@@ -16,13 +16,12 @@ tree. Kadupul opens a TCP socket to it and sends the RRDtool command line as tex
 instead of running RRDtool itself. The daemon runs the command against its own copy of
 the files and sends the output back.
 
-**The proxy daemon is not part of Kadupul.** It is a separate upstream project,
-[Cacti/rrdproxy](https://github.com/Cacti/rrdproxy), maintained by The Cacti Group.
-Kadupul has not forked it and does not ship it.
+**The proxy daemon is not part of Kadupul.** It is a separate project,
+RRDtool proxy.
+Kadupul does not ship it.
 
 This page documents the client half only: what Kadupul sends, what it expects back, and
-which settings control it. All of it is read from `lib/rrd.php`, inherited from Cacti
-1.2.x. Nothing here was read from the daemon's source, so where the daemon's behaviour
+which settings control it. All of it is read from `lib/rrd.php`. Nothing here was read from the daemon's source, so where the daemon's behaviour
 is implied rather than observed, the page says so.
 
 ## Turning it on

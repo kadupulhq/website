@@ -11,8 +11,6 @@ Configuration is split in two. A small file on disk holds what the application
 needs before it can reach a database. Everything else lives in the database and is
 edited through the web interface.
 
-Inherited from Cacti 1.2.x.
-
 ## The config file
 
 `include/config.php`, created by copying `include/config.php.dist`. It is plain

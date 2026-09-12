@@ -12,7 +12,7 @@ slug: 1.2.31/reference/logging
 
 Kadupul has one application log. Everything the web interface, the poller and
 the maintenance scripts have to say goes through a single function and lands in
-one file, optionally also in syslog. Inherited from Cacti 1.2.x.
+one file, optionally also in syslog.
 
 ## Destinations
 

@@ -13,7 +13,7 @@ slug: 1.2.31/reference/snmp
 
 Kadupul talks SNMP two ways: through PHP's SNMP extension, or by running the
 net-snmp command line binaries. Which one it uses for a given call is decided per
-call, not configured. Everything below is inherited from Cacti 1.2.x.
+call, not configured. Everything below is
 
 ## Versions
 

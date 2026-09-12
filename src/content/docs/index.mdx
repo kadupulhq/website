@@ -1,9 +1,9 @@
 ---
 title: Network monitoring and graphing
-description: Poll devices over SNMP and scripts, store the results in RRD files, and graph them. A fork of Cacti.
+description: Poll devices over SNMP and scripts, store the results in RRD files, and graph them.
 template: splash
 hero:
-  tagline: Poll your network, keep the history, graph what happened. A fork of Cacti.
+  tagline: Poll your network, keep the history, graph what happened.
   image:
     file: ../../assets/logo.png
   actions:
@@ -21,6 +21,8 @@ hero:
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+
+Kadupul is a fork of [Cacti](https://github.com/Cacti/cacti).
 
 <CardGrid>
 	<Card title="Start here" icon="rocket">
@@ -49,13 +51,13 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 		[glossary](/reference/glossary/).
 	</Card>
 	<Card title="Project" icon="information">
-		[Why this fork exists](/project/why-this-fork/), what the
-		[compatibility promise](/project/compatibility-with-cacti/) covers, the
+		[Project goals](/project/goals/), what the
+		[compatibility promise](/project/compatibility/) covers, the
 		[licence](/project/license/), and [where the project actually is](/project/status/).
 	</Card>
-	<Card title="Coming from Cacti?" icon="right-arrow">
-		Kadupul keeps Cacti's data model, plugin interface, and templates. Read
-		[coming from Cacti](/guides/coming-from-cacti/) for what carries over and
+	<Card title="Migration?" icon="right-arrow">
+		Kadupul keeps the existing data model, plugin interface, and templates. Read
+		[migration](/guides/migration/) for what carries over and
 		what to check before moving.
 	</Card>
 </CardGrid>

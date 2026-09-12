@@ -10,7 +10,7 @@ sidebar:
 A data query definition is an XML file under `resource/`. The `snmp_query` table
 holds a row per query; its `xml_path` column points at the file. Parsing is
 `get_data_query_array()` in `lib/data_query.php`, which calls `xml2array()` from
-`lib/xml.php`. Inherited from Cacti 1.2.x.
+`lib/xml.php`.
 
 ## The file
 

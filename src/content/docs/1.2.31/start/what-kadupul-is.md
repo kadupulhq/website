@@ -86,7 +86,7 @@ Being clear about this saves you time.
 
 * It is not a log system. It records numbers over time, not events or text.
 * It is not an alerting system on its own. Thresholds and notification come from
-  plugins, the same way they do in Cacti.
+  plugins, through the plugin interface.
 * It is not agentless in the modern sense. Something on the device has to answer,
   usually an SNMP daemon.
 * It does not do distributed tracing, APM, or anything that assumes you control the
@@ -125,21 +125,6 @@ Kadupul (කඩුපුල්) is the Sinhala name for *Epiphyllum oxypetalum*,
 flowers at night. The bloom opens after dark and wilts before dawn, which is why the
 same plant is also called queen of the night.
 
-It being a cactus is the point. Cacti takes its name from the plant family. Kadupul
-is one species inside that family, so the name says where the project came from
-without claiming to stand in for the whole of it.
-
-The mark places a four-point metric trace at the center of the bloom.
-
-## Its relationship to Cacti
-
-Kadupul is a fork of [Cacti](https://github.com/Cacti/cacti). It keeps Cacti's data
-model, its plugin interface, and its templates. If you know Cacti, you already know
-Kadupul. See [Compatibility with Cacti](/project/compatibility-with-cacti/) for what
-that promise covers and where it stops.
-
-Kadupul is not affiliated with or endorsed by The Cacti Group.
-
 ## Where to go after these four pages
 
 The documentation is split by what you are trying to do, not by subsystem.
@@ -150,7 +135,7 @@ The documentation is split by what you are trying to do, not by subsystem.
 | [How-to guides](/1.2.31/guides/monitor-a-switch/) | You have a specific job: add a Windows host, build a tree, remove a spike. |
 | [Concepts](/1.2.31/concepts/architecture/) | Something behaved oddly and you want to know why it is designed that way. |
 | [Reference](/1.2.31/reference/requirements/) | You need an exact name, default, or argument. |
-| [Project](/project/status/) | You want to know where the fork stands and what it promises. |
+| [Project](/project/status/) | You want to know where the project stands and what it promises. |
 
 Three concept pages repay reading early, before you have a hundred devices and a
 decision you cannot reverse: [Data sources and round-robin

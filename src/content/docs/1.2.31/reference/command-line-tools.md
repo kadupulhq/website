@@ -10,7 +10,7 @@ sidebar:
 slug: 1.2.31/reference/command-line-tools
 ---
 
-Kadupul inherits the Cacti 1.2.x `cli/` directory: 45 scripts plus an `index.php`
+Kadupul uses the `cli/` directory: 45 scripts plus an `index.php`
 that redirects to the site root. They exist for work the web interface handles
 badly: bulk changes, scheduled maintenance, and recovery when the interface itself
 is the broken thing.
@@ -129,7 +129,7 @@ production, because several change data in bulk with no confirmation step.
 | Script | Purpose |
 |---|---|
 | `audit_graph_template_inputs.php` | Report graph template input integrity findings. Makes no database changes. |
-| `sqltable_to_php.php` | Export a table's schema as Cacti save-schema syntax, for use in a plugin's `setup.php`. |
+| `sqltable_to_php.php` | Export a table's schema as Kadupul save-schema syntax, for use in a plugin's `setup.php`. |
 
 ***
 

@@ -14,7 +14,7 @@ The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/1.2.31/reference/configuration/).
 This page does not repeat that.
 
-Inherited from Cacti 1.2.x. 46 variables in the config file, 255 system settings
+ 46 variables in the config file, 255 system settings
 in the database, 40 per-user settings, and 2 more per-user settings that appear
 only when the account holds the matching realm.
 
@@ -147,9 +147,9 @@ Each is checked for an existing binary when saved.
 
 | Name | Setting | Controls | Type | Default |
 |---|---|---|---|---|
-| `path_cactilog` | Cacti Log Path | The application log file. Blank falls back to `<path_cacti>/log/cacti.log`. | file path | `<base path>/log/cacti.log` |
+| `path_cactilog` | Kadupul Log Path | The application log file. Blank falls back to `<path_cacti>/log/cacti.log`. | file path | `<base path>/log/cacti.log` |
 | `path_stderrlog` | Poller Standard Error Log Path | Where collector standard error is redirected. | file path | `<base path>/log/cacti_stderr.log` |
-| `logrotate_enabled` | Rotate the Cacti Log | Rotate the log on a schedule. | boolean | `on` |
+| `logrotate_enabled` | Rotate the Kadupul Log | Rotate the log on a schedule. | boolean | `on` |
 | `logrotate_frequency` | Rotation Frequency | `1` daily, `7` weekly, `30` monthly. | select | `1` |
 | `logrotate_retain` | Log Retention | Log files kept. `0` never removes any. Range 0 to 365. | text | `7` |
 
@@ -218,7 +218,7 @@ Each is checked for an existing binary when saved.
 | `deletion_verification` | Deletion Verification | Prompt before deleting an item. | boolean | `on` |
 | `ds_preselected_delete` | Data Source Preservation Preset | Preselect deleting related data sources when removing graphs. | boolean | `on` |
 | `graphs_auto_unlock` | Graphs Auto Unlock | Do not lock graphs, so their data sources can be edited directly. | boolean | |
-| `hide_console` | Hide Cacti Dashboard | Hide the console for external link use. | boolean | |
+| `hide_console` | Hide Kadupul Dashboard | Hide the console for external link use. | boolean | |
 | `drag_and_drop` | Enable Drag-N-Drop | Drag and drop on the interfaces that support it. | boolean | `on` |
 
 ### Site security
@@ -689,7 +689,7 @@ Defaults for both the interface action and `cli/removespikes.php`.
 |---|---|---|---|---|
 | `reports_default_image_format` | Default Graph Image Format | Image type for inline graphs on a new report. Inline PNG always; inline JPEG and GIF appear when the GD extension is loaded. | select | `1` |
 | `reports_max_attach` | Maximum E-Mail Size | Bytes, message plus attachments. | select | `10485760` |
-| `reports_log_verbosity` | Poller Logging Level for Cacti Reporting | Detail the reporting poller writes. Same scale as `log_verbosity`. | select | `2` |
+| `reports_log_verbosity` | Poller Logging Level for Kadupul Reporting | Detail the reporting poller writes. Same scale as `log_verbosity`. | select | `2` |
 | `reports_allow_ln` | Enable Lotus Notes (R) tweak | Apply the handling Lotus Notes clients need. | boolean | |
 
 ### DNS

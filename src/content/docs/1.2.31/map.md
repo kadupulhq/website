@@ -24,7 +24,7 @@ Read in order, once. Takes you from nothing to a graph you can read.
 
 Task pages for someone who already has it running and has a specific goal.
 
-* [Coming from Cacti](/1.2.31/guides/coming-from-cacti/). What carries over, what you should check, and what is not promised.
+* [Migration](/1.2.31/guides/migration/). What carries over, what you should check, and what is not promised.
 * [Monitor a switch](/1.2.31/guides/monitor-a-switch/). Discover a switch's ports, graph the right counters, and pick an index so port history stays attached to the port after a card reseat.
 * [Monitor a Linux server](/1.2.31/guides/monitor-a-linux-server/). Graph CPU, memory, disk and load on a Linux host over net-snmp, what snmpd has to expose for it to work, and how to reach for a script when SNMP does not cover it.
 * [Organize devices with trees](/1.2.31/guides/organize-devices-with-trees/). How to structure graph trees so navigation and permissions still work at a few thousand devices, and where to model site and location instead.
@@ -101,10 +101,10 @@ Looked up, not read through. Precise and scannable.
 
 What this project is, where it stands, and the terms it is offered under.
 
-* [Why this fork exists](/project/why-this-fork/). The reason Kadupul is a separate project, stated without complaint about the one it came from.
-* [Compatibility with Cacti](/project/compatibility-with-cacti/). The scope of the API compatibility promise.
+* [Project goals](/project/goals/). The reason Kadupul is a separate project, stated without complaint about the one it came from.
+* [Compatibility](/project/compatibility/). The scope of the API compatibility promise.
 * [License](/project/license/). GPL-3.0-or-later, and the reasoning behind it.
 * [Status](/project/status/). Where the project actually is, stated plainly.
 * [Security policy](/project/security/). How to report a vulnerability, and how reports will be handled.
 * [Contributing](/project/contributing/). What the project needs, the engineering standards a change is written to, and the standard it is judged by.
-* [Questions](/project/faq/). Short answers to what newcomers and existing Cacti users ask first, with a link to the page that answers each one properly.
+* [Questions](/project/faq/). Short answers to what newcomers and operators ask first, with a link to the page that answers each one properly.

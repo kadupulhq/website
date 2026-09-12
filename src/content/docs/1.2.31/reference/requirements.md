@@ -9,7 +9,7 @@ banner:
 slug: 1.2.31/reference/requirements
 ---
 
-Inherited from Cacti 1.2.x and subject to change once Kadupul picks its fork point.
+Requirements are subject to validation before the first supported release.
 
 ## Runtime
 
@@ -239,7 +239,7 @@ No other part of Kadupul requires privilege.
 
 ## On the PHP version
 
-PHP 8.1 is the floor because that is what the Cacti 1.2.x manifest declares. It is
+PHP 8.1 is the floor because that is what the version 1.2.x manifest declares. It is
 not a recommendation. 8.1 reached end of security support in December 2025, so run
 a supported release and treat the floor as the oldest thing that works, not the
 right thing to deploy.

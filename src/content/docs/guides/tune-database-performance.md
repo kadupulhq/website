@@ -10,7 +10,7 @@ sidebar:
 :::caution[Nothing to tune yet]
 Kadupul has not shipped, so there is no database under load. This page records
 the intended behaviour of the maintenance tooling and the settings that govern
-it, inherited from Cacti 1.2.x.
+it,
 :::
 
 The database is not where measurements live. See

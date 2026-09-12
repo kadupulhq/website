@@ -1,56 +1,21 @@
 ---
 title: License
-description: GPL-3.0-or-later, and the reasoning behind it.
+description: Software and documentation licensing.
 sidebar:
   order: 3
 banner:
   content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
 ---
 
-Kadupul is distributed under **GPL-3.0-or-later**.
+Kadupul is distributed under **GPL-3.0-or-later**. See the
+[software license](https://github.com/kadupulhq/kadupul/blob/main/LICENSE).
 
-## Why version 3 is available
-
-Cacti's source headers grant the program "either version 2 of the License, or (at
-your option) any later version". That is GPL-2.0-or-later, and the headers are the
-operative grant. Across the 442 core PHP files in Cacti's development branch, 420
-carry that text verbatim, 21 carry no header, and one names no version at all. No
-file in the tree is version 2 only.
-
-Kadupul takes the later-version option.
-
-## Why version 3 is the better choice
-
-Cacti's `composer.json` declares `GPL-2.0-only`, which contradicts its own file
-headers. It also conflicts with a dependency Cacti already ships,
-`greew/oauth2-azure-provider`, which is GPL-3.0-or-later and cannot be combined with
-version 2 only. Every other dependency is MIT or BSD-3-Clause, both compatible with
-version 3.
-
-Moving to version 3 resolves that conflict rather than creating one.
-
-## Attribution
-
-Upstream copyright notices stay as they are in every file carried over. Version 3
-applies to the work as distributed by this project.
+The applicable source grants permit GPL version 2 or any later version. Kadupul
+uses the later-version option. Copyright, license, and warranty notices remain
+in the source. Dependencies retain their own license terms.
 
 ## Documentation
 
-The documentation on this site is licensed
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The site's own
-code, meaning the configuration, styles, and build scripts, stays GPL-3.0-or-later
-with the rest of the project.
-
-Two reasons for the split. A content licence answers questions a software licence
-answers badly, such as what counts as a derivative of a paragraph. And CC BY-SA is
-listed by Creative Commons as one-way compatible with GPLv3, so documentation text
-can move into the GPL-licensed tree when that is useful, while the reverse is
-blocked.
-
-Reuse is welcome under two conditions: credit the project, and license what you
-build from it the same way.
-
-This choice is deliberate given how these pages came to exist. Cacti's own
-documentation carries no licence at all, which means all rights reserved and no
-right to adapt it. That is why nothing here was adapted from it, and why this
-project states its terms instead of leaving readers to guess.
+The documentation is licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+Reuse it with credit to the project and license adaptations under the same terms.
+The site's configuration, styles, and build scripts are GPL-3.0-or-later.

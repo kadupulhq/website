@@ -12,7 +12,7 @@ slug: 1.2.31/reference/realms-and-permissions
 
 Authorization has two independent layers. A realm decides whether a user may open
 a page. An object permission decides which graphs, devices, graph templates and
-trees that user sees once there. Both are inherited from Cacti 1.2.x.
+trees that user sees once there. Both are
 
 ## Realms
 

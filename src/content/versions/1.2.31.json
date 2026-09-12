@@ -67,12 +67,12 @@
     }
   ],
   "excluded": [
-    "project/compatibility-with-cacti",
+    "project/compatibility",
     "project/contributing",
     "project/faq",
     "project/license",
     "project/security",
     "project/status",
-    "project/why-this-fork"
+    "project/goals"
   ]
 }

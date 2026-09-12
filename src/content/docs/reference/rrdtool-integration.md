@@ -7,7 +7,7 @@ sidebar:
   order: 13
 ---
 
-All of it lives in `lib/rrd.php`. Inherited from Cacti 1.2.x.
+All of it lives in `lib/rrd.php`.
 
 ## Subcommands issued
 

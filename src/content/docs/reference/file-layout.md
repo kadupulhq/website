@@ -7,7 +7,7 @@ sidebar:
   order: 11
 ---
 
-The tree is inherited from Cacti 1.2.x. Paths below are relative to the install
+The tree is  Paths below are relative to the install
 root, which the code calls `$config['base_path']`.
 
 ## Top level directories

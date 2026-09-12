@@ -9,7 +9,7 @@ sidebar:
 
 :::caution[Nothing to move yet]
 Kadupul has not shipped, so there is no install to export from. This page records
-the intended behaviour of the export and import path, inherited from Cacti 1.2.x.
+the intended behaviour of the export and import path,
 :::
 
 Moving a template between installs looks like moving a file. It is not. The file

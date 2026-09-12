@@ -9,7 +9,7 @@ sidebar:
 
 :::caution[Not yet possible]
 Kadupul has not shipped, so there is nothing to measure yet. This page names the
-self-monitoring data the inherited code produces, and the thresholds that follow
+self-monitoring data the application produces, and the thresholds that follow
 from the constants in it.
 :::
 
@@ -95,8 +95,7 @@ is otherwise a guess.
 ### The shipped self-monitoring device package
 
 A device package for monitoring the collector itself ships with the code, as
-`install/templates/Cacti_Stats.xml.gz`. Its names carry the upstream branding; see
-[Coming from Cacti](/guides/coming-from-cacti/).
+`install/templates/Cacti_Stats.xml.gz`.
 
 It is not loaded by the schema. It is imported during installation when you select
 it, or afterwards from the template import page. See

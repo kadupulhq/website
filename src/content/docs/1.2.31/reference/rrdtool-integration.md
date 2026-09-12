@@ -11,7 +11,7 @@ sidebar:
 slug: 1.2.31/reference/rrdtool-integration
 ---
 
-All of it lives in `lib/rrd.php`. Inherited from Cacti 1.2.x.
+All of it lives in `lib/rrd.php`.
 
 ## Subcommands issued
 

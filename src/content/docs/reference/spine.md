@@ -11,15 +11,15 @@ Spine is a collector written in C. It does the same job as `cmd.php`: read the
 poller cache, talk to devices, write raw values into a database table. It does that
 job with threads rather than with more processes.
 
-**Spine is not part of Kadupul.** It is a separate upstream project,
-[Cacti/spine](https://github.com/Cacti/spine), maintained by The Cacti Group and
-licensed LGPL-2.1-or-later. Kadupul has not forked it and does not ship it. What
+**Spine is not part of Kadupul.** It is a separate project,
+spine,
+licensed LGPL-2.1-or-later. Kadupul does not ship it. What
 Kadupul provides is compatibility: the contract between the parent poller and the
 collector is a command line and a set of database tables, and Kadupul keeps its half
 of that contract so an existing Spine build keeps working.
 
-Everything on this page describes either Kadupul's side of that contract, inherited
-from Cacti 1.2.x, or behaviour read from the Spine source. Where a fact is Spine's
+Everything on this page describes either Kadupul's side of that contract
+or behaviour read from the Spine source. Where a fact is Spine's
 rather than Kadupul's, it can change without Kadupul knowing.
 
 ## Selecting it
@@ -262,9 +262,9 @@ them, because Kadupul does not build Spine and cannot keep the copy accurate.
 Kadupul's promise is that the interface Spine expects does not move: the `poller_type`
 and path settings, the command line above, the settings Spine reads, and the shape of
 `poller_output`, `poller_item`, `poller_time`, and `host`. See
-[Compatibility with Cacti](/project/compatibility-with-cacti/).
+[Compatibility](/project/compatibility/).
 
 It is not a promise that any particular Spine version works, and it is not a support
 relationship. A Spine defect is an upstream defect and belongs in
-[Cacti/spine](https://github.com/Cacti/spine). If Kadupul breaks the contract, that is
+the Spine project. If Kadupul breaks the contract, that is
 Kadupul's defect and gets written down.

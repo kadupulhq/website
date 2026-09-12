@@ -16,8 +16,6 @@ turns those raw values into RRD updates.
 This page describes `poller.php` with `cmd.php` as the collector. Spine follows the
 same contract with the database.
 
-Inherited from Cacti 1.2.x.
-
 ## Invocation
 
 ```

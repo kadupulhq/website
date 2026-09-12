@@ -15,7 +15,7 @@ A graph is an ordered list of items. Each row in `graph_templates_item` becomes
 one or more arguments on the RRDtool graph command line, in `sequence` order.
 This page lists what those rows can be.
 
-Everything here is inherited from Cacti 1.2.x. Two parts of the vocabulary
+Everything here is  Two parts of the vocabulary
 depend on the installed RRDtool version and are called out where that applies.
 
 ## Item types

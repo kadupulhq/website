@@ -7,8 +7,7 @@ sidebar:
   order: 17
 ---
 
-The API lives in `lib/plugins.php`. The management page is `plugins.php`. Inherited
-from Cacti 1.2.x, and this page describes that code.
+The API lives in `lib/plugins.php`. The management page is `plugins.php`. This page describes that code.
 
 For why the model works the way it does, see [Plugins](/concepts/plugins/).
 

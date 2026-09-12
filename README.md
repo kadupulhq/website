@@ -25,7 +25,7 @@ the reader is trying to do:
 | `guides/` | "Help me do this specific thing" |
 | `concepts/` | "Help me understand why" |
 | `reference/` | "Tell me exactly", looked up, never read through |
-| `project/` | Status, license, and scope of the Cacti compatibility promise |
+| `project/` | Status, license, and scope of compatibility goals |
 
 Mixing these is the usual reason documentation feels unusable. A reference page that
 explains its reasoning is slow to look things up in, and a tutorial that lists every
@@ -53,8 +53,7 @@ that happens.
 - Pages describing behavior that does not exist yet carry a `banner` or a `:::caution`
   saying so. Documenting unbuilt software as though it were shipped is how docs lose
   their credibility permanently.
-- Source claims from the Cacti source, which is GPL licensed. Do not adapt Cacti's
-  documentation, which carries no license and grants no right to derivative works.
+- Verify claims against the implementation and use original, appropriately licensed prose.
 
 ## License
 

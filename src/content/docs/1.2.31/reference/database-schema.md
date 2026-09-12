@@ -10,7 +10,7 @@ sidebar:
 slug: 1.2.31/reference/database-schema
 ---
 
-Kadupul inherits the Cacti 1.2.x schema: 113 tables in `cacti.sql`. Most of them
+Kadupul uses the schema: 113 tables in `cacti.sql`. Most of them
 are leaf tables for one feature. This page covers the ones you need to read or
 join against, grouped by what they belong to.
 

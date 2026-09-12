@@ -12,7 +12,7 @@ slug: 1.2.31/reference/data-input-methods
 
 A data input method describes how one value reaches a data source. It is a row in
 `data_input` with a type, an input string, and a set of `data_input_fields` rows
-split into inputs and outputs. Inherited from Cacti 1.2.x.
+split into inputs and outputs.
 
 ## Types
 

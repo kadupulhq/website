@@ -31,7 +31,7 @@ retrieved over v1. A v1 device gives you the 32-bit counters and nothing else.
 ## Choose a device template
 
 The device template decides which data queries and graph templates are offered when
-you add the device. Kadupul inherits the template set Cacti ships, which includes a
+you add the device. The shipped template set includes a
 generic SNMP device template and a number of vendor ones.
 
 Port discovery comes from the same place whichever you pick: the interface data

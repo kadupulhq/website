@@ -9,7 +9,7 @@ sidebar:
 
 :::caution[Nothing to edit yet]
 Kadupul has not shipped, so there is no archive to correct. This page records the
-intended behaviour of the spike removal tool, inherited from Cacti 1.2.x.
+intended behaviour of the spike removal tool,
 :::
 
 :::danger[This rewrites history and there is no undo]
