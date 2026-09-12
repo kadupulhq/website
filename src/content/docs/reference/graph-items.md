@@ -11,7 +11,7 @@ A graph is an ordered list of items. Each row in `graph_templates_item` becomes
 one or more arguments on the RRDtool graph command line, in `sequence` order.
 This page lists what those rows can be.
 
-Everything here is  Two parts of the vocabulary
+Two parts of the vocabulary
 depend on the installed RRDtool version and are called out where that applies.
 
 ## Item types

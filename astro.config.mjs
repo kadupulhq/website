@@ -24,7 +24,7 @@ export default defineConfig({
 			plugins: [
 				starlightVersions({
 					// `main` tracks the development line. Archived versions are
-					// snapshots and are not edited after they are cut.
+					// snapshots; branding and licensing corrections also apply to archives.
 					current: { label: 'main' },
 					versions: [{ slug: '1.2.31', label: '1.2.31' }],
 					// Project pages describe the project, not a release, so they

@@ -11,7 +11,7 @@ The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/reference/configuration/).
 This page does not repeat that.
 
- 46 variables in the config file, 255 system settings
+The application has 46 variables in the config file, 255 system settings
 in the database, 40 per-user settings, and 2 more per-user settings that appear
 only when the account holds the matching realm.
 

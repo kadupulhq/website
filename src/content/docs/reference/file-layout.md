@@ -7,7 +7,7 @@ sidebar:
   order: 11
 ---
 
-The tree is  Paths below are relative to the install
+Paths below are relative to the install
 root, which the code calls `$config['base_path']`.
 
 ## Top level directories

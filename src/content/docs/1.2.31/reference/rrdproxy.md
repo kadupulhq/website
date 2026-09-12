@@ -20,7 +20,7 @@ instead of running RRDtool itself. The daemon runs the command against its own c
 the files and sends the output back.
 
 **The proxy daemon is not part of Kadupul.** It is a separate project,
-RRDtool proxy.
+[RRDtool proxy](https://github.com/Cacti/rrdproxy).
 Kadupul does not ship it.
 
 This page documents the client half only: what Kadupul sends, what it expects back, and

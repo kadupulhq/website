@@ -35,3 +35,7 @@ its use. See [License](/project/license/).
 ## Security
 
 Follow the [security policy](/project/security/) for vulnerability reports.
+
+Documentation reuse requires its own license grant; a software license does not
+automatically cover a separate documentation project. Do not copy documentation
+without explicit permission under a compatible license.

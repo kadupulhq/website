@@ -18,29 +18,21 @@ only.
 
 ## How to read these tables
 
-Messages are quoted as the source emits them. Values the software interpolates
-are shown as `<name>`; the real line carries the value in that position. The
-literal strings still say Kadupul, because that is what the code writes and what
-you will have pasted into a search box.
+Messages use the Kadupul development interface. Values the software interpolates
+are shown as `<name>`; the real line carries the value in that position. Technical
+identifiers, including log filenames and function names, remain unchanged.
 
 The subsystem headings follow the log's environment tag, which is the word after
 the timestamp on each line.
 
-## How this list was built
+## Coverage
 
-Every `cacti_log()` call in the PHP tree was extracted with its full argument
-list, including calls spanning several lines. The tree holds 1078 of them.
-475 carry `ERROR`, `WARNING`, `WARN`, `FATAL` or `STATS` in the message text,
-across 66 files. Collapsing calls that emit the same string from more than one
-place leaves 381 distinct messages.
-
-The tables below cover those 381. They are complete for the severity-marked set.
-Eleven of them are end-of-run statistics lines that differ only in the task
-name, and share one row rather than taking eleven.
+The tables cover severity-marked application messages and selected interface
+notifications. Related end-of-run statistics messages share a row.
 
 They do not cover:
 
-* The roughly 600 informational and debug lines that carry no severity marker.
+* Informational and debug lines that carry no severity marker.
   Most appear only above the low verbosity level and describe normal progress.
 * Messages from Spine, which is a separate C program with its own log format.
   See [Spine](/1.2.31/reference/spine/).

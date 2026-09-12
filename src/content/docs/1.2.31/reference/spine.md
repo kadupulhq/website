@@ -15,7 +15,7 @@ poller cache, talk to devices, write raw values into a database table. It does t
 job with threads rather than with more processes.
 
 **Spine is not part of Kadupul.** It is a separate project,
-spine,
+[Spine](https://github.com/Cacti/spine),
 licensed LGPL-2.1-or-later. Kadupul does not ship it. What
 Kadupul provides is compatibility: the contract between the parent poller and the
 collector is a command line and a set of database tables, and Kadupul keeps its half

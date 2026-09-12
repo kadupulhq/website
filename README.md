@@ -65,3 +65,7 @@ that happens.
 CC BY-SA 4.0 is listed by Creative Commons as one-way compatible with GPLv3, so
 documentation text can move into the GPL-licensed project tree. The reverse does
 not hold.
+
+Documentation reuse requires its own license grant; a software license does not
+automatically cover a separate documentation project. Do not copy documentation
+without explicit permission under a compatible license.

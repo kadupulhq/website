@@ -14,6 +14,8 @@ Kadupul has not shipped, so there is no migration to perform. This page states t
 intent so it can be held to it.
 :::
 
+This guide covers moving from Cacti to its fork, Kadupul.
+
 Kadupul aims to preserve existing interfaces and data. In practice that
 is a promise about four surfaces.
 
@@ -32,7 +34,7 @@ something you should refuse.
 
 * **Your plugins.** Compatibility is the intent, but an untested plugin is an
   unverified claim. Check the ones you actually depend on.
-* **Local modifications.** Anything you patched into your Kadupul install by hand is
+* **Local modifications.** Anything you patched into your source installation by hand is
   yours to carry forward. Nobody else knows it exists.
 * **Your poller.** If you run the C poller rather than the PHP one, confirm its
   status before you plan a cutover.

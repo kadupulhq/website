@@ -7,7 +7,7 @@ sidebar:
   order: 5
 ---
 
-Terms as Kadupul uses them,  Where a term comes from
+Terms as Kadupul uses them. Where a term comes from
 RRDtool, the definition is the one Kadupul relies on, not the whole of RRDtool's.
 
 ## Aggregate
