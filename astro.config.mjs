@@ -6,6 +6,12 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
 	site: 'https://kadupul.org',
+	redirects: {
+		'/project/why-this-fork/': '/project/goals/',
+		'/project/compatibility-with-cacti/': '/project/compatibility/',
+		'/guides/coming-from-cacti/': '/guides/migration/',
+		'/1.2.31/guides/coming-from-cacti/': '/1.2.31/guides/migration/',
+	},
 	integrations: [
 		starlight({
 			title: 'Kadupul',
