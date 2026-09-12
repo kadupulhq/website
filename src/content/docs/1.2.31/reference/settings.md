@@ -10,11 +10,10 @@ sidebar:
 slug: 1.2.31/reference/settings
 ---
 
-:::caution[Planned interface]
-The Kadupul labels on this page describe the pending
-[application branding change](https://github.com/kadupulhq/kadupul/pull/13).
-They are not the literal output of the current main branch or the archived
-1.2.31 source. Configuration keys and other technical identifiers are unchanged.
+:::note[Reference terminology]
+These pages use current Kadupul terminology, including archived reference copies.
+Use stable configuration keys and distinctive message fragments when working
+with a different build.
 :::
 
 
