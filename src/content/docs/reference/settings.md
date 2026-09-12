@@ -7,6 +7,14 @@ sidebar:
   order: 19
 ---
 
+:::caution[Planned interface]
+The Kadupul labels on this page describe the pending
+[application branding change](https://github.com/kadupulhq/kadupul/pull/13).
+They are not the literal output of the current main branch or the archived
+1.2.31 source. Configuration keys and other technical identifiers are unchanged.
+:::
+
+
 The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/reference/configuration/).
 This page does not repeat that.

@@ -7,6 +7,14 @@ sidebar:
   order: 20
 ---
 
+:::caution[Planned interface]
+The Kadupul labels on this page describe the pending
+[application branding change](https://github.com/kadupulhq/kadupul/pull/13).
+They are not the literal output of the current main branch or the archived
+1.2.31 source. Configuration keys and other technical identifiers are unchanged.
+:::
+
+
 You have a line from the log and you want to know what it means. Find it here.
 
 For where the log lives, the line format, verbosity levels, selective debug and

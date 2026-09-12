@@ -19,3 +19,6 @@ in the source. Dependencies retain their own license terms.
 The documentation is licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 Reuse it with credit to the project and license adaptations under the same terms.
 The site's configuration, styles, and build scripts are GPL-3.0-or-later.
+
+Kadupul is an independent fork of Cacti, without affiliation or endorsement
+from that project.
