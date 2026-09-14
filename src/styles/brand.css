@@ -21,6 +21,12 @@
 	padding-block: 0.15rem;
 }
 
+/* Commands retain their reading order within Arabic prose. */
+[dir='rtl'] .sl-markdown-content pre {
+	direction: ltr;
+	text-align: start;
+}
+
 /* Gold is for emphasis only. It fails contrast as a text or link color. */
 .sl-markdown-content mark {
 	background: var(--kadupul-gold);

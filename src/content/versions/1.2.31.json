@@ -2,28 +2,82 @@
   "sidebar": [
     {
       "label": "Documentation map",
-      "slug": "map"
+      "slug": "map",
+      "translations": {
+        "zh-CN": "文档导航",
+        "hi": "दस्तावेज़ मानचित्र",
+        "es": "Mapa de documentación",
+        "ar": "خريطة الوثائق",
+        "fr": "Plan de la documentation",
+        "de": "Dokumentationsübersicht",
+        "ja": "ドキュメント一覧"
+      }
     },
     {
       "label": "Start here",
       "items": [
         {
           "label": "What Kadupul is",
-          "slug": "start/what-kadupul-is"
+          "slug": "start/what-kadupul-is",
+          "translations": {
+            "zh-CN": "Kadupul 简介",
+            "hi": "Kadupul क्या है",
+            "es": "Qué es Kadupul",
+            "ar": "ما هو Kadupul",
+            "fr": "Présentation de Kadupul",
+            "de": "Was ist Kadupul?",
+            "ja": "Kadupul とは"
+          }
         },
         {
           "label": "Install",
-          "slug": "start/install"
+          "slug": "start/install",
+          "translations": {
+            "zh-CN": "安装",
+            "hi": "स्थापना",
+            "es": "Instalación",
+            "ar": "التثبيت",
+            "fr": "Installation",
+            "de": "Installation",
+            "ja": "インストール"
+          }
         },
         {
           "label": "Add your first device",
-          "slug": "start/first-device"
+          "slug": "start/first-device",
+          "translations": {
+            "zh-CN": "添加第一台设备",
+            "hi": "पहला उपकरण जोड़ें",
+            "es": "Añadir el primer dispositivo",
+            "ar": "إضافة أول جهاز",
+            "fr": "Ajouter un premier appareil",
+            "de": "Das erste Gerät hinzufügen",
+            "ja": "最初のデバイスを追加"
+          }
         },
         {
           "label": "Read your first graph",
-          "slug": "start/first-graph"
+          "slug": "start/first-graph",
+          "translations": {
+            "zh-CN": "阅读第一张图表",
+            "hi": "पहला ग्राफ़ समझें",
+            "es": "Interpretar el primer gráfico",
+            "ar": "قراءة أول رسم بياني",
+            "fr": "Lire un premier graphique",
+            "de": "Das erste Diagramm lesen",
+            "ja": "最初のグラフを読む"
+          }
         }
-      ]
+      ],
+      "translations": {
+        "zh-CN": "入门",
+        "hi": "यहाँ से शुरू करें",
+        "es": "Primeros pasos",
+        "ar": "ابدأ هنا",
+        "fr": "Premiers pas",
+        "de": "Erste Schritte",
+        "ja": "はじめに"
+      }
     },
     {
       "label": "How-to guides",
@@ -33,7 +87,16 @@
             "directory": "guides"
           }
         }
-      ]
+      ],
+      "translations": {
+        "zh-CN": "操作指南",
+        "hi": "कार्य मार्गदर्शिकाएँ",
+        "es": "Guías prácticas",
+        "ar": "أدلة الاستخدام",
+        "fr": "Guides pratiques",
+        "de": "Anleitungen",
+        "ja": "操作ガイド"
+      }
     },
     {
       "label": "Concepts",
@@ -43,7 +106,16 @@
             "directory": "concepts"
           }
         }
-      ]
+      ],
+      "translations": {
+        "zh-CN": "概念",
+        "hi": "अवधारणाएँ",
+        "es": "Conceptos",
+        "ar": "المفاهيم",
+        "fr": "Concepts",
+        "de": "Konzepte",
+        "ja": "概念"
+      }
     },
     {
       "label": "Reference",
@@ -53,7 +125,16 @@
             "directory": "reference"
           }
         }
-      ]
+      ],
+      "translations": {
+        "zh-CN": "参考",
+        "hi": "संदर्भ",
+        "es": "Referencia",
+        "ar": "المرجع",
+        "fr": "Référence",
+        "de": "Referenz",
+        "ja": "リファレンス"
+      }
     },
     {
       "label": "Project",
@@ -63,7 +144,16 @@
             "directory": "project"
           }
         }
-      ]
+      ],
+      "translations": {
+        "zh-CN": "项目",
+        "hi": "परियोजना",
+        "es": "Proyecto",
+        "ar": "المشروع",
+        "fr": "Projet",
+        "de": "Projekt",
+        "ja": "プロジェクト"
+      }
     }
   ],
   "excluded": [
@@ -74,6 +164,27 @@
     "project/license",
     "project/security",
     "project/status",
-    "project/why-this-fork"
+    "project/why-this-fork",
+    "es/project/status",
+    "es/project/security",
+    "es/404",
+    "fr/project/status",
+    "fr/project/security",
+    "fr/404",
+    "de/project/status",
+    "de/project/security",
+    "de/404",
+    "zh-cn/project/status",
+    "zh-cn/project/security",
+    "zh-cn/404",
+    "ja/project/status",
+    "ja/project/security",
+    "ja/404",
+    "hi/project/status",
+    "hi/project/security",
+    "hi/404",
+    "ar/project/status",
+    "ar/project/security",
+    "ar/404"
   ]
 }

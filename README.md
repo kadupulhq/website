@@ -18,6 +18,36 @@ Run `npm run check:all` before submitting changes. This runs type checks, prose
 checks, regression tests, the static build, and internal link validation. CI and
 deployment use the same command.
 
+## Languages
+
+English keeps its existing URLs. Additional locales are Simplified Chinese
+(`/zh-cn/`), Hindi (`/hi/`), Spanish (`/es/`), Modern Standard Arabic (`/ar/`),
+French (`/fr/`), German (`/de/`) and Japanese (`/ja/`). Arabic uses right-to-left
+layout. English fallback content retains its own language and direction.
+
+Each additional locale includes a homepage, introductory summary, project-status
+summary, security-policy summary, error page and generated documentation map.
+The summaries link to the complete English pages. Other pages, including archived
+documentation, use Starlight's English fallback with a translated notice. These
+are initial translations awaiting fluent-speaker review, not complete translations
+of the reference manual.
+
+- Edit translated Markdown under `src/content/docs/<locale>/`, using the same
+  paths as English pages. Keep command names, settings and filenames unchanged.
+- Edit site labels in `src/i18n/locales.mjs` and interface/version notices in
+  `src/content/i18n/<language>.json`. Chinese uses the language tag `zh-CN` there.
+- `npm run build:map` generates the map for every locale, marking English-only
+  entries. Do not edit generated maps by hand.
+- `src/i18n/translations.json` records the English source SHA-256 for each summary
+  or translation. When English changes, review and update the translation before
+  updating its recorded hash. Keep `review: draft` until a fluent reviewer checks it.
+- `npm run check:locales` checks built routes, switches, navigation, fallback,
+  text direction and translation source hashes. `npm run check:all` includes it.
+
+The prose linter checks structure in every language and applies English editorial
+rules only to English content. Project policies and error pages are excluded from
+version snapshots in every locale; existing English archives are preserved.
+
 ## How the docs are organized
 
 Pages follow [Diátaxis](https://diataxis.fr), which separates documentation by what

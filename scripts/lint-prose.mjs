@@ -6,6 +6,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative } from 'node:path';
+import { translatedLocales } from '../src/i18n/locales.mjs';
 
 const ROOT = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
@@ -27,6 +28,7 @@ function walk(dir) {
 let failures = 0;
 for (const file of walk(ROOT)) {
 	const rel = relative(ROOT, file);
+	const isEnglish = !translatedLocales.includes(rel.split(/[\\/]/)[0]);
 	const text = readFileSync(file, 'utf8');
 	const report = (line, msg) => { console.error(`${rel}:${line}  ${msg}`); failures++; };
 
@@ -62,6 +64,7 @@ for (const file of walk(ROOT)) {
 
 	text.split('\n').forEach((line, i) => {
 		const n = i + 1;
+		if (!isEnglish) return; // English editorial rules do not apply to translations.
 		if (line.includes('—')) report(n, 'em dash');
 		// Skip fenced code and link targets when matching prose.
 		const prose = line.replace(/`[^`]*`/g, '').replace(/\]\([^)]*\)/g, ']');

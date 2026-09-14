@@ -9,6 +9,7 @@
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getMessages, translatedLocales } from '../src/i18n/locales.mjs';
 
 const DOCS = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
@@ -70,3 +71,23 @@ out = out.replace(/\) — /g, '). ');
 
 writeFileSync(join(DOCS, 'map.md'), out);
 console.log('documentation map generated');
+
+// Keep untranslated entries discoverable through Starlight's English fallback.
+for (const locale of translatedLocales) {
+	const t = getMessages(locale);
+	let translated = `---\ntitle: ${JSON.stringify(t.map)}\ndescription: ${JSON.stringify(t.mapDescription)}\nsidebar:\n  order: 0\n---\n\n${t.fallback}\n\n`;
+	for (const [dir] of SECTIONS) {
+		translated += `## ${t[dir]}\n\n`;
+		const files = readdirSync(join(DOCS, dir)).filter((f) => /\.mdx?$/.test(f));
+		for (const file of files.sort()) {
+			const original = frontmatter(join(DOCS, dir, file));
+			let local;
+			try { local = frontmatter(join(DOCS, locale, dir, file)); }
+			catch (error) { if (error.code !== 'ENOENT') throw error; }
+			const title = local?.title || `${original.title} (English)`;
+			translated += `- [${title}](/${locale}/${dir}/${file.replace(/\.mdx?$/, '')}/)\n`;
+		}
+		translated += '\n';
+	}
+	writeFileSync(join(DOCS, locale, 'map.md'), translated);
+}

@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "संस्करण चुनें",
+  "i18n.untranslatedContent": "जिन पृष्ठों का अनुवाद अभी नहीं हुआ है, वे सूचना के साथ अंग्रेज़ी में उपलब्ध हैं।",
+  "starlightVersions.link.latest": "नवीनतम जानकारी के लिए <a href={{link}}>नवीनतम संस्करण</a> देखें।",
+  "starlightVersions.outdated.label": "यह सामग्री {{label}} के लिए है।",
+  "starlightVersions.outdated.slug": "यह सामग्री {{slug}} संस्करण के लिए है।",
+  "starlightVersions.search.link.latest": "नए परिणामों के लिए <a href={{link}}>नवीनतम संस्करण</a> देखें।",
+  "starlightVersions.search.outdated.label": "खोज {{label}} तक सीमित है।",
+  "starlightVersions.search.outdated.slug": "खोज {{slug}} संस्करण तक सीमित है।"
+}

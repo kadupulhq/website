@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "اختر الإصدار",
+  "i18n.untranslatedContent": "تُعرض الصفحات التي لم تُترجم بعد باللغة الإنجليزية مع إشعار بذلك.",
+  "starlightVersions.link.latest": "انتقل إلى <a href={{link}}>أحدث إصدار</a> للوثائق المحدثة.",
+  "starlightVersions.outdated.label": "هذا المحتوى مخصص لـ {{label}}.",
+  "starlightVersions.outdated.slug": "هذا المحتوى مخصص للإصدار {{slug}}.",
+  "starlightVersions.search.link.latest": "انتقل إلى <a href={{link}}>أحدث إصدار</a> للنتائج المحدثة.",
+  "starlightVersions.search.outdated.label": "البحث مقتصر على {{label}}.",
+  "starlightVersions.search.outdated.slug": "البحث مقتصر على الإصدار {{slug}}."
+}

@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "Version auswählen",
+  "i18n.untranslatedContent": "Noch nicht übersetzte Seiten werden mit einem Hinweis auf Englisch angezeigt.",
+  "starlightVersions.link.latest": "Aktuelle Dokumentation finden Sie in der <a href={{link}}>neuesten Version</a>.",
+  "starlightVersions.outdated.label": "Dieser Inhalt gilt für {{label}}.",
+  "starlightVersions.outdated.slug": "Dieser Inhalt gilt für Version {{slug}}.",
+  "starlightVersions.search.link.latest": "Aktuelle Ergebnisse finden Sie in der <a href={{link}}>neuesten Version</a>.",
+  "starlightVersions.search.outdated.label": "Suche auf {{label}} beschränkt.",
+  "starlightVersions.search.outdated.slug": "Suche auf Version {{slug}} beschränkt."
+}

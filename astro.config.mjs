@@ -3,11 +3,14 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightVersions from 'starlight-versions';
 import sitemap from '@astrojs/sitemap';
+import { locales, navigation } from './src/i18n/locales.mjs';
 
 export default defineConfig({
 	site: 'https://kadupul.net',
 	integrations: [
 		starlight({
+			defaultLocale: 'root',
+			locales,
 			title: 'Kadupul',
 			description:
 				'Network monitoring and graphing. Poll devices over SNMP and scripts, store the results in RRD files, and graph them.',
@@ -25,7 +28,7 @@ export default defineConfig({
 					// always serve the latest copy across every version.
 					// The site-wide error page is served as /404.html, not a
 					// versioned documentation route.
-					exclude: ['project/**', '404.md'],
+					exclude: ['project/**', '*/project/**', '404.md', '*/404.md'],
 				}),
 			],
 			editLink: { baseUrl: 'https://github.com/kadupulhq/website/edit/main/' },
@@ -34,30 +37,30 @@ export default defineConfig({
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/kadupulhq' },
 			],
 			sidebar: [
-				{ label: 'Documentation map', slug: 'map' },
+				{ ...navigation('map'), slug: 'map' },
 				{
-					label: 'Start here',
+					...navigation('start'),
 					items: [
-						{ label: 'What Kadupul is', slug: 'start/what-kadupul-is' },
-						{ label: 'Install', slug: 'start/install' },
-						{ label: 'Add your first device', slug: 'start/first-device' },
-						{ label: 'Read your first graph', slug: 'start/first-graph' },
+						{ ...navigation('overview'), slug: 'start/what-kadupul-is' },
+						{ ...navigation('install'), slug: 'start/install' },
+						{ ...navigation('device'), slug: 'start/first-device' },
+						{ ...navigation('graph'), slug: 'start/first-graph' },
 					],
 				},
 				{
-					label: 'How-to guides',
+					...navigation('guides'),
 					items: [{ autogenerate: { directory: 'guides' } }],
 				},
 				{
-					label: 'Concepts',
+					...navigation('concepts'),
 					items: [{ autogenerate: { directory: 'concepts' } }],
 				},
 				{
-					label: 'Reference',
+					...navigation('reference'),
 					items: [{ autogenerate: { directory: 'reference' } }],
 				},
 				{
-					label: 'Project',
+					...navigation('project'),
 					items: [{ autogenerate: { directory: 'project' } }],
 				},
 			],
