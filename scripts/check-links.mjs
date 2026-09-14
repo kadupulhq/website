@@ -49,6 +49,8 @@ function walk(dir, acc = { files: [], skipped: [] }) {
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
 export function classify(href, from = '') {
 	href = href.trim();
+	// Browsers treat backslashes as slashes in HTTP(S) authority prefixes.
+	if (/^[\\/]{2}/.test(href)) return null;
 	if (href.startsWith('#')) {
 		let f = href.slice(1);
 		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
@@ -60,6 +62,7 @@ export function classify(href, from = '') {
 	// current route as the base. They are internal links too.
 	if (!href.startsWith('/')) {
 		const url = new URL(href, 'https://linkcheck.invalid/' + from);
+		if (url.origin !== 'https://linkcheck.invalid') return null;
 		href = url.pathname + url.search + url.hash;
 	}
 	const hash = href.indexOf('#');

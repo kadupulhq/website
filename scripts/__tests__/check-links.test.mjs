@@ -172,6 +172,8 @@ test('an index.html link counts as inbound, so the target is not an orphan', () 
 
 test('a protocol-relative href is external, not a site path', () => {
 	assert.equal(classify('//cdn.example.com/lib.js'), null);
+	assert.equal(classify('\\\\evil.example/x', 'a/'), null);
+	assert.equal(classify('/\\evil.example/x'), null);
 });
 
 test('a dist path with ./ or no trailing slash still yields correct keys', () => {
@@ -356,4 +358,16 @@ test('anchors on in-build directory aliases use the target IDs', async (t) => {
 	assert.equal(r.fragmentsChecked, 2);
 	assert.equal(r.broken.length, 1);
 	assert.match(r.broken[0], /#missing.*no such anchor/);
+});
+
+test('anchors on nested directory alias pages use the target IDs', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/latest/sub/#ok">ok</a><a href="/latest/sub/#missing">bad</a>',
+		'v1/sub/index.html': '<h2 id="ok">H</h2>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'v1'), join(d, 'latest'));
+	assert.equal(check(d).broken.length, 1);
+	assert.match(check(d).broken[0], /#missing.*no such anchor/);
 });
