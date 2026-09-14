@@ -2,7 +2,7 @@
 title: Data query XML
 description: The elements of a data query resource file, the field attributes for SNMP and script queries, and how the parser reads them.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 14
 ---

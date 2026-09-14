@@ -2,14 +2,15 @@
 title: Scale the poller
 description: What to change when collection stops finishing inside its interval, and how to tell which limit you actually hit.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 6
 ---
 
-:::caution[Nothing to tune yet]
-Kadupul has not shipped, so there is no poller to scale. This page records the
-intended behaviour and the settings that control it, inherited from Cacti 1.2.x.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Scaling the poller is one question: does a collection run finish before the next

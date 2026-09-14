@@ -76,7 +76,7 @@ authorized.
 | 4 | `tree.php` |
 | 5 | `color.php`, `gprint_presets.php`, `graphs.php`, `graphs_items.php`, `graphs_new.php`, `color_templates.php`, `color_templates_items.php`, `aggregate_templates.php`, `aggregate_graphs.php` |
 | 7 | `graph.php`, `graph_image.php`, `graph_json.php`, `graph_xport.php`, `graph_view.php` |
-| 8 | `index.php`, `smtp_servers.php`, `email_templates.php`, `event_queue.php`, `smtp_queue.php` |
+| 8 | `index.php`, reserved mappings for `smtp_servers.php`, `email_templates.php`, `event_queue.php`, `smtp_queue.php` (these files are not shipped) |
 | 9 | `data_source_profiles.php` |
 | 10 | `graph_templates.php`, `graph_templates_inputs.php`, `graph_templates_items.php` |
 | 11 | `data_templates.php` |

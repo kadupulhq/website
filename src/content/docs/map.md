@@ -45,7 +45,7 @@ Task pages for someone who already has it running and has a specific goal.
 - [Tune database performance](/guides/tune-database-performance/). Which tables grow, what the maintenance scripts actually do, and the server settings that decide whether a collection run finishes.
 - [Send email notifications](/guides/send-email-notifications/). Configure outbound mail in Kadupul, test it, and understand which events actually generate a message without installing a plugin.
 - [Monitor environmental sensors](/guides/monitor-environmental-sensors/). Graph temperature, humidity, airflow, power and UPS state over SNMP, find the right OIDs on a vendor MIB, and give the readings graph settings that suit a measurement rather than a counter.
-- [Manage data retention](/guides/manage-data-retention/). Choose how long Kadupul keeps data and at what resolution, size the disk for it, and understand why the choice is fixed for the life of each file.
+- [Manage data retention](/guides/manage-data-retention/). Choose retention and resolution, estimate storage, and plan changes to existing RRD files.
 - [Recover a corrupted RRD](/guides/recover-a-corrupted-rrd/). How to tell a damaged round-robin archive from a misconfigured one, how to inspect a file, how dump and restore repairs it, and what history you can keep when the file has to be rebuilt.
 - [Audit who can see what](/guides/audit-who-can-see-what/). A procedure for answering "what can this account see" and "who can see this device" with evidence, using the effective policy view rather than guessing from a tree.
 - [Monitor a virtualization host](/guides/monitor-a-virtualization-host/). What a hypervisor exposes over SNMP, what ships for ESXi, and why counting guests, CPU and memory on a virtualized estate is harder than it looks.
@@ -58,7 +58,7 @@ Task pages for someone who already has it running and has a specific goal.
 Why the system works the way it does. Read for understanding, not to perform a task.
 
 - [Architecture](/concepts/architecture/). The four moving parts, and which one is usually at fault.
-- [Data sources and round-robin archives](/concepts/data-sources-and-rras/). What actually gets stored, and why the decisions you make at creation time are permanent.
+- [Data sources and round-robin archives](/concepts/data-sources-and-rras/). What gets stored, how retention works, and why profile edits do not migrate existing RRD files.
 - [Templates](/concepts/templates/). How one definition covers a hundred devices, and what happens when you change it.
 - [How graphs are drawn](/concepts/how-graphs-are-drawn/). The path from a round-robin file to a rendered image, and why the same stored numbers can produce very different pictures.
 - [Data queries and indexes](/concepts/data-queries-and-indexes/). How one walk of a device becomes many data sources, what an index really is, and what happens when a device renumbers itself.

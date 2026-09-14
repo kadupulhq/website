@@ -11,10 +11,10 @@ sidebar:
 slug: 1.2.31/guides/install-and-vet-plugins
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. There is nowhere to install a plugin today. This page
-describes the plugin architecture as it is intended to ship, and the review a
-third-party plugin deserves before it is installed anywhere.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Start here, because everything else on this page follows from it.

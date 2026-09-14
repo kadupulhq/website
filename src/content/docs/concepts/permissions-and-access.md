@@ -2,7 +2,7 @@
 title: Permissions and access
 description: Why access is split into two independent systems, why a permission is stored as a default plus exceptions, and why a tree looks different to every account.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 8
 ---

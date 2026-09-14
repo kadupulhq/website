@@ -2,14 +2,15 @@
 title: Monitor a Windows host
 description: Graph CPU, disks, interfaces and uptime on Windows over the SNMP service, which Host Resources objects carry the data, and what to do when SNMP is not an option.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 14
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Windows over SNMP gives you interfaces, processors, storage and a couple of counts.

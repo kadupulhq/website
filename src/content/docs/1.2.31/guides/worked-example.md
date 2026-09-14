@@ -10,9 +10,10 @@ sidebar:
 slug: 1.2.31/guides/worked-example
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be carried out today. The page states
-the intended sequence and the reasoning behind each choice, so both can be held to.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Every other page here is a slice. This one joins them. It takes a single device

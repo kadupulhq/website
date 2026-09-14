@@ -2,7 +2,7 @@
 title: Logging
 description: Where the Kadupul log goes, what each verbosity level includes, how selective debug and rotation work, and why the poller output is not the log.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 9
 ---

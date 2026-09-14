@@ -10,9 +10,10 @@ sidebar:
 slug: 1.2.31/guides/write-a-data-collection-script
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. Nothing on this page can be run today. It describes the
-contract the poller is intended to keep, so the contract can be held to.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 When a device has no SNMP OID for the thing you care about, you write a script. The

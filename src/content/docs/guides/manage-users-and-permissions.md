@@ -2,15 +2,15 @@
 title: Manage users and permissions
 description: How accounts, groups, and per-object permissions fit together, and how to build a read-only operator account that actually stays read-only.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 12
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. There is no running installation to create accounts on.
-This page describes the permission model as it is intended to ship so that the
-model can be reviewed before it exists.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Permissions answer two separate questions, and mixing them up is the source of most

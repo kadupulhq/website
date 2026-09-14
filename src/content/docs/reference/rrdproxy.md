@@ -2,7 +2,7 @@
 title: RRDtool proxy
 description: How Kadupul writes RRD files that live on another machine, the verbs it sends over the wire, and what that changes about remote collection.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 16
 ---
@@ -16,9 +16,10 @@ tree. Kadupul opens a TCP socket to it and sends the RRDtool command line as tex
 instead of running RRDtool itself. The daemon runs the command against its own copy of
 the files and sends the output back.
 
-**The proxy daemon is not part of Kadupul.** It is a separate upstream project,
-[Cacti/rrdproxy](https://github.com/Cacti/rrdproxy), maintained by The Cacti Group.
-Kadupul has not forked it and does not ship it.
+**Kadupul does not use the Cacti organization's proxy daemon.** Use local
+RRDtool storage. The protocol below is historical implementation reference, not
+a supported deployment option. A Kadupul-owned replacement must be established
+and validated before proxy deployment is documented.
 
 This page documents the client half only: what Kadupul sends, what it expects back, and
 which settings control it. All of it is read from `lib/rrd.php`, inherited from Cacti

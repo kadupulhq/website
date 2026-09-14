@@ -11,10 +11,10 @@ sidebar:
 slug: 1.2.31/guides/capacity-planning
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of these numbers can be measured on a running
-system yet. The formulas come from the shipped defaults and the code that uses
-them. The arithmetic done here is labelled where it is derived rather than read.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 [Manage data retention](/1.2.31/guides/manage-data-retention/) sizes one file. This page

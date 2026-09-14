@@ -112,7 +112,7 @@ component is at fault. That is deliberate: you know the former and not the latte
 
 | Symptom | Most common cause | Where it is explained |
 |---|---|---|
-| RRD file does not exist | No value has ever been written for that data source | [Troubleshoot missing data](/1.2.31/guides/troubleshoot-missing-data/) |
+| RRD file does not exist | Creation failure, changed path, or missing/deleted file | [Troubleshoot missing data](/1.2.31/guides/troubleshoot-missing-data/) |
 | Gaps starting at the moment of a maintenance window | A file was created by the wrong user | [File layout](/1.2.31/reference/file-layout/) |
 | File modification time is old but graphs are current | Deferred writes. The interface flushes before drawing | [High volume writes](/1.2.31/concepts/high-volume-writes/) |
 | Disk grew four times faster than estimated | The estimate counted archives but not consolidation functions | [Manage data retention](/1.2.31/guides/manage-data-retention/) |

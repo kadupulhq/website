@@ -2,7 +2,7 @@
 title: Questions
 description: Short answers to what newcomers and existing Cacti users ask first, with a link to the page that answers each one properly.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 7
 ---
@@ -13,16 +13,16 @@ Short answers. Each one links to the page that covers it in full.
 
 ### Can I install it today?
 
-No. Kadupul has not shipped. There is no release, no installable artifact, and no
-tarball. What exists is the name, the identity, this documentation site, and the
-decision to fork.
+The source is available for development and isolated testing. There is no
+supported release or validated production installation path.
 
-The install and how-to pages describe the system as it is intended to ship, which is
-why every page carries a banner saying so. See [Status](/project/status/).
+The install and how-to pages require validation against the code you use.
+See [Status](/project/status/).
 
 ### Is it production ready?
 
-See above. Nothing has been released, so nothing has been run in production by anyone.
+No. The repository describes Kadupul as pre-alpha and not ready for production.
+Release status does not tell us whether anyone has deployed development code.
 
 ### Is this a replacement for Cacti?
 
@@ -30,7 +30,7 @@ No, and it is not trying to be. Cacti is an actively maintained project with a l
 installed base. Kadupul is a fork that intends to make structural changes Cacti would
 reasonably decline to make, because Cacti has users to protect and Kadupul has none.
 
-Fixes that suit upstream go upstream. See
+Kadupul maintains its own forks and support channels. See
 [Why this fork exists](/project/why-this-fork/).
 
 ### Then why fork at all?
@@ -45,21 +45,19 @@ not a clean break from users.
 
 ### Which Cacti version does it fork from?
 
-Not decided. Cacti's release line and its development line are meaningfully different
-starting positions, and the choice has not been made. See [Status](/project/status/).
+The application derives from Cacti 1.2.31. The repository maintains `main` and
+`lts/1.2` lines with different release goals. See [Status](/project/status/).
 
 ### Who maintains it?
 
-Governance is not settled and there is nothing yet to govern. The
-[Contributing](/project/contributing/) page records the standard a change would be held
-to, which is a different thing from a project structure. Treating this as answered when
-it is not would be dishonest.
+The Kadupul project maintains the repository. Use its issue tracker and
+[contribution process](/project/contributing/) for project work.
 
 ### Is there a roadmap? A release cadence? A support policy?
 
-None of those exist. Release cadence, governance, and how contributions will be handled
-are listed under what is not decided on the [Status](/project/status/) page, and this
-site does not invent commitments the project has not made.
+The repository has release goals, a versioning policy and a contribution process.
+There is no supported production release yet. See [Status](/project/status/) for
+the distinction between planned versions and published artifacts.
 
 ### Is it affiliated with The Cacti Group?
 
@@ -81,8 +79,8 @@ from without claiming to stand in for the whole of it. The longer version is in
 That is the intent. The plugin API is one of four surfaces the compatibility promise
 covers, and a plugin written for Cacti is meant to load and run unchanged.
 
-It is intent, not evidence. Nothing has shipped, so no plugin has been tested against
-it. Check the plugins you actually depend on before planning anything.
+Compatibility is a goal, not blanket evidence for every plugin. Check the plugins
+and versions you actually depend on before planning a migration.
 See [Compatibility with Cacti](/project/compatibility-with-cacti/) and
 [Coming from Cacti](/guides/coming-from-cacti/).
 
@@ -108,19 +106,22 @@ turns every upgrade into an investigation.
 
 ### Does it work with Spine?
 
-That is the intent. Spine is a separate upstream project, not a Kadupul component, and
-Kadupul has not forked it. What Kadupul keeps is its half of the contract: the
-`poller_type` and path settings, the command line the parent poller builds, the settings
+Kadupul will maintain a Spine fork alongside the PHP collector. Its repository
+location and validated builds are not yet documented here. Spine is built and
+installed separately. The inherited integration includes the
+`poller_type` and path settings, the parent poller's command line, the settings
 Spine reads, and the tables it writes.
 
-If you run Spine rather than the PHP collector, confirm its status before planning a
-cutover. See [Spine, the C collector](/reference/spine/).
+Validate your Kadupul and Spine versions together before a cutover. Report problems
+in the [Kadupul issue tracker](https://github.com/kadupulhq/kadupul/issues). See
+[Spine, the C collector](/reference/spine/) for configuration and build guidance.
 
 ### Does it work with the RRDtool proxy?
 
-Same answer and same caveat. The proxy daemon is a separate upstream project. Kadupul
-documents and keeps the client side of the protocol. See
-[RRDtool proxy](/reference/rrdproxy/).
+Kadupul does not use the Cacti organization's proxy daemon. Use local RRDtool
+storage. The [RRDtool proxy reference](/reference/rrdproxy/) records the inherited
+client protocol; it is not a supported deployment option. A Kadupul-owned
+replacement must be established and validated before proxy deployment is documented.
 
 ### What does it need to run?
 
@@ -136,13 +137,9 @@ GPL-3.0-or-later.
 
 ### Cacti says GPL-2. How can a fork be GPL-3?
 
-Because Cacti's file headers grant version 2 "or, at your option, any later version",
-and the headers are the operative grant. No file in the tree is version 2 only. Kadupul
-takes the later-version option.
-
-Version 3 also resolves a conflict already present upstream, where a declared
-`GPL-2.0-only` in `composer.json` contradicts both the file headers and a shipped
-GPL-3.0-or-later dependency. The reasoning is set out on [License](/project/license/).
+The inherited application license permits GPL version 2 or later. Kadupul uses
+the later-version option for its distribution. Dependencies retain their own
+license terms. See [License](/project/license/).
 
 ### What licence is this documentation?
 
@@ -151,9 +148,8 @@ Reuse the text if you credit the project and license what you build the same way
 
 ### Where did these pages come from?
 
-From reading the Cacti source, which is GPL licensed. Not from Cacti's documentation,
-which carries no licence at all and therefore grants no right to create derivative
-works from it.
+These pages describe behavior from the application source. Third-party prose
+requires its own license review before reuse.
 
 That constraint applies to contributions as well. Documentation changes source their
 claims from code. See [Contributing](/project/contributing/).
@@ -165,21 +161,19 @@ claims from code. See [Contributing](/project/contributing/).
 Privately, through GitHub Security Advisories on the affected repository. Not as a
 public issue.
 
-There is no release yet, so there is nothing deployed to find a vulnerability in. The
-process exists so it is in place before it is needed, including which findings get
-embargoed and which are fixed in the open. See
-[Security policy](/project/security/).
+Unreleased code may be deployed and can contain vulnerabilities. Report privately
+regardless of release status. See [Security policy](/project/security/).
 
 ### A vulnerability I find here probably affects Cacti too. What happens?
 
-It gets reported to The Cacti Group through their disclosure process as well. Forking
-is not a reason to leave upstream users exposed.
+Report it privately to Kadupul. Kadupul maintainers own triage and remediation
+for this project and coordinate disclosure with other affected maintainers when
+needed. Reporters do not need to use another organization's support process.
 
 ### How do I contribute?
 
-There is no code to contribute to yet. [Contributing](/project/contributing/) records
-the engineering standards and the review standard a change would be held to, so both
-are stated before the first patch rather than argued about after it.
+Read [Contributing](/project/contributing/) and the contributor guide on your
+target branch. Discuss substantial changes before implementing them.
 
 ### I found something wrong on this site.
 

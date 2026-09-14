@@ -2,7 +2,7 @@
 title: Plugin hook API
 description: The files a plugin must ship, the functions it calls to register itself, the argument and return contract of the two dispatchers, and every hook name the source fires with where it fires and what it passes.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 17
 ---

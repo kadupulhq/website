@@ -2,15 +2,15 @@
 title: Audit who can see what
 description: A procedure for answering "what can this account see" and "who can see this device" with evidence, using the effective policy view rather than guessing from a tree.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 26
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there are no accounts to audit. This page states the
-intended auditing procedure so it can be reviewed against the permission model before
-either exists.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 This page is about proving an answer, not about designing a policy. For how the model

@@ -10,10 +10,10 @@ sidebar:
 slug: 1.2.31/guides/migrate-to-new-hardware
 ---
 
-:::caution[Nothing to migrate yet]
-Kadupul has not shipped, so there is no install to move. This page records the
-intended procedure and the places where paths and ownership have to be corrected
-on the far side.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A migration is a restore onto a machine that differs from the one the backup came

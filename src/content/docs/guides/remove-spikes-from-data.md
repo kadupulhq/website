@@ -2,14 +2,15 @@
 title: Remove spikes from data
 description: How to take a false peak out of an archive so the rest of the graph is readable again, and why that edit cannot be undone.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 19
 ---
 
-:::caution[Nothing to edit yet]
-Kadupul has not shipped, so there is no archive to correct. This page records the
-intended behaviour of the spike removal tool, inherited from Cacti 1.2.x.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 :::danger[This rewrites history and there is no undo]

@@ -11,9 +11,10 @@ sidebar:
 slug: 1.2.31/guides/recover-a-corrupted-rrd
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there are no archives to repair. This page states the
-intended diagnostics and repair paths so both can be reviewed before they exist.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Genuine file corruption is rare. Most files reported as corrupt are intact and

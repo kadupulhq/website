@@ -2,14 +2,15 @@
 title: Troubleshoot missing data
 description: A step by step procedure for gaps and flat graphs, working from device reachability through poller scheduling, the poller cache, filesystem permissions and the heartbeat.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 5
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there is nothing to troubleshoot yet. The page states the
-intended behaviour, and the diagnostics that follow from it, so both can be held to.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Work the steps in order. Each one rules out everything below it, which is what keeps
@@ -160,7 +161,7 @@ whole data source, not the one field alone.
 ## 7. Can the poller write the file
 
 The RRD file is created on the first successful update, not when the data source is
-created. **A file that does not exist means no value has ever been written.** That is
+created. **A missing file can mean creation failed, the path changed, or a file was removed.** That is
 a useful signal, because it separates "never worked" from "stopped working" in one
 check.
 

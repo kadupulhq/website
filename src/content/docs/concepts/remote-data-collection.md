@@ -2,7 +2,7 @@
 title: Remote data collection
 description: Why collection distributes and storage does not, what a remote collector owns, and what it costs to have a second copy of the configuration.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 9
 ---

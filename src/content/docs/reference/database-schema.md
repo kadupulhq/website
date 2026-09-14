@@ -2,7 +2,7 @@
 title: Database schema
 description: The Kadupul tables that matter, what each one holds, and how data sources, templates, graphs and the poller cache join together.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 6
 ---

@@ -2,7 +2,7 @@
 title: SNMP
 description: Which SNMP versions, authentication and privacy protocols Kadupul supports, the port, timeout, retry and OID-count settings, and how failures are reported.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 8
 ---

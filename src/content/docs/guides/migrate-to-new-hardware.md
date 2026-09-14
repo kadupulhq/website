@@ -2,15 +2,15 @@
 title: Migrate to new hardware
 description: Moving a running install to another server without losing history, in the order that keeps each step verifiable.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 20
 ---
 
-:::caution[Nothing to migrate yet]
-Kadupul has not shipped, so there is no install to move. This page records the
-intended procedure and the places where paths and ownership have to be corrected
-on the far side.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A migration is a restore onto a machine that differs from the one the backup came

@@ -2,7 +2,7 @@
 title: Configuration
 description: Which settings live in the config file on disk and which live in the database, and what each group controls.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 3
 ---

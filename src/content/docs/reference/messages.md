@@ -2,7 +2,7 @@
 title: Error and log messages
 description: The error, warning and fatal strings Kadupul writes to its log, what each one means, and where to look next.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 20
 ---

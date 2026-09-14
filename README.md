@@ -12,7 +12,11 @@ npm run build    # static output in dist/
 npm run preview  # serve the built output
 ```
 
-Node 20.19 or newer. The pinned version is in `.node-version`.
+Node 22.12 or newer. The pinned version is in `.node-version`.
+
+Run `npm run check:all` before submitting changes. This runs type checks, prose
+checks, regression tests, the static build, and internal link validation. CI and
+deployment use the same command.
 
 ## How the docs are organized
 
@@ -38,8 +42,8 @@ live in `src/content/docs/<slug>/`, are generated, and are frozen once cut. Fixi
 something in an archived version means editing that version's own file on purpose,
 not editing `main` and expecting it to flow backwards.
 
-Pages under `project/` are excluded from versioning. They describe the project
-rather than a release, so they always serve the latest copy.
+Pages under `project/` and the site-wide `404.md` page are excluded from
+versioning. Project pages always serve the latest copy.
 
 The snapshot is cut by the build. If you are part way through a large documentation
 change, comment out the `starlightVersions` block first, or any `npm run build`
@@ -53,8 +57,8 @@ that happens.
 - Pages describing behavior that does not exist yet carry a `banner` or a `:::caution`
   saying so. Documenting unbuilt software as though it were shipped is how docs lose
   their credibility permanently.
-- Source claims from the Cacti source, which is GPL licensed. Do not adapt Cacti's
-  documentation, which carries no license and grants no right to derivative works.
+- Verify claims against the target Kadupul source version. Check the license
+  before adapting any third-party prose.
 
 ## License
 

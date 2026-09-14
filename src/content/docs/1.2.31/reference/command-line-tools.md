@@ -128,7 +128,6 @@ production, because several change data in bulk with no confirmation step.
 
 | Script | Purpose |
 |---|---|
-| `audit_graph_template_inputs.php` | Report graph template input integrity findings. Makes no database changes. |
 | `sqltable_to_php.php` | Export a table's schema as Cacti save-schema syntax, for use in a plugin's `setup.php`. |
 
 ***

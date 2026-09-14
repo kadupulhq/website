@@ -2,7 +2,7 @@
 title: Poller lifecycle
 description: What happens on a poller run, in order, from the scheduler invoking poller.php to values landing in RRD files.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 4
 ---

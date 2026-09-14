@@ -45,21 +45,21 @@ Four parts, on one machine to begin with.
 |---|---|---|
 | Web application | The interface, and the installer | Nobody can configure or view anything |
 | Database | Devices, templates, users, and the poller cache | The poller has nothing to collect |
-| RRD files on disk | Every measurement ever taken | Graphs are empty, and the history is gone |
+| RRD files on disk | Measurements consolidated within the configured retention windows | Graphs are empty, and the history is gone |
 | Scheduler | Starts the poller on time | Data stops, silently |
 
 A healthy installation is quiet in a specific way. The poller finishes inside its
 interval. Every enabled device reports up. Graphs run to within one interval of
 now, with no gaps. The log records the end of each run and little else.
 
-For scale, a first install of fifty switches with a few hundred data sources
-collects in a few seconds per cycle on ordinary hardware. If a five minute cycle is
-taking four minutes, something is wrong long before it looks wrong on a graph.
+Measure cycle duration with your devices, latency, scripts and hardware.
+A five minute collection interval needs enough headroom to finish before the
+next cycle, including timeouts and retries.
 
 Disk use is close to flat. An RRD file is allocated at creation and does not grow
 afterwards, so your storage plan is decided the day you choose a data source
-profile, not gradually over three years. The database grows slowly and only with
-configuration. Adding a hundred devices adds disk in a predictable lump.
+profile, not gradually over three years. Database growth also depends on logs, queued samples, statistics and plugins.
+Monitor those tables as well as configuration. Adding a hundred devices adds disk in a predictable lump.
 
 ## The words you will meet
 
@@ -133,7 +133,7 @@ The mark places a four-point metric trace at the center of the bloom.
 
 ## Its relationship to Cacti
 
-Kadupul is a fork of [Cacti](https://github.com/Cacti/cacti). It keeps Cacti's data
+Kadupul is a fork of Cacti. It keeps Cacti's data
 model, its plugin interface, and its templates. If you know Cacti, you already know
 Kadupul. See [Compatibility with Cacti](/project/compatibility-with-cacti/) for what
 that promise covers and where it stops.

@@ -2,7 +2,7 @@
 title: Settings
 description: Every setting Kadupul stores, grouped by the tab it appears under, with its type and its default.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 19
 ---

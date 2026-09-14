@@ -14,9 +14,10 @@ Add one device, confirm it is answering, and only then move on. Most trouble wit
 monitoring system traces back to a device that was never really answering in the
 first place.
 
-:::caution[Nothing to add yet]
-Kadupul has not shipped. Follow this page as the intended sequence, not as
-something you can carry out today.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Pick a device you can afford to get wrong. A switch you own, on a network you

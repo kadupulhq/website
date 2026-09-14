@@ -2,7 +2,7 @@
 title: Security model
 description: Where untrusted data enters Kadupul, which process runs with which privilege, what the database account can do, and which boundaries the code enforces rather than assumes.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 12
 ---

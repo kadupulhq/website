@@ -9,9 +9,10 @@ banner:
 slug: 1.2.31/guides/coming-from-cacti
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there is no migration to perform. This page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Kadupul stays API compatible with Cacti for the foreseeable future. In practice that

@@ -4,7 +4,7 @@ description: The four moving parts, and which one is usually at fault.
 sidebar:
   order: 1
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
 Kadupul has four parts. Knowing which one you are looking at shortens most

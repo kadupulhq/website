@@ -4,7 +4,7 @@ description: A short, honest description of what the software does, what it does
 sidebar:
   order: 1
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
 Kadupul asks your network devices how they are doing, at a fixed interval, forever.
@@ -42,21 +42,21 @@ Four parts, on one machine to begin with.
 |---|---|---|
 | Web application | The interface, and the installer | Nobody can configure or view anything |
 | Database | Devices, templates, users, and the poller cache | The poller has nothing to collect |
-| RRD files on disk | Every measurement ever taken | Graphs are empty, and the history is gone |
+| RRD files on disk | Measurements consolidated within the configured retention windows | Graphs are empty, and the history is gone |
 | Scheduler | Starts the poller on time | Data stops, silently |
 
 A healthy installation is quiet in a specific way. The poller finishes inside its
 interval. Every enabled device reports up. Graphs run to within one interval of
 now, with no gaps. The log records the end of each run and little else.
 
-For scale, a first install of fifty switches with a few hundred data sources
-collects in a few seconds per cycle on ordinary hardware. If a five minute cycle is
-taking four minutes, something is wrong long before it looks wrong on a graph.
+Measure cycle duration with your devices, latency, scripts and hardware.
+A five minute collection interval needs enough headroom to finish before the
+next cycle, including timeouts and retries.
 
 Disk use is close to flat. An RRD file is allocated at creation and does not grow
 afterwards, so your storage plan is decided the day you choose a data source
-profile, not gradually over three years. The database grows slowly and only with
-configuration. Adding a hundred devices adds disk in a predictable lump.
+profile, not gradually over three years. Database growth also depends on logs, queued samples, statistics and plugins.
+Monitor those tables as well as configuration. Adding a hundred devices adds disk in a predictable lump.
 
 ## The words you will meet
 
@@ -89,12 +89,12 @@ Being clear about this saves you time.
 - It does not do distributed tracing, APM, or anything that assumes you control the
   application code.
 - It does not handle high cardinality. There is no label or tag dimension you can
-  slice after the fact. One measurement is one file, decided in advance.
+  slice after the fact. A file can contain multiple data source items, with a storage shape chosen in advance.
 - It does not accept pushed metrics as its normal mode. Kadupul asks; the device
   answers.
 
-The permanent decisions are worth knowing before you start, because they cannot be
-undone later. The step, the data source type, and the set of archives are written
+The storage decisions are worth knowing before you start, because changing them
+later requires explicit file maintenance or migration. The step, the data source type, and the set of archives are written
 into an RRD file when it is created. If you keep only averages, you can never ask
 about peaks afterwards, because the peaks were never written down.
 [Data sources and round-robin archives](/concepts/data-sources-and-rras/) covers
@@ -130,7 +130,7 @@ The mark places a four-point metric trace at the center of the bloom.
 
 ## Its relationship to Cacti
 
-Kadupul is a fork of [Cacti](https://github.com/Cacti/cacti). It keeps Cacti's data
+Kadupul is a fork of Cacti. It keeps Cacti's data
 model, its plugin interface, and its templates. If you know Cacti, you already know
 Kadupul. See [Compatibility with Cacti](/project/compatibility-with-cacti/) for what
 that promise covers and where it stops.

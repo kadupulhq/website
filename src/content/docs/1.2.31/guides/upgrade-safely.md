@@ -10,9 +10,10 @@ sidebar:
 slug: 1.2.31/guides/upgrade-safely
 ---
 
-:::caution[Nothing to upgrade yet]
-Kadupul has not shipped, so there is no version to upgrade from. This page records
-the intended procedure, inherited from how Cacti 1.2.x behaves.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 An upgrade changes three things at different times and with different reversibility.

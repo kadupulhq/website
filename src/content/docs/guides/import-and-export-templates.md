@@ -2,14 +2,15 @@
 title: Import and export templates
 description: What an export file actually contains, why a package is signed, and the ways an import quietly does less than you asked.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 18
 ---
 
-:::caution[Nothing to move yet]
-Kadupul has not shipped, so there is no install to export from. This page records
-the intended behaviour of the export and import path, inherited from Cacti 1.2.x.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Moving a template between installs looks like moving a file. It is not. The file

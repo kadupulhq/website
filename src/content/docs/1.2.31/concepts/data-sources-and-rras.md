@@ -34,16 +34,18 @@ configuration. It is file format.
 
 ## The decisions that are permanent
 
-An RRD file is allocated at creation. Its structure cannot be changed afterwards
-without rebuilding the file and losing history. Kadupul will not rewrite a file
+An RRD file is allocated at creation. Profile edits do not migrate existing
+files. RRDtool provides tuning and resizing operations that can preserve stored
+data, but they need separate validation and backups. Kadupul will not rewrite a file
 that already exists; the create path checks, finds the file, and returns without
 touching it. A data template edited two years in changes what the next file looks
 like and nothing about the ten thousand already on disk.
 
-Four choices are fixed at that moment.
+Four choices are recorded at that moment.
 
-**The step.** How often a value is expected, usually 300 seconds. Feed it more often
-and the extra samples are discarded. Feed it less often and gaps appear. The step
+**The step.** How often a value is expected, usually 300 seconds. RRDtool normalizes updates onto step boundaries; more frequent readings are
+not simply discarded. Whether slower updates produce unknown data depends on
+the heartbeat and consolidation rules. The step
 comes from the data source profile, which is also where the archives come from, so
 the two are chosen together and cannot be chosen apart.
 

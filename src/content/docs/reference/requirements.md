@@ -4,18 +4,19 @@ description: Versions and extensions, stated precisely.
 sidebar:
   order: 1
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
-Inherited from Cacti 1.2.x and subject to change once Kadupul picks its fork point.
+Based on the inherited 1.2.31 implementation. Check the manifest and installer
+in the exact source version you use; these lists are not a production support policy.
 
 ## Runtime
 
 | Component | Requirement | Absent |
 |---|---|---|
-| PHP | 8.1 or newer | Nothing runs |
+| PHP | Manifest declares 8.0 or newer; use a security-supported version | Nothing runs |
 | Database | MySQL or MariaDB, InnoDB available | Nothing runs |
-| RRDtool | A local binary, or a reachable remote RRDtool | No graphs, no storage |
+| RRDtool | A local binary; proxy deployment is not supported | No graphs, no storage |
 | net-snmp | Command line tools, unless the PHP SNMP extension is present | No SNMP collection |
 | Web server | PHP as a module or through FPM | No interface |
 | Scheduler | cron, Windows Task Scheduler, or the shipped systemd unit | No collection |
@@ -140,7 +141,7 @@ not requirements, and the install proceeds without them.
 
 | Item | Requirement |
 |---|---|
-| Binary | Path set in the settings. Local, or reached through a remote RRDtool |
+| Binary | Local path set in the settings |
 | Versions selectable | 1.3, 1.4, 1.5, 1.6, 1.7, 1.7.1, 1.7.2, 1.8 |
 | 1.5 or later | Needed before `DCOUNTER` and `DDERIVE` are offered as data source types |
 
@@ -148,8 +149,9 @@ The configured version changes which arguments Kadupul emits. Setting it higher
 than the installed binary produces command failures rather than a version warning.
 Details are in [RRDtool integration](/reference/rrdtool-integration/).
 
-A remote RRDtool replaces the local binary with a TCP connection and needs
-`sockets` and `zlib` at both ends.
+The inherited remote RRDtool client uses a TCP connection and needs `sockets`
+and `zlib`. It is documented for reference, not as a supported deployment option.
+See [RRDtool proxy](/reference/rrdproxy/).
 
 ## net-snmp
 
@@ -189,8 +191,9 @@ The collector is started from outside. Nothing in the web interface starts it.
 | Unix | cron, or the shipped systemd unit for the collector daemon |
 | Windows | Task Scheduler |
 
-The schedule has to match the configured polling interval. A mismatch produces a
-graph full of gaps rather than an error.
+Start the poller at least as often as the configured collection interval. A
+one-minute launcher can service a five-minute collection interval; a five-minute
+launcher cannot meet a one-minute collection interval.
 
 ## Filesystem
 
@@ -237,7 +240,7 @@ No other part of Kadupul requires privilege.
 
 ## On the PHP version
 
-PHP 8.1 is the floor because that is what the Cacti 1.2.x manifest declares. It is
-not a recommendation. 8.1 reached end of security support in December 2025, so run
-a supported release and treat the floor as the oldest thing that works, not the
-right thing to deploy.
+The application manifest declares PHP 8.0 or newer. A manifest constraint is not
+a tested compatibility matrix. PHP 8.0 and 8.1 are no longer security-supported;
+choose a version from the [PHP supported-version list](https://www.php.net/supported-versions.php)
+and verify it with the target branch's tests and dependency checks.

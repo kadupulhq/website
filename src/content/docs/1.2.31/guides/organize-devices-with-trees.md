@@ -10,9 +10,10 @@ sidebar:
 slug: 1.2.31/guides/organize-devices-with-trees
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A tree is how people find a graph. At twenty devices any structure works. At two

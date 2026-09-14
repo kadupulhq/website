@@ -2,7 +2,7 @@
 title: Graph items
 description: Every graph item type Kadupul can place on a graph, the consolidation functions, and the CDEF and VDEF vocabulary available when building them.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 7
 ---

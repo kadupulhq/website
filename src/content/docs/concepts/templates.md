@@ -4,7 +4,7 @@ description: How one definition covers a hundred devices, and what happens when 
 sidebar:
   order: 3
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
 Templates exist so that adding the hundredth switch costs the same as adding the

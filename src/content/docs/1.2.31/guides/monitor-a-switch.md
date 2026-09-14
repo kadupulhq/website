@@ -10,9 +10,10 @@ sidebar:
 slug: 1.2.31/guides/monitor-a-switch
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A switch is the case data queries exist for. You do not know how many ports there

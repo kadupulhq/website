@@ -11,9 +11,10 @@ sidebar:
 slug: 1.2.31/guides/create-custom-templates
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. This page describes the intended behavior of the template
-editor, not something you can open today.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Building a template from scratch is a two step job. The data template decides what

@@ -58,16 +58,17 @@ fill them, so the graph is a comb.
 
 ## Heartbeat is not always twice the step
 
-The heartbeat is how long a field will wait past its expected step before
-recording unknown, and it comes from the profile when the data source is created.
+The heartbeat is the maximum permitted interval between updates before input is
+treated as unknown. It comes from the profile when the data source is created;
+it is not an extra grace period added to the step.
 
 The shipped profiles do not follow one rule.
 
-| Profile | Step | Heartbeat | Missed steps tolerated |
+| Profile | Step | Heartbeat | Update interval limit |
 |---|---|---|---|
-| Five minute | 300 | 600 | About one |
-| One minute | 60 | 600 | About ten |
-| Thirty second | 30 | 1200 | About forty |
+| Five minute | 300 | 600 | 10 minutes |
+| One minute | 60 | 600 | 10 minutes |
+| Thirty second | 30 | 1200 | 20 minutes |
 
 The short-step profiles are deliberately forgiving, because at a thirty second
 step a single slow device would otherwise punch a hole in a graph every time it

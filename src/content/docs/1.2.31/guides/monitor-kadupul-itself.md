@@ -11,10 +11,10 @@ sidebar:
 slug: 1.2.31/guides/monitor-kadupul-itself
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there is nothing to measure yet. This page names the
-self-monitoring data the inherited code produces, and the thresholds that follow
-from the constants in it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A monitoring system that is quietly failing looks exactly like a network that is

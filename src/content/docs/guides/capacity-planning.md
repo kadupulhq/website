@@ -2,15 +2,15 @@
 title: Capacity planning
 description: Work out the disk, memory, poll window and database size an install needs from the number of devices and data sources it will carry, with the arithmetic shown so you can redo it for your own numbers.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 30
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of these numbers can be measured on a running
-system yet. The formulas come from the shipped defaults and the code that uses
-them. The arithmetic done here is labelled where it is derived rather than read.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 [Manage data retention](/guides/manage-data-retention/) sizes one file. This page

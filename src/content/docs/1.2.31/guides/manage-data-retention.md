@@ -10,9 +10,10 @@ sidebar:
 slug: 1.2.31/guides/manage-data-retention
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Retention is decided once per file, at creation, and is then fixed. Editing the
@@ -30,14 +31,15 @@ A data source profile is the retention policy. One profile, one storage shape.
 | Field | Meaning |
 |---|---|
 | Polling interval (step) | How often a value is expected, in seconds |
-| Heartbeat | How long the file waits past the step before recording unknown |
+| Heartbeat | Maximum permitted interval between updates before the input is treated as unknown |
 | X-Files Factor | How much of a consolidation window may be unknown before the consolidated value is unknown |
 | Consolidation functions | Which of `AVERAGE`, `MIN`, `MAX`, `LAST` are kept |
 | Archives | One row per resolution, each with an aggregation level and a row count |
 | Default | Whether new data sources pick this profile |
 
 The step defaults to the poller interval. A profile whose step is finer than the
-poller interval cannot be filled; the extra rows stay unknown forever.
+polling interval cannot recover detail that was never sampled. Whether its rows
+are unknown depends on heartbeat and RRDtool normalization.
 
 ## What ships
 
@@ -146,8 +148,8 @@ For a single-data-source file with all four consolidation functions:
 | 1 Minute Collection | 20,429 | 654 KB |
 
 Multiply by the number of data sources you expect, not by the number of graphs. A
-graph with four lines is usually one file with four data sources, which is
-cheaper than four files.
+graph can combine fields from one file or several files. Count the actual RRD
+files and the data source items inside each.
 
 Twenty thousand data sources on the default profile is roughly 1.8 GB. The same
 twenty thousand on the 1 Minute profile is roughly 13 GB. That ratio is the real
@@ -217,7 +219,12 @@ can change resolution while doing it, provided the new file already has the
 correct step. It has a dry run mode. Use it, on a copy, before you use it on
 anything you care about.
 
-There is no fourth option. Nothing in the system converts a file in place.
+**RRDtool maintenance.** Depending on the installed version and desired change,
+[rrdtool tune](https://oss.oetiker.ch/rrdtool/doc/rrdtune.en.html) or
+[rrdtool resize](https://oss.oetiker.ch/rrdtool/doc/rrdresize.en.html) can alter an
+existing file while preserving retained data. Stop competing writers, keep a
+backup and verify the result on a copy. These operations do not recreate detail
+already discarded by consolidation.
 
 ## External profiles
 
@@ -235,7 +242,7 @@ whatever the file was built with; it just is not described anywhere you can see.
 | Row count and aggregation level cannot be edited | The profile is in use by at least one data source. Duplicate it |
 | The interface shows one heartbeat, the file behaves as another | The profile heartbeat changed and the files were never tuned |
 | New data sources fail to create, log says no archives assigned | The profile was deleted while data sources still referenced it |
-| The finest archive is full of unknowns | The profile step is finer than the poller interval |
+| The finest archive is full of unknowns | Check missing updates, heartbeat and consolidation rules |
 | A week of graphs has gaps every few hours | Heartbeat too close to the step for a poller that runs late |
 | Peaks visible yesterday are gone in the month view | Only `AVERAGE` is kept, or the `MAX` archive was dropped to save space |
 | Disk grew four times faster than estimated | The estimate counted archives but not consolidation functions |

@@ -2,7 +2,7 @@
 title: The poller cache
 description: Why the collector reads a precomputed work list instead of your configuration, and why that is the usual reason a change appears to do nothing.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 6
 ---

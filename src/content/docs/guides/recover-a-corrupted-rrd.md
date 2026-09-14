@@ -2,14 +2,15 @@
 title: Recover a corrupted RRD
 description: How to tell a damaged round-robin archive from a misconfigured one, how to inspect a file, how dump and restore repairs it, and what history you can keep when the file has to be rebuilt.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 25
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there are no archives to repair. This page states the
-intended diagnostics and repair paths so both can be reviewed before they exist.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Genuine file corruption is rare. Most files reported as corrupt are intact and
