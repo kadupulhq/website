@@ -94,8 +94,12 @@ test('content CLIs report successful generation and actionable prose failures', 
 	assert.match(lint.stderr, /1 prose issue/);
 });
 
-test('default CLI paths validate the repository and reproduce its checked-in maps', () => {
+test('default CLI paths validate the repository and reproduce its checked-in maps', (t) => {
+	const maps = ['', ...translatedLocales].map((locale) => new URL(`../../src/content/docs/${locale ? locale + '/' : ''}map.md`, import.meta.url));
+	const before = maps.map((path) => readFileSync(path, 'utf8'));
+	t.after(() => maps.forEach((path, i) => writeFileSync(path, before[i])));
 	assert.equal(run('build-map').status, 0);
+	assert.deepEqual(maps.map((path) => readFileSync(path, 'utf8')), before, 'generated maps must match their checked-in content');
 	const lint = run('lint-prose');
 	assert.equal(lint.status, 0, lint.stderr);
 });

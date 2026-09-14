@@ -7,7 +7,7 @@ import { locales, navigation } from './src/i18n/locales.mjs';
 import { isErrorRoute } from './src/i18n/routes.mjs';
 
 export default defineConfig({
-	site: 'https://kadupul.net',
+	site: 'https://kadupul.org',
 	integrations: [
 		starlight({
 			defaultLocale: 'root',

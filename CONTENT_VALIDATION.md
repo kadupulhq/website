@@ -81,3 +81,9 @@ Framework integration boundaries are stubbed in isolated configuration tests;
 the production build exercises the real integrations. The build produced 3,168
 pages; 375,394 internal links and 123,411 anchors passed validation. HTML and LCOV
 reports are retained as CI artifacts and sent to Sonar through CI analysis.
+
+The canonical URL and robots sitemap retain the existing `kadupul.org` domain.
+The earlier proposed `.net` change had no verified ownership or migration evidence
+in the website or infrastructure repositories and was reverted. The map CLI test
+now compares every generated map and restores its original content; `npm test`
+builds first so its CLI integration checks work from a fresh checkout.

@@ -39,7 +39,7 @@ registerHooks({
 
 test('site configuration preserves locales, version policy and excludes error pages from the sitemap', async () => {
 	const { default: config } = await import('../../astro.config.mjs');
-	assert.equal(config.site, 'https://kadupul.net');
+	assert.equal(config.site, 'https://kadupul.org');
 	const docs = config.integrations.find((i) => i.name === 'starlight').options;
 	assert.deepEqual(docs.locales, locales);
 	assert.equal(docs.defaultLocale, 'root');
@@ -47,9 +47,9 @@ test('site configuration preserves locales, version policy and excludes error pa
 	assert.deepEqual(docs.plugins[0].options.exclude, ['project/**', '*/project/**', '404.md', '*/404.md']);
 	assert.equal(docs.sidebar[1].items[2].translations['es-419'], 'Agregar el primer dispositivo');
 	const { filter } = config.integrations.find((i) => i.name === 'sitemap').options;
-	assert.equal(filter('https://kadupul.net/404.html'), false);
-	assert.equal(filter('https://kadupul.net/si/404/'), false);
-	assert.equal(filter('https://kadupul.net/si/project/security/'), true);
+	assert.equal(filter('https://kadupul.org/404.html'), false);
+	assert.equal(filter('https://kadupul.org/si/404/'), false);
+	assert.equal(filter('https://kadupul.org/si/project/security/'), true);
 });
 
 test('content collections use both documentation and translation loaders and schemas', async () => {
@@ -65,7 +65,7 @@ test('the actual footer renders localized licenses and delegates its slot to the
 	for (const [locale, config] of Object.entries(locales)) {
 		const container = await AstroContainer.create({ manifest: { i18n: { defaultLocale: 'en', locales: Object.values(locales).map((l) => l.lang), routing: 'manual' } } });
 		const html = await container.renderToString(Footer, {
-			request: new Request(`https://kadupul.net/${locale === 'root' ? '' : config.lang + '/'}`),
+			request: new Request(`https://kadupul.org/${locale === 'root' ? '' : config.lang + '/'}`),
 			slots: { default: '<span>Preserved slot</span>' },
 		});
 		const t = getMessages(locale);
