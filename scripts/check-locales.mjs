@@ -73,7 +73,10 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 	for (const [page, entry] of Object.entries(manifest.pages)) {
 		assert.ok(existsSync(join(root, 'src/content/docs', page)), `Missing translation: ${page}`);
 		const source = readFileSync(join(root, 'src/content/docs', entry.source));
-		if (createHash('sha256').update(source).digest('hex') !== entry.sourceSha256) stale.push(page);
+		if (createHash('sha256').update(source).digest('hex') !== entry.sourceSha256) {
+			assert.ok(!entry.source.startsWith('project/'), `English policy source changed; review translation: ${page}`);
+			stale.push(page);
+		}
 	}
 	if (strictDrift) assert.deepEqual(stale, [], 'English source changed; review translations');
 	return { locales: Object.keys(locales).length, sources: Object.keys(manifest.pages).length, stale };

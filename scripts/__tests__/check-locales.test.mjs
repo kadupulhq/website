@@ -31,12 +31,24 @@ function fixture(t) {
 	return { root, write };
 }
 
-test('locale validator accepts all locales and warns on source drift unless strict', (t) => {
+function addOrdinaryTranslation(root, write) {
+	write('src/content/docs/start/overview.md', 'English source');
+	write('src/content/docs/es/start/overview.md', 'Resumen');
+	const manifest = JSON.parse(readFileSync(join(root, 'src/i18n/translations.json'), 'utf8'));
+	manifest.pages['es/start/overview.md'] = { source: 'start/overview.md', sourceSha256: createHash('sha256').update('English source').digest('hex') };
+	write('src/i18n/translations.json', JSON.stringify(manifest));
+}
+
+test('locale validator rejects policy drift and warns on ordinary source drift unless strict', (t) => {
 	const { root, write } = fixture(t);
 	assert.equal(checkLocales(root).locales, translatedLocales.length + 1);
 	assert.deepEqual(checkLocales(root).stale, []);
 	write('src/content/docs/project/security.md', 'Urgent English correction');
-	assert.deepEqual(checkLocales(root).stale, ['es/project/security.md']);
+	assert.throws(() => checkLocales(root), /English policy source changed/);
+	write('src/content/docs/project/security.md', 'English source');
+	addOrdinaryTranslation(root, write);
+	write('src/content/docs/start/overview.md', 'Updated tutorial');
+	assert.deepEqual(checkLocales(root).stale, ['es/start/overview.md']);
 	assert.throws(() => checkLocales(root, { strictDrift: true }), /English source changed/);
 });
 
@@ -111,9 +123,15 @@ test('locale CLI reports source drift and strict mode rejects stale translations
 	const run = (...args) => spawnSync(process.execPath, [script, '--root', root, ...args], { encoding: 'utf8' });
 	assert.equal(run('--strict-drift').status, 0);
 	write('src/content/docs/project/security.md', 'Changed English source');
+	const policy = run();
+	assert.notEqual(policy.status, 0);
+	assert.match(policy.stderr, /English policy source changed/);
+	write('src/content/docs/project/security.md', 'English source');
+	addOrdinaryTranslation(root, write);
+	write('src/content/docs/start/overview.md', 'Changed tutorial');
 	const warning = run();
 	assert.equal(warning.status, 0, warning.stderr);
-	assert.match(warning.stderr, /STALE translation: es\/project\/security.md/);
+	assert.match(warning.stderr, /STALE translation: es\/start\/overview.md/);
 	assert.match(warning.stdout, /translation sources checked/);
 	assert.notEqual(run('--strict-drift').status, 0);
 });

@@ -81,8 +81,8 @@ of the reference manual.
   or translation. When English changes, review and update the translation before
   updating its recorded hash. Keep `review: draft` until a fluent reviewer checks it.
 - `npm run check:locales` checks built routes, switches, navigation, fallback,
-  text direction, custom interface labels and translation source hashes. Stale translations produce warnings
-  so English corrections can ship independently. Use `npm run check:locales --
+  text direction, custom interface labels and translation source hashes. Stale project
+  policy translations fail validation; other source drift produces warnings. Use `npm run check:locales --
   --strict-drift` to require synchronized translations. `npm run check:all` includes
   the standard checks.
 

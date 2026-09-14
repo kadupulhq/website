@@ -87,3 +87,13 @@ The earlier proposed `.net` change had no verified ownership or migration eviden
 in the website or infrastructure repositories and was reverted. The map CLI test
 now compares every generated map and restores its original content; `npm test`
 builds first so its CLI integration checks work from a fresh checkout.
+
+Policy source drift now fails ordinary validation and deployment; non-policy
+translations retain warnings, with strict mode available for all source drift.
+
+Sonar confirmed 100% new-code coverage. Six path-injection reports incorrectly
+assumed an externally exposed command runner: these local maintainer commands
+intentionally accept directory arguments, run with the invoking user's filesystem
+permissions, and receive fixed repository paths in CI. Each report was reviewed
+and classified as a false positive in Sonar with this rationale. No scanning rule
+or executable source file was excluded.
