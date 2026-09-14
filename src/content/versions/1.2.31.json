@@ -23,7 +23,8 @@
         "id": "Peta dokumentasi",
         "nl": "Documentatieoverzicht",
         "pl": "Mapa dokumentacji",
-        "bn": "নথির মানচিত্র"
+        "bn": "নথির মানচিত্র",
+        "si": "ලේඛන සිතියම"
       }
     },
     {
@@ -52,7 +53,8 @@
             "id": "Apa itu Kadupul",
             "nl": "Wat is Kadupul",
             "pl": "Czym jest Kadupul",
-            "bn": "Kadupul কী"
+            "bn": "Kadupul কী",
+            "si": "Kadupul යනු කුමක්ද"
           }
         },
         {
@@ -78,7 +80,8 @@
             "id": "Instalasi",
             "nl": "Installatie",
             "pl": "Instalacja",
-            "bn": "ইনস্টলেশন"
+            "bn": "ইনস্টলেশন",
+            "si": "ස්ථාපනය"
           }
         },
         {
@@ -104,7 +107,8 @@
             "id": "Tambahkan perangkat pertama",
             "nl": "Het eerste apparaat toevoegen",
             "pl": "Dodaj pierwsze urządzenie",
-            "bn": "প্রথম ডিভাইস যোগ করুন"
+            "bn": "প্রথম ডিভাইস যোগ করুন",
+            "si": "පළමු උපාංගය එක් කරන්න"
           }
         },
         {
@@ -130,7 +134,8 @@
             "id": "Baca grafik pertama",
             "nl": "De eerste grafiek lezen",
             "pl": "Odczytaj pierwszy wykres",
-            "bn": "প্রথম গ্রাফ বুঝুন"
+            "bn": "প্রথম গ্রাফ বুঝুন",
+            "si": "පළමු ප්‍රස්තාරය කියවන්න"
           }
         }
       ],
@@ -154,7 +159,8 @@
         "id": "Mulai di sini",
         "nl": "Aan de slag",
         "pl": "Pierwsze kroki",
-        "bn": "এখানে শুরু করুন"
+        "bn": "এখানে শুরু করুন",
+        "si": "මෙතැනින් අරඹන්න"
       }
     },
     {
@@ -186,7 +192,8 @@
         "id": "Panduan penggunaan",
         "nl": "Handleidingen",
         "pl": "Poradniki",
-        "bn": "ব্যবহার নির্দেশিকা"
+        "bn": "ব্যবহার নির্দেশিকা",
+        "si": "භාවිත මාර්ගෝපදේශ"
       }
     },
     {
@@ -218,7 +225,8 @@
         "id": "Konsep",
         "nl": "Concepten",
         "pl": "Pojęcia",
-        "bn": "ধারণা"
+        "bn": "ধারণা",
+        "si": "සංකල්ප"
       }
     },
     {
@@ -250,7 +258,8 @@
         "id": "Referensi",
         "nl": "Naslagwerk",
         "pl": "Dokumentacja techniczna",
-        "bn": "রেফারেন্স"
+        "bn": "রেফারেন্স",
+        "si": "තාක්ෂණික යොමුව"
       }
     },
     {
@@ -282,7 +291,8 @@
         "id": "Proyek",
         "nl": "Project",
         "pl": "Projekt",
-        "bn": "প্রকল্প"
+        "bn": "প্রকল্প",
+        "si": "ව්‍යාපෘතිය"
       }
     }
   ],

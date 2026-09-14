@@ -20,7 +20,7 @@ deployment use the same command.
 
 ## Languages
 
-English keeps its existing URLs. The site offers 21 locale options:
+English keeps its existing URLs. The site offers 22 locale options:
 
 | Language | URL prefix | Language tag |
 |---|---|---|
@@ -45,6 +45,7 @@ English keeps its existing URLs. The site offers 21 locale options:
 | Dutch | `/nl/` | `nl` |
 | Polish | `/pl/` | `pl` |
 | Bengali | `/bn/` | `bn` |
+| Sinhala | `/si/` | `si` |
 
 Arabic uses right-to-left layout. English fallback content retains its own
 language and direction. Regional variants have separate wording: for example,
@@ -61,7 +62,8 @@ of the reference manual.
 
 - Edit translated Markdown under `src/content/docs/<locale>/`, using the same
   paths as English pages. Keep command names, settings and filenames unchanged.
-- Edit site labels in `src/i18n/locales.mjs` and interface/version notices in
+- Configure locales in `src/i18n/locales.mjs`, edit site labels in
+  `src/i18n/messages.json`, and edit interface/version notices in
   `src/content/i18n/<language>.json`. Use the exact language tag above for JSON
   filenames, including region capitalization. Numeric `es-419` has an explicit
   Spanish interface dictionary; the framework does not supply that fallback.

@@ -39,8 +39,8 @@ in the inspected source. This was a source-text check, not execution of commands
 ## Validation and limits
 
 Validation includes type checks, prose checks, 40 regression tests, the static
-build, internal links and checks across 21 locales. The i18n collection is now
-populated; the existing overlapping 404 route warning remains. The 100 translated
+build, internal links and checks across 22 locales. The i18n collection is now
+populated; the existing overlapping 404 route warning remains. The 105 translated
 summaries and error pages are tracked against English source hashes and await
 fluent-speaker review. These checks verify structure and routing, not native-level
 translation quality or completeness of the translated manual.
