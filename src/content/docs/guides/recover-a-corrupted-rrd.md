@@ -94,7 +94,7 @@ The messages it can record, and what each one means:
 
 | Message | Meaning |
 |---|---|
-| RRDfile does not exist | No successful write has ever happened for this data source |
+| RRDfile does not exist | The file was never created, was moved or deleted, or the configured path changed |
 | RRDfile is not writable | The poller user cannot write the file |
 | RRDfile modify time older than hour | Nothing has been written for at least an hour |
 | Last update value in RRDfile is older than 1 hour | The file's own last update stamp is stale, which is stronger evidence than the modify time |

@@ -56,7 +56,6 @@ export function classify(href, from = '') {
 		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
 		return { path: '/' + from, fragment: f, samePage: true, dotted: false };
 	}
-	if (href.startsWith('//')) return null; // protocol-relative, external
 	if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return null;
 	// Resolve relative and query-only references as a browser does, using the
 	// current route as the base. They are internal links too.
@@ -143,20 +142,27 @@ export function check(dist) {
 		return { fatal: `no HTML under ${dist}; the build produced nothing` };
 	}
 
-	const routes = new Set(pages.map((p) => key0(p).replace(/(^|\/)index\.html$/, '$1')));
+	// Keep the served path separate from the file we read. Relative hrefs must
+	// resolve against the alias URL, and HTML file aliases need anchor checks.
+	const servedPages = new Map(pages.map((p) => [key0(p), p]));
 	for (const [from, to] of aliases) {
-		for (const r of [...routes]) {
-			if (r === to + '/') routes.add(from + '/');
-			else if (r.startsWith(to + '/')) routes.add(from + r.slice(to.length));
+		// Snapshot before adding routes: iterating the live map would follow
+		// a self-referential directory alias indefinitely.
+		const existingPages = new Map(servedPages);
+		for (const [path, file] of existingPages) {
+			if (path === to) servedPages.set(from, file);
+			else if (to === '') servedPages.set(from + '/' + path, file);
+			else if (path.startsWith(to + '/')) servedPages.set(from + path.slice(to.length), file);
 		}
 	}
+	const routes = new Set([...servedPages.keys()].map((p) => p.replace(/(^|\/)index\.html$/, '$1')));
 	const routesNFC = new Map(
 		[...routes].map((r) => [r.normalize('NFC'), r]),
 	);
 	const ids = new Map();
 	const links = new Map();
-	for (const p of pages) {
-		const key = key0(p).replace(/(^|\/)index\.html$/, '$1');
+	for (const [servedPath, p] of servedPages) {
+		const key = servedPath.replace(/(^|\/)index\.html$/, '$1');
 		const html = readFileSync(p, 'utf8');
 		const found = [];
 		const hrefs = [];
@@ -173,21 +179,14 @@ export function check(dist) {
 		links.set(key, hrefs);
 		ids.set(key, { literal: new Set(found), nfc: new Set(found.map((i) => i.normalize('NFC'))) });
 	}
-	for (const [from, to] of aliases) {
-		for (const [key, value] of [...ids]) {
-			if (key === to + '/') ids.set(from + '/', value);
-			else if (key.startsWith(to + '/')) ids.set(from + key.slice(to.length), value);
-		}
-	}
 
 	const broken = [];
 	const inbound = new Map();
 	let checked = 0;
 	let fragmentsChecked = 0;
 
-	for (const p of pages) {
-		const from = key0(p).replace(/(^|\/)index\.html$/, '$1');
-		for (const href of links.get(from)) {
+	for (const [from, hrefs] of links) {
+		for (const href of hrefs) {
 			const c = classify(href, from);
 			if (!c) continue;
 			// Normalise the same way routes are built, so an explicit
@@ -240,7 +239,7 @@ export function check(dist) {
 	const orphans = [...routes].filter(
 		(r) => r && r !== '404.html' && !r.startsWith('1.2.31/') && !inbound.has(r),
 	);
-	return { pages: pages.length, checked, fragmentsChecked, broken, orphans };
+	return { pages: servedPages.size, checked, fragmentsChecked, broken, orphans };
 }
 
 // pathToFileURL, not string concatenation: import.meta.url is percent-encoded

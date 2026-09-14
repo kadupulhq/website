@@ -7,6 +7,13 @@ sidebar:
   order: 3
 ---
 
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/reference/rrdproxy/).
+:::
+
 Configuration is split in two. A small file on disk holds what the application
 needs before it can reach a database. Everything else lives in the database and is
 edited through the web interface.

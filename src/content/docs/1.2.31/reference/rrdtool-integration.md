@@ -11,6 +11,13 @@ sidebar:
 slug: 1.2.31/reference/rrdtool-integration
 ---
 
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
+:::
+
 All of it lives in `lib/rrd.php`. Inherited from Cacti 1.2.x.
 
 ## Subcommands issued

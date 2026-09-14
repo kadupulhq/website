@@ -15,8 +15,8 @@ path. Test these procedures on an isolated copy with backups before relying on
 them. See [project status](/project/status/).
 :::
 
-Kadupul stays API compatible with Cacti for the foreseeable future. In practice that
-is a promise about four surfaces.
+Kadupul aims to preserve compatibility with Cacti across four surfaces. Each
+release and migration needs validation against the versions and extensions in use.
 
 | Surface | Intent |
 |---|---|

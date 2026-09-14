@@ -20,10 +20,37 @@ deployment use the same command.
 
 ## Languages
 
-English keeps its existing URLs. Additional locales are Simplified Chinese
-(`/zh-cn/`), Hindi (`/hi/`), Spanish (`/es/`), Modern Standard Arabic (`/ar/`),
-French (`/fr/`), German (`/de/`) and Japanese (`/ja/`). Arabic uses right-to-left
-layout. English fallback content retains its own language and direction.
+English keeps its existing URLs. The site offers 21 locale options:
+
+| Language | URL prefix | Language tag |
+|---|---|---|
+| English | `/` | `en` |
+| Simplified Chinese | `/zh-cn/` | `zh-CN` |
+| Hindi | `/hi/` | `hi` |
+| Spanish | `/es/` | `es` |
+| Latin American Spanish | `/es-419/` | `es-419` |
+| Modern Standard Arabic | `/ar/` | `ar` |
+| French | `/fr/` | `fr` |
+| Canadian French | `/fr-ca/` | `fr-CA` |
+| German | `/de/` | `de` |
+| Japanese | `/ja/` | `ja` |
+| European Portuguese | `/pt-pt/` | `pt-PT` |
+| Brazilian Portuguese | `/pt-br/` | `pt-BR` |
+| Swahili | `/sw/` | `sw` |
+| Hausa | `/ha/` | `ha` |
+| Yoruba | `/yo/` | `yo` |
+| Italian | `/it/` | `it` |
+| Korean | `/ko/` | `ko` |
+| Indonesian | `/id/` | `id` |
+| Dutch | `/nl/` | `nl` |
+| Polish | `/pl/` | `pl` |
+| Bengali | `/bn/` | `bn` |
+
+Arabic uses right-to-left layout. English fallback content retains its own
+language and direction. Regional variants have separate wording: for example,
+Portuguese `ficheiros`/`utilizadores` versus Brazilian `arquivos`/`usuários`.
+Keep Japanese and Korean prose in a consistent polite register and preserve
+Yoruba diacritics when editing.
 
 Each additional locale includes a homepage, introductory summary, project-status
 summary, security-policy summary, error page and generated documentation map.
@@ -35,14 +62,16 @@ of the reference manual.
 - Edit translated Markdown under `src/content/docs/<locale>/`, using the same
   paths as English pages. Keep command names, settings and filenames unchanged.
 - Edit site labels in `src/i18n/locales.mjs` and interface/version notices in
-  `src/content/i18n/<language>.json`. Chinese uses the language tag `zh-CN` there.
+  `src/content/i18n/<language>.json`. Use the exact language tag above for JSON
+  filenames, including region capitalization. Numeric `es-419` has an explicit
+  Spanish interface dictionary; the framework does not supply that fallback.
 - `npm run build:map` generates the map for every locale, marking English-only
   entries. Do not edit generated maps by hand.
 - `src/i18n/translations.json` records the English source SHA-256 for each summary
   or translation. When English changes, review and update the translation before
   updating its recorded hash. Keep `review: draft` until a fluent reviewer checks it.
 - `npm run check:locales` checks built routes, switches, navigation, fallback,
-  text direction and translation source hashes. Stale translations produce warnings
+  text direction, custom interface labels and translation source hashes. Stale translations produce warnings
   so English corrections can ship independently. Use `npm run check:locales --
   --strict-drift` to require synchronized translations. `npm run check:all` includes
   the standard checks.

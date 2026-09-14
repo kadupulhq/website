@@ -1,10 +1,8 @@
 ---
 title: Manage data retention
-description: Choose how long Kadupul keeps data and at what resolution, size the
-  disk for it, and understand why the choice is fixed for the life of each file.
+description: Choose retention and resolution, estimate storage, and plan changes to existing RRD files.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 24
 slug: 1.2.31/guides/manage-data-retention
@@ -16,10 +14,10 @@ path. Test these procedures on an isolated copy with backups before relying on
 them. See [project status](/project/status/).
 :::
 
-Retention is decided once per file, at creation, and is then fixed. Editing the
+Retention is configured at file creation and stays unchanged during normal updates. Editing the
 profile later changes what the next file looks like and leaves every existing
 file exactly as it was. Get this right before you create ten thousand data
-sources, because afterwards the only fixes are rebuild or splice.
+sources, because later changes require explicit file maintenance or migration.
 
 Read [Data sources and archives](/1.2.31/concepts/data-sources-and-rras/) first if the
 terms step, heartbeat, archive and consolidation are not already familiar.
@@ -207,7 +205,7 @@ So the sequence for a real migration is:
 3. Accept that everything created from now on uses the new shape.
 4. Decide, separately, what to do about the files you already have.
 
-Step four has three honest answers.
+Step four has several options, depending on the change and installed RRDtool version.
 
 **Leave them.** Two shapes coexisting is untidy and harmless. Graphs read
 whatever each file holds.

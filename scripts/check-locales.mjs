@@ -7,19 +7,20 @@ import { join } from 'node:path';
 import { parse } from 'parse5';
 import { locales, translatedLocales, getMessages } from '../src/i18n/locales.mjs';
 
+function elements(html) {
+	const nodes = [];
+	function visit(node) {
+		if (node.tagName) nodes.push(node);
+		for (const child of node.childNodes || []) visit(child);
+	}
+	visit(parse(html));
+	return nodes;
+}
+const attr = (node, name) => node.attrs?.find((a) => a.name === name)?.value;
+const text = (node) => node.value || (node.childNodes || []).map(text).join('');
+
 export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url)), { strictDrift = false } = {}) {
 	const dist = join(root, 'dist');
-	function elements(html) {
-		const nodes = [];
-		function visit(node) {
-			if (node.tagName) nodes.push(node);
-			for (const child of node.childNodes || []) visit(child);
-		}
-		visit(parse(html));
-		return nodes;
-	}
-	const attr = (node, name) => node.attrs?.find((a) => a.name === name)?.value;
-	const text = (node) => node.value || (node.childNodes || []).map(text).join('');
 	function read(page) { return readFileSync(join(dist, page), 'utf8'); }
 	function assertPage(locale, path) {
 		const html = read(path);
@@ -28,6 +29,12 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 		assert.equal(attr(doc, 'lang'), locales[locale].lang, path);
 		assert.equal(attr(doc, 'dir'), locales[locale].dir || 'ltr', path);
 		assert.ok(html.includes(getMessages(locale).independent), `Missing localized footer: ${path}`);
+		const dictionary = JSON.parse(readFileSync(join(root, 'src/content/i18n', `${locales[locale].lang}.json`), 'utf8'));
+		// Check user-supplied interface labels as rendered, including numeric
+		// regions whose framework dictionary fallback may differ from fr-CA.
+		for (const key of ['languageSelect.accessibleLabel', 'search.label']) {
+			if (dictionary[key]) assert.ok(nodes.some((n) => text(n) === dictionary[key]), `Missing localized ${key}: ${path}`);
+		}
 		// Language and version switches use option values, not hrefs. Check their
 		// destination routes as well as the anchors checked by check-links.mjs.
 		for (const option of nodes.filter((n) => n.tagName === 'option')) {

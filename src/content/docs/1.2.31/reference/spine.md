@@ -245,7 +245,10 @@ decides this, rather than guessing from device count.
 
 ## Building it
 
-Build from Kadupul's Spine source tree. The inherited Autotools build sequence is:
+The following is inherited build guidance, conditional on a published Kadupul
+Spine source revision and validated dependencies. No repository location or
+validated build is documented here yet. Use the PHP collector in the meantime.
+The inherited Autotools sequence is:
 
 ```sh
 ./bootstrap
@@ -261,7 +264,7 @@ Validate collection and database writes before switching an existing poller.
 
 ## What compatibility means here
 
-Kadupul maintains both sides of the collector interface: the `poller_type` and path
+Kadupul plans to maintain both sides of the collector interface: the `poller_type` and path
 settings, the command line above, the settings Spine reads, and the shape of
 `poller_output`, `poller_item`, `poller_time`, and `host`.
 

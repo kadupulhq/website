@@ -189,10 +189,11 @@ changed without its configuration changing.
 
 The differences worth acting on:
 
-**Heartbeat.** How long past the expected step the archive waits before recording
-unknown. At twice the step, one late poll is tolerated and two become a gap. A poller
-that runs consistently a few seconds late produces a graph full of narrow gaps, and
-the heartbeat is the reason.
+**Heartbeat.** The maximum permitted interval between updates before RRDtool
+treats the data as unknown. Compare the actual file with its profile: shipped
+five-minute and one-minute profiles use 600 seconds, while the thirty-second
+profile uses 1,200 seconds. Do not assume every profile uses twice the step, or
+that a fixed number of missed polls always produces a visible gap.
 
 ```bash
 php cli/update_heartbeat.php --list-heartbeats

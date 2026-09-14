@@ -102,7 +102,11 @@ when your devices are wildly different sizes, which is most networks.
 
 ## The PHP collector versus the C collector
 
-Two collectors ship. `cmd.php` is PHP. `spine` is a C program using pthreads.
+The PHP collector, `cmd.php`, ships with the application. Kadupul plans to
+maintain a Spine fork, but its source location and validated builds are not yet
+documented. Use PHP until that evidence is available. The Spine comparisons,
+thread settings and commands below describe inherited behavior, not an available
+or supported Kadupul deployment.
 
 | | PHP collector | Spine |
 |---|---|---|
@@ -110,7 +114,7 @@ Two collectors ship. `cmd.php` is PHP. `spine` is a C program using pthreads.
 | Thread setting | Forced to 1 regardless of configuration | Honoured |
 | Script server | One per process, not configurable | 1 to 15 per process, configurable |
 | Script timeout | Not applied | Applied, default 25 seconds |
-| Install | Ships with the code | Separate build, path configured before it can be selected |
+| Install | Ships with the code | Planned fork; no validated Kadupul build documented |
 
 The forced thread count is worth stating plainly: if the collector is set to the
 PHP one, the thread setting is overwritten with 1 at the start of every run. Any
@@ -130,8 +134,8 @@ spine --first=42 --last=42 --threads=1 --verbosity=HIGH --stdout
 spine --hostlist='42,43,51' --readonly
 ```
 
-`--readonly` collects without writing results, which makes it safe to run
-alongside a live poller.
+`--readonly` is intended to avoid result writes. It still contacts devices and
+runs collection scripts; validate its side effects in an isolated test first.
 
 ## Database connections
 

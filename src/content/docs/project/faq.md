@@ -76,8 +76,8 @@ from without claiming to stand in for the whole of it. The longer version is in
 
 ### Will my plugins work?
 
-That is the intent. The plugin API is one of four surfaces the compatibility promise
-covers, and a plugin written for Cacti is meant to load and run unchanged.
+That is the intent. The plugin API is one of four compatibility goals. Loading
+and running a Cacti plugin unchanged must be demonstrated for the versions in use.
 
 Compatibility is a goal, not blanket evidence for every plugin. Check the plugins
 and versions you actually depend on before planning a migration.
@@ -86,8 +86,8 @@ See [Compatibility with Cacti](/project/compatibility-with-cacti/) and
 
 ### Will my RRD files work?
 
-That is the part the promise cares about most. RRD files hold history you cannot
-regenerate, and they are meant to be read in place with no conversion step.
+Preserving RRD history is a compatibility goal. The files hold history you cannot
+regenerate. Validate reading existing files on a copy before any migration.
 
 Any migration that asks you to discard and recreate them is asking for something you
 should refuse. See [Coming from Cacti](/guides/coming-from-cacti/).
@@ -95,8 +95,8 @@ should refuse. See [Coming from Cacti](/guides/coming-from-cacti/).
 ### Will my templates and my database carry over?
 
 Templates are meant to import unchanged. The schema is meant to stay recognisable and
-migratable without an export to an interchange format. Both are in the same promise as
-plugins and RRD files.
+migratable without an export to an interchange format. These are goals requiring
+validation, as with plugins and RRD files.
 
 ### Where Kadupul and Cacti differ, how will I find out?
 

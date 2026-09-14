@@ -15,6 +15,7 @@ function fixture(t) {
 		writeFileSync(join(root, path), data);
 	};
 	for (const [locale, config] of Object.entries(locales)) {
+		write(`src/content/i18n/${config.lang}.json`, '{}');
 		const prefix = locale === 'root' ? '' : `${locale}/`;
 		const t = getMessages(locale);
 		const options = Object.entries(locales).map(([key, value]) => `<option value="/${key === 'root' ? '' : key + '/'}">${value.label}</option>`).join('');
@@ -51,4 +52,10 @@ test('Arabic layout and English fallback direction are independently enforced', 
 	assert.throws(() => checkLocales(root), /ar\/start\/install/);
 	write(path, html.replace('<main lang="en" dir="ltr">', '<main lang="en" dir="rtl">'));
 	assert.throws(() => checkLocales(root), /Fallback direction/);
+});
+
+test('numeric regional locales cannot silently fall back to English UI labels', (t) => {
+	const { root, write } = fixture(t);
+	write('src/content/i18n/es-419.json', JSON.stringify({ 'languageSelect.accessibleLabel': 'Seleccionar idioma' }));
+	assert.throws(() => checkLocales(root), /Missing localized languageSelect.accessibleLabel: es-419/);
 });

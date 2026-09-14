@@ -38,9 +38,12 @@ in the inspected source. This was a source-text check, not execution of commands
 
 ## Validation and limits
 
-`npm run check:all` passes: type checks, prose checks, 33 regression tests, static
-build and internal links. Existing Astro warnings about the empty i18n collection
-and overlapping 404 route remain.
+Validation includes type checks, prose checks, 40 regression tests, the static
+build, internal links and checks across 21 locales. The i18n collection is now
+populated; the existing overlapping 404 route warning remains. The 100 translated
+summaries and error pages are tracked against English source hashes and await
+fluent-speaker review. These checks verify structure and routing, not native-level
+translation quality or completeness of the translated manual.
 
 No installation, device polling, migration, backup restoration or destructive
 maintenance procedure was executed. The large settings, message and schema
@@ -49,4 +52,20 @@ were checked selectively. This review is not certification of production readine
 or complete compatibility with every supported tool version.
 
 Archived pages received explicit factual corrections and release-status notices;
-they were not regenerated as snapshots of current application behavior.
+they were not regenerated as snapshots of current application behavior. The
+retention correction was applied consistently to the current and archived guide.
+
+## Automated review follow-up
+
+Checked review and inline comments at 08:13 UTC on 2026-09-14, ten minutes after
+the preceding PR update. The review targeted an earlier revision. Applicable
+findings were addressed in current and archived documentation: polling schedule
+wording, archived step numbering and navigation, conditional compatibility and
+Spine claims, profile-specific heartbeat guidance, missing-file diagnosis, and
+unsupported inherited proxy workflows. The link checker now validates HTML file
+aliases and resolves relative links at each alias URL, with regression tests.
+
+The suggestion to grant Pages write access to the build job was not applied:
+the pinned configure-pages action reads an existing site with enablement disabled.
+Its action manifest and API client were inspected, and `enablement: false` is now
+explicit. The deployment job retains the write permission it needs.

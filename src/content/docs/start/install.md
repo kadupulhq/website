@@ -190,7 +190,7 @@ a separate, tested migration; they do not always require discarding history. If 
 sure the profile keeps maxima and not only averages: read [Data sources and
 round-robin archives](/concepts/data-sources-and-rras/) before clicking past it.
 The interval offered there is either every minute or every five minutes, and
-whichever you pick has to match what you schedule next.
+the launcher schedule must accommodate the collection interval you choose.
 
 ## Step 7: schedule the poller
 

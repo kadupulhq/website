@@ -106,12 +106,15 @@ of the counter, not of the metric.
 
 ## The heartbeat
 
-The heartbeat is how long the file will wait past the expected step before it
-gives up and records unknown for that field. At twice the step, one missed poll is
-tolerated and interpolated, and two missed polls become a gap.
+The heartbeat is the maximum permitted time between updates for a field before
+RRDtool treats the interval as unknown. It is measured between updates, not as
+extra time added after the step.
 
-This is why a poller that consistently runs slightly late produces a graph full of
-small gaps. The data arrived, past the heartbeat.
+Read the configured profile and the actual file. The shipped five-minute profile
+uses a 600-second heartbeat, the one-minute profile also uses 600 seconds, and
+the thirty-second profile uses 1,200 seconds. Missing-poll tolerance therefore
+cannot be described by one fixed count; normalization and consolidation also
+affect which graph intervals are unknown.
 
 The heartbeat is per field, not per file, and it comes from the profile alongside
 the step. The shipped profiles do not use a single ratio, and the reasoning behind

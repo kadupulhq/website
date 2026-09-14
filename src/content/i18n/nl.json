@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "Versie kiezen",
+  "starlightVersions.link.latest": "Bekijk de <a href={{link}}>nieuwste versie</a> voor actuele documentatie.",
+  "starlightVersions.outdated.label": "Deze inhoud gaat over {{label}}.",
+  "starlightVersions.outdated.slug": "Deze inhoud gaat over versie {{slug}}.",
+  "starlightVersions.search.link.latest": "Bekijk de <a href={{link}}>nieuwste versie</a> voor actuele resultaten.",
+  "starlightVersions.search.outdated.label": "Zoeken beperkt tot {{label}}.",
+  "starlightVersions.search.outdated.slug": "Zoeken beperkt tot versie {{slug}}.",
+  "i18n.untranslatedContent": "Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven."
+}

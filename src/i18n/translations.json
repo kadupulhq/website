@@ -210,6 +210,396 @@
       "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
       "kind": "summary",
       "review": "draft"
+    },
+    "es-419/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "es-419/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "es-419/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "es-419/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "es-419/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "fr-ca/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "fr-ca/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "fr-ca/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "fr-ca/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "fr-ca/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "sw/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "sw/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "sw/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "sw/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "sw/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ha/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ha/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ha/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ha/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ha/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-pt/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-pt/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-pt/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-pt/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-pt/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-br/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-br/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-br/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-br/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pt-br/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "yo/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "yo/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "yo/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "yo/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "yo/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "it/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "it/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "it/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "it/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "it/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ko/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ko/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ko/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ko/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "ko/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "id/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "id/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "id/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "id/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "id/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "nl/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "nl/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "nl/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "nl/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "nl/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pl/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pl/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pl/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pl/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "pl/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "bn/index.md": {
+      "source": "index.mdx",
+      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "bn/start/what-kadupul-is.md": {
+      "source": "start/what-kadupul-is.md",
+      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "bn/project/status.md": {
+      "source": "project/status.md",
+      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "bn/project/security.md": {
+      "source": "project/security.md",
+      "sourceSha256": "178ec078efa0906b72d07d26cb5051689b605993c62b6a74ab24195affc5f906",
+      "kind": "summary",
+      "review": "draft"
+    },
+    "bn/404.md": {
+      "source": "404.md",
+      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+      "kind": "summary",
+      "review": "draft"
     }
   }
 }

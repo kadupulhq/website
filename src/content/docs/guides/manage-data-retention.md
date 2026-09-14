@@ -204,7 +204,7 @@ So the sequence for a real migration is:
 3. Accept that everything created from now on uses the new shape.
 4. Decide, separately, what to do about the files you already have.
 
-Step four has three honest answers.
+Step four has several options, depending on the change and installed RRDtool version.
 
 **Leave them.** Two shapes coexisting is untidy and harmless. Graphs read
 whatever each file holds.

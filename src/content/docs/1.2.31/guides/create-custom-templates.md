@@ -61,7 +61,7 @@ is not revisited afterwards.
 | Data source type | `GAUGE`, `COUNTER`, `DERIVE`, `ABSOLUTE`, and others depending on the RRDtool version | A counter stored as a gauge graphs as a rising staircase |
 | Minimum | Values below this are recorded as unknown | `U` means no minimum |
 | Maximum | Values above this are recorded as unknown | `U` means no maximum, which lets counter wraps through as huge spikes |
-| Heartbeat | How long a gap can be before the interval is unknown | Conventionally twice the step |
+| Heartbeat | How long a gap can be before the interval is unknown | Profile-specific; inspect the selected profile and RRD file |
 | Output field | Which field of the data input method feeds this item | Must match, or the item is never written |
 
 Name the internal data source for the measurement, not for the device or the

@@ -143,7 +143,7 @@ Every other setting has a working default, so read
 and the file parsed. A database error here means the credentials are wrong, and it
 is far easier to read now than in a log later.
 
-## Import the schema
+## Step 5: import the schema
 
 Before running the installer, import `cacti.sql` into the empty database:
 
@@ -153,7 +153,7 @@ mysql -u kadupul -p kadupul < cacti.sql
 
 This is for a new empty database, not for an upgrade or an existing installation.
 
-## Step 5: run the installer
+## Step 6: run the installer
 
 Open the site in a browser and work through it. The installer walks a fixed
 sequence, and each step gates the next:
@@ -176,9 +176,9 @@ a separate, tested migration; they do not always require discarding history. If 
 sure the profile keeps maxima and not only averages: read [Data sources and
 round-robin archives](/1.2.31/concepts/data-sources-and-rras/) before clicking past it.
 The interval offered there is either every minute or every five minutes, and
-whichever you pick has to match what you schedule next.
+the launcher schedule must accommodate the collection interval you choose.
 
-## Step 6: schedule the poller
+## Step 7: schedule the poller
 
 The poller has to be started from outside. It decides internally whether a given
 run is due, so starting it more often than the collection interval is safe. Either
@@ -205,7 +205,7 @@ php -q /path/to/kadupul/poller.php --force --debug
 You want a clean finish with a summary line. Then leave the scheduler alone for two
 intervals and confirm a second run happened without you.
 
-## Step 7: change the default credentials
+## Step 8: change the default credentials
 
 The shipped schema seeds an administrator account named `admin` with the password
 `admin`, flagged so that the first login forces a change. It also seeds a disabled

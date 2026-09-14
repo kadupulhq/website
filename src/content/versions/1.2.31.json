@@ -10,7 +10,20 @@
         "ar": "خريطة الوثائق",
         "fr": "Plan de la documentation",
         "de": "Dokumentationsübersicht",
-        "ja": "ドキュメント一覧"
+        "ja": "ドキュメント一覧",
+        "es-419": "Mapa de documentación",
+        "fr-CA": "Plan de la documentation",
+        "sw": "Ramani ya nyaraka",
+        "ha": "Taswirar takardu",
+        "pt-PT": "Mapa da documentação",
+        "pt-BR": "Mapa da documentação",
+        "yo": "Àtòjọ ìwé ìtọ́sọ́nà",
+        "it": "Mappa della documentazione",
+        "ko": "문서 안내",
+        "id": "Peta dokumentasi",
+        "nl": "Documentatieoverzicht",
+        "pl": "Mapa dokumentacji",
+        "bn": "নথির মানচিত্র"
       }
     },
     {
@@ -26,7 +39,20 @@
             "ar": "ما هو Kadupul",
             "fr": "Présentation de Kadupul",
             "de": "Was ist Kadupul?",
-            "ja": "Kadupul とは"
+            "ja": "Kadupul とは",
+            "es-419": "Qué es Kadupul",
+            "fr-CA": "Présentation de Kadupul",
+            "sw": "Kadupul ni nini",
+            "ha": "Menene Kadupul",
+            "pt-PT": "O que é o Kadupul",
+            "pt-BR": "O que é o Kadupul",
+            "yo": "Kí ni Kadupul",
+            "it": "Che cos’è Kadupul",
+            "ko": "Kadupul 소개",
+            "id": "Apa itu Kadupul",
+            "nl": "Wat is Kadupul",
+            "pl": "Czym jest Kadupul",
+            "bn": "Kadupul কী"
           }
         },
         {
@@ -39,7 +65,20 @@
             "ar": "التثبيت",
             "fr": "Installation",
             "de": "Installation",
-            "ja": "インストール"
+            "ja": "インストール",
+            "es-419": "Instalación",
+            "fr-CA": "Installation",
+            "sw": "Usakinishaji",
+            "ha": "Shigarwa",
+            "pt-PT": "Instalação",
+            "pt-BR": "Instalação",
+            "yo": "Fífi sori ẹ̀rọ",
+            "it": "Installazione",
+            "ko": "설치",
+            "id": "Instalasi",
+            "nl": "Installatie",
+            "pl": "Instalacja",
+            "bn": "ইনস্টলেশন"
           }
         },
         {
@@ -52,7 +91,20 @@
             "ar": "إضافة أول جهاز",
             "fr": "Ajouter un premier appareil",
             "de": "Das erste Gerät hinzufügen",
-            "ja": "最初のデバイスを追加"
+            "ja": "最初のデバイスを追加",
+            "es-419": "Agregar el primer dispositivo",
+            "fr-CA": "Ajouter un premier appareil",
+            "sw": "Ongeza kifaa chako cha kwanza",
+            "ha": "Ƙara na’ura ta farko",
+            "pt-PT": "Adicionar o primeiro dispositivo",
+            "pt-BR": "Adicionar o primeiro dispositivo",
+            "yo": "Fi ẹ̀rọ àkọ́kọ́ kún un",
+            "it": "Aggiungere il primo dispositivo",
+            "ko": "첫 장치 추가",
+            "id": "Tambahkan perangkat pertama",
+            "nl": "Het eerste apparaat toevoegen",
+            "pl": "Dodaj pierwsze urządzenie",
+            "bn": "প্রথম ডিভাইস যোগ করুন"
           }
         },
         {
@@ -65,7 +117,20 @@
             "ar": "قراءة أول رسم بياني",
             "fr": "Lire un premier graphique",
             "de": "Das erste Diagramm lesen",
-            "ja": "最初のグラフを読む"
+            "ja": "最初のグラフを読む",
+            "es-419": "Interpretar el primer gráfico",
+            "fr-CA": "Lire un premier graphique",
+            "sw": "Soma grafu yako ya kwanza",
+            "ha": "Karanta jadawalin farko",
+            "pt-PT": "Interpretar o primeiro gráfico",
+            "pt-BR": "Interpretar o primeiro gráfico",
+            "yo": "Ka àwòrán ìṣirò àkọ́kọ́",
+            "it": "Interpretare il primo grafico",
+            "ko": "첫 그래프 읽기",
+            "id": "Baca grafik pertama",
+            "nl": "De eerste grafiek lezen",
+            "pl": "Odczytaj pierwszy wykres",
+            "bn": "প্রথম গ্রাফ বুঝুন"
           }
         }
       ],
@@ -76,7 +141,20 @@
         "ar": "ابدأ هنا",
         "fr": "Premiers pas",
         "de": "Erste Schritte",
-        "ja": "はじめに"
+        "ja": "はじめに",
+        "es-419": "Primeros pasos",
+        "fr-CA": "Premiers pas",
+        "sw": "Anza hapa",
+        "ha": "Fara a nan",
+        "pt-PT": "Primeiros passos",
+        "pt-BR": "Primeiros passos",
+        "yo": "Bẹ̀rẹ̀ níbí",
+        "it": "Primi passi",
+        "ko": "시작하기",
+        "id": "Mulai di sini",
+        "nl": "Aan de slag",
+        "pl": "Pierwsze kroki",
+        "bn": "এখানে শুরু করুন"
       }
     },
     {
@@ -95,7 +173,20 @@
         "ar": "أدلة الاستخدام",
         "fr": "Guides pratiques",
         "de": "Anleitungen",
-        "ja": "操作ガイド"
+        "ja": "操作ガイド",
+        "es-419": "Guías prácticas",
+        "fr-CA": "Guides pratiques",
+        "sw": "Miongozo ya matumizi",
+        "ha": "Jagororin amfani",
+        "pt-PT": "Guias práticos",
+        "pt-BR": "Guias práticos",
+        "yo": "Àwọn ìtọ́sọ́nà lílo",
+        "it": "Guide pratiche",
+        "ko": "사용 안내",
+        "id": "Panduan penggunaan",
+        "nl": "Handleidingen",
+        "pl": "Poradniki",
+        "bn": "ব্যবহার নির্দেশিকা"
       }
     },
     {
@@ -114,7 +205,20 @@
         "ar": "المفاهيم",
         "fr": "Concepts",
         "de": "Konzepte",
-        "ja": "概念"
+        "ja": "概念",
+        "es-419": "Conceptos",
+        "fr-CA": "Concepts",
+        "sw": "Dhana",
+        "ha": "Ka’idoji",
+        "pt-PT": "Conceitos",
+        "pt-BR": "Conceitos",
+        "yo": "Àwọn èrò ìpìlẹ̀",
+        "it": "Concetti",
+        "ko": "개념",
+        "id": "Konsep",
+        "nl": "Concepten",
+        "pl": "Pojęcia",
+        "bn": "ধারণা"
       }
     },
     {
@@ -133,7 +237,20 @@
         "ar": "المرجع",
         "fr": "Référence",
         "de": "Referenz",
-        "ja": "リファレンス"
+        "ja": "リファレンス",
+        "es-419": "Referencia",
+        "fr-CA": "Référence",
+        "sw": "Marejeo",
+        "ha": "Bayanai na fasaha",
+        "pt-PT": "Referência",
+        "pt-BR": "Referência",
+        "yo": "Ìtọ́kasí",
+        "it": "Riferimento",
+        "ko": "참조",
+        "id": "Referensi",
+        "nl": "Naslagwerk",
+        "pl": "Dokumentacja techniczna",
+        "bn": "রেফারেন্স"
       }
     },
     {
@@ -152,7 +269,20 @@
         "ar": "المشروع",
         "fr": "Projet",
         "de": "Projekt",
-        "ja": "プロジェクト"
+        "ja": "プロジェクト",
+        "es-419": "Proyecto",
+        "fr-CA": "Projet",
+        "sw": "Mradi",
+        "ha": "Aiki",
+        "pt-PT": "Projeto",
+        "pt-BR": "Projeto",
+        "yo": "Iṣẹ́ àkànṣe",
+        "it": "Progetto",
+        "ko": "프로젝트",
+        "id": "Proyek",
+        "nl": "Project",
+        "pl": "Projekt",
+        "bn": "প্রকল্প"
       }
     }
   ],

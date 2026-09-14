@@ -10,6 +10,13 @@ sidebar:
 slug: 1.2.31/concepts/remote-data-collection
 ---
 
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
+:::
+
 Collection is the part that does not fit on one machine. Most of a polling run is
 spent waiting for devices to answer, and waiting does not compress. You can overlap
 more of it with more processes and threads, up to the point where the collecting host
@@ -93,9 +100,10 @@ and the guard makes it a visible one rather than a data corruption one.
 
 ## Storage does not distribute
 
-The RRD files stay central. A collector is expected to reach them through the RRD proxy
-rather than through a local filesystem, and the deferred-write path checks that it is
-configured that way.
+The inherited proxy-based workflow keeps RRD files central and expects collectors
+to reach them through the RRDtool proxy. That workflow is unsupported in Kadupul;
+do not treat it as deployment guidance. A validated multi-collector storage path
+using local RRDtool must be documented before recommending a replacement.
 
 This is the part people are most often surprised by, so it is worth being direct about
 it. **Remote collectors distribute the waiting, not the writing.** If the limit you hit

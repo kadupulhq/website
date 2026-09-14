@@ -153,7 +153,7 @@ Details are in [RRDtool integration](/1.2.31/reference/rrdtool-integration/).
 
 The inherited remote RRDtool client uses a TCP connection and needs `sockets`
 and `zlib`. It is documented for reference, not as a supported deployment option.
-See [RRDtool proxy](/reference/rrdproxy/).
+See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
 
 ## net-snmp
 

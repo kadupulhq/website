@@ -371,3 +371,35 @@ test('anchors on nested directory alias pages use the target IDs', async (t) => 
 	assert.equal(check(d).broken.length, 1);
 	assert.match(check(d).broken[0], /#missing.*no such anchor/);
 });
+
+test('HTML file aliases validate anchors and resolve relative links at the served URL', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/alias.html#ok">ok</a><a href="/alias.html#missing">bad</a>',
+		'v1/page.html': '<h2 id="ok">H</h2><a href="./child/">child</a>',
+		'v1/child/index.html': '<p>child</p>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'v1/page.html'), join(d, 'alias.html'));
+	const r = check(d);
+	assert.equal(r.broken.length, 2);
+	assert.ok(r.broken.some((b) => /alias.html#missing.*no such anchor/.test(b)));
+	assert.ok(r.broken.some((b) => /alias.html.*child.*no such route/.test(b)));
+});
+
+test('directory alias links are checked relative to each served base', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/latest/">latest</a>',
+		'releases/v1/index.html': '<a href="../notes/">notes</a>',
+		'releases/notes/index.html': '<p>notes</p>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'releases/v1'), join(d, 'latest'));
+	const r = check(d);
+	assert.equal(r.broken.length, 1);
+	assert.match(r.broken[0], /latest\/.*notes.*no such route/);
+	mkdirSync(join(d, 'notes'));
+	writeFileSync(join(d, 'notes/index.html'), '<p>notes</p>');
+	assert.deepEqual(check(d).broken, []);
+});
