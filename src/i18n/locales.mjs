@@ -30,13 +30,29 @@ export const translatedLocales = Object.keys(locales).filter((locale) => locale 
 
 export { messages };
 
+export function validateMessages(catalog = messages) {
+	for (const locale of Object.keys(locales)) {
+		const key = locale === 'root' ? 'en' : locale;
+		const dictionary = catalog[key];
+		if (!dictionary) throw new Error(`Missing message dictionary: ${key}`);
+		for (const field of Object.keys(messages.en)) {
+			if (typeof dictionary[field] !== 'string' || !dictionary[field].trim()) {
+				throw new Error(`Missing message: ${key}.${field}`);
+			}
+		}
+	}
+}
+
 export function getMessages(locale) {
-	return messages[locale?.toLowerCase()] || messages.en;
+	const key = locale?.toLowerCase() || 'root';
+	const dictionary = messages[key === 'root' ? 'en' : key];
+	if (!dictionary) throw new Error(`Missing message dictionary: ${key}`);
+	return dictionary;
 }
 
 export function navigation(key) {
 	return {
 		label: messages.en[key],
-		translations: Object.fromEntries(translatedLocales.map((locale) => [locales[locale].lang, messages[locale][key]])),
+		translations: Object.fromEntries(translatedLocales.map((locale) => [locales[locale].lang, getMessages(locale)[key]])),
 	};
 }

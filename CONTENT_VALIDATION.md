@@ -38,7 +38,7 @@ in the inspected source. This was a source-text check, not execution of commands
 
 ## Validation and limits
 
-Validation includes type checks, prose checks, 40 regression tests, the static
+Validation includes type checks, prose checks, 66 regression tests, the static
 build, internal links and checks across 22 locales. The i18n collection is now
 populated; the existing overlapping 404 route warning remains. The 105 translated
 summaries and error pages are tracked against English source hashes and await
@@ -69,3 +69,15 @@ The suggestion to grant Pages write access to the build job was not applied:
 the pinned configure-pages action reads an existing site with enablement disabled.
 Its action manifest and API client were inspected, and `enablement: false` is now
 explicit. The deployment job retains the write permission it needs.
+
+The follow-up also excludes localized error pages from the sitemap and adds
+`noindex`, filters utility routes from orphan diagnostics, normalizes browser URL
+control characters, and rejects missing or incomplete locale dictionaries.
+
+Coverage is measured with V8/c8 across every first-party executable source file,
+including scripts, configuration and the rendered Astro footer. All 66 tests pass
+with 100% statements, branches, functions and lines, enforced per file in CI.
+Framework integration boundaries are stubbed in isolated configuration tests;
+the production build exercises the real integrations. The build produced 3,168
+pages; 375,394 internal links and 123,411 anchors passed validation. HTML and LCOV
+reports are retained as CI artifacts and sent to Sonar through CI analysis.

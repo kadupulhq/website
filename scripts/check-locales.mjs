@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync, realpathSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { join } from 'node:path';
 import { parse } from 'parse5';
-import { locales, translatedLocales, getMessages } from '../src/i18n/locales.mjs';
+import { locales, translatedLocales, getMessages, validateMessages } from '../src/i18n/locales.mjs';
+import { isMain } from './cli.mjs';
 
 function elements(html) {
 	const nodes = [];
@@ -21,6 +23,7 @@ const text = (node) => node.value || (node.childNodes || []).map(text).join('');
 
 export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url)), { strictDrift = false } = {}) {
 	const dist = join(root, 'dist');
+	validateMessages(JSON.parse(readFileSync(join(root, 'src/i18n/messages.json'), 'utf8')));
 	function read(page) { return readFileSync(join(dist, page), 'utf8'); }
 	function assertPage(locale, path) {
 		const html = read(path);
@@ -76,8 +79,9 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 	return { locales: Object.keys(locales).length, sources: Object.keys(manifest.pages).length, stale };
 }
 
-if (process.argv[1] && pathToFileURL(realpathSync(process.argv[1])).href === import.meta.url) {
-	const result = checkLocales(undefined, { strictDrift: process.argv.includes('--strict-drift') });
+if (isMain(import.meta.url)) {
+	const { values } = parseArgs({ options: { root: { type: 'string' }, 'strict-drift': { type: 'boolean', default: false } } });
+	const result = checkLocales(values.root, { strictDrift: values['strict-drift'] });
 	for (const page of result.stale) console.warn(`STALE translation: ${page}; review against English before updating its source hash`);
 	console.log(`${result.locales} locales: routing, direction, navigation, fallback and ${result.sources} translation sources checked`);
 }

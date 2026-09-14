@@ -15,8 +15,16 @@ npm run preview  # serve the built output
 Node 22.12 or newer. The pinned version is in `.node-version`.
 
 Run `npm run check:all` before submitting changes. This runs type checks, prose
-checks, regression tests, the static build, and internal link validation. CI and
-deployment use the same command.
+checks, the static build, regression tests with coverage, and internal link and
+locale validation. CI and deployment use the same command.
+
+`npm run test:coverage` requires a current `dist/` build and enforces 100% lines,
+statements, branches, and functions for every application and validation-script
+file. Untouched files count toward coverage. Tests render the custom Astro footer
+in all 22 locales; the full build also exercises framework integrations. HTML and
+LCOV reports are written to `coverage/` and uploaded by CI. Sonar reads that LCOV
+report using the repository `SONAR_TOKEN` secret; automatic analysis must be off.
+Coverage measures executed code, not translation quality or completeness.
 
 ## Languages
 

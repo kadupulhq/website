@@ -10,9 +10,11 @@
  * truncating, so every anchor link was skipped while the summary still printed
  * a count. A gate that fails open is worse than no gate.
  */
-import { readdirSync, readFileSync, statSync, lstatSync, existsSync, realpathSync } from 'node:fs';
+import realFs from 'node:fs';
+import { isMain } from './cli.mjs';
+import { isUtilityRoute } from '../src/i18n/routes.mjs';
 import { join, resolve, relative, sep } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 import { parse } from 'parse5';
 
 // Taken from argv, not the environment: an ambient variable must not be able to
@@ -27,10 +29,10 @@ const DIST = process.argv[2] || fileURLToPath(new URL('../dist/', import.meta.ur
  * read as valid. Skipping links also makes a cycle impossible, which previously
  * crashed with exit 1, the same status as "broken links found".
  */
-function walk(dir, acc = { files: [], skipped: [] }) {
-	for (const name of readdirSync(dir)) {
+function walk(dir, fs, acc = { files: [], skipped: [] }) {
+	for (const name of fs.readdirSync(dir)) {
 		const p = join(dir, name);
-		const st = lstatSync(p);
+		const st = fs.lstatSync(p);
 		if (st.isSymbolicLink()) {
 			// Recorded, not silently dropped. Following it would let out-of-build
 			// pages satisfy links; ignoring it would hide every link inside the
@@ -39,7 +41,7 @@ function walk(dir, acc = { files: [], skipped: [] }) {
 			acc.skipped.push(p);
 			continue;
 		}
-		if (st.isDirectory()) walk(p, acc);
+		if (st.isDirectory()) walk(p, fs, acc);
 		else if (st.isFile()) acc.files.push(p);
 	}
 	return acc;
@@ -48,7 +50,7 @@ function walk(dir, acc = { files: [], skipped: [] }) {
 /** Split an href into its path, fragment and query. Returns null for non-routes.
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
 export function classify(href, from = '') {
-	href = href.trim();
+	href = href.replace(/[\t\n\r]/g, '').trim();
 	// Browsers treat backslashes as slashes in HTTP(S) authority prefixes.
 	if (/^[\\/]{2}/.test(href)) return null;
 	if (href.startsWith('#')) {
@@ -84,16 +86,16 @@ export function classify(href, from = '') {
 	return { path, fragment, dotted };
 }
 
-export function check(dist) {
-	if (!existsSync(dist)) {
+export function check(dist, fs = realFs) {
+	if (!fs.existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
 	}
 	// Normalise once. Deriving keys by slicing the caller's raw string corrupts
 	// every route when the path carries ./ or ../ or lacks a trailing slash.
 	let root;
 	try {
-		root = realpathSync(resolve(dist));
-		if (!statSync(root).isDirectory()) {
+		root = fs.realpathSync(resolve(dist));
+		if (!fs.statSync(root).isDirectory()) {
 			return { fatal: `${dist} is not a directory` };
 		}
 	} catch {
@@ -102,7 +104,7 @@ export function check(dist) {
 	const key0 = (p) => relative(root, p).split(sep).join('/');
 	let files, skipped;
 	try {
-		({ files, skipped } = walk(root));
+		({ files, skipped } = walk(root, fs));
 	} catch (e) {
 		// An I/O error must not surface as exit 1, which is "broken links found".
 		return { fatal: `cannot read the build: ${e.message}` };
@@ -111,8 +113,8 @@ export function check(dist) {
 	for (const link of skipped) {
 		let target, st;
 		try {
-			target = realpathSync(link);
-			st = statSync(target);
+			target = fs.realpathSync(link);
+			st = fs.statSync(target);
 		} catch {
 			continue; // dangling: carries nothing, so no coverage is lost
 		}
@@ -163,7 +165,7 @@ export function check(dist) {
 	const links = new Map();
 	for (const [servedPath, p] of servedPages) {
 		const key = servedPath.replace(/(^|\/)index\.html$/, '$1');
-		const html = readFileSync(p, 'utf8');
+		const html = fs.readFileSync(p, 'utf8');
 		const found = [];
 		const hrefs = [];
 		// HTML parsing handles entity decoding, single/unquoted attributes and
@@ -237,19 +239,12 @@ export function check(dist) {
 	}
 
 	const orphans = [...routes].filter(
-		(r) => r && r !== '404.html' && !r.startsWith('1.2.31/') && !inbound.has(r),
+		(r) => r && !isUtilityRoute(r) && !inbound.has(r),
 	);
 	return { pages: servedPages.size, checked, fragmentsChecked, broken, orphans };
 }
 
-// pathToFileURL, not string concatenation: import.meta.url is percent-encoded
-// and resolved through symlinks, so a naive compare can silently skip this
-// block and exit 0 having checked nothing.
-// Both sides must be realpath-resolved. Node resolves the main entry through
-// realpath, so on macOS a /var path (a symlink to /private/var) makes a naive
-// compare false and silently skips this whole block. Proven, not assumed.
-const entry = process.argv[1] ? pathToFileURL(realpathSync(process.argv[1])).href : '';
-if (import.meta.url === entry) {
+if (isMain(import.meta.url)) {
 	const r = check(DIST);
 	if (r.fatal) {
 		console.error(`FATAL  ${r.fatal}`);

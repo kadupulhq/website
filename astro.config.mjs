@@ -4,6 +4,7 @@ import starlight from '@astrojs/starlight';
 import starlightVersions from 'starlight-versions';
 import sitemap from '@astrojs/sitemap';
 import { locales, navigation } from './src/i18n/locales.mjs';
+import { isErrorRoute } from './src/i18n/routes.mjs';
 
 export default defineConfig({
 	site: 'https://kadupul.net',
@@ -65,6 +66,6 @@ export default defineConfig({
 				},
 			],
 		}),
-		sitemap(),
+		sitemap({ filter: (page) => !isErrorRoute(new URL(page).pathname) }),
 	],
 });

@@ -5,6 +5,8 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { classify, check } from '../check-links.mjs';
+import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 const pathOf = (h, from) => { const c = classify(h, from); return c && [c.path, c.fragment]; };
 
@@ -402,4 +404,54 @@ test('directory alias links are checked relative to each served base', async (t)
 	mkdirSync(join(d, 'notes'));
 	writeFileSync(join(d, 'notes/index.html'), '<p>notes</p>');
 	assert.deepEqual(check(d).broken, []);
+});
+
+test('browser-ignored controls cannot turn an external URL into a local route', () => {
+	for (const href of ['/\t/host/path', '/\n/host/path', '/\r/host/path', '\u0000//host/path']) assert.equal(classify(href), null);
+	assert.deepEqual(pathOf('/pa\tge/'), ['/page/', '']);
+});
+
+test('malformed percent encoding is kept literal in paths and fragments', () => {
+	assert.deepEqual(pathOf('#%zz', 'page/'), ['/page/', '%zz']);
+	assert.deepEqual(pathOf('/%zz/#%zz'), ['/%zz/', '%zz']);
+});
+
+test('filesystem access failures remain fatal and distinct from broken links', (t) => {
+	const d = build({ 'index.html': '<a href="/">home</a>' });
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	const denied = () => { throw Object.assign(new Error('permission denied'), { code: 'EACCES' }); };
+	assert.match(check(d, { ...fs, realpathSync: denied }).fatal, /cannot read/);
+	assert.match(check(d, { ...fs, readdirSync: denied }).fatal, /cannot read the build: permission denied/);
+});
+
+test('an HTML symlink outside the build is fatal, even when the target is readable', (t) => {
+	const d = build({ 'index.html': '<a href="/alias.html">alias</a>' });
+	const outside = build({ 'page.html': '<p>external</p>' });
+	t.after(() => { rmSync(d, { recursive: true, force: true }); rmSync(outside, { recursive: true, force: true }); });
+	fs.symlinkSync(join(outside, 'page.html'), join(d, 'alias.html'));
+	assert.match(check(d).fatal, /symlink leaves the build/);
+});
+
+test('asset normalization mismatches are reported rather than accepted', (t) => {
+	const d = build({ 'index.html': '<a href="/caf%C3%A9.png">asset</a>', 'café.png': 'data' });
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	const result = check(d);
+	assert.equal(result.broken.length, 1);
+	assert.match(result.broken[0], /unicode normalisation mismatch/);
+});
+
+test('orphan reporting omits locale utility pages but preserves real archived orphans', (t) => {
+	const d = build({ 'index.html': '<a href="/">home</a>', 'si/404/index.html': '', 'si/1.2.31/index.html': '', 'si/1.2.31/unlinked/index.html': '', 'unlinked/index.html': '' });
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	assert.deepEqual(check(d).orphans.sort(), ['si/1.2.31/unlinked/', 'unlinked/']);
+	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url)), d], { encoding: 'utf8' });
+	assert.equal(result.status, 0, result.stderr);
+	assert.match(result.stdout, /2 page\(s\) with no inbound link/);
+	assert.match(result.stdout, /0 broken/);
+});
+
+test('default link-check CLI validates the real build', () => {
+	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url))], { encoding: 'utf8' });
+	assert.equal(result.status, 0, result.stderr);
+	assert.match(result.stdout, /internal links checked/);
 });

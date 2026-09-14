@@ -4,8 +4,10 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { checkLocales } from '../check-locales.mjs';
-import { locales, translatedLocales, getMessages } from '../../src/i18n/locales.mjs';
+import { locales, translatedLocales, getMessages, messages } from '../../src/i18n/locales.mjs';
 
 function fixture(t) {
 	const root = mkdtempSync(join(tmpdir(), 'locale-check-'));
@@ -22,6 +24,7 @@ function fixture(t) {
 		const html = `<html lang="${config.lang}" dir="${config.dir || 'ltr'}"><body><select>${options}</select><p>${t.independent}</p><main lang="en" dir="ltr"><span>${t.fallback}</span><h2>${t.reference}</h2></main></body></html>`;
 		for (const path of ['index.html', 'project/security/index.html', 'start/install/index.html', '1.2.31/start/install/index.html']) write(`dist/${prefix}${path}`, html);
 	}
+	write('src/i18n/messages.json', JSON.stringify(messages));
 	write('src/content/docs/project/security.md', 'English source');
 	write('src/content/docs/es/project/security.md', 'Resumen');
 	write('src/i18n/translations.json', JSON.stringify({ pages: { 'es/project/security.md': { source: 'project/security.md', sourceSha256: createHash('sha256').update('English source').digest('hex') } } }));
@@ -58,4 +61,64 @@ test('numeric regional locales cannot silently fall back to English UI labels', 
 	const { root, write } = fixture(t);
 	write('src/content/i18n/es-419.json', JSON.stringify({ 'languageSelect.accessibleLabel': 'Seleccionar idioma' }));
 	assert.throws(() => checkLocales(root), /Missing localized languageSelect.accessibleLabel: es-419/);
+});
+
+test('locale checks fail clearly before rendering when a configured dictionary is absent', (t) => {
+	const { root, write } = fixture(t);
+	const catalog = structuredClone(messages);
+	delete catalog['fr-ca'];
+	write('src/i18n/messages.json', JSON.stringify(catalog));
+	assert.throws(() => checkLocales(root), /Missing message dictionary: fr-ca/);
+});
+
+test('localized labels, empty options and explicit HTML switch destinations are checked', (t) => {
+	const { root, write } = fixture(t);
+	const path = 'dist/es-419/index.html';
+	write('src/content/i18n/es-419.json', JSON.stringify({ 'search.label': 'Buscar' }));
+	write('dist/manual.html', '<p>Manual</p>');
+	for (const page of ['project/security/index.html', 'start/install/index.html', '1.2.31/start/install/index.html']) {
+		const target = `dist/es-419/${page}`;
+		write(target, readFileSync(join(root, target), 'utf8').replace('<body>', '<body><span>Buscar</span>'));
+	}
+	write(path, readFileSync(join(root, path), 'utf8').replace('<body>', '<body><!-- translator comment --><span>Buscar</span><select><option></option><option value="current">main</option><option value="/manual.html">Manual</option></select>'));
+	assert.doesNotThrow(() => checkLocales(root));
+	write(path, readFileSync(join(root, path), 'utf8').replace('/manual.html', '/missing.html'));
+	assert.throws(() => checkLocales(root), /Missing switch destination/);
+});
+
+test('missing content, incorrect fallback and versioned policy pages cannot pass', (t) => {
+	const { root, write } = fixture(t);
+	for (const [path, before, after, error] of [
+		['dist/fr/index.html', messages.fr.independent, '', /Missing localized footer/],
+		['dist/fr/index.html', 'English', 'Not English', /Missing language picker/],
+		['dist/fr/start/install/index.html', messages.fr.fallback, 'not the notice', /Missing English fallback notice/],
+		['dist/fr/start/install/index.html', 'lang="en"', 'lang="fr"', /Fallback language/],
+		['dist/fr/start/install/index.html', messages.fr.reference, 'not the sidebar', /Missing sidebar translation/],
+		['dist/fr/project/security/index.html', '</body>', '<starlight-version-select></starlight-version-select></body>', /Project policy must stay unversioned/],
+	]) {
+		const original = readFileSync(join(root, path), 'utf8');
+		write(path, original.replace(before, after));
+		assert.throws(() => checkLocales(root), error);
+		write(path, original);
+	}
+	rmSync(join(root, 'src/content/docs/es/project/security.md'));
+	assert.throws(() => checkLocales(root), /Missing translation/);
+});
+
+test('locale CLI reports source drift and strict mode rejects stale translations', (t) => {
+	const { root, write } = fixture(t);
+	const script = fileURLToPath(new URL('../check-locales.mjs', import.meta.url));
+	const run = (...args) => spawnSync(process.execPath, [script, '--root', root, ...args], { encoding: 'utf8' });
+	assert.equal(run('--strict-drift').status, 0);
+	write('src/content/docs/project/security.md', 'Changed English source');
+	const warning = run();
+	assert.equal(warning.status, 0, warning.stderr);
+	assert.match(warning.stderr, /STALE translation: es\/project\/security.md/);
+	assert.match(warning.stdout, /translation sources checked/);
+	assert.notEqual(run('--strict-drift').status, 0);
+});
+
+test('default locale CLI checks the repository build', () => {
+	const run = spawnSync(process.execPath, [fileURLToPath(new URL('../check-locales.mjs', import.meta.url))], { encoding: 'utf8' });
+	assert.equal(run.status, 0, run.stderr);
 });
