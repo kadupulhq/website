@@ -13,6 +13,7 @@
 import { readdirSync, readFileSync, statSync, lstatSync, existsSync, realpathSync } from 'node:fs';
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { parse } from 'parse5';
 
 // Taken from argv, not the environment: an ambient variable must not be able to
 // redirect what a release gate inspects.
@@ -47,13 +48,20 @@ function walk(dir, acc = { files: [], skipped: [] }) {
 /** Split an href into its path, fragment and query. Returns null for non-routes.
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
 export function classify(href, from = '') {
+	href = href.trim();
 	if (href.startsWith('#')) {
 		let f = href.slice(1);
 		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
 		return { path: '/' + from, fragment: f, samePage: true, dotted: false };
 	}
 	if (href.startsWith('//')) return null; // protocol-relative, external
-	if (!href.startsWith('/')) return null;
+	if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return null;
+	// Resolve relative and query-only references as a browser does, using the
+	// current route as the base. They are internal links too.
+	if (!href.startsWith('/')) {
+		const url = new URL(href, 'https://linkcheck.invalid/' + from);
+		href = url.pathname + url.search + url.hash;
+	}
 	const hash = href.indexOf('#');
 	const query = href.indexOf('?');
 	let cut = href.length;
@@ -143,11 +151,30 @@ export function check(dist) {
 		[...routes].map((r) => [r.normalize('NFC'), r]),
 	);
 	const ids = new Map();
+	const links = new Map();
 	for (const p of pages) {
 		const key = key0(p).replace(/(^|\/)index\.html$/, '$1');
 		const html = readFileSync(p, 'utf8');
-		const found = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+		const found = [];
+		const hrefs = [];
+		// HTML parsing handles entity decoding, single/unquoted attributes and
+		// case folding, without treating comments or script text as live links.
+		const visit = (node) => {
+			for (const attr of node.attrs || []) {
+				if (attr.name === 'id') found.push(attr.value);
+				if (attr.name === 'href') hrefs.push(attr.value);
+			}
+			for (const child of node.childNodes || []) visit(child);
+		};
+		visit(parse(html));
+		links.set(key, hrefs);
 		ids.set(key, { literal: new Set(found), nfc: new Set(found.map((i) => i.normalize('NFC'))) });
+	}
+	for (const [from, to] of aliases) {
+		for (const [key, value] of [...ids]) {
+			if (key === to + '/') ids.set(from + '/', value);
+			else if (key.startsWith(to + '/')) ids.set(from + key.slice(to.length), value);
+		}
 	}
 
 	const broken = [];
@@ -157,9 +184,8 @@ export function check(dist) {
 
 	for (const p of pages) {
 		const from = key0(p).replace(/(^|\/)index\.html$/, '$1');
-		const html = readFileSync(p, 'utf8');
-		for (const m of html.matchAll(/href="([^"]*)"/g)) {
-			const c = classify(m[1], from);
+		for (const href of links.get(from)) {
+			const c = classify(href, from);
 			if (!c) continue;
 			// Normalise the same way routes are built, so an explicit
 			// /sub/index.html link resolves to the same key as /sub/.
@@ -173,7 +199,7 @@ export function check(dist) {
 				// A normalisation-only asset match is reported, not skipped.
 				if (assetsNFC.has(key.normalize('NFC'))) {
 					checked++;
-					broken.push(`${from || '/'}  ->  ${m[1]}  (unicode normalisation mismatch)`);
+					broken.push(`${from || '/'}  ->  ${href}  (unicode normalisation mismatch)`);
 					continue;
 				}
 			}
@@ -184,10 +210,10 @@ export function check(dist) {
 				const viaNFC = routesNFC.get(key.normalize('NFC'));
 				if (viaNFC !== undefined) {
 					broken.push(
-						`${from || '/'}  ->  ${m[1]}  (unicode normalisation mismatch with ${viaNFC})`,
+						`${from || '/'}  ->  ${href}  (unicode normalisation mismatch with ${viaNFC})`,
 					);
 				} else {
-					broken.push(`${from || '/'}  ->  ${m[1]}  (no such route)`);
+					broken.push(`${from || '/'}  ->  ${href}  (no such route)`);
 				}
 				continue;
 			}
@@ -200,7 +226,7 @@ export function check(dist) {
 					// the mismatch that makes an anchor fail in a real browser.
 					const only = target?.nfc.has(c.fragment.normalize('NFC'));
 					broken.push(
-						`${from || '/'}  ->  ${m[1]}  ` +
+						`${from || '/'}  ->  ${href}  ` +
 							(only ? '(unicode normalisation mismatch with the id)' : '(no such anchor on target)'),
 					);
 				}

@@ -5,7 +5,7 @@ import starlightVersions from 'starlight-versions';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-	site: 'https://kadupul.org',
+	site: 'https://kadupul.net',
 	integrations: [
 		starlight({
 			title: 'Kadupul',
@@ -23,7 +23,9 @@ export default defineConfig({
 					versions: [{ slug: '1.2.31', label: '1.2.31' }],
 					// Project pages describe the project, not a release, so they
 					// always serve the latest copy across every version.
-					exclude: ['project/**'],
+					// The site-wide error page is served as /404.html, not a
+					// versioned documentation route.
+					exclude: ['project/**', '404.md'],
 				}),
 			],
 			editLink: { baseUrl: 'https://github.com/kadupulhq/website/edit/main/' },

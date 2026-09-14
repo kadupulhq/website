@@ -6,10 +6,11 @@
  * page's own title and description, so the map cannot describe a page that
  * does not exist or miss one that does.
  */
-import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const DOCS = new URL('../src/content/docs/', import.meta.url).pathname;
+const DOCS = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
 const SECTIONS = [
 	['start', 'Start here', 'Read in order, once. Takes you from nothing to a graph you can read.'],

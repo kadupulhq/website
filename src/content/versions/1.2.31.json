@@ -67,6 +67,7 @@
     }
   ],
   "excluded": [
+    "404",
     "project/compatibility-with-cacti",
     "project/contributing",
     "project/faq",

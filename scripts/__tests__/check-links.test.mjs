@@ -17,10 +17,12 @@ test('classify splits fragments and queries off the path', () => {
 	assert.deepEqual(pathOf('/a/b/?x=1#f'), ['/a/b/', 'f']);
 });
 
-test('classify ignores anything that is not a site-absolute path', () => {
+test('classify ignores external schemes and resolves relative paths', () => {
 	assert.equal(classify('https://example.com/'), null);
 	assert.equal(classify('mailto:a@b.c'), null);
-	assert.equal(classify('relative/page/'), null);
+	assert.deepEqual(pathOf('relative/page/'), ['/relative/page/', '']);
+	assert.deepEqual(pathOf('../other/#ok', 'nested/page/'), ['/nested/other/', 'ok']);
+	assert.deepEqual(pathOf('?q=1#ok', 'nested/page/'), ['/nested/page/', 'ok']);
 });
 
 test('a dotted path is marked, and resolved against the build rather than a list', () => {
@@ -310,4 +312,48 @@ test('an in-build directory symlink resolves and is not fatal', async () => {
 	assert.ok(!r.fatal, 'a symlink inside the build is already covered');
 	assert.deepEqual(r.broken, [], 'the path the symlink is served under must resolve');
 	rmSync(d, { recursive: true, force: true });
+});
+
+test('relative routes and query-only anchors are validated', (t) => {
+	const d = build({
+		'index.html': '<a href="nested/page/">page</a>',
+		'nested/page/index.html': '<h2 id="ok">H</h2><a href="?q=1#ok">ok</a><a href="../missing/">bad</a><a href="?q=1#missing">bad</a>',
+	});
+	t.after(() => rmSync(d, { recursive: true }));
+	const r = check(d);
+	assert.equal(r.checked, 4);
+	assert.equal(r.broken.length, 2);
+	assert.match(r.broken[0], /no such route/);
+	assert.match(r.broken[1], /no such anchor/);
+});
+
+test('HTML attributes are parsed and entities decoded without reading comments or scripts', (t) => {
+	const d = build({
+		'index.html': `<h2 ID='a&amp;b'>H</h2>
+			<A HREF='#a&amp;b'>ok</A><a href=/#a%26b>ok</a>
+			<a href='/missing/'>bad</a><a href=/also-missing/>bad</a>
+			<!-- <a href="/comment/">ignored</a> -->
+			<script>const example = '<a href="/script/">ignored</a>';</script>
+			<p data-href="/data/">ignored</p>`,
+	});
+	t.after(() => rmSync(d, { recursive: true }));
+	const r = check(d);
+	assert.equal(r.checked, 4);
+	assert.equal(r.fragmentsChecked, 2);
+	assert.equal(r.broken.length, 2);
+	assert.ok(r.broken.every((b) => b.includes('missing/')));
+});
+
+test('anchors on in-build directory aliases use the target IDs', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/latest/#ok">ok</a><a href="/latest/#missing">bad</a>',
+		'v1/index.html': '<h2 id="ok">H</h2>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'v1'), join(d, 'latest'));
+	const r = check(d);
+	assert.equal(r.fragmentsChecked, 2);
+	assert.equal(r.broken.length, 1);
+	assert.match(r.broken[0], /#missing.*no such anchor/);
 });
