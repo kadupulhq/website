@@ -3,8 +3,8 @@ title: Import and export templates
 description: What an export file actually contains, why a package is signed, and
   the ways an import quietly does less than you asked.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 18
 slug: 1.2.31/guides/import-and-export-templates

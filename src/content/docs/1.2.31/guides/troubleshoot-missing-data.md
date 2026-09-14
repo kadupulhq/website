@@ -4,8 +4,8 @@ description: A step by step procedure for gaps and flat graphs, working from
   device reachability through poller scheduling, the poller cache, filesystem
   permissions and the heartbeat.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 5
 slug: 1.2.31/guides/troubleshoot-missing-data

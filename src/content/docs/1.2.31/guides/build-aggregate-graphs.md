@@ -4,8 +4,8 @@ description: Combine many graphs into one, choose between a stacked view and a
   total, and keep the result honest when members are added and removed over
   time.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 16
 slug: 1.2.31/guides/build-aggregate-graphs

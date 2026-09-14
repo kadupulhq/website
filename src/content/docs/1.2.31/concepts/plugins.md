@@ -4,8 +4,8 @@ description: Why the extension surface is a list of named call-out points, what
   a plugin inherits by running inside the process, and what the guards around it
   do and do not stop.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 11
 slug: 1.2.31/concepts/plugins

@@ -3,8 +3,8 @@ title: Logging
 description: Where the Kadupul log goes, what each verbosity level includes, how
   selective debug and rotation work, and why the poller output is not the log.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 9
 slug: 1.2.31/reference/logging

@@ -3,8 +3,8 @@ title: Remove spikes from data
 description: How to take a false peak out of an archive so the rest of the graph
   is readable again, and why that edit cannot be undone.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 19
 slug: 1.2.31/guides/remove-spikes-from-data

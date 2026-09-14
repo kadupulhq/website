@@ -4,8 +4,8 @@ description: A procedure for answering "what can this account see" and "who can
   see this device" with evidence, using the effective policy view rather than
   guessing from a tree.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 26
 slug: 1.2.31/guides/audit-who-can-see-what

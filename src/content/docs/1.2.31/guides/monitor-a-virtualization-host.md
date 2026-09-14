@@ -4,8 +4,8 @@ description: What a hypervisor exposes over SNMP, what ships for ESXi, and why
   counting guests, CPU and memory on a virtualized estate is harder than it
   looks.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 27
 slug: 1.2.31/guides/monitor-a-virtualization-host

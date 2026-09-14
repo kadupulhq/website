@@ -4,8 +4,8 @@ description: The files a plugin must ship, the functions it calls to register
   itself, the argument and return contract of the two dispatchers, and every
   hook name the source fires with where it fires and what it passes.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 17
 slug: 1.2.31/reference/plugin-hook-api

@@ -76,7 +76,8 @@ of the reference manual.
   filenames, including region capitalization. Numeric `es-419` has an explicit
   Spanish interface dictionary; the framework does not supply that fallback.
 - `npm run build:map` generates the map for every locale, marking English-only
-  entries. Do not edit generated maps by hand.
+  entries. Do not edit generated maps by hand. `npm run check:maps` compares all
+  checked-in maps without writing files and runs before the build in validation.
 - `src/i18n/translations.json` records the English source SHA-256 for each summary
   or translation. When English changes, review and update the translation before
   updating its recorded hash. Keep `review: draft` until a fluent reviewer checks it.

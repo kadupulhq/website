@@ -4,8 +4,8 @@ description: A lookup table from what you observe to the page that explains it,
   so you can find the right documentation without knowing which part of the
   system is at fault.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 18
 slug: 1.2.31/reference/symptom-index

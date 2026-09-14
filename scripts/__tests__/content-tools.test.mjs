@@ -86,6 +86,7 @@ test('content CLIs report successful generation and actionable prose failures', 
 	const map = run('build-map', [root]);
 	assert.equal(map.status, 0, map.stderr);
 	assert.match(map.stdout, /maps generated/);
+	assert.doesNotThrow(() => buildMaps(root, undefined, { check: true }));
 	assert.equal(run('lint-prose', [root]).status, 0);
 	write('bad.md', page('Bad', '# Duplicate title'));
 	const lint = run('lint-prose', [root]);
@@ -94,12 +95,44 @@ test('content CLIs report successful generation and actionable prose failures', 
 	assert.match(lint.stderr, /1 prose issue/);
 });
 
-test('default CLI paths validate the repository and reproduce its checked-in maps', (t) => {
+test('default CLI paths validate repository maps without rewriting them', () => {
 	const maps = ['', ...translatedLocales].map((locale) => new URL(`../../src/content/docs/${locale ? locale + '/' : ''}map.md`, import.meta.url));
 	const before = maps.map((path) => readFileSync(path, 'utf8'));
-	t.after(() => maps.forEach((path, i) => writeFileSync(path, before[i])));
-	assert.equal(run('build-map').status, 0);
-	assert.deepEqual(maps.map((path) => readFileSync(path, 'utf8')), before, 'generated maps must match their checked-in content');
+	const result = run('build-map', ['--check']);
+	assert.equal(result.status, 0, result.stderr);
+	assert.match(result.stdout, /maps match/);
+	assert.deepEqual(maps.map((path) => readFileSync(path, 'utf8')), before);
 	const lint = run('lint-prose');
 	assert.equal(lint.status, 0, lint.stderr);
+});
+
+test('check-only generation rejects stale English and translated maps without writing any files', (t) => {
+	const { root, write } = fixture(t);
+	write('start/a.md', page('A'));
+	write('es/start/a.md', page('A en español'));
+	buildMaps(root, ['es']);
+	assert.doesNotThrow(() => buildMaps(root, ['es'], { check: true }));
+	const maps = ['map.md', 'es/map.md'];
+	const before = maps.map((path) => readFileSync(join(root, path), 'utf8'));
+	write('start/a.md', page('Changed English title'));
+	assert.throws(() => buildMaps(root, ['es'], { check: true }), /Stale documentation map/);
+	assert.deepEqual(maps.map((path) => readFileSync(join(root, path), 'utf8')), before);
+	write('start/a.md', page('A'));
+	write('es/start/a.md', page('Título cambiado'));
+	assert.throws(() => buildMaps(root, ['es'], { check: true }), /es.*map.md/);
+	assert.deepEqual(maps.map((path) => readFileSync(join(root, path), 'utf8')), before);
+	write('start/a.md', page('Another changed English title'));
+	const result = run('build-map', ['--check', root]);
+	assert.notEqual(result.status, 0);
+	assert.match(result.stderr, /Stale documentation map/);
+	assert.deepEqual(maps.map((path) => readFileSync(join(root, path), 'utf8')), before);
+});
+
+test('validation checks committed maps before any command can regenerate them', () => {
+	const { scripts } = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf8'));
+	for (const name of ['check:all', 'test']) {
+		const steps = scripts[name].split(' && ');
+		assert.ok(steps.indexOf('npm run check:maps') >= 0);
+		assert.ok(steps.indexOf('npm run check:maps') < steps.indexOf('npm run build'));
+	}
 });

@@ -4,8 +4,8 @@ description: How plugins attach themselves to the application, what to read
   before you trust one, and why installing a plugin is equivalent to granting
   shell access.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 13
 slug: 1.2.31/guides/install-and-vet-plugins

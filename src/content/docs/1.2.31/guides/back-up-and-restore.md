@@ -3,8 +3,8 @@ title: Back up and restore
 description: Three things have to be captured together or the backup is not a
   backup, and the order they go back in matters.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 7
 slug: 1.2.31/guides/back-up-and-restore

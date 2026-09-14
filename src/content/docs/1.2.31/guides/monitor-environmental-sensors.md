@@ -4,8 +4,8 @@ description: Graph temperature, humidity, airflow, power and UPS state over
   SNMP, find the right OIDs on a vendor MIB, and give the readings graph
   settings that suit a measurement rather than a counter.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 23
 slug: 1.2.31/guides/monitor-environmental-sensors

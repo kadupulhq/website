@@ -2,13 +2,14 @@
 /**
  * Generates the documentation map from the pages themselves.
  *
- * A hand-written index of 60 pages is wrong within a week. This reads each
+ * A hand-written index drifts as pages change. This reads each
  * page's own title and description, so the map cannot describe a page that
  * does not exist or miss one that does.
  */
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { isMain } from './cli.mjs';
 import { getMessages, translatedLocales } from '../src/i18n/locales.mjs';
 
@@ -34,7 +35,12 @@ export function frontmatter(file) {
 	return { title: grab('title'), description: grab('description'), order: order ? +order[1] : 999 };
 }
 
-export function buildMaps(DOCS, localeNames = translatedLocales) {
+export function buildMaps(DOCS, localeNames = translatedLocales, { check = false } = {}) {
+	function writeMap(path, content) {
+		if (check) {
+			if (readFileSync(path, 'utf8') !== content) throw new Error(`Stale documentation map: ${path}; run npm run build:map`);
+		} else writeFileSync(path, content);
+	}
 	const sectionFiles = new Map();
 	let out = `---
 title: Documentation map
@@ -43,9 +49,8 @@ sidebar:
   order: 0
 ---
 
-Sixty-odd pages, grouped by what you are trying to do. The four groups are not
-interchangeable: a reference page makes a poor tutorial, and a tutorial that lists
-every option is impossible to follow.
+Pages are grouped by what you are trying to do: learn the basics, complete a
+task, understand a concept, look up a reference, or read project policies.
 
 `;
 
@@ -74,7 +79,7 @@ every option is impossible to follow.
 	// so the prose linter's em dash rule holds for this file too.
 	out = out.replace(/\) — /g, '). ');
 
-	writeFileSync(join(DOCS, 'map.md'), out);
+	writeMap(join(DOCS, 'map.md'), out);
 
 
 	// Keep untranslated entries discoverable through Starlight's English fallback.
@@ -95,11 +100,12 @@ every option is impossible to follow.
 			}
 			translated += '\n';
 		}
-		writeFileSync(join(DOCS, locale, 'map.md'), translated);
+		writeMap(join(DOCS, locale, 'map.md'), translated);
 	}
 }
 
 if (isMain(import.meta.url)) {
-	buildMaps(process.argv[2] || DEFAULT_DOCS);
-	console.log('documentation maps generated');
+	const { values, positionals } = parseArgs({ allowPositionals: true, options: { check: { type: 'boolean', default: false } } });
+	buildMaps(positionals[0] || DEFAULT_DOCS, translatedLocales, { check: values.check });
+	console.log(values.check ? 'documentation maps match' : 'documentation maps generated');
 }

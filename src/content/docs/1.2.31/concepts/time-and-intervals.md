@@ -3,8 +3,8 @@ title: Time and intervals
 description: Polling interval, RRD step, heartbeat and clock skew, and why the
   timestamp on a sample decides more than people expect.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 7
 slug: 1.2.31/concepts/time-and-intervals

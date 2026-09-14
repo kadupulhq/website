@@ -4,8 +4,8 @@ description: How to build a data template and a graph template by hand, when to
   copy one instead, and what editing a template later does to graphs and files
   that already exist.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 11
 slug: 1.2.31/guides/create-custom-templates

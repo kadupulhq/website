@@ -18,7 +18,7 @@ Esta página é um resumo. Consulte a página completa em inglês para obter mai
 
 ## Primeiros passos
 
-Comece com uma instalação de teste isolada, adicione um dispositivo e confirme a chegada dos dados antes de interpretar os gráficos. Mantenha backups e teste o restauração.
+Comece com uma instalação de teste isolada, adicione um dispositivo e confirme a chegada dos dados antes de interpretar os gráficos. Mantenha backups e teste a restauração.
 
 - [Instalação](/pt-br/start/install/)
 - [Adicionar o primeiro dispositivo](/pt-br/start/first-device/)

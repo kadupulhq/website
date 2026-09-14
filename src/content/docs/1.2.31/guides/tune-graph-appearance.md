@@ -3,8 +3,8 @@ title: Tune graph appearance
 description: Axis scaling, units, colour and legend settings, and what to change
   when a graph is technically correct and still unreadable.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 17
 slug: 1.2.31/guides/tune-graph-appearance

@@ -4,8 +4,8 @@ description: Graph CPU, disks, interfaces and uptime on Windows over the SNMP
   service, which Host Resources objects carry the data, and what to do when SNMP
   is not an option.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 14
 slug: 1.2.31/guides/monitor-a-windows-host

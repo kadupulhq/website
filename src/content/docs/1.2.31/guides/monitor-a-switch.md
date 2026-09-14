@@ -3,8 +3,8 @@ title: Monitor a switch
 description: Discover a switch's ports, graph the right counters, and pick an
   index so port history stays attached to the port after a card reseat.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 2
 slug: 1.2.31/guides/monitor-a-switch

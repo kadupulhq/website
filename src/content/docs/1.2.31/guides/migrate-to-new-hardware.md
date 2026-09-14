@@ -3,8 +3,8 @@ title: Migrate to new hardware
 description: Moving a running install to another server without losing history,
   in the order that keeps each step verifiable.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 20
 slug: 1.2.31/guides/migrate-to-new-hardware

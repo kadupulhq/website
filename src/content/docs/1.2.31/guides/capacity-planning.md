@@ -4,8 +4,8 @@ description: Work out the disk, memory, poll window and database size an install
   needs from the number of devices and data sources it will carry, with the
   arithmetic shown so you can redo it for your own numbers.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 30
 slug: 1.2.31/guides/capacity-planning

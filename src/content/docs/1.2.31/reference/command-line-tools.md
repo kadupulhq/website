@@ -3,8 +3,8 @@ title: Command line tools
 description: Every script in the cli directory, what it does, and the arguments
   the most useful ones accept.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 2
 slug: 1.2.31/reference/command-line-tools

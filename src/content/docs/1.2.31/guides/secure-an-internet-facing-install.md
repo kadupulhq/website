@@ -3,8 +3,8 @@ title: Secure an internet-facing install
 description: What to change before a monitoring system with shell access to your
   network answers requests from the public internet.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 9
 slug: 1.2.31/guides/secure-an-internet-facing-install

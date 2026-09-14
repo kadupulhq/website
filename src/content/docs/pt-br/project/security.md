@@ -13,7 +13,7 @@ Esta página é um resumo. Consulte a página completa em inglês para obter mai
 
 ## Comunicar uma vulnerabilidade de forma privada
 
-Inclua a versão ou o commit, os passos para reproduzir o problema, a configuração necessária e se é exigida autenticação. Os responsáveis procuram confirmar a recebimento no prazo de três dias úteis; não se trata de uma data de correção garantida.
+Inclua a versão ou o commit, os passos para reproduzir o problema, a configuração necessária e se é exigida autenticação. Os responsáveis procuram confirmar o recebimento no prazo de três dias úteis; não se trata de uma data de correção garantida.
 
 [Comunicar uma vulnerabilidade de forma privada](https://github.com/kadupulhq/kadupul/security/advisories/new)
 

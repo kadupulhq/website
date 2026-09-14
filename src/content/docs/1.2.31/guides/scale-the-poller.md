@@ -3,8 +3,8 @@ title: Scale the poller
 description: What to change when collection stops finishing inside its interval,
   and how to tell which limit you actually hit.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 6
 slug: 1.2.31/guides/scale-the-poller

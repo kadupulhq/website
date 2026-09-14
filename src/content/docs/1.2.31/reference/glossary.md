@@ -3,8 +3,8 @@ title: Glossary
 description: Definitions of the domain terms that appear throughout Kadupul, in
   alphabetical order.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 5
 slug: 1.2.31/reference/glossary

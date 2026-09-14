@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { registerHooks } from 'node:module';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { transform } from '@astrojs/compiler-rs';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
@@ -75,5 +75,17 @@ test('the actual footer renders localized licenses and delegates its slot to the
 		assert.match(html, /data-default-footer.*Preserved slot/s);
 		assert.match(html, /rel="license" href="https:\/\/creativecommons.org\/licenses\/by-sa\/4.0\/"/);
 		assert.match(html, /<bdi[^>]*>GPL-3.0-or-later<\/bdi>/);
+	}
+});
+
+
+test('frozen version metadata keeps every locale policy and error route unversioned', () => {
+	const { excluded } = JSON.parse(readFileSync(new URL('../../src/content/versions/1.2.31.json', import.meta.url), 'utf8'));
+	const policies = readdirSync(new URL('../../src/content/docs/project/', import.meta.url)).map((file) => `project/${file.replace(/\.mdx?$/, '')}`);
+	for (const locale of Object.keys(locales)) {
+		for (const slug of ['404', ...policies]) {
+			const path = locale === 'root' ? slug : `${locale}/${slug}`;
+			assert.ok(excluded.includes(path), `Missing frozen version exclusion: ${path}`);
+		}
 	}
 });

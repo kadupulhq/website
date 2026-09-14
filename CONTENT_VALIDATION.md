@@ -38,7 +38,7 @@ in the inspected source. This was a source-text check, not execution of commands
 
 ## Validation and limits
 
-Validation includes type checks, prose checks, 66 regression tests, the static
+Validation includes type checks, prose checks, 69 regression tests, the static
 build, internal links and checks across 22 locales. The i18n collection is now
 populated; the existing overlapping 404 route warning remains. The 105 translated
 summaries and error pages are tracked against English source hashes and await
@@ -75,11 +75,11 @@ The follow-up also excludes localized error pages from the sitemap and adds
 control characters, and rejects missing or incomplete locale dictionaries.
 
 Coverage is measured with V8/c8 across every first-party executable source file,
-including scripts, configuration and the rendered Astro footer. All 66 tests pass
+including scripts, configuration and the rendered Astro footer. All 69 tests pass
 with 100% statements, branches, functions and lines, enforced per file in CI.
 Framework integration boundaries are stubbed in isolated configuration tests;
 the production build exercises the real integrations. The build produced 3,168
-pages; 375,394 internal links and 123,411 anchors passed validation. HTML and LCOV
+pages; 384,319 internal links and 123,411 anchors passed validation. HTML and LCOV
 reports are retained as CI artifacts and sent to Sonar through CI analysis.
 
 The canonical URL and robots sitemap retain the existing `kadupul.org` domain.
@@ -97,3 +97,11 @@ intentionally accept directory arguments, run with the invoking user's filesyste
 permissions, and receive fixed repository paths in CI. Each report was reviewed
 and classified as a false positive in Sonar with this rationale. No scanning rule
 or executable source file was excluded.
+
+The fresh automated review identified stale-map masking and incomplete frozen
+locale exclusions. Validation now compares generated maps without writing files,
+before the build can regenerate them. Tests cover stale English and translated
+maps, unchanged output after failure, validation ordering, and all 22 locales in
+the frozen policy/error exclusions. The archive status banners and reported
+French-Canadian/Brazilian Portuguese wording were corrected. The full validation
+suite passes with 69 tests and 100% coverage in all four metrics.

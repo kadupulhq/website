@@ -19,4 +19,4 @@ Indiquez la version ou le commit, les étapes de reproduction, la configuration 
 
 Les vulnérabilités du code partagé nécessitent une divulgation coordonnée avec les autres projets concernés avant toute publication. Convenez de l’attribution et du calendrier pendant l’évaluation privée.
 
-La politique couvre l’application, le collecteur, l’installateur et le création de paquets logiciels. Elle exclut les modules complémentaires tiers, RRDtool, Net-SNMP, le serveur web, la base de données et les cas exigeant qu’un administrateur agisse contre sa propre installation.
+La politique couvre l’application, le collecteur, l’installateur et la création de paquets logiciels. Elle exclut les modules complémentaires tiers, RRDtool, Net-SNMP, le serveur web, la base de données et les cas exigeant qu’un administrateur agisse contre sa propre installation.

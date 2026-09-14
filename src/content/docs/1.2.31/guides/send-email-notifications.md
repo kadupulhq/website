@@ -3,8 +3,8 @@ title: Send email notifications
 description: Configure outbound mail in Kadupul, test it, and understand which
   events actually generate a message without installing a plugin.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 22
 slug: 1.2.31/guides/send-email-notifications

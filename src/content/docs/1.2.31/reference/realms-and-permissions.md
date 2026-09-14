@@ -3,8 +3,8 @@ title: Realms and permissions
 description: Every authorization realm in Kadupul, the page each one gates, and
   the object permissions and policy values that decide what a user can see.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 12
 slug: 1.2.31/reference/realms-and-permissions

@@ -3,8 +3,8 @@ title: Spine, the C collector
 description: What Spine is, how it differs from the PHP collector, the
   configuration it reads, its threading model, and when it is worth installing.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 15
 slug: 1.2.31/reference/spine

@@ -4,8 +4,8 @@ description: Why the collector reads a precomputed work list instead of your
   configuration, and why that is the usual reason a change appears to do
   nothing.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 6
 slug: 1.2.31/concepts/the-poller-cache

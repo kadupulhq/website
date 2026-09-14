@@ -4,8 +4,8 @@ description: Which RRDtool subcommands Kadupul issues, how each command line is
   assembled and validated, the difference between pipe and per-command
   execution, and what changes with the configured RRDtool version.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 13
 slug: 1.2.31/reference/rrdtool-integration

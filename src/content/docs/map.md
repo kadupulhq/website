@@ -5,9 +5,8 @@ sidebar:
   order: 0
 ---
 
-Sixty-odd pages, grouped by what you are trying to do. The four groups are not
-interchangeable: a reference page makes a poor tutorial, and a tutorial that lists
-every option is impossible to follow.
+Pages are grouped by what you are trying to do: learn the basics, complete a
+task, understand a concept, look up a reference, or read project policies.
 
 ## Start here
 

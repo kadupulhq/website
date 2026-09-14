@@ -3,8 +3,8 @@ title: Write a data collection script
 description: How to make the poller run your own program and store what it
   prints, and the contract that program has to honor.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 10
 slug: 1.2.31/guides/write-a-data-collection-script

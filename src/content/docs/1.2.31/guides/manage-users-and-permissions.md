@@ -3,8 +3,8 @@ title: Manage users and permissions
 description: How accounts, groups, and per-object permissions fit together, and
   how to build a read-only operator account that actually stays read-only.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 12
 slug: 1.2.31/guides/manage-users-and-permissions
