@@ -77,7 +77,7 @@ export function buildSiteTranslations(root, { check = false } = {}) {
 		}
 		report.locales[locale] = { counts, units };
 	}
-	for (const [path, value] of [['src/i18n/messages.json', messages], ['public/site-translation-status.json', report]]) {
+	for (const [path, value] of Object.entries({ 'src/i18n/messages.json': messages, 'public/site-translation-status.json': report })) {
 		if (check) assert.equal(readFileSync(join(root, path), 'utf8'), json(value), `Stale generated translations: ${path}; run npm run translations:build`);
 		else writeFileSync(join(root, path), json(value));
 	}
