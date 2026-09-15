@@ -10,6 +10,9 @@ import { isMain } from './cli.mjs';
 export const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
 const tokens = (value) => (value.match(/\{\{[^{}]+\}\}|\[(?:COUNT|SEARCH_TERM|DIFFERENT_TERM)\]/g) || []).sort();
+// Non-Latin scripts can attach particles directly to a Latin product name.
+const nameCount = (value, name) => (value.match(new RegExp(`(?<![\\p{Script=Latin}\\p{Number}_])${name}(?![\\p{Script=Latin}\\p{Number}_])`, 'gu')) || []).length;
+const record = (value, label) => assert.ok(value && typeof value === 'object' && !Array.isArray(value), `Expected ${label} object`);
 
 /** Site labels are plain text; framework HTML translations use a different component. */
 export function validateCatalog(source, target) {
@@ -27,7 +30,7 @@ export function validateCatalog(source, target) {
 		if (target[key]) {
 			assert.deepEqual(tokens(target[key]), tokens(value), `Changed placeholders: ${key}`);
 			for (const name of ['Kadupul', 'Cacti']) {
-				assert.equal(target[key].includes(name), value.includes(name), `Changed protected name ${name}: ${key}`);
+				assert.equal(nameCount(target[key], name), nameCount(value, name), `Changed protected name ${name}: ${key}`);
 			}
 		}
 	}
@@ -35,7 +38,8 @@ export function validateCatalog(source, target) {
 
 /** Approval is bound to both texts; a source change cannot retain approval. */
 export function unitState(source, target, review) {
-	if (review) {
+	if (review !== undefined) {
+		record(review, 'a review record');
 		assert.ok(['draft', 'reviewed'].includes(review.state), 'Invalid review state');
 		for (const field of ['sourceSha256', 'targetSha256']) assert.match(review[field], /^[a-f0-9]{64}$/, `Invalid ${field}`);
 		if (review.state === 'reviewed') {
@@ -45,7 +49,7 @@ export function unitState(source, target, review) {
 		}
 	}
 	if (!target) return 'missing';
-	if (!review) return 'draft';
+	if (review === undefined) return 'draft';
 	if (review.sourceSha256 !== hash(source)) return 'needs-update';
 	if (review.targetSha256 !== hash(target)) return 'draft';
 	return review.state;
@@ -56,9 +60,12 @@ export function buildSiteTranslations(root, { check = false } = {}) {
 	const source = read('translations/site/en.json');
 	validateCatalog(source, source);
 	const reviews = read('translations/site-reviews.json');
+	record(reviews, 'a review manifest');
 	assert.equal(reviews.schemaVersion, 1, 'Unsupported review manifest version');
+	record(reviews.units, 'review units');
 	for (const [locale, units] of Object.entries(reviews.units)) {
 		assert.ok(translatedLocales.includes(locale), `Unknown review locale: ${locale}`);
+		record(units, `review units for ${locale}`);
 		for (const key of Object.keys(units)) assert.ok(Object.hasOwn(source, key), `Unknown review key: ${key}`);
 	}
 	const messages = { en: source };

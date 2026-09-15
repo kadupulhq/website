@@ -28,6 +28,10 @@ test('catalog validation accepts missing translations but protects keys, markup,
 	assert.throws(() => validateCatalog({ label: '{{title}} {{title}}' }, { label: '{{title}}' }), /Changed placeholders/);
 	assert.throws(() => validateCatalog({ label: source }, { label: 'documentation' }), /protected name Kadupul/);
 	assert.throws(() => validateCatalog({ label: 'Cacti documentation' }, { label: 'documentation' }), /protected name Cacti/);
+	for (const name of ['KadupulX', 'Kadupulé', '_Kadupul', 'Kadupul2', 'Kadupul Kadupul']) assert.throws(() => validateCatalog({ label: source }, { label: name }), /protected name Kadupul/);
+	assert.throws(() => validateCatalog({ label: 'Cacti' }, { label: 'Cactis' }), /protected name Cacti/);
+	validateCatalog({ label: 'Kadupul' }, { label: 'Kadupul은' });
+	validateCatalog({ label: 'Kadupul' }, { label: 'Kadupulは' });
 });
 
 test('review states cannot survive changes to their source or target', () => {
@@ -36,6 +40,7 @@ test('review states cannot survive changes to their source or target', () => {
 	assert.equal(unitState(source, '', review), 'missing');
 	assert.equal(unitState(source, undefined), 'missing');
 	assert.equal(unitState(source, target), 'draft');
+	for (const malformed of [null, false, true, 0, 1, '', 'draft', []]) assert.throws(() => unitState(source, target, malformed), /review record object/);
 	assert.equal(unitState('Changed English', target, review), 'needs-update');
 	assert.equal(unitState(source, 'Changed target', review), 'draft');
 	assert.throws(() => unitState(source, target, { ...review, state: 'approved' }), /Invalid review state/);
@@ -80,6 +85,10 @@ test('generation reports English fallback separately and source changes affect o
 test('review manifest rejects unknown schema, locale and key', (t) => {
 	const { root, write } = fixture(t);
 	for (const [manifest, error] of [
+		[null, /review manifest/],
+		[{ schemaVersion: 1, units: [] }, /review units/],
+		[{ schemaVersion: 1, units: { es: false } }, /review units for es/],
+		[{ schemaVersion: 1, units: { es: { label: null } } }, /review record/],
 		[{ schemaVersion: 2, units: {} }, /Unsupported/],
 		[{ schemaVersion: 1, units: { unknown: {} } }, /Unknown review locale/],
 		[{ schemaVersion: 1, units: { es: { unknown: review } } }, /Unknown review key/],
