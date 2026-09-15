@@ -50,7 +50,7 @@ test('review states cannot survive changes to their source or target', () => {
 	for (const field of ['sourceSha256', 'targetSha256']) assert.throws(() => unitState(source, target, { ...review, [field]: 'bad' }), /Invalid/);
 	for (const reviewer of [undefined, '']) assert.throws(() => unitState(source, target, { ...review, reviewer }), /reviewer/);
 	for (const reviewedAt of [undefined, '', '2026-02-30T12:00:00Z']) assert.throws(() => unitState(source, target, { ...review, reviewedAt }), /review date/);
-	for (const reviewUrl of [undefined, '', 'http://weblate.example/changes/1/']) assert.throws(() => unitState(source, target, { ...review, reviewUrl }), /history URL/);
+	for (const reviewUrl of [undefined, '', 'https://?', 'http://weblate.example/changes/1/', 'https://weblate.example/a b', 'https://user@weblate.example/', 'https://:password@weblate.example/']) assert.throws(() => unitState(source, target, { ...review, reviewUrl }), /history URL/);
 });
 
 function fixture(t) {

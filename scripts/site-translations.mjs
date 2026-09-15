@@ -13,6 +13,12 @@ const tokens = (value) => (value.match(/\{\{[^{}]+\}\}|\[(?:COUNT|SEARCH_TERM|DI
 // Non-Latin scripts can attach particles directly to a Latin product name.
 const nameCount = (value, name) => (value.match(new RegExp(String.raw`(?<![\p{Script=Latin}\p{Number}\p{Mark}_])${name}(?![\p{Script=Latin}\p{Number}\p{Mark}_])`, 'gu')) || []).length;
 const record = (value, label) => assert.ok(value && typeof value === 'object' && !Array.isArray(value), `Expected ${label} object`);
+function validateReviewUrl(value) {
+	const message = 'Reviewed units require an absolute HTTPS Weblate history URL without credentials';
+	assert.ok(typeof value === 'string' && URL.canParse(value) && !/\s/u.test(value), message);
+	const url = new URL(value);
+	assert.ok(url.protocol === 'https:' && !url.username && !url.password, message);
+}
 
 /** Site labels are plain text; framework HTML translations use a different component. */
 export function validateCatalog(source, target) {
@@ -45,7 +51,7 @@ export function unitState(source, target, review) {
 		if (review.state === 'reviewed') {
 			assert.ok(typeof review.reviewer === 'string' && review.reviewer.trim(), 'Reviewed units require a reviewer');
 			assert.ok(typeof review.reviewedAt === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(review.reviewedAt) && new Date(review.reviewedAt).toISOString().replace('.000Z', 'Z') === review.reviewedAt, 'Reviewed units require a UTC review date');
-			assert.ok(typeof review.reviewUrl === 'string' && /^https:\/\/[^\s]+$/.test(review.reviewUrl), 'Reviewed units require a Weblate history URL');
+			validateReviewUrl(review.reviewUrl);
 		}
 	}
 	if (!target) return 'missing';
