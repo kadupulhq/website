@@ -38,15 +38,12 @@ services:
       - weblate-cache:/app/cache
     secrets:
       - db_password
-      - admin_password
-      - smtp_password
     environment:
       WEBLATE_SITE_TITLE: Kadupul translations
       WEBLATE_SITE_DOMAIN: ${WEBLATE_DOMAIN:?Set the public hostname}
       WEBLATE_ALLOWED_HOSTS: ${WEBLATE_DOMAIN:?Set the public hostname}
       WEBLATE_ADMIN_NAME: Kadupul administrator
       WEBLATE_ADMIN_EMAIL: ${WEBLATE_ADMIN_EMAIL:?Set the owner email}
-      WEBLATE_ADMIN_PASSWORD_FILE: /run/secrets/admin_password
       WEBLATE_ENABLE_HTTPS: "1"
       WEBLATE_IP_PROXY_HEADER: HTTP_X_FORWARDED_FOR
       WEBLATE_TRUSTED_PROXY_ADDRESSES: 172.30.91.2
@@ -55,14 +52,11 @@ services:
       WEBLATE_DEBUG: "0"
       WEBLATE_WORKERS: "2"
       WEBLATE_DATABASE_BACKUP: plain
-      WEBLATE_EMAIL_HOST: ${WEBLATE_EMAIL_HOST:?Set the SMTP host}
-      WEBLATE_EMAIL_PORT: ${WEBLATE_EMAIL_PORT:?Set a provider-supported SMTP port reachable from DigitalOcean}
-      WEBLATE_EMAIL_USE_TLS: "1"
-      WEBLATE_EMAIL_USE_SSL: "0"
-      WEBLATE_EMAIL_HOST_USER: ${WEBLATE_EMAIL_HOST_USER:?Set the SMTP user}
-      WEBLATE_EMAIL_HOST_PASSWORD_FILE: /run/secrets/smtp_password
-      WEBLATE_SERVER_EMAIL: ${WEBLATE_FROM_EMAIL:?Set a verified sender}
-      WEBLATE_DEFAULT_FROM_EMAIL: ${WEBLATE_FROM_EMAIL:?Set a verified sender}
+      # Email is intentionally disabled until a provider is configured.
+      WEBLATE_EMAIL_BACKEND: django.core.mail.backends.dummy.EmailBackend
+      WEBLATE_EMAIL_HOST: localhost
+      WEBLATE_SERVER_EMAIL: ${WEBLATE_FROM_EMAIL:?Set the site sender address}
+      WEBLATE_DEFAULT_FROM_EMAIL: ${WEBLATE_FROM_EMAIL:?Set the site sender address}
       POSTGRES_HOST: database
       POSTGRES_USER: weblate
       POSTGRES_DB: weblate
@@ -132,7 +126,3 @@ volumes:
 secrets:
   db_password:
     file: ${WEBLATE_SECRETS_DIR:-/etc/kadupul-weblate/secrets}/db_password
-  admin_password:
-    file: ${WEBLATE_SECRETS_DIR:-/etc/kadupul-weblate/secrets}/admin_password
-  smtp_password:
-    file: ${WEBLATE_SECRETS_DIR:-/etc/kadupul-weblate/secrets}/smtp_password

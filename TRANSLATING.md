@@ -2,9 +2,10 @@
 
 Weblate adoption is tracked in [issue #3](https://github.com/kadupulhq/website/issues/3).
 The repository preparation currently covers site labels. The DigitalOcean server
-is provisioned in the Relenz team; Weblate is not running or connected yet. See
-the [deployment status and files](infrastructure/weblate/README.md). DNS and email
-details remain pending. Interface strings, documentation summaries,
+is provisioned in the Relenz team and Weblate is deployed at
+`https://translate.kadupul.net`, with email intentionally disabled. See the
+[deployment status and files](infrastructure/weblate/README.md). Repository
+synchronization remains pending. Interface strings, documentation summaries,
 regional inheritance and automatic review-history export remain pending. Do not
 treat this preparation as completion of the issue or as evidence of fluent review.
 
