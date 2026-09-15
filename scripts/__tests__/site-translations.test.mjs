@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -96,6 +96,23 @@ test('review manifest rejects unknown schema, locale and key', (t) => {
 		write('translations/site-reviews.json', manifest);
 		assert.throws(() => buildSiteTranslations(root), error);
 	}
+});
+
+test('catalog discovery rejects mistyped and unsupported JSON filenames, including missing catalogs', (t) => {
+	const { root, write } = fixture(t);
+	write('translations/site/README.md', 'Ignored by the Weblate JSON file mask');
+	assert.doesNotThrow(() => buildSiteTranslations(root));
+	// Rename explicitly: writing a second case variant aliases the existing file on macOS.
+	renameSync(join(root, 'translations/site/fr-ca.json'), join(root, 'translations/site/fr-CA.json'));
+	assert.throws(() => buildSiteTranslations(root), /Catalog filenames/);
+	renameSync(join(root, 'translations/site/fr-CA.json'), join(root, 'translations/site/fr-ca.json'));
+	for (const name of ['unknown.json', 'reviews.json']) {
+		write(`translations/site/${name}`, {});
+		assert.throws(() => buildSiteTranslations(root), /Catalog filenames/);
+		rmSync(join(root, 'translations/site', name));
+	}
+	rmSync(join(root, 'translations/site/fr-ca.json'));
+	assert.throws(() => buildSiteTranslations(root), /Catalog filenames/);
 });
 
 test('CLI generates and checks catalogs, returns failures and checks the actual repository by default', (t) => {

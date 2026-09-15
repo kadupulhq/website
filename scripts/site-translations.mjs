@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
@@ -56,6 +56,8 @@ export function unitState(source, target, review) {
 }
 
 export function buildSiteTranslations(root, { check = false } = {}) {
+	const catalogFiles = readdirSync(join(root, 'translations/site')).filter((name) => name.endsWith('.json')).sort();
+	assert.deepEqual(catalogFiles, ['en', ...translatedLocales].map((locale) => `${locale}.json`).sort(), 'Catalog filenames must match the supported lowercase locale keys');
 	const read = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
 	const source = read('translations/site/en.json');
 	validateCatalog(source, source);
