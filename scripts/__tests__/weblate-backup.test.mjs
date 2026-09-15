@@ -25,6 +25,9 @@ esac
 	const sleep = join(root, 'sleep');
 	writeFileSync(sleep, '#!/bin/sh\nexit 0\n');
 	chmodSync(sleep, 0o700);
+	const find = join(root, 'find');
+	writeFileSync(find, '#!/bin/sh\nif [ "$FAIL_AT" = signal ]; then kill -TERM "$PPID"; exit 0; fi\nexec /usr/bin/find "$@"\n');
+	chmodSync(find, 0o700);
 	const original = readFileSync(new URL('../../infrastructure/weblate/backup-database.sh', import.meta.url), 'utf8');
 	const script = original.replace('cd /opt/kadupul-weblate', `cd '${root}'`)
 		.replace('backup_dir=/var/backups/kadupul-weblate', `backup_dir='${backups}'`)
@@ -72,4 +75,14 @@ test('backup bounds readiness retries and preserves backups when the database st
 	assert.match(result.stderr, /not ready after 60 attempts/);
 	assert.equal(readFileSync(counter, 'utf8'), '60');
 	assert.deepEqual(readdirSync(backups), ['database-20000101T000000Z.dump']);
+});
+
+
+test('interruption after archive publication exits nonzero without announcing success', (t) => {
+	const { backups, run } = fixture(t);
+	const result = run({ FAIL_AT: 'signal' });
+	assert.equal(result.status, 143);
+	assert.doesNotMatch(result.stdout, /backup completed/);
+	assert.equal(readdirSync(backups).filter((name) => name.startsWith('database-')).length, 2);
+	assert.ok(!readdirSync(backups).some((name) => name.startsWith('.database-')));
 });

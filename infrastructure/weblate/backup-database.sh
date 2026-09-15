@@ -17,7 +17,10 @@ until /usr/bin/docker compose exec -T database pg_isready -U weblate -d weblate 
 done
 backup_file="$backup_dir/database-$(date -u +%Y%m%dT%H%M%SZ).dump"
 backup_temp=$(mktemp "$backup_dir/.database-XXXXXX")
-trap 'rm -f "$backup_temp"' EXIT HUP INT TERM
+trap 'rm -f "$backup_temp"' EXIT
+trap 'exit 129' HUP
+trap 'exit 130' INT
+trap 'exit 143' TERM
 /usr/bin/docker compose exec -T database pg_dump -U weblate -Fc weblate </dev/null > "$backup_temp"
 test -s "$backup_temp"
 /usr/bin/docker compose exec -T database pg_restore --list < "$backup_temp" > /dev/null
