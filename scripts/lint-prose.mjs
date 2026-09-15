@@ -35,14 +35,19 @@ export function lintProse(ROOT) {
 		const report = (line, msg) => { issues.push(`${rel}:${line}  ${msg}`); };
 
 		if (!text.startsWith('---\n')) report(1, 'missing frontmatter');
-		const fm = text.slice(4, text.indexOf('\n---\n', 4));
+		const fmEnd = text.indexOf('\n---\n', 4);
+		if (text.startsWith('---\n') && fmEnd === -1) {
+			report(1, 'unterminated frontmatter');
+			continue;
+		}
+		const fm = text.slice(4, fmEnd);
 		if (!/^title:/m.test(fm)) report(1, 'frontmatter has no title');
 		if (!/^description:/m.test(fm)) report(1, 'frontmatter has no description');
 
 		// Heading checks. Starlight renders the frontmatter title as the page h1,
 		// so an h1 in the body makes a second one. Code fences are skipped because
 		// a shell comment starts with the same character as a heading.
-		const bodyStart = text.indexOf('\n---\n', 4) + 5;
+		const bodyStart = fmEnd + 5;
 		const bodyOffset = text.slice(0, bodyStart).split('\n').length - 1;
 		const body = text.slice(bodyStart);
 		let fence = null;

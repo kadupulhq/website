@@ -1,32 +1,27 @@
 ---
 title: RRDtool proxy
-description: How Kadupul writes RRD files that live on another machine, the verbs it sends over the wire, and what that changes about remote collection.
+description: Historical reference for the inherited RRDtool proxy client and protocol. Proxy deployment is unsupported.
 banner:
   content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 16
 ---
 
-RRDtool needs a filesystem path. Every `create`, `update`, `fetch`, and `graph` names
-a file, and RRDtool opens it locally. That is fine until the machine running RRDtool is
-not the machine holding the files.
+**Proxy deployment is unsupported. Use local RRDtool storage.** Kadupul does not
+use the Cacti organization's proxy daemon. A Kadupul-owned replacement must be
+established and validated before proxy deployment is documented.
 
-The RRDtool proxy is the answer to that. A daemon runs on the machine holding the RRD
-tree. Kadupul opens a TCP socket to it and sends the RRDtool command line as text
-instead of running RRDtool itself. The daemon runs the command against its own copy of
-the files and sends the output back.
-
-**Kadupul does not use the Cacti organization's proxy daemon.** Use local
-RRDtool storage. The protocol below is historical implementation reference, not
-a supported deployment option. A Kadupul-owned replacement must be established
-and validated before proxy deployment is documented.
+The following socket details describe inherited behavior for historical diagnostics.
+RRDtool opens filesystem paths locally. The inherited proxy client instead sent
+RRDtool command text over TCP to a daemon beside the RRD files and received its
+output. This is not an installation or configuration recommendation.
 
 This page documents the client half only: what Kadupul sends, what it expects back, and
 which settings control it. All of it is read from `lib/rrd.php`, inherited from Cacti
 1.2.x. Nothing here was read from the daemon's source, so where the daemon's behaviour
 is implied rather than observed, the page says so.
 
-## Turning it on
+## Historical configuration
 
 The `storage_location` setting picks the path.
 

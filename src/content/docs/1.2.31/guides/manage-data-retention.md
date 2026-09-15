@@ -2,7 +2,8 @@
 title: Manage data retention
 description: Choose retention and resolution, estimate storage, and plan changes to existing RRD files.
 banner:
-  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 24
 slug: 1.2.31/guides/manage-data-retention

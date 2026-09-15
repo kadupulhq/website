@@ -17,11 +17,12 @@ function fixture(t) {
 		writeFileSync(join(root, path), data);
 	};
 	for (const [locale, config] of Object.entries(locales)) {
-		write(`src/content/i18n/${config.lang}.json`, '{}');
+		write(`src/content/i18n/${config.lang}.json`, JSON.stringify(locale === 'es-419' ? { 'languageSelect.accessibleLabel': 'Idioma', 'search.label': 'Buscar' } : {}));
 		const prefix = locale === 'root' ? '' : `${locale}/`;
 		const t = getMessages(locale);
 		const options = Object.entries(locales).map(([key, value]) => `<option value="/${key === 'root' ? '' : key + '/'}">${value.label}</option>`).join('');
-		const html = `<html lang="${config.lang}" dir="${config.dir || 'ltr'}"><body><select>${options}</select><p>${t.independent}</p><main lang="en" dir="ltr"><span>${t.fallback}</span><h2>${t.reference}</h2></main></body></html>`;
+		const html = `<html lang="${config.lang}" dir="${config.dir || 'ltr'}"><body><span>Idioma</span><span>Buscar</span><select>${options}</select><p>${t.independent}</p><main lang="en" dir="ltr"><span>${t.fallback}</span><h2>${t.reference}</h2></main></body></html>`;
+		write(`dist/${prefix}404/index.html`, html.replace('<body>', '<head><meta charset="utf-8"><meta name="robots" content="noindex, follow"></head><body>'));
 		for (const path of ['index.html', 'project/security/index.html', 'start/install/index.html', '1.2.31/start/install/index.html']) write(`dist/${prefix}${path}`, html);
 	}
 	write('src/i18n/messages.json', JSON.stringify(messages));
@@ -86,7 +87,7 @@ test('locale checks fail clearly before rendering when a configured dictionary i
 test('localized labels, empty options and explicit HTML switch destinations are checked', (t) => {
 	const { root, write } = fixture(t);
 	const path = 'dist/es-419/index.html';
-	write('src/content/i18n/es-419.json', JSON.stringify({ 'search.label': 'Buscar' }));
+	write('src/content/i18n/es-419.json', JSON.stringify({ 'languageSelect.accessibleLabel': 'Idioma', 'search.label': 'Buscar' }));
 	write('dist/manual.html', '<p>Manual</p>');
 	for (const page of ['project/security/index.html', 'start/install/index.html', '1.2.31/start/install/index.html']) {
 		const target = `dist/es-419/${page}`;
@@ -139,4 +140,36 @@ test('locale CLI reports source drift and strict mode rejects stale translations
 test('default locale CLI checks the repository build', () => {
 	const run = spawnSync(process.execPath, [fileURLToPath(new URL('../check-locales.mjs', import.meta.url))], { encoding: 'utf8' });
 	assert.equal(run.status, 0, run.stderr);
+});
+
+
+test('numeric regional labels are required and every explicitly supplied label must be nonempty text', (t) => {
+	const { root, write } = fixture(t);
+	const required = { 'languageSelect.accessibleLabel': 'Idioma', 'search.label': 'Buscar' };
+	for (const key of Object.keys(required)) {
+		const missing = { ...required };
+		delete missing[key];
+		write('src/content/i18n/es-419.json', JSON.stringify(missing));
+		assert.throws(() => checkLocales(root), /Missing or empty interface label/);
+	}
+	write('src/content/i18n/es-419.json', JSON.stringify(required));
+	for (const value of ['', '   ', null, 42]) {
+		write('src/content/i18n/fr.json', JSON.stringify({ 'search.label': value }));
+		assert.throws(() => checkLocales(root), /Missing or empty interface label search.label: fr/);
+	}
+	write('src/content/i18n/fr.json', JSON.stringify({ 'search.label': 'Buscar' }));
+	assert.doesNotThrow(() => checkLocales(root));
+	write('src/content/i18n/fr.json', '{}');
+	assert.doesNotThrow(() => checkLocales(root));
+});
+
+test('rendered localized error pages must contain an exact robots noindex directive', (t) => {
+	const { root, write } = fixture(t);
+	const path = 'dist/fr/404/index.html';
+	for (const meta of ['', '<meta name="robots">', '<meta name="robots" content="index, follow">', '<meta name="robots" content="not-noindex">', '<meta name="googlebot" content="noindex">']) {
+		write(path, `<html><head>${meta}</head><body>Error</body></html>`);
+		assert.throws(() => checkLocales(root), /Error page must include robots noindex: fr/);
+	}
+	write(path, '<html><head><meta name="ROBOTS" content="NOINDEX, FOLLOW"></head><body>Error</body></html>');
+	assert.doesNotThrow(() => checkLocales(root));
 });

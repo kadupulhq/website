@@ -36,7 +36,10 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 		// Check user-supplied interface labels as rendered, including numeric
 		// regions whose framework dictionary fallback may differ from fr-CA.
 		for (const key of ['languageSelect.accessibleLabel', 'search.label']) {
-			if (dictionary[key]) assert.ok(nodes.some((n) => text(n) === dictionary[key]), `Missing localized ${key}: ${path}`);
+			if (locale === 'es-419' || Object.hasOwn(dictionary, key)) {
+				assert.ok(typeof dictionary[key] === 'string' && dictionary[key].trim(), `Missing or empty interface label ${key}: ${locale}`);
+				assert.ok(nodes.some((n) => text(n) === dictionary[key]), `Missing localized ${key}: ${path}`);
+			}
 		}
 		// Language and version switches use option values, not hrefs. Check their
 		// destination routes as well as the anchors checked by check-links.mjs.
@@ -54,6 +57,9 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 
 	assertPage('root', 'index.html');
 	for (const locale of translatedLocales) {
+		const errorPath = `${locale}/404/index.html`;
+		const noindex = elements(read(errorPath)).some((n) => n.tagName === 'meta' && attr(n, 'name')?.toLowerCase() === 'robots' && (attr(n, 'content') || '').toLowerCase().split(/[,\s]+/).includes('noindex'));
+		assert.ok(noindex, `Error page must include robots noindex: ${errorPath}`);
 		assertPage(locale, `${locale}/index.html`);
 		assertPage(locale, `${locale}/project/security/index.html`);
 		for (const version of ['', '1.2.31/']) {

@@ -88,7 +88,7 @@ Looked up, not read through. Precise and scannable.
 - [RRDtool integration](/reference/rrdtool-integration/). Which RRDtool subcommands Kadupul issues, how each command line is assembled and validated, the difference between pipe and per-command execution, and what changes with the configured RRDtool version.
 - [Data query XML](/reference/data-query-xml/). The elements of a data query resource file, the field attributes for SNMP and script queries, and how the parser reads them.
 - [Spine, the C collector](/reference/spine/). What Spine is, how it differs from the PHP collector, the configuration it reads, its threading model, and when it is worth installing.
-- [RRDtool proxy](/reference/rrdproxy/). How Kadupul writes RRD files that live on another machine, the verbs it sends over the wire, and what that changes about remote collection.
+- [RRDtool proxy](/reference/rrdproxy/). Historical reference for the inherited RRDtool proxy client and protocol. Proxy deployment is unsupported.
 - [Plugin hook API](/reference/plugin-hook-api/). The files a plugin must ship, the functions it calls to register itself, the argument and return contract of the two dispatchers, and every hook name the source fires with where it fires and what it passes.
 - [Symptom index](/reference/symptom-index/). A lookup table from what you observe to the page that explains it, so you can find the right documentation without knowing which part of the system is at fault.
 - [Settings](/reference/settings/). Every setting Kadupul stores, grouped by the tab it appears under, with its type and its default.

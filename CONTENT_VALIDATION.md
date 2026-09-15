@@ -38,7 +38,7 @@ in the inspected source. This was a source-text check, not execution of commands
 
 ## Validation and limits
 
-Validation includes type checks, prose checks, 69 regression tests, the static
+Validation includes type checks, prose checks, 72 regression tests, the static
 build, internal links and checks across 22 locales. The i18n collection is now
 populated; the existing overlapping 404 route warning remains. The 105 translated
 summaries and error pages are tracked against English source hashes and await
@@ -75,7 +75,7 @@ The follow-up also excludes localized error pages from the sitemap and adds
 control characters, and rejects missing or incomplete locale dictionaries.
 
 Coverage is measured with V8/c8 across every first-party executable source file,
-including scripts, configuration and the rendered Astro footer. All 69 tests pass
+including scripts, configuration and the rendered Astro footer. All 72 tests pass
 with 100% statements, branches, functions and lines, enforced per file in CI.
 Framework integration boundaries are stubbed in isolated configuration tests;
 the production build exercises the real integrations. The build produced 3,168
@@ -91,7 +91,7 @@ builds first so its CLI integration checks work from a fresh checkout.
 Policy source drift now fails ordinary validation and deployment; non-policy
 translations retain warnings, with strict mode available for all source drift.
 
-Sonar confirmed 100% new-code coverage. Six path-injection reports incorrectly
+Sonar confirmed 100% new-code coverage. The local CLI path-injection reports incorrectly
 assumed an externally exposed command runner: these local maintainer commands
 intentionally accept directory arguments, run with the invoking user's filesystem
 permissions, and receive fixed repository paths in CI. Each report was reviewed
@@ -104,4 +104,12 @@ before the build can regenerate them. Tests cover stale English and translated
 maps, unchanged output after failure, validation ordering, and all 22 locales in
 the frozen policy/error exclusions. The archive status banners and reported
 French-Canadian/Brazilian Portuguese wording were corrected. The full validation
-suite passes with 69 tests and 100% coverage in all four metrics.
+suite passes with 72 tests and 100% coverage in all four metrics.
+
+The next re-review's remaining guard and wording fixes are also addressed:
+required numeric-region interface labels cannot be removed or emptied, rendered
+localized error pages must retain an exact robots `noindex` directive, and the
+prose linter rejects unterminated frontmatter. Regression fixtures cover each
+failure case. The remaining archived banner, Brazilian Portuguese article, and
+historical proxy introduction were corrected. All 72 tests and the complete build,
+link and locale checks pass with 100% coverage in every metric.

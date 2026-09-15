@@ -12,7 +12,7 @@ Esta página é um resumo. Consulte a página completa em inglês para obter mai
 ## O que é o Kadupul
 
 - Um aplicativo PHP fornece a interface e o instalador.
-- O MySQL ou MariaDB armazena a configuração, os usuários e a cache do coletor.
+- O MySQL ou MariaDB armazena a configuração, os usuários e o cache do coletor.
 - Os arquivos RRD guardam medições de acordo com os períodos de retenção e as regras de consolidação configurados. Não conservam todos os dados indefinidamente.
 - Um agendador inicia o coletor. Os scripts de coleta são executados com as permissões da respectiva conta de sistema.
 

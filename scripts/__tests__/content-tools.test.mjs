@@ -136,3 +136,13 @@ test('validation checks committed maps before any command can regenerate them', 
 		assert.ok(steps.indexOf('npm run check:maps') < steps.indexOf('npm run build'));
 	}
 });
+
+
+test('prose validation rejects unterminated frontmatter even with valid title and description', (t) => {
+	const { root, write } = fixture(t);
+	write('broken.md', '---\ntitle: Example\ndescription: Example description\n');
+	assert.deepEqual(lintProse(root), ['broken.md:1  unterminated frontmatter']);
+	const result = run('lint-prose', [root]);
+	assert.equal(result.status, 1);
+	assert.match(result.stderr, /unterminated frontmatter/);
+});
