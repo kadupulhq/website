@@ -2,7 +2,9 @@
 
 Weblate adoption is tracked in [issue #3](https://github.com/kadupulhq/website/issues/3).
 The repository preparation currently covers site labels. A Weblate instance has
-not been selected or connected. Interface strings, documentation summaries,
+not been provisioned or connected. DigitalOcean self-hosting is selected; the
+[deployment files](infrastructure/weblate/README.md) are prepared, with account,
+DNS and email details pending. Interface strings, documentation summaries,
 regional inheritance and automatic review-history export remain pending. Do not
 treat this preparation as completion of the issue or as evidence of fluent review.
 
@@ -42,7 +44,7 @@ connecting Weblate; syntax validation alone does not establish review provenance
 
 ## Connect Weblate
 
-After the project owner selects an instance, create a Kadupul website project
+After provisioning the DigitalOcean instance, create a Kadupul website project
 with translation review enabled and restrict approval permission to reviewers.
 Record its actual URL here after testing it. Use the instance's GitHub integration
 with access limited to this repository, and configure the first component:
