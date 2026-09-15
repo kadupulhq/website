@@ -2,7 +2,8 @@
 
 Status: server provisioned in the owner-selected Relenz DigitalOcean team;
 Weblate is deployed at `https://translate.kadupul.net`; outgoing email is
-intentionally disabled. Repository synchronization remains pending.
+intentionally disabled. GitHub App repository access and a test push/PR round
+trip are verified; production editing activation follows the setup PR merge.
 The separate Kadupul project is `2d803cfc-9618-4830-9627-9a6c206d7ada`.
 The hostname is `translate.kadupul.net`. DNS uses the Cloudflare proxy, with origin `64.23.171.186`. The owner chose to defer email configuration.
 

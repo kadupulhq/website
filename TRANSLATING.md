@@ -5,9 +5,11 @@ The repository preparation currently covers site labels. The DigitalOcean server
 is provisioned in the Relenz team and Weblate is deployed at
 `https://translate.kadupul.net`, with email intentionally disabled. See the
 [deployment status and files](infrastructure/weblate/README.md). Repository
-synchronization remains pending. The [site-label component](https://translate.kadupul.net/projects/kadupul/site/)
-has imported 330 units across 22 catalogs. It is locked with automatic pushes
-disabled until GitHub App authorization and a synchronization test complete.
+synchronization is connected through the Kadupul Translations GitHub App, scoped
+to `kadupulhq/website`. The [site-label component](https://translate.kadupul.net/projects/kadupul/site/)
+has imported 330 units across 22 catalogs. A test push and pull request completed
+successfully; see [test PR #5](https://github.com/kadupulhq/website/pull/5), closed
+without merging after restoring the unchanged translation text.
 Interface strings, documentation summaries,
 regional inheritance and automatic review-history export remain pending. Do not
 treat this preparation as completion of the issue or as evidence of fluent review.
@@ -51,15 +53,19 @@ still requires review in Git.
 
 The Kadupul project and site-label component are created, with translation review
 enabled. All imported units are translated, not approved; no fluent review is
-claimed. The component currently reads `feat/weblate-translation-workflow`, where
-the catalogs exist, and remains locked. Switch its source branch to `main` after
-this preparation PR merges; do not enable editing against the temporary branch.
+claimed. The component must read `main` before editing is enabled. During the
+initial setup it read the preparation branch and remained locked; switching to
+`main` and unlocking is the post-merge activation step.
 
 Register the instance's GitHub App at `/manage/integrations/register/` and install
 it only for `kadupulhq/website`. Give it Contents and Pull requests read/write and
 Metadata read; remove the registration defaults for Workflows write and
 organization administration read. Use the managed App installation, not a
-maintainer's account-wide CLI token. App authorization is pending.
+maintainer's account-wide CLI token. App `kadupul-translations` (ID `4957563`) and
+installation `162017500` are connected. Repository selection was verified through
+the GitHub API. The installation currently retains the upstream default Workflows
+write and organization administration read permissions; these are unnecessary for
+site-label synchronization and should be removed in the App settings.
 
 The intended production settings for the first component are:
 
@@ -69,7 +75,7 @@ The intended production settings for the first component are:
 | Source repository | `https://github.com/kadupulhq/website.git` |
 | Source branch | `main` |
 | Version control system | GitHub App, with pull-request synchronization |
-| Push branch | `translations/weblate` |
+| Push branch | `weblate-kadupul-site` (managed by the GitHub App backend) |
 | File mask | `translations/site/*.json` |
 | Monolingual base file | `translations/site/en.json` |
 | Source language | English (`en`) |
@@ -139,8 +145,9 @@ glossary component remain work for issue #3.
 
 ## Remaining acceptance work
 
-- Complete GitHub App authorization and synchronize through a translation PR.
-  All 22 site-catalog language mappings have been verified, including
+- Complete the human translation/review/export round trip; GitHub App transport
+  was tested in PR #5 without claiming fluent review. All 22 site-catalog language
+  mappings have been verified, including
   `es-419 → es_419`, `fr-ca → fr_CA`, `pt-pt → pt_PT`, `pt-br → pt_BR` and
   `zh-cn → zh_Hans`.
 - Migrate interface/version/search strings with an explicit English source.
