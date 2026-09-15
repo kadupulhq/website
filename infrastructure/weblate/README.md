@@ -14,7 +14,8 @@ The hostname is `translate.kadupul.net`. DNS uses the Cloudflare proxy, with ori
 - SSH: `kadupul-admin` using the owner's existing `m3 laptop` key; root SSH,
   password and keyboard-interactive login disabled. Sudo access verified. Update both allowlists if the administrator's public IP changes.
 - Daily backup policy confirmed: 08:00–12:00 UTC window, seven-day retention.
-  First backup and restore validation are pending.
+  First Droplet backup completed at 2026-09-15 08:28 UTC (ID `245565731`).
+  Full Droplet restore validation remains pending.
 - Cloud-init completed successfully; user-data schema validated. Docker and the
   DigitalOcean monitoring agent are active. Alert policies remain pending.
 - Configuration is at `/opt/kadupul-weblate`; secrets are in the root-only
@@ -31,7 +32,7 @@ The hostname is `translate.kadupul.net`. DNS uses the Cloudflare proxy, with ori
 | Project | Separate Kadupul project in the selected team |
 | Droplet | `kadupul-weblate-01`, Ubuntu 24.04 LTS, `sfo3` |
 | Size | `s-2vcpu-4gb`: 2 vCPUs, 4 GB RAM, 80 GB SSD |
-| Backups | Daily DigitalOcean backups and Weblate's daily database dump |
+| Backups | Daily DigitalOcean backups and an explicit daily database-dump timer |
 | Monitoring | DigitalOcean monitoring agent; disk, memory and health alerts |
 | Network | TCP 80/443 public; TCP 22 restricted to administrator IPs in the cloud firewall |
 | DNS | A record `translate.kadupul.net` pointing to the new Droplet |
@@ -146,12 +147,42 @@ an authorized message is received.
 
 ## Backups and restore validation
 
-Weblate's scheduler writes a daily native PostgreSQL dump to
-`/app/data/backups/database.sql`. Verify that it exists, is nonempty and remains
-fresh after the first scheduled run. The Docker data volumes, deployment `.env`
-and root-only secrets directory must all be included in the daily Droplet backup.
-Check that DigitalOcean records a successful backup; enabling the policy is not
-proof that a backup exists.
+The deployed `kadupul-weblate-backup.timer` runs at 07:00 UTC each day, before
+the 08:00–12:00 UTC Droplet backup window. `Persistent=true` catches a missed run
+after downtime. Its service runs `backup-database.sh` as root and records success
+or failure in the systemd journal. The script creates a PostgreSQL custom-format
+dump, validates its archive listing, then atomically installs the completed file
+under `/var/backups/kadupul-weblate/database-<UTC timestamp>.dump` with mode 0600.
+Only after success does it prune completed dumps older than seven days. Failed
+runs preserve previous dumps. Passwords never appear in process arguments.
+
+Install the script under `/opt/kadupul-weblate` with owner root and mode 0644.
+Install the supplied `.service` and `.timer` files under `/etc/systemd/system`,
+also root-owned 0644, then run:
+
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable --now kadupul-weblate-backup.timer
+sudo systemctl start kadupul-weblate-backup.service
+sudo systemctl show kadupul-weblate-backup.service -p Result -p ExecMainStatus
+sudo systemctl list-timers kadupul-weblate-backup.timer
+sudo journalctl -u kadupul-weblate-backup.service
+```
+
+The first service run succeeded. Its dump was restored into a separate temporary
+database, reproducing 330 translation units and two components; the temporary
+database was then removed. This database-only test does not replace full Droplet
+recovery testing. Failure, cleanup, retention and file-permission checks also
+passed with isolated fixtures. Check for a successful run and a nonempty dump
+less than 26 hours old during operational checks; outward failure notifications
+remain pending while email is disabled. The timer's presence alone is not proof
+of a successful backup. The Docker volumes, deployment `.env`, root-only secrets
+and database dumps are covered by the whole-Droplet backup.
+
+`WEBLATE_DATABASE_BACKUP=plain` selects Weblate's own on-demand dump format; it
+is not relied upon to schedule daily backups. The on-demand
+`/app/data/backups/database.sql` was verified separately. DigitalOcean's first
+backup completed, but the complete restore test remains pending.
 
 Before relying on backups, restore one to an isolated recovery Droplet with
 restricted networking. Keep the restored Weblate application stopped while
@@ -164,7 +195,8 @@ testing and recovery Droplet costs are not included in the base monthly estimate
 
 For a logical restore into a fresh PostgreSQL instance, use the matching pinned
 Compose version, restore the saved Weblate data volume and original secrets,
-and load `database.sql` with `psql --set ON_ERROR_STOP=on` before starting Weblate.
+and load a scheduled `.dump` using `pg_restore --exit-on-error` before starting
+Weblate. For an on-demand plain `database.sql`, use `psql --set ON_ERROR_STOP=on`.
 Preserve Weblate data ownership (UID 1000). Do not replace a live database or remove
 production volumes while testing recovery. A working GitHub repository alone does
 not recover Weblate accounts, suggestions or review history.
