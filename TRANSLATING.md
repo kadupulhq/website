@@ -63,9 +63,10 @@ Metadata read; remove the registration defaults for Workflows write and
 organization administration read. Use the managed App installation, not a
 maintainer's account-wide CLI token. App `kadupul-translations` (ID `4957563`) and
 installation `162017500` are connected. Repository selection was verified through
-the GitHub API. The installation currently retains the upstream default Workflows
-write and organization administration read permissions; these are unnecessary for
-site-label synchronization and should be removed in the App settings.
+the GitHub API. Both the App and installation now grant only Contents and Pull
+requests read/write plus Metadata read. The upstream default Workflows write and
+organization administration read permissions were removed, the old cached token
+revoked, and repository access verified with a fresh token.
 
 The intended production settings for the first component are:
 
