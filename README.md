@@ -107,7 +107,7 @@ the reader is trying to do:
 | `guides/` | "Help me do this specific thing" |
 | `concepts/` | "Help me understand why" |
 | `reference/` | "Tell me exactly", looked up, never read through |
-| `project/` | Status, license, and scope of the Cacti compatibility promise |
+| `project/` | Status, license, and scope of the Cacti compatibility goals |
 
 Mixing these is the usual reason documentation feels unusable. A reference page that
 explains its reasoning is slow to look things up in, and a tutorial that lists every
