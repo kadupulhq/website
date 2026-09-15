@@ -1,0 +1,530 @@
+{
+  "scope": "Site labels only; excludes interface strings, documentation summaries and full manual coverage.",
+  "locales": {
+    "zh-cn": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "hi": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "es": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "ar": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "fr": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "de": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "ja": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "es-419": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "fr-ca": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "sw": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "ha": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "pt-pt": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "pt-br": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "yo": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "it": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "ko": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "id": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "nl": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "pl": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "bn": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    },
+    "si": {
+      "counts": {
+        "missing": 0,
+        "draft": 15,
+        "needs-update": 0,
+        "reviewed": 0
+      },
+      "units": {
+        "map": "draft",
+        "start": "draft",
+        "overview": "draft",
+        "install": "draft",
+        "device": "draft",
+        "graph": "draft",
+        "guides": "draft",
+        "concepts": "draft",
+        "reference": "draft",
+        "project": "draft",
+        "docsLicense": "draft",
+        "codeLicense": "draft",
+        "independent": "draft",
+        "mapDescription": "draft",
+        "fallback": "draft"
+      }
+    }
+  }
+}

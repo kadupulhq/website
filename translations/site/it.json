@@ -1,0 +1,17 @@
+{
+  "map": "Mappa della documentazione",
+  "start": "Primi passi",
+  "overview": "Che cos’è Kadupul",
+  "install": "Installazione",
+  "device": "Aggiungere il primo dispositivo",
+  "graph": "Interpretare il primo grafico",
+  "guides": "Guide pratiche",
+  "concepts": "Concetti",
+  "reference": "Riferimento",
+  "project": "Progetto",
+  "docsLicense": "Licenza della documentazione:",
+  "codeLicense": "Licenza del codice del sito:",
+  "independent": "Kadupul non è affiliato a The Cacti Group né approvato dal gruppo.",
+  "mapDescription": "Esplora la documentazione per argomento.",
+  "fallback": "Le pagine non ancora tradotte vengono mostrate in inglese con un avviso."
+}

@@ -1,0 +1,17 @@
+{
+  "map": "Ramani ya nyaraka",
+  "start": "Anza hapa",
+  "overview": "Kadupul ni nini",
+  "install": "Usakinishaji",
+  "device": "Ongeza kifaa chako cha kwanza",
+  "graph": "Soma grafu yako ya kwanza",
+  "guides": "Miongozo ya matumizi",
+  "concepts": "Dhana",
+  "reference": "Marejeo",
+  "project": "Mradi",
+  "docsLicense": "Leseni ya nyaraka:",
+  "codeLicense": "Leseni ya msimbo wa tovuti:",
+  "independent": "Kadupul haihusiani na The Cacti Group wala haijaidhinishwa nayo.",
+  "mapDescription": "Vinjari nyaraka kwa mada.",
+  "fallback": "Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa."
+}

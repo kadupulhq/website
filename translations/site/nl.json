@@ -1,0 +1,17 @@
+{
+  "map": "Documentatieoverzicht",
+  "start": "Aan de slag",
+  "overview": "Wat is Kadupul",
+  "install": "Installatie",
+  "device": "Het eerste apparaat toevoegen",
+  "graph": "De eerste grafiek lezen",
+  "guides": "Handleidingen",
+  "concepts": "Concepten",
+  "reference": "Naslagwerk",
+  "project": "Project",
+  "docsLicense": "Licentie van de documentatie:",
+  "codeLicense": "Licentie van de websitecode:",
+  "independent": "Kadupul is niet verbonden aan of goedgekeurd door The Cacti Group.",
+  "mapDescription": "Bekijk de documentatie per onderwerp.",
+  "fallback": "Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven."
+}

@@ -28,6 +28,9 @@ Coverage measures executed code, not translation quality or completeness.
 
 ## Languages
 
+See [the translation workflow](TRANSLATING.md) for site catalogs, per-string
+review tracking and the pending Weblate setup.
+
 English keeps its existing URLs. The site offers 22 locale options:
 
 | Language | URL prefix | Language tag |
@@ -71,7 +74,7 @@ of the reference manual.
 - Edit translated Markdown under `src/content/docs/<locale>/`, using the same
   paths as English pages. Keep command names, settings and filenames unchanged.
 - Configure locales in `src/i18n/locales.mjs`, edit site labels in
-  `src/i18n/messages.json`, and edit interface/version notices in
+  `translations/site/<locale>.json`, run `npm run translations:build`, and edit interface/version notices in
   `src/content/i18n/<language>.json`. Use the exact language tag above for JSON
   filenames, including region capitalization. Numeric `es-419` has an explicit
   Spanish interface dictionary; the framework does not supply that fallback.

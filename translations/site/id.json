@@ -1,0 +1,17 @@
+{
+  "map": "Peta dokumentasi",
+  "start": "Mulai di sini",
+  "overview": "Apa itu Kadupul",
+  "install": "Instalasi",
+  "device": "Tambahkan perangkat pertama",
+  "graph": "Baca grafik pertama",
+  "guides": "Panduan penggunaan",
+  "concepts": "Konsep",
+  "reference": "Referensi",
+  "project": "Proyek",
+  "docsLicense": "Lisensi dokumentasi:",
+  "codeLicense": "Lisensi kode situs:",
+  "independent": "Kadupul tidak berafiliasi dengan atau mendapat dukungan resmi dari The Cacti Group.",
+  "mapDescription": "Jelajahi dokumentasi menurut topik.",
+  "fallback": "Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberitahuan."
+}
