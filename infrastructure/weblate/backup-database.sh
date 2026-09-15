@@ -5,6 +5,16 @@ umask 077
 cd /opt/kadupul-weblate
 backup_dir=/var/backups/kadupul-weblate
 install -d -m 0700 "$backup_dir"
+# Docker can be active before PostgreSQL is ready after a reboot.
+attempt=0
+until /usr/bin/docker compose exec -T database pg_isready -U weblate -d weblate </dev/null >/dev/null 2>&1; do
+    attempt=$((attempt + 1))
+    if [ "$attempt" -ge 60 ]; then
+        printf 'Database was not ready after 60 attempts; previous backups retained.\n' >&2
+        exit 1
+    fi
+    sleep 5
+done
 backup_file="$backup_dir/database-$(date -u +%Y%m%dT%H%M%SZ).dump"
 backup_temp=$(mktemp "$backup_dir/.database-XXXXXX")
 trap 'rm -f "$backup_temp"' EXIT HUP INT TERM

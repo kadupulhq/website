@@ -150,7 +150,9 @@ an authorized message is received.
 
 The deployed `kadupul-weblate-backup.timer` runs at 07:00 UTC each day, before
 the 08:00–12:00 UTC Droplet backup window. `Persistent=true` catches a missed run
-after downtime. Its service runs `backup-database.sh` as root and records success
+after downtime. Before dumping, the script waits up to five minutes for
+PostgreSQL readiness (60 attempts at five-second intervals); a startup failure
+retains existing backups and leaves a failed service result. Its service runs `backup-database.sh` as root and records success
 or failure in the systemd journal. The script creates a PostgreSQL custom-format
 dump, validates its archive listing, then atomically installs the completed file
 under `/var/backups/kadupul-weblate/database-<UTC timestamp>.dump` with mode 0600.
