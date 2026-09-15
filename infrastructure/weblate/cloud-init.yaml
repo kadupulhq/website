@@ -1,4 +1,5 @@
 #cloud-config
+# Replace ADMIN_SSH_CIDR and ADMIN_SSH_PUBLIC_KEY before provisioning.
 # No credentials belong in user-data: DigitalOcean retains it as metadata.
 package_update: true
 package_upgrade: true
@@ -8,7 +9,15 @@ packages:
   - unattended-upgrades
   - ufw
 ssh_pwauth: false
-disable_root: false
+disable_root: true
+users:
+  - name: kadupul-admin
+    groups: [sudo]
+    shell: /bin/bash
+    lock_passwd: true
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - ADMIN_SSH_PUBLIC_KEY
 write_files:
   - path: /etc/ssh/sshd_config.d/00-kadupul.conf
     owner: root:root
@@ -16,7 +25,7 @@ write_files:
     content: |
       PasswordAuthentication no
       KbdInteractiveAuthentication no
-      PermitRootLogin prohibit-password
+      PermitRootLogin no
       X11Forwarding no
   - path: /etc/apt/apt.conf.d/52kadupul-security
     owner: root:root
@@ -31,7 +40,7 @@ runcmd:
   - [systemctl, reload, ssh]
   - [ufw, default, deny, incoming]
   - [ufw, default, allow, outgoing]
-  - [ufw, allow, OpenSSH]
+  - [ufw, allow, from, ADMIN_SSH_CIDR, to, any, port, "22", proto, tcp]
   - [ufw, allow, "80/tcp"]
   - [ufw, allow, "443/tcp"]
   - [ufw, --force, enable]

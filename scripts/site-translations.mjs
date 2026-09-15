@@ -62,7 +62,7 @@ export function unitState(source, target, review) {
 }
 
 export function buildSiteTranslations(root, { check = false } = {}) {
-	const catalogFiles = readdirSync(join(root, 'translations/site')).filter((name) => name.endsWith('.json')).sort((a, b) => a.localeCompare(b));
+	const catalogFiles = readdirSync(join(root, 'translations/site')).filter((name) => /\.json$/i.test(name)).sort((a, b) => a.localeCompare(b));
 	assert.deepEqual(catalogFiles, ['en', ...translatedLocales].map((locale) => `${locale}.json`).sort((a, b) => a.localeCompare(b)), 'Catalog filenames must match the supported lowercase locale keys');
 	const read = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
 	const source = read('translations/site/en.json');

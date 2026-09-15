@@ -1,11 +1,26 @@
 # DigitalOcean Weblate deployment
 
-Status: prepared locally, not provisioned. The active DigitalOcean team is Relenz;
-the owner must identify the team for Kadupul before creating paid resources.
-The proposed hostname is `translate.kadupul.org`. Its authoritative DNS is outside
-DigitalOcean (Squarespace/NS1). The SMTP service and verified sender are pending.
+Status: server provisioned in the owner-selected Relenz DigitalOcean team;
+Weblate startup and integration are pending DNS and email configuration.
+The separate Kadupul project is `2d803cfc-9618-4830-9627-9a6c206d7ada`.
+The proposed hostname is `translate.kadupul.net`. DNS uses the Cloudflare proxy; verify its origin points to `64.23.171.186`. The SMTP service and verified sender are pending.
 
-## Proposed resources
+## Provisioned server
+
+- Droplet: `kadupul-weblate-01`, ID `600537369`, IPv4 `64.23.171.186`.
+- Cloud firewall: `f33c3d71-c246-45f8-a8a1-96a8db96bce2`, dedicated tag
+  `kadupul-weblate`. Cloud and host SSH rules use the same administrator IP.
+- SSH: `kadupul-admin` using the owner's existing `m3 laptop` key; root SSH,
+  password and keyboard-interactive login disabled. Sudo access verified. Update both allowlists if the administrator's public IP changes.
+- Daily backup policy confirmed: 08:00–12:00 UTC window, seven-day retention.
+  First backup and restore validation are pending.
+- Cloud-init completed successfully; user-data schema validated. Docker and the
+  DigitalOcean monitoring agent are active. Alert policies remain pending.
+- Configuration staged at `/opt/kadupul-weblate`; no production secrets installed.
+  No application containers started and no email sent.
+- Required DNS record: `translate.kadupul.net A 64.23.171.186`.
+
+## Resource plan
 
 | Resource | Configuration |
 | --- | --- |
@@ -15,13 +30,12 @@ DigitalOcean (Squarespace/NS1). The SMTP service and verified sender are pending
 | Backups | Daily DigitalOcean backups and Weblate's daily database dump |
 | Monitoring | DigitalOcean monitoring agent; disk, memory and health alerts |
 | Network | TCP 80/443 public; TCP 22 restricted to administrator IPs in the cloud firewall |
-| DNS | A record `translate.kadupul.org` pointing to the new Droplet |
+| DNS | A record `translate.kadupul.net` pointing to the new Droplet |
 
 The checked account currently offers this size at $24/month. Basic daily backups
 add 30%, for $31.20/month before tax, email service fees and any usage overages.
 No managed database, load balancer, extra volume or paid AI provider is required
-for the initial deployment. Account selection is pending; no resource IDs or live
-URL are recorded because no server has been created.
+for the initial deployment. The hostname is not live yet; DNS and email configuration remain pending.
 
 ## Configuration
 
@@ -32,9 +46,10 @@ The database and cache are on an internal network without published ports.
 Check that `172.30.91.0/24` does not conflict with the selected host's networks.
 
 Keep this deployment directory on the server at `/opt/kadupul-weblate`. Copy
-`.env.example` to `.env` there and replace its non-secret settings. SMTP currently
-expects STARTTLS on port 587; adjust both TLS flags if the chosen provider needs
-implicit TLS. Store passwords in `/etc/kadupul-weblate/secrets`, outside Git:
+`.env.example` to `.env` there and replace its non-secret settings. SMTP expects STARTTLS on an explicitly selected provider-supported port.
+DigitalOcean blocks ports 25, 465 and 587. The example uses 2525; verify that the
+chosen provider supports STARTTLS there, or configure its supported alternative.
+Do not deploy the example SMTP hostname or assume email delivery works. Store passwords in `/etc/kadupul-weblate/secrets`, outside Git:
 
 - `db_password`: a generated database password shared by PostgreSQL and Weblate.
 - `admin_password`: a generated initial administrator password.
@@ -61,7 +76,12 @@ treated as sensitive. Registrations remain closed during setup.
    allow TCP 22 only from administrator IP ranges, and allow required outbound
    traffic. Do not attach it to existing unrelated Droplets.
 3. Create the Droplet in that project with the selected SSH key, monitoring,
-   daily backups and `cloud-init.yaml`. The cloud-init file contains no secrets.
+   daily backups and a rendered copy of `cloud-init.yaml`. Replace the literal
+   `ADMIN_SSH_CIDR` with the same administrator CIDR used by the cloud firewall
+   and `ADMIN_SSH_PUBLIC_KEY` with the owner's public SSH key (never the private
+   key) before passing the file as user-data. Never pass the unrendered template.
+   The cloud-init file contains no secrets. If the administrator IP changes,
+   update both firewall allowlists through an existing SSH session or the console.
 4. Wait for `cloud-init status --wait` to succeed. Confirm SSH key access,
    firewall rules, Docker startup, disk capacity, memory and backup policy.
 5. Transfer the deployment configuration and install secrets through the
@@ -111,11 +131,19 @@ not recover Weblate accounts, suggestions or review history.
 
 ## Validation and upgrades
 
+The pinned Weblate image's `/app/bin/start` loads `POSTGRES_PASSWORD_FILE`,
+`WEBLATE_ADMIN_PASSWORD_FILE` and `WEBLATE_EMAIL_HOST_PASSWORD_FILE` before
+initializing the application. This was verified directly in the pinned image;
+the file settings are handled by the entrypoint, not Django's settings module.
+The password-file mounts are therefore supported without a custom wrapper.
+
+
 `docker compose --env-file .env.example config --quiet` validates the Compose
 model without real credentials. Proxy configuration can be checked using the
 pinned Caddy image with `caddy adapt --validate`. Cloud-init YAML parsing alone
 does not prove that Ubuntu provisioning succeeds; record the cloud-init result
-on the actual host. No live deployment or restore test has run yet.
+on the actual host. The server provisioning check passed; the application
+deployment and restore test have not run yet.
 
 Update image digests deliberately, after taking a backup and testing the new
 version. A PostgreSQL major-version change requires a planned database migration;
@@ -126,4 +154,5 @@ and schedule restarts.
 Sources: [Weblate Docker installation](https://docs.weblate.org/en/latest/admin/install/docker.html),
 [Weblate backups](https://docs.weblate.org/en/latest/admin/backup.html),
 [DigitalOcean server pricing](https://www.digitalocean.com/pricing/droplets),
-and [DigitalOcean backup pricing](https://docs.digitalocean.com/products/backups/details/pricing/).
+[DigitalOcean backup pricing](https://docs.digitalocean.com/products/backups/details/pricing/),
+and [DigitalOcean SMTP restrictions](https://docs.digitalocean.com/support/why-is-smtp-blocked/).

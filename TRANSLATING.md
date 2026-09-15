@@ -1,10 +1,10 @@
 # Translation workflow
 
 Weblate adoption is tracked in [issue #3](https://github.com/kadupulhq/website/issues/3).
-The repository preparation currently covers site labels. A Weblate instance has
-not been provisioned or connected. DigitalOcean self-hosting is selected; the
-[deployment files](infrastructure/weblate/README.md) are prepared, with account,
-DNS and email details pending. Interface strings, documentation summaries,
+The repository preparation currently covers site labels. The DigitalOcean server
+is provisioned in the Relenz team; Weblate is not running or connected yet. See
+the [deployment status and files](infrastructure/weblate/README.md). DNS and email
+details remain pending. Interface strings, documentation summaries,
 regional inheritance and automatic review-history export remain pending. Do not
 treat this preparation as completion of the issue or as evidence of fluent review.
 

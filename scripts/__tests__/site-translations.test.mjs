@@ -109,7 +109,7 @@ test('catalog discovery rejects mistyped and unsupported JSON filenames, includi
 	renameSync(join(root, 'translations/site/fr-ca.json'), join(root, 'translations/site/fr-CA.json'));
 	assert.throws(() => buildSiteTranslations(root), /Catalog filenames/);
 	renameSync(join(root, 'translations/site/fr-CA.json'), join(root, 'translations/site/fr-ca.json'));
-	for (const name of ['unknown.json', 'reviews.json']) {
+	for (const name of ['unknown.json', 'reviews.json', 'unknown.JSON', 'reviews.Json']) {
 		write(`translations/site/${name}`, {});
 		assert.throws(() => buildSiteTranslations(root), /Catalog filenames/);
 		rmSync(join(root, 'translations/site', name));
