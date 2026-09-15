@@ -10,7 +10,7 @@ import { translatedLocales } from '../../src/i18n/locales.mjs';
 
 const source = 'Kadupul documentation';
 const target = 'Documentation Kadupul';
-const review = { sourceSha256: hash(source), targetSha256: hash(target), state: 'reviewed', reviewer: 'fluent-reviewer', reviewedAt: '2026-09-14T12:00:00Z', reviewUrl: 'https://weblate.example/changes/1/' };
+const review = { sourceSha256: hash(source), targetSha256: hash(target), state: 'reviewed', reviewer: 'fluent-reviewer', reviewedAt: '2026-09-14T12:00:00Z', reviewUrl: 'https://translate.kadupul.net/changes/' };
 const run = (args) => spawnSync(process.execPath, [fileURLToPath(new URL('../site-translations.mjs', import.meta.url)), ...args], { encoding: 'utf8' });
 
 test('catalog validation accepts missing translations but protects keys, markup, placeholders and product names', () => {
@@ -52,7 +52,7 @@ test('review states cannot survive changes to their source or target', () => {
 	}
 	for (const reviewer of [undefined, '']) assert.throws(() => unitState(source, target, { ...review, reviewer }), /reviewer/);
 	for (const reviewedAt of [undefined, '', '2026-02-30T12:00:00Z', '2026-13-01T12:00:00Z']) assert.throws(() => unitState(source, target, { ...review, reviewedAt }), /review date/);
-	for (const reviewUrl of [undefined, '', 'https://?', 'http://weblate.example/changes/1/', 'https://weblate.example/a b', 'https://user@weblate.example/', 'https://:password@weblate.example/']) assert.throws(() => unitState(source, target, { ...review, reviewUrl }), /history URL/);
+	for (const reviewUrl of [undefined, '', 'https://?', 'https://example.com/changes/', 'https://translate.kadupul.net/not-history', 'https://translate.kadupul.net:444/changes/', 'http://translate.kadupul.net/changes/', 'https://weblate.example/a b', 'https://user@translate.kadupul.net/changes/', 'https://:password@translate.kadupul.net/changes/']) assert.throws(() => unitState(source, target, { ...review, reviewUrl }), /history URL/);
 });
 
 function fixture(t) {

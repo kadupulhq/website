@@ -88,19 +88,24 @@ treated as sensitive. Registrations remain closed during setup.
    update both firewall allowlists through an existing SSH session or the console.
 4. Wait for `cloud-init status --wait` to succeed. Confirm SSH key access,
    firewall rules, Docker startup, disk capacity, memory and backup policy.
-5. Transfer the deployment configuration and install secrets through the
-   authenticated SSH session. Use the owner's existing secret store as the source
+5. Stage non-secret deployment files in `/home/kadupul-admin`, then use
+   `sudo install -o root -g root -m 0644` to install them under
+   `/opt/kadupul-weblate` (use mode 0600 for `.env`). Send generated secrets
+   through SSH standard input to a privileged installer with `sudo`; write them
+   directly inside `/etc/kadupul-weblate/secrets`, without staging plaintext
+   secrets in the user home directory. Keep that directory root-owned 0700 and
+   secret files root-owned 0444. Use the owner's existing secret store as the source
    for external credentials. Generate the database and bootstrap admin passwords
    without printing them.
 6. Have the DNS owner create the A record. Check its public resolution and any
    inherited CAA restrictions before requesting the HTTPS certificate.
-7. From `/opt/kadupul-weblate`, run `docker compose config --quiet`,
-   `docker compose pull`, and for the first start only,
-   `docker compose -f compose.yaml -f compose.bootstrap.yaml up -d`. After verifying
-   admin access, run `docker compose -f compose.yaml up -d` to remove the bootstrap
+7. From `/opt/kadupul-weblate`, run `sudo docker compose config --quiet`,
+   `sudo docker compose pull`, and for the first start only,
+   `sudo docker compose -f compose.yaml -f compose.bootstrap.yaml up -d`. After verifying
+   admin access, run `sudo docker compose -f compose.yaml up -d` to remove the bootstrap
    password mount and prevent password resets on future restarts. Do not print rendered Compose
    configuration after adding secrets through any local overrides.
-8. Validate HTTPS, administrator login and `docker compose exec --user weblate
+8. Validate HTTPS, administrator login and `sudo docker compose exec --user weblate
    weblate weblate check --deploy`. Resolve actionable failures before inviting
    contributors. Do not silence deployment checks merely to obtain a clean result.
 9. Email is disabled for the initial deployment. When enabled later, verify the
@@ -128,7 +133,7 @@ The default upstream silenced-check list was not changed.
 
 The base stack uses `django.core.mail.backends.dummy.EmailBackend`. To enable
 email, configure the SMTP variables from `.env.example`, install `smtp_password`
-and use `docker compose -f compose.yaml -f compose.smtp.yaml up -d`. Verify a
+and use `sudo docker compose -f compose.yaml -f compose.smtp.yaml up -d`. Verify a
 provider-supported STARTTLS port and sender; do not add the bootstrap override.
 Ask the owner before sending a test message. Delivery remains unverified until
 an authorized message is received.
@@ -166,8 +171,10 @@ initializing the application. This was verified directly in the pinned image;
 the file settings are handled by the entrypoint, not Django's settings module.
 The password-file mounts are therefore supported without a custom wrapper.
 
-`docker compose --env-file .env.example config --quiet` validates the Compose
-model without real credentials. Proxy configuration can be checked using the
+`sudo docker compose --env-file .env.example config --quiet` validates the Compose
+model without real credentials. Local model-only validation can omit `sudo`;
+operational commands on the server require it because `kadupul-admin` is not in
+the Docker group. Proxy configuration can be checked using the
 pinned Caddy image with `caddy adapt --validate`. Cloud-init YAML parsing alone
 does not prove that Ubuntu provisioning succeeds; record the cloud-init result
 on the actual host. Server provisioning, application health, HTTPS and admin

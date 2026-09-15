@@ -17,7 +17,7 @@ function validateReviewUrl(value) {
 	const message = 'Reviewed units require an absolute HTTPS Weblate history URL without credentials';
 	assert.ok(typeof value === 'string' && URL.canParse(value) && !/\s/u.test(value), message);
 	const url = new URL(value);
-	assert.ok(url.protocol === 'https:' && !url.username && !url.password, message);
+	assert.ok(url.origin === 'https://translate.kadupul.net' && url.pathname === '/changes/' && !url.username && !url.password, message);
 }
 
 /** Site labels are plain text; framework HTML translations use a different component. */

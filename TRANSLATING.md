@@ -39,9 +39,10 @@ An eventual reviewed entry also requires a reviewer identity, UTC timestamp
 audit record reviewed in Git, not cryptographic proof of human approval. Until
 Weblate review export is connected and tested, keep every entry draft. AI output
 must remain draft or a suggestion; only a fluent reviewer may approve it.
-Current URL validation checks absolute HTTPS syntax and rejects embedded
-credentials. Restrict the host and history path to the actual instance when
-connecting Weblate; syntax validation alone does not establish review provenance.
+Review URLs must use `https://translate.kadupul.net/changes/` and cannot contain
+credentials or a nonstandard port. Query parameters can select the relevant
+history. URL validation alone does not prove human approval; the exported record
+still requires review in Git.
 
 ## Connect Weblate
 
