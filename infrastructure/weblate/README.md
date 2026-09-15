@@ -47,6 +47,12 @@ The Compose stack uses immutable image digests verified from the registries:
 Weblate 2026.9.1.0, PostgreSQL 18, Valkey 9.1.2 and Caddy 2.11.4. Caddy terminates
 HTTPS. Weblate has no published port; it trusts only Caddy's fixed container IP.
 The database and cache are on an internal network without published ports.
+Origin HTTPS remains publicly reachable, including directly by IP with the
+correct hostname. Cloudflare currently provides DNS/proxy service, not an access
+control boundary: Weblate itself enforces authentication and permissions. No
+Cloudflare-only access or WAF protection is claimed. If such controls are added,
+restrict origin ingress to Cloudflare or require authenticated origin connections
+before relying on them.
 Check that `172.30.91.0/24` does not conflict with the selected host's networks.
 
 Keep this deployment directory on the server at `/opt/kadupul-weblate`. Copy
