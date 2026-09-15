@@ -1,0 +1,1622 @@
+{
+  "schemaVersion": 1,
+  "units": {
+    "si": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "b2c8091b866bfdc7c1c8da2b7b70ead96c8dc055863b53d7699a38c22446e928",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "f0daeef15f16fe56b57ab960e244f20fb8e13f0b0527f973e022f1019137633c",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "6b8bb1412d7fa062420783c7653f6c9276efcbc9af283e3f6680c52adbd20e05",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "b9dbcb67c6cebd4a39bdc140863b4e0003886600bb46bb4ecafdd8c93ead2576",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "19a55830c258dd90af9b9a244e0cc45870bc33ae08e7e6058dda81dca2e68d1d",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "d3d2d826280fb926e2687cd4e93580dd8527767a3796209caa1ba440a6766b7d",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "1a4599be3a4195de8d5a27d47a1e945e309031cf6603f46d115d34012b1b8f60",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "7acb5eda634210c49cb99adc334425d2a21760801297ad4e56760549f27e6229",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "2310a55058befc624f7f90acf699ee080dcc626a8848a720c9e493d85fad7573",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "23bdc0749a1168ef1f3f4c27ed09e39160882eed20eed41e6096421e15565fba",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "968d2d4efb2853826346067c1736e1715fbd1bc107e3792c1da7feb65518f2cc",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "d6852e8c8567fb1c53c998ffcdbfda73e74256f1994bfadb9481d81726152f47",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "4fb15cbe2e0c42bc2e764b9f48e54c043b35466344d2883cc3065600e386ab58",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "fd22672fa600bd700b3ae02cc5c10a6a21f7089a2afc970d2b0ebcd32af6cb0b",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "40a184b9d4d7307f754ff26ad23ec6640f6c1725a30ae3ee8178273424648a06",
+        "state": "draft"
+      }
+    },
+    "fr": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "1e18b225fe1aff9d3bd9895ca009eaa2c40fa0fda2edcec1765601a4360b1c3e",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "cf8001f189a4662b63140731e2373b74f1ee0ac43977c80c21f3ef0e1d44b4d6",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "02cbd590fc2d591f830ba68f747f53bac3cd1bdcaf748feb1e87ebf83a93cab0",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "c3fc54aa5390dc2c333d4bb596a339d552ad787337c1fdaac3957ca5a7facf50",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "2757ddcd8e668954cfd260646aa0d4e703d93c7d67a55eef824b867d607bb0e6",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "4b6a9ce6bb9a9ec31b8ddc8bd4da3ea4b7766ad1c55d02418ccc76f258bdd969",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "028e585368ac61d2b06ec8f83e0a64e3e29e812e970a5595e651f3c42bd2f598",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "393ca26ab12c337020af96cd3dc71dfc6251181000c1aa649ac5fc3755fd9961",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "9c466199f8ec56599f6419f648389edacac44a9c44f3873bf90fa4995ca5309b",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "323f1ac0d497626beba0d6a11a5e4e3f03cce8752730f04690c8a976c8702caf",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "21b0f71b81e9ba25eb336e9d69e0e0ab2e3cad2894bbe638354a54a191731a1a",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "e6323b42b78ed50a7f651f25d4bc6f5afc483065d84eba6cf580da74fd5e201a",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "eb3e5b133e66933699753d9a00868be6ef883bb65966768e49e627521fef47b2",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "44e0d899923b45be24a28af1a137893eded0304dfcf369c8e9e8d5bac9574a01",
+        "state": "draft"
+      }
+    },
+    "de": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "ae3afe9d72e319ce73d6d10107b6ce6d1b6902bad08d028db0a285f52ceb2e40",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "232c9caabcc362e9aed69a156811652b2a3bb01652709d6f9b5071c649ce2006",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "72fda52ff77774549967d6d55bb3aba05cc51b48bcac0db6da40fde0415c96fa",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "c3fc54aa5390dc2c333d4bb596a339d552ad787337c1fdaac3957ca5a7facf50",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "f095d3ce13b30738ce672c6652c4a2bfd6ccd65f564ac4399fe0e3976eb7b72f",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "37d6206d8f6b0b3acae31029082ec000adc6b8d97f5e84b6a9fdfcd0719e66a1",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "e6cdb210e65b2c649c36863929ea153fd3239ce4ff97097c397130645b434278",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "dc8f6f5eea590519e0c29532ee7ce6dc9a04805a768925665d4a11abd9925a16",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "e1311398729e0b4f46e67452d7610cc00143fdc599d5e7c9e8707d17b1495a89",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "40ebf93af8d45215e6ddd544106a2766cf2a6f445edc30f72218b4e044a22c37",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "99c42ec762d7f68b62bf44d1b9cbeafc55ed36a16c83f536e3ab14f8532d539c",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "2f43989bcc4117be032d33beefba43282c99c449038db14424f154b35ffa70c4",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "005c780ea91e0d8609a1dbb4ba2f6d9dbd8817bcc8b8f6ec3352227ecb9b8f9b",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "a94c604f643c112933f309ba3e76a658e5885cc010e4f6f716eedba89a7c1ba5",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "22d6fe5d320aabff034ff9bf8de5ed2430dfff79725f7d0f568444db5dfd2b77",
+        "state": "draft"
+      }
+    },
+    "ja": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "1a4b79f35bf980abd407cb521893a4f82a59f2c956dbc1df997cb8d0f1acac70",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "e37d85b08738f1b4e26ab1a35876fdab9f59b0b8733ac1a4482226986ab07462",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "594ee3cf005887ca3f3fb34267abc5014878c0d7893f3fc7eb7dbc63230595e6",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "d95bee28d7940b91cfca9cf4dfd0b971935d61972de4b5ead80354f0036cbc89",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "a676ed4db0808dd4ad86f7cfb16ac5a8143373df33390b5ea0af9fd3f583c891",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "24191db5bcc0bb5e04390235d66b68d084b8e4637aaefe09d3be86f8b85489bf",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "cfe431e0128af210e7dae9c5b072e29b0a2cfabfa316a2a5d0b08fcf99b3473e",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "170c2dbdb89327efa248d1e8d9befa0fcbe5bc05ce277272e939d90d5540d24d",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "3a3ef37dc7973bae5e44ddf4eeb4a386f3f0c80c0e00ba1ee6e109c878d6d2fb",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "61bc332bf3a689db00889febcc20889f8ae6335badb8c3d9657a2c532a97c9ec",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "c547e21fc6875517362e8122c7e989fafb8cbf77b3988ad33434bcd80da7c4aa",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "c8a9c39d1e9742e00a116f402365bbd137ab787d0967d22c3ef065b316ec142a",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "398c60025fd91df13350ca8deb7c579f07e9dc35ed631f7395beba185d0cd545",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "ce0be857b083add0cc01c41a4eb445780d1d1f7970f199aa4ed56b52c88ec350",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "e83c7d19c8cc48c71b14c1b56ff18fcf67b250a0128e5bf97549133450c52c77",
+        "state": "draft"
+      }
+    },
+    "zh-cn": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "6bd98e9b7b5ff7191df320860af96a10889ce759369f1d6b516be217b7126fbe",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "9f4d8636b82415c3761332a60c41e11062c40564785228b1db0f0f869239f68e",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "01a4cdc74c00958970059380a745cea3b855ae5f25e93cd2fd47f63e10f317d6",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "e8f88f51ccb085ea870b413bf5c4a6425690a42450cfc462ed8450a165dcc57e",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "d9e1edd2244797009e5d0def3ff12627909668c625ce90c040c6259be556134f",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "6ac0bc502a90a43af80f2f3a38fe5889b28ac624d8d868a6585c9c0a2ef529a6",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "ea5689332762df0115dc471233315e4d4ca7df3c70ea853136d2e21bff19e880",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "170c2dbdb89327efa248d1e8d9befa0fcbe5bc05ce277272e939d90d5540d24d",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "c6f305e9b180323becfef75a8d67be74724d55eb89f474e33ff1a45022e84a38",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "79f326be4409d51fe60f4edc03b20c4b94de952d626e1616790e7b2384f08f00",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "2eaa96b2808dc3cbfb10e36e5f4d698667e1b189870271c3d80ce6f402b50012",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "b417289337528d2187e050a5a870059908578d0dc26f8d53ef9856609f166716",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "b3fa9c0c1101778f667d17491bb1e9730b6aeb5298d2e691d3520224f17f4856",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "46419cf478f898be721a757968845efe238a749a6d09ac28209d5124fa12e714",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "cfc961767d189453edbf59046996c6ccb8eaf3160e00ee4424f93baa25e6e4c8",
+        "state": "draft"
+      }
+    },
+    "hi": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "d232db098a2261942949a3a704607ff7c14b7dea1128f2ca2b6f9f92ccea08b2",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "77a3d8f0d7c4d4683931ce821eb2e3846d65916a07aad7b239ae03a110d71bc9",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "6834760af99278de720350ad60763b8eeff8c6515cc16dbf5129993a810434f8",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "587f0d18cdb793a3d94c83c61048e5ddefc356a8537e7e4aa5c04bde606c756f",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "72c4f62a64f8c11cbf7c1296480b6f011670680fe198ccbfcbd969c5f73fe376",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "6e5f64ad3e0b49294916c31882b01bdb035a25dab44a4eb3f71453f53105a6f5",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "9fb16ce12b7d849d75f51b3247e8a8327d82e418d4dffa211e5536f5694c31d4",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "17bc24c19450840013f4f7a6b05c21de33799248dbd324d37b3755a8139e598f",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "619c9ce0324c87b7f3afc0ad803301478a667df385938709ee7d245cff47c008",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "3b76b2614a266fc4d81f3e28c40732041eb2c9994239a6dc00c94e6bc7d88051",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "c3f51d03fd1c493a9aea6d4f121beb183f3409be20f2c25b80427105b0edd4c1",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "0067f35194a1b31fe565a9453d7123d4f3d495988dbf69965e2ece010369633a",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "c87c1d6a9ddaf15fb91ad0fde69eb31a0605d1a4a813e09b909007a2ded25bfd",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "ca97950e5e4977bb774041b06352a3a322b2cf02f8e940344d6b2efbff594c4a",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "4554fbc7205b03cff4e147b49c0aa933f1a22c30481ce298b623aac8201454ea",
+        "state": "draft"
+      }
+    },
+    "es": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "1c00da5bffe1c7e212f61c9f505318b101926154f907bde74962c1c60e257767",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "62f909f1b76248ec827314ce28df7121474c436b5bdb32f9d9660c3505c81459",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "102d13e5c766b8e959fd7dd15ef47b536e5f9f0c8452c3a022ab29ae9048ca78",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "5b7d51dc402422a6957afb4dc9220b4ec3f55d48344d81175bed982a46b67829",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "f6f26de64788077882ecb68d0d179f5d1b04e0e5855b9d83f92b0c70a745b858",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "617a69555a3aaaf8c1260734ff4c54e0cde2f34c615913507831087d0d6790a3",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "53882573d7e0bab9d6649a0c2d71aec012ca64dfe7bab6d8b8dfb462a990b523",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "23b0244e115067ea512f6b3cb947bb9b7f09c3b2a66f125a9f59b4c1fcd24476",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "10ddff5fcc6fc5fa5304bff56e063eb6db9ec41ed51016bf68e59e94c559356b",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "f3b525782609277aa81c727fad248a12c2a9c473535952a49db037be85aef8a8",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "23d8cd684fa99e31fd72c08f72b21c3a8ccbab76a50f35556923db148416ba4f",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "ca37661c233134c511d59d94aa619ef152a7a6f3c35d35054549179d7e3ce2ca",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "3b0aeb72185f0c4774b1510e12fb625aa874b057386665d227c660fd2e6fcd72",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "298c3edf310885cfc241799d5b039b7883510e6201930f56780bbb3682fd386b",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "3fb8dfbc1dadd603dc2a7293a411cfc4727a49b5fc2b3ad83e197d41fbd2881f",
+        "state": "draft"
+      }
+    },
+    "ar": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "85d1f18845dea1e4fe57c78bd08abfc995d80948fde5e60d4a29583505ec4806",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "aa62e7cb2392d2a56d4424efcbb92ad3a920fa62689632b26af5392e59d0d306",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "73262648b28b27ec5876a731482d5b0a813f196ee1ea5222f4161bbef72560ff",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "fb7077551f86dec043753802221beece40e8a515ead7f9f6cd4b8d17058f7727",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "9f77eb5909f4b3ea6e1e6e21da07cc5bc03c61278be2057e8cb94b6fcb0702c9",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "e4c84344183aee53203941314c00ce70d94b3e5aa202c294267e60d1d1697519",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "5754401a5ae6bc45d5aed385720852ad8857723511871ac5f86bb263820769ab",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "18260e725476b9a8387bf082d66dedaa81eac7a71dff1279a065c233380d14fd",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "d6a838d92c8d9575d53f779f4fa605a38e653778899f9a1f1555af537f1488a8",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "7eb84d94b7ef145dea113f2251c5ea97c7e9e06fcf70a76f47c1548702921ebe",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "31aa78a044a6718d6ce37189b6b8a34bcb99edefdc0ca502bda448cc4783fdd7",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "c3900c4dd552184f3a35ab597717d579cde84d1062a18cbae501d1b305d7f5f6",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "d25c795d07541892e5841046d98e23d5d84a858f4558af3560ef45ccc4e738b7",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "8ce433be81f606379f3053fced592b0236940fe252b60455686b1c24cb48b89e",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "c46d10d9ad600bff5aa0edec23230ac412223509841b6d3224666d7c695a2f62",
+        "state": "draft"
+      }
+    },
+    "es-419": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "1c00da5bffe1c7e212f61c9f505318b101926154f907bde74962c1c60e257767",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "62f909f1b76248ec827314ce28df7121474c436b5bdb32f9d9660c3505c81459",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "102d13e5c766b8e959fd7dd15ef47b536e5f9f0c8452c3a022ab29ae9048ca78",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "5b7d51dc402422a6957afb4dc9220b4ec3f55d48344d81175bed982a46b67829",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "f0f9dec77efb2f6f00247b016d87fbd32dee417555c8a9609b09b420e3498e21",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "617a69555a3aaaf8c1260734ff4c54e0cde2f34c615913507831087d0d6790a3",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "53882573d7e0bab9d6649a0c2d71aec012ca64dfe7bab6d8b8dfb462a990b523",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "23b0244e115067ea512f6b3cb947bb9b7f09c3b2a66f125a9f59b4c1fcd24476",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "10ddff5fcc6fc5fa5304bff56e063eb6db9ec41ed51016bf68e59e94c559356b",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "f3b525782609277aa81c727fad248a12c2a9c473535952a49db037be85aef8a8",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "23d8cd684fa99e31fd72c08f72b21c3a8ccbab76a50f35556923db148416ba4f",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "ca37661c233134c511d59d94aa619ef152a7a6f3c35d35054549179d7e3ce2ca",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "3b0aeb72185f0c4774b1510e12fb625aa874b057386665d227c660fd2e6fcd72",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "298c3edf310885cfc241799d5b039b7883510e6201930f56780bbb3682fd386b",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "3fb8dfbc1dadd603dc2a7293a411cfc4727a49b5fc2b3ad83e197d41fbd2881f",
+        "state": "draft"
+      }
+    },
+    "fr-ca": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "1e18b225fe1aff9d3bd9895ca009eaa2c40fa0fda2edcec1765601a4360b1c3e",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "cf8001f189a4662b63140731e2373b74f1ee0ac43977c80c21f3ef0e1d44b4d6",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "02cbd590fc2d591f830ba68f747f53bac3cd1bdcaf748feb1e87ebf83a93cab0",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "c3fc54aa5390dc2c333d4bb596a339d552ad787337c1fdaac3957ca5a7facf50",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "2757ddcd8e668954cfd260646aa0d4e703d93c7d67a55eef824b867d607bb0e6",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "4b6a9ce6bb9a9ec31b8ddc8bd4da3ea4b7766ad1c55d02418ccc76f258bdd969",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "028e585368ac61d2b06ec8f83e0a64e3e29e812e970a5595e651f3c42bd2f598",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "393ca26ab12c337020af96cd3dc71dfc6251181000c1aa649ac5fc3755fd9961",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "9c466199f8ec56599f6419f648389edacac44a9c44f3873bf90fa4995ca5309b",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "323f1ac0d497626beba0d6a11a5e4e3f03cce8752730f04690c8a976c8702caf",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "21b0f71b81e9ba25eb336e9d69e0e0ab2e3cad2894bbe638354a54a191731a1a",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "e6323b42b78ed50a7f651f25d4bc6f5afc483065d84eba6cf580da74fd5e201a",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "eb3e5b133e66933699753d9a00868be6ef883bb65966768e49e627521fef47b2",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "44e0d899923b45be24a28af1a137893eded0304dfcf369c8e9e8d5bac9574a01",
+        "state": "draft"
+      }
+    },
+    "sw": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "4310b369ea29e23ff6db9246018cb734588e95d8192c42089ecda66065b21e67",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "ea3701027f7d44b3996629802e3d624778f9b501ae480d1336032e2874de898b",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "a2b3538e3d058c662334aebad9e5e1548e40c5308062ca8827b9ed1742a47fbd",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "22c3eab8dd5f0c54ac65ecf05384be841e7d62cc95129bd79d34ee589d2d82a4",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "e0b208d64e95034a0cbb9e08de8d17d79ff75baa6b3568d28c9959d57858da63",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "f9079ce35368fe59cf5c1bac11d0d663eadcbb5dbccb30f7aabb31729ca9c5ad",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "ea3e02638af8a890d4731b3a58ad1d28bf5b179a4c4cb5b3a61fab513fbdbc10",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "b9a608b70e209dc4b83c932a6fdf2f17728c1070ef0f049c5344c765dbac3c9c",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "4c822c7c994edc9693e0e7ee4b21791a999a152d42c003f83c1a8cb84ab6b38e",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "3f2ca42a56b1c70a53adcdcf898878fa9af53b18ef2ecd2f1117db63e1fec85b",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "11d6b48952d38fcb5b3daf1565056822578720c8bb78a460487b8fc5946ec761",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "cc101c898c10fb3aba3cf224db73437578d833d60dd73592e313440d674c63fe",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "dda42b1827aec692f2a7eebecec44c1f8441693d37f5d5447b80cbaf17666976",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "aa2d0b4ae81f2904c3e8810ec7be350bab3d1fded556b2278fb4b7ca294e13a1",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "69e35d7ee8c67d74408aa70e83f75e312a38269e5447b426077b9865c118e5ad",
+        "state": "draft"
+      }
+    },
+    "ha": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "38d6ef2f0b80b2c0cee0c82e64dcac2b50cb8cdfba4ef34f009e0dc4f012c270",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "6165b280d2c6ff1928cc8c33dc35893fa01355e1f462e8b14adf09f90072d835",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "30199865a3a68816ad814ff2d1a8a70ac6a6b709a084cbde597b9e4add729594",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "4da9ee470f8d7dca2827f8fd6325889492a18a6cd7884fc3f5dab5f4f1839c28",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "68dcb1b39cb117a1accc8fff2da140f9e771cdadc82d7c68331b2a0425b6defa",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "293d512bbcd92e653a8f9cf09e93317373e52a4acd85c4101336bc432ac4ddaf",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "b0d5ac6d9c3dcac99a1449ac698a0ec053daec174acaa460b147a366ae1fb637",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "de5edf1c9db9aaf9c1b11e1ddce3844806f26eb9f2fb2cb5ea40a7d00e21e8a9",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "23abc7bb4451a43a99263bbe03282681c966ec9d2250847090cf50a228508742",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "01eddc47832d92e67ac26aca4fd6d50f5b37d6032dbffa2ca765352a1a5b4110",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "347c4e0106f063bfd7a780d7ac928d964b745515061c22128c450fa8c330d15e",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "2932778f2887b9141da161ed977cfe0305ceeec4aacf69a4dcfcf92eb11b39ad",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "81856231595a430951b02878912cc3b9262c883572b78f1e00542f97b73b990b",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "2dc3916c7e626c9c94b47700d01667a0285920ed59380887416039e162110ca9",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "ac90395be433985fba68df7e28310b5bd7e5c5eaeb21516d08735b20c83a4944",
+        "state": "draft"
+      }
+    },
+    "pt-pt": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "5cdccd63ae62c76d83d0c387c1d932b714c4186c365273f6c7c09298dd54f399",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "6254a4354624a855874a64a53e572d974339da6f917dfcaf262b6b74e28e59bb",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "c539d2533dc3ffb1e7238ea92fbaf2e02b3ec7b2200e5c626a5f2d35408402d6",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "21fcc6cd4328ecd76bad391cf2fd3368ed9505978331f8dfcf0ff5cc6be983db",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "2773b657226f405d682e65e6590c4973e1c2262c329917e22af4697c6f65bf24",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "4a81f339f8897a8c98bfa725ede619a976e4232852c8afdad89ba7c58d27e231",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "9da7839b78c4f684646b624e31afe5a41fb6dd4350080191451f8cbf697c29d4",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "cf34d805133db8932abc384a583af4e306d8b20ebbf985d91bb5f7e16c850096",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "6fac4ad8493d989676c1f35f3d7d0d8d273b1da14549ab19f90d911419ee502e",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "4c7877d7558fe41d8a6c3e9d1f16f70a7a9e4a6a39892ebe7ac8520fffab34ae",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "690d65f852b6511bc273aca9e60bc5c62e11b4304602f42f0ece7dda38c865df",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "378bda465c59c19124df92af3c530acda65ae25593cdf76e509c59da7d1ea985",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "b233a6f45d5403112305658df01ec28bf68483d418e7778cc5c328536d6b3c4b",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "04f6d166c8385399f939e51777f3334f631783697dce751a5427bd8d442e18ca",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "d1a0b0f58f193ea3c6b71a34629c196781dec257a0c1ee42a497ce719b5ab6b7",
+        "state": "draft"
+      }
+    },
+    "pt-br": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "5cdccd63ae62c76d83d0c387c1d932b714c4186c365273f6c7c09298dd54f399",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "6254a4354624a855874a64a53e572d974339da6f917dfcaf262b6b74e28e59bb",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "c539d2533dc3ffb1e7238ea92fbaf2e02b3ec7b2200e5c626a5f2d35408402d6",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "21fcc6cd4328ecd76bad391cf2fd3368ed9505978331f8dfcf0ff5cc6be983db",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "2773b657226f405d682e65e6590c4973e1c2262c329917e22af4697c6f65bf24",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "4a81f339f8897a8c98bfa725ede619a976e4232852c8afdad89ba7c58d27e231",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "9da7839b78c4f684646b624e31afe5a41fb6dd4350080191451f8cbf697c29d4",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "cf34d805133db8932abc384a583af4e306d8b20ebbf985d91bb5f7e16c850096",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "6fac4ad8493d989676c1f35f3d7d0d8d273b1da14549ab19f90d911419ee502e",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "4c7877d7558fe41d8a6c3e9d1f16f70a7a9e4a6a39892ebe7ac8520fffab34ae",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "690d65f852b6511bc273aca9e60bc5c62e11b4304602f42f0ece7dda38c865df",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "1bb46653d1c317aa0cade81a2f5989fe31b122fdc0f27b019c7fc12b36148c78",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "b233a6f45d5403112305658df01ec28bf68483d418e7778cc5c328536d6b3c4b",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "1c076787aa51a1a3fa1b91c61a4a76d6b645c3f95fedb14daa4a39f62a00ab32",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "ba5b0bf956870b7922af76589485bb0e2b29370984e3f9e6d9f1bfa0cbfa6e1f",
+        "state": "draft"
+      }
+    },
+    "yo": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "55c0da3d88f81a8bf0381c421b4c30b8e4131bc02a6e4285d9a88576c2ad16de",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "b566ed37d7e4874b1f59b7c8be227e67d7a4cb828c77bea9d56f616d1c83b853",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "510cc990691d77e274a04bb6d9fe0e82d3113ddac643301527e4aafeee2facb0",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "aedd8f1b54ac5acd1ad3be31ea91d9a2bffec59df0385a81a43bb6e08d734803",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "10ccfb97d95472eb23adc8b72aacfb31fd04668c96fc56350748c1e7612c3962",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "10841f7895165d6a7571959c94b1de98adbcabee6e98a358a9e392dfddbe6f6b",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "b52dc83089287effbe5b8b32ba10ee7e7b201ac4d86896e79bb45843569c53b0",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "fbea800df3617f6c1a6eb3e044d993a752620ddc9b77d3af0f9c93368f7c8384",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "4a3d53cd36f889e9bf175e91fc6f01ef6a497b4ad55a883f92d200575abe243c",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "6838a1e8adce400aa27436201d8dfbf114495117c1540563ced5cd1571734aed",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "c36ce729134b53adcc8fa63acd5c6ab7e15706083fadcc7496d83561b0bf2414",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "516d9c0ca4cc7b64403f7e7d4e6aba99555d47800b322a03975b8ba3a2f6260e",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "0b3557a8fc2db108db498258492cd4b8583eeb252b1c52dcdb3fb88bd85bdc4f",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "155a3931423cd82f026078e7adb7b3f2a6b0ae757d51e0895d22054889b7ba81",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "333cd8594a143db20804604e05496d036b01babb9201d89470c4adaa87666dda",
+        "state": "draft"
+      }
+    },
+    "it": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "8ba093d4b97ba7d5f05b14febcd49982ae058c92cb35969bef893f26926a957f",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "00904aab0c02b3a247c05295ec5dedf4eec75dae6872b9c862a2792ba833a2ae",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "27effea8ebf84479bc3df51d5e093c9998fb774d939199cb23e1f551b9754137",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "9f7ecbcb2bbe583d65a81ca16b80490863e068fadb9ed75801b0b3f46e71f601",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "99b5ee13d2b2f8dd9a4fe68e6f92dba5fc7c42e9972c960afe64600c7385b0f0",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "4ea0bb2f862b58ae1044adc68cced4f45aaff5091cb1823bc405c3472e9f544b",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "2e47e042a6f7123882f5bae7c5b1bc889c3dfa4c467ed1d89965b221b05e1048",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "b12f8aadb56253cfebf2db4be249e5515233aaa8fb85db5e3195647510084a34",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "d273bf0bab626f384e4f39e0bc3d5e8cee36c4f8e3527aca284c07f9e1b921eb",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "b7700d71d0ce4a31fa59f98c76ce5931fa88405e617aba9aec5b41684a4e6b61",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "c1d6e6ed52a87a9356fd4dfca546ca8818362c344129e96477a76bd566686ba8",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "1e0c62dde017a65e46e67869a27925db3edc181055ba25d7462a598cc086e32f",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "33082407c6fc00fd3945205f875fa4d73f9511eeb49eb69a1061ddf85eefae92",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "85f91b1ff133209a56b9c248f91f942968de703e2541b1515d29576f89a96cfd",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "3ca5392bcfe10efe2fbf24452da9f667f883dd5139c8f3c05048fb6eb6451cb7",
+        "state": "draft"
+      }
+    },
+    "ko": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "4ae44aba660ebe2543de8287025ca646fdf4b34f939245dedd51562585dc6fd2",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "8779a905898386e47543f08ac2017bd772c2467a28a5eca68315bfc8b970ee75",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "1671a07295586ad5c2f2fb8a7192dcfe7cd3d44e97e32878bf77d13824342f92",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "6a28baa53ad4e5766f6ddd770bc86ee3a283607bc89b2685f762afcc2699f35c",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "7759bdfbe20d1c3d5992d7eb386ec1d2fb7591d8050eb932e9aa4dfcd57c4433",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "7d7d88c5fb1b60dea626fff7d89082369f79f7986dcf64fc67c07b5ce84e3563",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "7f7318129632d5a2d2bf60563d6fd93af42eb20c5b302a4dfd05968a650b325c",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "08e0dfd4fcdc514da446d90b4dd4ad594795b0339ec35a79a36f6c806f1a3255",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "fbc8ad581fd107a82afbd3f26c58cabda5fa2b4ceb1e71d07a6259b825d1bb5a",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "f05481bea1ddf15be9c492b3a42a74ede650f129c5e899e52746ab2e915f574c",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "a3f5c52671e3999115ab706cdc934b95235c97833ba2439a385144dfbbbd306d",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "8ed40fa2e85ee31cceee41617dfdf0fe3ce40e413fced6547664b8d3c100c992",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "a8192ae0a6a93d31ab9b93983124d30021d739f3658be3c9dadde340808984d3",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "af095d93f690708497e6617bcd3a3cf2e3e00f33a0a3267491309536c0b2fab0",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "33e77c7a339c9030f93bd1ad7edeb298dd7764ba7966e252ed2845bab4a0d144",
+        "state": "draft"
+      }
+    },
+    "id": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "09c36d814b7b63250639b9efd87263318be3dba7777ad0dcf72c789a319a8658",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "6f1670bdb43fcc2e8bb744d16c1ed6a217613b7ca8f633e108484265333091a5",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "0dea117b1242e6ab5c29a18bb1175eff87979ee33ce248dc37366d2b819e79b3",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "e5a3396170d58d7534c87e0d7d800fe3c3df655571caf8db827c667ab73e6947",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "cdfd70ff0fae19b69f1cbace0e42bf828c0bc3c4177bb527b23821057b7e1ad9",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "712b01636db606b79f8731374ba2c5d048eb0fcda41e8fccbc8dd308f569c3a7",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "ea9123555e48ff5544c2cd6c4360f66e2b55a9253bf6284b27ac71ed1cd3922a",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "485384085de0246c5c5f3f9f0b9c96b44bf178835272fe317a4383a328a0f7cc",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "734b0a5ff502754d3e3f73d8d21a72293368714b0923c7f4ec1ea1333a35b0b4",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "3fcad0af0ccce842a11c992701cc746e21c054908f930d2bd8ff0d6d19eaa486",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "7e69678de5fe8dc47dda26a95d21366d5c81f1ed81e8f0b4838969d7f5318d89",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "0030a8ff6a282c4b27a13f7a76d69ce56aa03488997f3cd4738816cbbe07cd13",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "d3c3727f7026df16480d4b07799df7e33a4f95aa12d667e9286e518f6ae86dab",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "249961ab17dc374879b4a85ee3e9b1fa665bc38d9df4864b7748218bcf8c9d12",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "ecbe499b6a1478a0490698e53ba4891c2bfdc4fcff0b5894b62ff42b08d2cecc",
+        "state": "draft"
+      }
+    },
+    "nl": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "4538e441b51c50d43524c9148f3229b87325b9ee7569e51f81aa80f0d967bc2e",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "9bcbb9eadd7159e8f86527c6b7391c6c0e83cc63a6ec275db8d26d3f1d9f0ce1",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "0e0a4f20a9ec12c408f1578814989fe1f3f94ec6fa06bd5917da4515155bbd2a",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "9975613115f290c165f2a4a91bee867043fe0f78f224d36990189acb208c4d41",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "b73ebffb3efb836fdd0aba4f554aacd4d05dcc60b96e872436450052752d87c5",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "30b0002740a178cb06c0481f43bba1797ba0965cacc4bbe0bd2b9cbc28384ba7",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "3882bf670b43d9736e6c55a918f6d4ef307084554e012a2b1bf7340e4ab14add",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "d674451b7980f2c30f4286b7d19c35d8cc66ee2cc23f27898ed4b486b1977cc4",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "fe6de08e59f40071d52af56159723fa1c33633909dfd61fbd0c3b243eeb12804",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "5b940bde5df92dbc7f9ff2a0d0cc4869634e4fe2de0ac5b7cd94c95bd9b0c25a",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "e0d898a33b2cec626be1ab0b0a4f57215e4d383c67e403913899e57aed2bce1e",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "11861ac92f12f5029c8965a3d5fdb87b87f0cf2b6083b93604b997fe4d954e4a",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "59d59a7c1775db246c639971b029df5da702fcc59a2f4ab789508d9ee21666ba",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "e52d9032e1304065e2cae8a8f41d8cd951c0c8c4ddb7989bf43c619ec7852b04",
+        "state": "draft"
+      }
+    },
+    "pl": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "1b7d7bcfd41b9aa4cb985e27600b65eb5d242a3cf107b7b97cfa425fd788ef8c",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "b4ac20b012d9445226a242a93082606e043f61713aea1373eb0ed9b79e3ff42a",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "fb320b650aaa11cb5396328d74f564f3b810f5ae786e2e0378faa86c6438a942",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "78f60b4f139e1b158794a179f0e0db0046ec64f5efcb43935be4f689c54e4d68",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "8fb81929ce859200cb0231a2829be829d65660d618384c5690faf27686516099",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "1c54f2363f5da3202eca0be9009b4d952607c3a8909acf4ff2b9ac7f5d4ec2e1",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "e58911587e72eea2bed530833d6be7ae5c3c59fa8982dd2f71f5df8aab52ae0c",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "23707440eef8f8e46db937075c1dd6b574f31e77d0b2f45584f0a261bcaee39b",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "e23a8a24025230eacc3c825677e492de7235fd3af0e57272df6621a8448e7060",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "40ebf93af8d45215e6ddd544106a2766cf2a6f445edc30f72218b4e044a22c37",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "fcc80641b53b22b8f4e1bac96b7d07308e8c07e94e0160ef2fb021cca16e9cda",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "0be0a3d51fba39dd78cbd73c6384e3ada7144567f76194ec7a29567dd44487d7",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "dc404c682bb25c49b50c6a8c92062096ac495b30780f623dd8817459ba6342ae",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "455ebed0b67f59b7b25b92b71395a0373a4c9fd02ffd6b0e35ded55f0ffa076f",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "be270977756dbb3f3daa88a3d8b30e28e0bf6cf07bb59c8a5c5a9896295e3735",
+        "state": "draft"
+      }
+    },
+    "bn": {
+      "map": {
+        "sourceSha256": "43dac1ff281a4468d18ba25041ed1366d039bf932efd8f86ce202cb7d94ddb46",
+        "targetSha256": "56ab94008fb04a71cd5f963661dc706dbf5075cf96e66e03bec2b113b92ff264",
+        "state": "draft"
+      },
+      "start": {
+        "sourceSha256": "2adc964c084749b1f2d8aef24030988b667dbda2e38a6a1699556c93e07c1cea",
+        "targetSha256": "4f14bb5636e7a947a896a972610728dce0725aaf909c28846cc010716c1abae9",
+        "state": "draft"
+      },
+      "overview": {
+        "sourceSha256": "8bfada23a8df0826fec241964d081ae6721fe7756bbf6eead2c2ac0d2a3b27b8",
+        "targetSha256": "8db014d8704639fa7784689c5ad765bdcb5545049d0786e983cc15172c8de8b8",
+        "state": "draft"
+      },
+      "install": {
+        "sourceSha256": "569ca49f4aaf7846e952c1d4aeca72febd0b79fa1c4f9db08fd3127551218572",
+        "targetSha256": "f9bb23513b334c1e3743671e96e247c519e6c924e8ee0220ae3cade9c3e5b376",
+        "state": "draft"
+      },
+      "device": {
+        "sourceSha256": "a754a5a39ee67e073166775412986da845f007f5ba1ffd8471dd64911e457e6c",
+        "targetSha256": "61dde291c07c182ed7076a00bc795636f469982f80ff2707cc49c972fb744049",
+        "state": "draft"
+      },
+      "graph": {
+        "sourceSha256": "3113ee015ec7580b1d00466e1fadc652b1c440cc011e9f55f22de8c15765621a",
+        "targetSha256": "6fb9b99a6c23c6b660316321ebae1595905c4d286a983489a51061a7805d775f",
+        "state": "draft"
+      },
+      "guides": {
+        "sourceSha256": "d8fb1d3b5584d96d0e4f23925eb10ae9e46e472cf319363804c1bb49ab4d4142",
+        "targetSha256": "86b9465abfb7632f3d82667126c83f8ffd106a793caab09ff1511f5d6ff2f9ee",
+        "state": "draft"
+      },
+      "concepts": {
+        "sourceSha256": "0d0a8c6df3ace225e9a8e34274e5c1c1116d1db8319aa5357a8448e8a9ad732f",
+        "targetSha256": "aa15ca721032a4b51f0893ffbb0593fdf2b1d86d2c2333e4fa8c2001e50631a9",
+        "state": "draft"
+      },
+      "reference": {
+        "sourceSha256": "71bf90935fc231d20126e2087eeb583c6aa419fc3dd1b6847bfe376b9200eaa0",
+        "targetSha256": "7c847e841f834b962f25eee92f093c2e7bab9b80272602dd08006805eaad98c4",
+        "state": "draft"
+      },
+      "project": {
+        "sourceSha256": "985959785319747668373cc6dee294b11db782b03cdd90a2851fbdc0637c6b7b",
+        "targetSha256": "0edb2d0a284a5cc3e08b7fb5f60afb5ab5eca33d47ead06179b6dc5c6229c412",
+        "state": "draft"
+      },
+      "docsLicense": {
+        "sourceSha256": "68ac76c97800e3571c7cab74351d0c0debe130e71cfa0c8e99cac2b734fbfb8c",
+        "targetSha256": "63b96fd5eb306064b3f1fef58ccead6667f8d11d20edd44d41f76faa377d6b8c",
+        "state": "draft"
+      },
+      "codeLicense": {
+        "sourceSha256": "733c4333c6871eeca3eff3629b27b8fdef2efb079c8f93ec65a9c6d05cbe22b9",
+        "targetSha256": "8185f7c833706b10a47c902b9f9672e3a5e5f6e9bacb4d1cae407f1138d731ea",
+        "state": "draft"
+      },
+      "independent": {
+        "sourceSha256": "d3162ac6828e7a53d90c6eb93b7730e1f1ba22e6cfc8a5d0fee99d34b66621d6",
+        "targetSha256": "4db61e28676f99fb44bffe83b1a3b64013b871b6474ff7004cb556ed5507d9b6",
+        "state": "draft"
+      },
+      "mapDescription": {
+        "sourceSha256": "2b662fcfc31b0df40f3ff5e7244c695c12f1a651bd40883f81ea7150e3e188b6",
+        "targetSha256": "72ccdc314eeddd13d29cdd43f8ae2f67460aa586930786ce5c192817ee35db33",
+        "state": "draft"
+      },
+      "fallback": {
+        "sourceSha256": "d4dc281b6526c5fc71efc497284053acd4806940f3739cf571b41247829d05b0",
+        "targetSha256": "3e190fb3968d831bb9771281644ad2d48404725c6987f81e366be017bb46aa38",
+        "state": "draft"
+      }
+    }
+  }
+}

@@ -12,13 +12,15 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint:prose": "node scripts/lint-prose.mjs",
-    "check:all": "npm run check && npm run lint:prose && npm run check:maps && npm run build && npm run test:coverage && npm run check:links && npm run check:locales",
+    "check:all": "npm run translations:check && npm run check && npm run lint:prose && npm run check:maps && npm run build && npm run test:coverage && npm run check:links && npm run check:locales",
     "check:locales": "node scripts/check-locales.mjs",
     "build:map": "node scripts/build-map.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "test": "npm run check:maps && npm run build && node --test \"scripts/__tests__/*.test.mjs\"",
+    "test": "npm run translations:check && npm run check:maps && npm run build && node --test \"scripts/__tests__/*.test.mjs\"",
     "test:coverage": "c8 node --test \"scripts/__tests__/*.test.mjs\"",
-    "check:maps": "node scripts/build-map.mjs --check"
+    "check:maps": "node scripts/build-map.mjs --check",
+    "translations:build": "node scripts/site-translations.mjs",
+    "translations:check": "node scripts/site-translations.mjs --check"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

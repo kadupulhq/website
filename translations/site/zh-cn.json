@@ -1,0 +1,17 @@
+{
+  "map": "文档导航",
+  "start": "入门",
+  "overview": "Kadupul 简介",
+  "install": "安装",
+  "device": "添加第一台设备",
+  "graph": "阅读第一张图表",
+  "guides": "操作指南",
+  "concepts": "概念",
+  "reference": "参考",
+  "project": "项目",
+  "docsLicense": "文档许可证：",
+  "codeLicense": "网站代码许可证：",
+  "independent": "Kadupul 与 The Cacti Group 无隶属关系，也未获得其认可。",
+  "mapDescription": "按主题浏览文档。",
+  "fallback": "尚未翻译的页面会显示英文内容，并附有未翻译提示。"
+}
