@@ -133,10 +133,10 @@ The mark places a four-point metric trace at the center of the bloom.
 
 ## Its relationship to Cacti
 
-Kadupul is a fork of Cacti. It keeps Cacti's data
-model, its plugin interface, and its templates. If you know Cacti, you already know
-Kadupul. See [Compatibility with Cacti](/project/compatibility-with-cacti/) for what
-that promise covers and where it stops.
+Kadupul is a fork of Cacti. Preserving its data model, plugin interface and
+templates is a release goal that requires testing against each supported
+version. See [Compatibility with Cacti](/project/compatibility-with-cacti/)
+for the scope and validation requirements.
 
 Kadupul is not affiliated with or endorsed by The Cacti Group.
 

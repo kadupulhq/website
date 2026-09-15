@@ -1,6 +1,6 @@
 ---
 title: Compatibility with Cacti
-description: The scope of the API compatibility promise.
+description: Compatibility goals and the evidence required for a release.
 sidebar:
   order: 2
 banner:
