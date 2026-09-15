@@ -6,6 +6,7 @@ follows [Semantic Versioning](VERSIONING.md).
 
 ## [Unreleased]
 
-### Added
+### Fixed
 
-- Nothing yet.
+- Clarify that compatibility is a release goal requiring validation, including
+  the introduction, compatibility metadata and documentation map.
