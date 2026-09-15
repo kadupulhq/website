@@ -11,7 +11,7 @@ export const hash = (value) => createHash('sha256').update(value).digest('hex');
 const json = (value) => JSON.stringify(value, null, 2) + '\n';
 const tokens = (value) => (value.match(/\{\{[^{}]+\}\}|\[(?:COUNT|SEARCH_TERM|DIFFERENT_TERM)\]/g) || []).sort();
 // Non-Latin scripts can attach particles directly to a Latin product name.
-const nameCount = (value, name) => (value.match(new RegExp(`(?<![\\p{Script=Latin}\\p{Number}_])${name}(?![\\p{Script=Latin}\\p{Number}_])`, 'gu')) || []).length;
+const nameCount = (value, name) => (value.match(new RegExp(String.raw`(?<![\p{Script=Latin}\p{Number}\p{Mark}_])${name}(?![\p{Script=Latin}\p{Number}\p{Mark}_])`, 'gu')) || []).length;
 const record = (value, label) => assert.ok(value && typeof value === 'object' && !Array.isArray(value), `Expected ${label} object`);
 
 /** Site labels are plain text; framework HTML translations use a different component. */
@@ -56,8 +56,8 @@ export function unitState(source, target, review) {
 }
 
 export function buildSiteTranslations(root, { check = false } = {}) {
-	const catalogFiles = readdirSync(join(root, 'translations/site')).filter((name) => name.endsWith('.json')).sort();
-	assert.deepEqual(catalogFiles, ['en', ...translatedLocales].map((locale) => `${locale}.json`).sort(), 'Catalog filenames must match the supported lowercase locale keys');
+	const catalogFiles = readdirSync(join(root, 'translations/site')).filter((name) => name.endsWith('.json')).sort((a, b) => a.localeCompare(b));
+	assert.deepEqual(catalogFiles, ['en', ...translatedLocales].map((locale) => `${locale}.json`).sort((a, b) => a.localeCompare(b)), 'Catalog filenames must match the supported lowercase locale keys');
 	const read = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
 	const source = read('translations/site/en.json');
 	validateCatalog(source, source);

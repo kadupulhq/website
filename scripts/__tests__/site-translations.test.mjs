@@ -30,6 +30,9 @@ test('catalog validation accepts missing translations but protects keys, markup,
 	assert.throws(() => validateCatalog({ label: 'Cacti documentation' }, { label: 'documentation' }), /protected name Cacti/);
 	for (const name of ['KadupulX', 'Kadupulé', '_Kadupul', 'Kadupul2', 'Kadupul Kadupul']) assert.throws(() => validateCatalog({ label: source }, { label: name }), /protected name Kadupul/);
 	assert.throws(() => validateCatalog({ label: 'Cacti' }, { label: 'Cactis' }), /protected name Cacti/);
+	for (const name of ['Kadupul', 'Cacti']) {
+		for (const altered of [`${name}\u0301`, `\u0301${name}`]) assert.throws(() => validateCatalog({ label: name }, { label: altered }), /protected name/);
+	}
 	validateCatalog({ label: 'Kadupul' }, { label: 'Kadupul은' });
 	validateCatalog({ label: 'Kadupul' }, { label: 'Kadupulは' });
 });
