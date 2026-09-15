@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "Pilih versi",
+  "starlightVersions.link.latest": "Baca <a href={{link}}>versi terbaru</a> untuk dokumentasi terkini.",
+  "starlightVersions.outdated.label": "Konten ini membahas {{label}}.",
+  "starlightVersions.outdated.slug": "Konten ini membahas versi {{slug}}.",
+  "starlightVersions.search.link.latest": "Lihat <a href={{link}}>versi terbaru</a> untuk hasil terkini.",
+  "starlightVersions.search.outdated.label": "Pencarian dibatasi pada {{label}}.",
+  "starlightVersions.search.outdated.slug": "Pencarian dibatasi pada versi {{slug}}.",
+  "i18n.untranslatedContent": "Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberitahuan."
+}

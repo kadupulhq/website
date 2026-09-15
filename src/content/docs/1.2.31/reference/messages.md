@@ -3,8 +3,8 @@ title: Error and log messages
 description: The error, warning and fatal strings Kadupul writes to its log,
   what each one means, and where to look next.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 20
 slug: 1.2.31/reference/messages

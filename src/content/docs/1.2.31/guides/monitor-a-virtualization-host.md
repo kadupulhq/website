@@ -4,17 +4,17 @@ description: What a hypervisor exposes over SNMP, what ships for ESXi, and why
   counting guests, CPU and memory on a virtualized estate is harder than it
   looks.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 27
 slug: 1.2.31/guides/monitor-a-virtualization-host
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states what the
-shipped content is intended to collect, and which measurement problems it does not
-solve.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A hypervisor over SNMP gives you the host. It gives you very little about the guests,
@@ -33,7 +33,7 @@ expecting them to already be present.
 | `resource/snmp_queries/esxi_hw.xml` | Discovers hardware components and reads their state |
 | `resource/snmp_queries/interface.xml` | The standard interface statistics query |
 | `resource/script_server/host_disk.xml` | Mounted partitions, through the Host Resources storage table |
-| `scripts/ss_esxi_vhosts.php` | Counts guests, powered-on guests, and guest tools status |
+| `scripts/ss_esxi_vhosts.php` | Bundled inside `install/templates/ESXi_Device.xml.gz`; counts guests, powered-on guests, and guest tools status |
 | `scripts/ss_multicpu_avg.php` | Averages per-processor load into one number |
 | `scripts/ss_hstats.php` | Reads polling statistics Kadupul already holds for the device |
 | `scripts/ss_host_disk.php` | Backs the partitions query |

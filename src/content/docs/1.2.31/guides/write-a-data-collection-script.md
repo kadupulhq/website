@@ -3,16 +3,17 @@ title: Write a data collection script
 description: How to make the poller run your own program and store what it
   prints, and the contract that program has to honor.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 10
 slug: 1.2.31/guides/write-a-data-collection-script
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. Nothing on this page can be run today. It describes the
-contract the poller is intended to keep, so the contract can be held to.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 When a device has no SNMP OID for the thing you care about, you write a script. The

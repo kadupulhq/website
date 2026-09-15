@@ -3,8 +3,8 @@ title: High volume writes
 description: Why RRD updates are limited by write count rather than write size,
   what batching them buys, and what it costs in freshness.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 10
 slug: 1.2.31/concepts/high-volume-writes

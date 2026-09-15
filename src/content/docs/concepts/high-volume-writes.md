@@ -2,7 +2,7 @@
 title: High volume writes
 description: Why RRD updates are limited by write count rather than write size, what batching them buys, and what it costs in freshness.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 10
 ---

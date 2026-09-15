@@ -3,16 +3,17 @@ title: Back up and restore
 description: Three things have to be captured together or the backup is not a
   backup, and the order they go back in matters.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 7
 slug: 1.2.31/guides/back-up-and-restore
 ---
 
-:::caution[Nothing to back up yet]
-Kadupul has not shipped. This page states the intended backup contract so it can
-be argued with before there is a running system to lose.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A Kadupul backup has three parts. Any one of them alone restores nothing useful.
@@ -20,7 +21,7 @@ A Kadupul backup has three parts. Any one of them alone restores nothing useful.
 | Part | What it holds | Where it lives |
 |---|---|---|
 | Database | Devices, templates, users, permissions, the poller cache, and the path of every RRD file | MySQL or MariaDB |
-| RRD files | Every measurement ever kept | The RRA directory, by default `rra/` under the install |
+| RRD files | Retained measurements and consolidated archives | The RRA directory, by default `rra/` under the install |
 | Configuration | Database credentials, paths, collector configuration, plugin and script code | `include/config.php`, the spine configuration file, `plugins/`, `scripts/`, `resource/` |
 
 ## Why a database-only backup is worthless

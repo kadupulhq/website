@@ -2,61 +2,51 @@
 title: Security policy
 description: How to report a vulnerability, and how reports will be handled.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 5
 ---
 
-:::caution[No release to report against]
-Kadupul has no release, so there is nothing deployed to find a vulnerability in.
-This page states the intended process so it exists before it is needed.
-:::
+Report vulnerabilities privately, including findings against unreleased source.
+Development code can be deployed, and inherited defects may affect other projects.
+
+The repository's [security policy](https://github.com/kadupulhq/kadupul/blob/main/SECURITY.md)
+is the source of truth for this process.
 
 ## Reporting
 
-Report privately, through GitHub Security Advisories on the affected repository.
-Do not open a public issue for a vulnerability.
+Use [GitHub private vulnerability reporting](https://github.com/kadupulhq/kadupul/security/advisories/new)
+for the application. Do not open a public issue or publish a fix before private
+triage. Include the affected version or commit, reproduction steps, required
+configuration, and whether authentication is needed to reach the issue.
 
-A report is more useful with the affected version or commit, the conditions needed
-to reach the code, and what an attacker gains. A proof of concept helps. An
-unreproducible report is hard to act on and harder to prioritize.
+Maintainers aim to acknowledge reports within three working days. This is an
+acknowledgement target, not a promised fix date.
 
 ## What gets embargoed and what does not
 
-Not every security finding needs to be private, and treating them all the same
-wastes time.
+Report privately first. Maintainers assess exploitability and deployment exposure
+before deciding how to publish a fix. An unreleased branch is not automatically
+safe to discuss publicly.
 
-Report privately first, whatever it looks like. The handling is decided after
-triage, not by the reporter guessing which column they are in.
-
-| Situation | Handling |
-|---|---|
-| Affects a released version | Private advisory until a fix is available |
-| Pre-authentication, any released version | Private, and treated as the highest priority |
-| Inherited from Cacti and present in a Cacti release | Private, and reported to Cacti first |
-| Exploitable, but only on unreleased code | Private triage, then usually fixed in the open |
-| Hardening with no exploitable path | Public issue |
-
-Two things decide the last two rows, and neither is obvious from the outside.
-
-Whether the code is inherited. Most of this tree came from Cacti, so a defect
-here is often a defect in a shipped Cacti release, and that is Cacti's
-disclosure timeline to run rather than ours.
-
-Whether anyone is exposed. An unreleased branch is not automatically unexposed:
-people run development code, and the absence of a release is not evidence of the
-absence of deployments. Ordinary hardening stays public, because keeping it
-private buys nothing and costs review.
+For shared-code vulnerabilities, maintainers contact affected projects through
+private security channels before publishing an advisory or fix and agree on a
+coordinated disclosure timeline. Include related private reports when available.
 
 ## Credit
 
-Reporters get credit in the advisory unless they ask not to. A reporter's own
-write-up is theirs. Maintainer analysis gets appended as clearly labeled notes
-rather than replacing what the reporter wrote.
+Discuss attribution and publication timing during private triage. Follow the
+repository policy and the agreed disclosure timeline.
 
 ## Inherited issues
 
-Kadupul forks Cacti, so it inherits Cacti's code and any unfixed defects in it.
-A vulnerability found in Kadupul that also affects Cacti will be reported to
-The Cacti Group through their disclosure process as well. Forking is not a reason
-to leave upstream users exposed.
+Inherited vulnerabilities belong in the same private reporting process. Kadupul
+maintainers own remediation for Kadupul and coordinate with other affected
+maintainers.
+
+## Scope
+
+The policy covers the application, poller, installer and repository packaging.
+It excludes third-party plugins, RRDtool, Net-SNMP, the web server, database, and
+issues that require an administrator to act against their own installation.
+There is no supported release yet; reports against source are welcome.

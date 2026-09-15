@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "버전 선택",
+  "starlightVersions.link.latest": "최신 문서는 <a href={{link}}>최신 버전</a>을 확인하세요.",
+  "starlightVersions.outdated.label": "이 콘텐츠는 {{label}}에 관한 내용입니다.",
+  "starlightVersions.outdated.slug": "이 콘텐츠는 {{slug}} 버전에 관한 내용입니다.",
+  "starlightVersions.search.link.latest": "최신 검색 결과는 <a href={{link}}>최신 버전</a>을 확인하세요.",
+  "starlightVersions.search.outdated.label": "검색 범위가 {{label}}로 제한됩니다.",
+  "starlightVersions.search.outdated.slug": "검색 범위가 {{slug}} 버전으로 제한됩니다.",
+  "i18n.untranslatedContent": "아직 번역되지 않은 페이지는 안내문과 함께 영어로 표시됩니다."
+}

@@ -5,9 +5,8 @@ sidebar:
   order: 0
 ---
 
-Sixty-odd pages, grouped by what you are trying to do. The four groups are not
-interchangeable: a reference page makes a poor tutorial, and a tutorial that lists
-every option is impossible to follow.
+Pages are grouped by what you are trying to do: learn the basics, complete a
+task, understand a concept, look up a reference, or read project policies.
 
 ## Start here
 
@@ -45,7 +44,7 @@ Task pages for someone who already has it running and has a specific goal.
 - [Tune database performance](/guides/tune-database-performance/). Which tables grow, what the maintenance scripts actually do, and the server settings that decide whether a collection run finishes.
 - [Send email notifications](/guides/send-email-notifications/). Configure outbound mail in Kadupul, test it, and understand which events actually generate a message without installing a plugin.
 - [Monitor environmental sensors](/guides/monitor-environmental-sensors/). Graph temperature, humidity, airflow, power and UPS state over SNMP, find the right OIDs on a vendor MIB, and give the readings graph settings that suit a measurement rather than a counter.
-- [Manage data retention](/guides/manage-data-retention/). Choose how long Kadupul keeps data and at what resolution, size the disk for it, and understand why the choice is fixed for the life of each file.
+- [Manage data retention](/guides/manage-data-retention/). Choose retention and resolution, estimate storage, and plan changes to existing RRD files.
 - [Recover a corrupted RRD](/guides/recover-a-corrupted-rrd/). How to tell a damaged round-robin archive from a misconfigured one, how to inspect a file, how dump and restore repairs it, and what history you can keep when the file has to be rebuilt.
 - [Audit who can see what](/guides/audit-who-can-see-what/). A procedure for answering "what can this account see" and "who can see this device" with evidence, using the effective policy view rather than guessing from a tree.
 - [Monitor a virtualization host](/guides/monitor-a-virtualization-host/). What a hypervisor exposes over SNMP, what ships for ESXi, and why counting guests, CPU and memory on a virtualized estate is harder than it looks.
@@ -58,7 +57,7 @@ Task pages for someone who already has it running and has a specific goal.
 Why the system works the way it does. Read for understanding, not to perform a task.
 
 - [Architecture](/concepts/architecture/). The four moving parts, and which one is usually at fault.
-- [Data sources and round-robin archives](/concepts/data-sources-and-rras/). What actually gets stored, and why the decisions you make at creation time are permanent.
+- [Data sources and round-robin archives](/concepts/data-sources-and-rras/). What gets stored, how retention works, and why profile edits do not migrate existing RRD files.
 - [Templates](/concepts/templates/). How one definition covers a hundred devices, and what happens when you change it.
 - [How graphs are drawn](/concepts/how-graphs-are-drawn/). The path from a round-robin file to a rendered image, and why the same stored numbers can produce very different pictures.
 - [Data queries and indexes](/concepts/data-queries-and-indexes/). How one walk of a device becomes many data sources, what an index really is, and what happens when a device renumbers itself.
@@ -89,7 +88,7 @@ Looked up, not read through. Precise and scannable.
 - [RRDtool integration](/reference/rrdtool-integration/). Which RRDtool subcommands Kadupul issues, how each command line is assembled and validated, the difference between pipe and per-command execution, and what changes with the configured RRDtool version.
 - [Data query XML](/reference/data-query-xml/). The elements of a data query resource file, the field attributes for SNMP and script queries, and how the parser reads them.
 - [Spine, the C collector](/reference/spine/). What Spine is, how it differs from the PHP collector, the configuration it reads, its threading model, and when it is worth installing.
-- [RRDtool proxy](/reference/rrdproxy/). How Kadupul writes RRD files that live on another machine, the verbs it sends over the wire, and what that changes about remote collection.
+- [RRDtool proxy](/reference/rrdproxy/). Historical reference for the inherited RRDtool proxy client and protocol. Proxy deployment is unsupported.
 - [Plugin hook API](/reference/plugin-hook-api/). The files a plugin must ship, the functions it calls to register itself, the argument and return contract of the two dispatchers, and every hook name the source fires with where it fires and what it passes.
 - [Symptom index](/reference/symptom-index/). A lookup table from what you observe to the page that explains it, so you can find the right documentation without knowing which part of the system is at fault.
 - [Settings](/reference/settings/). Every setting Kadupul stores, grouped by the tab it appears under, with its type and its default.

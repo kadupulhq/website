@@ -4,12 +4,19 @@ description: Which RRDtool subcommands Kadupul issues, how each command line is
   assembled and validated, the difference between pipe and per-command
   execution, and what changes with the configured RRDtool version.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 13
 slug: 1.2.31/reference/rrdtool-integration
 ---
+
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
+:::
 
 All of it lives in `lib/rrd.php`. Inherited from Cacti 1.2.x.
 

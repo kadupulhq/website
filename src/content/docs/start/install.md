@@ -4,13 +4,13 @@ description: What Kadupul needs to run, and the order to put it together in.
 sidebar:
   order: 2
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
-:::caution[Nothing to install yet]
-Kadupul has not shipped. This page records the shape of the install so the
-requirements can be reviewed and argued with before there is code to match them.
-Commands below are written as they are intended to work. You cannot run them today.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Work through this once, in order. Each step ends with a check. Do the check before
@@ -24,12 +24,12 @@ stores measurements in RRD files on disk. Four things have to exist before it ru
 
 | Component | Why it is needed |
 |---|---|
-| PHP 8.1 or newer | Runs the web interface and the poller |
+| A security-supported PHP version meeting the manifest | Runs the web interface and the poller |
 | MySQL or MariaDB | Holds devices, templates, users, and the poller cache |
 | RRDtool | Creates and updates the round-robin archives, and renders graphs |
 | net-snmp | Provides the client tools and libraries used to query devices |
 
-PHP also needs a set of extensions: `pdo_mysql`, `gd`, `snmp`, `sockets`, `gmp`,
+PHP also needs a set of extensions: `pdo_mysql`, `gd`, `sockets`, `gmp`,
 `intl`, `mbstring`, `pcntl`, and `posix` among them. The full list is in
 [Requirements](/reference/requirements/).
 
@@ -47,7 +47,8 @@ rrdtool --version
 snmpget --version
 ```
 
-`php -m` must list every extension the requirements page names. A missing one
+`php -m` must list the required extensions. The PHP `snmp` extension is optional
+when the net-snmp command line tools are available. A missing required extension
 blocks an installer step later, and some fail in ways that do not name themselves:
 without `gmp`, 64-bit interface counters misbehave rather than error.
 
@@ -103,8 +104,8 @@ performance](/guides/tune-database-performance/) goes further once you have load
 Put the application somewhere your web server can serve, then decide which system
 user owns it. That decision matters more than the location. Two processes write
 here: the web server, and whatever schedules the poller. Run both as the same user.
-A poller run as `root` creates RRD files the web user cannot update, and the
-symptom appears days later as graphs that stopped with no error anywhere.
+Run the poller unprivileged and give both processes the access they need.
+Incorrect ownership or modes can prevent later updates even when graphs render.
 
 The directories that must be writable fall into two groups.
 
@@ -163,8 +164,8 @@ the database you created:
 mysql -u kadupul -p kadupul < cacti.sql
 ```
 
-Do this once, against an empty database. Running it against a populated one
-replaces what is there.
+Do this once, against an empty database. This is not an upgrade script; importing
+it into a populated database can fail or leave conflicting and partial data.
 
 ## Step 6: run the installer
 
@@ -184,12 +185,12 @@ sequence, and each step gates the next:
 8. Table conversion, confirmation, and the install itself.
 
 Sub-step 6 is the one that is hard to undo. The profile you pick decides the step
-and the archive set written into every RRD file created afterwards, and neither can
-change later without rebuilding the files and losing history. If peaks matter, make
+and the archive set written into every RRD file created afterwards, and editing the profile does not migrate existing files. Retention changes need
+a separate, tested migration; they do not always require discarding history. If peaks matter, make
 sure the profile keeps maxima and not only averages: read [Data sources and
 round-robin archives](/concepts/data-sources-and-rras/) before clicking past it.
 The interval offered there is either every minute or every five minutes, and
-whichever you pick has to match what you schedule next.
+the launcher schedule must accommodate the collection interval you choose.
 
 ## Step 7: schedule the poller
 
@@ -204,7 +205,7 @@ schedule it once a minute from cron or a systemd timer:
 or run the shipped daemon under a service manager instead. The daemon exists
 because cron is awkward to make highly available; one server does not need it.
 
-Whichever you choose, the configured interval has to match the scheduled one. A
+Schedule the launcher at least as often as the configured collection interval. A
 poller scheduled every five minutes while the configuration says every minute
 produces a graph full of gaps and no error message.
 

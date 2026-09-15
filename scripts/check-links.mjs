@@ -10,9 +10,12 @@
  * truncating, so every anchor link was skipped while the summary still printed
  * a count. A gate that fails open is worse than no gate.
  */
-import { readdirSync, readFileSync, statSync, lstatSync, existsSync, realpathSync } from 'node:fs';
+import realFs from 'node:fs';
+import { isMain } from './cli.mjs';
+import { isUtilityRoute } from '../src/i18n/routes.mjs';
 import { join, resolve, relative, sep } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
+import { parse } from 'parse5';
 
 // Taken from argv, not the environment: an ambient variable must not be able to
 // redirect what a release gate inspects.
@@ -26,10 +29,10 @@ const DIST = process.argv[2] || fileURLToPath(new URL('../dist/', import.meta.ur
  * read as valid. Skipping links also makes a cycle impossible, which previously
  * crashed with exit 1, the same status as "broken links found".
  */
-function walk(dir, acc = { files: [], skipped: [] }) {
-	for (const name of readdirSync(dir)) {
+function walk(dir, fs, acc = { files: [], skipped: [] }) {
+	for (const name of fs.readdirSync(dir)) {
 		const p = join(dir, name);
-		const st = lstatSync(p);
+		const st = fs.lstatSync(p);
 		if (st.isSymbolicLink()) {
 			// Recorded, not silently dropped. Following it would let out-of-build
 			// pages satisfy links; ignoring it would hide every link inside the
@@ -38,7 +41,7 @@ function walk(dir, acc = { files: [], skipped: [] }) {
 			acc.skipped.push(p);
 			continue;
 		}
-		if (st.isDirectory()) walk(p, acc);
+		if (st.isDirectory()) walk(p, fs, acc);
 		else if (st.isFile()) acc.files.push(p);
 	}
 	return acc;
@@ -47,13 +50,22 @@ function walk(dir, acc = { files: [], skipped: [] }) {
 /** Split an href into its path, fragment and query. Returns null for non-routes.
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
 export function classify(href, from = '') {
+	href = href.replace(/[\t\n\r]/g, '').trim();
+	// Browsers treat backslashes as slashes in HTTP(S) authority prefixes.
+	if (/^[\\/]{2}/.test(href)) return null;
 	if (href.startsWith('#')) {
 		let f = href.slice(1);
 		try { f = decodeURIComponent(f); } catch { /* keep raw */ }
 		return { path: '/' + from, fragment: f, samePage: true, dotted: false };
 	}
-	if (href.startsWith('//')) return null; // protocol-relative, external
-	if (!href.startsWith('/')) return null;
+	if (/^[a-z][a-z0-9+.-]*:/i.test(href)) return null;
+	// Resolve relative and query-only references as a browser does, using the
+	// current route as the base. They are internal links too.
+	if (!href.startsWith('/')) {
+		const url = new URL(href, 'https://linkcheck.invalid/' + from);
+		if (url.origin !== 'https://linkcheck.invalid') return null;
+		href = url.pathname + url.search + url.hash;
+	}
 	const hash = href.indexOf('#');
 	const query = href.indexOf('?');
 	let cut = href.length;
@@ -74,16 +86,16 @@ export function classify(href, from = '') {
 	return { path, fragment, dotted };
 }
 
-export function check(dist) {
-	if (!existsSync(dist)) {
+export function check(dist, fs = realFs) {
+	if (!fs.existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
 	}
 	// Normalise once. Deriving keys by slicing the caller's raw string corrupts
 	// every route when the path carries ./ or ../ or lacks a trailing slash.
 	let root;
 	try {
-		root = realpathSync(resolve(dist));
-		if (!statSync(root).isDirectory()) {
+		root = fs.realpathSync(resolve(dist));
+		if (!fs.statSync(root).isDirectory()) {
 			return { fatal: `${dist} is not a directory` };
 		}
 	} catch {
@@ -92,7 +104,7 @@ export function check(dist) {
 	const key0 = (p) => relative(root, p).split(sep).join('/');
 	let files, skipped;
 	try {
-		({ files, skipped } = walk(root));
+		({ files, skipped } = walk(root, fs));
 	} catch (e) {
 		// An I/O error must not surface as exit 1, which is "broken links found".
 		return { fatal: `cannot read the build: ${e.message}` };
@@ -101,8 +113,8 @@ export function check(dist) {
 	for (const link of skipped) {
 		let target, st;
 		try {
-			target = realpathSync(link);
-			st = statSync(target);
+			target = fs.realpathSync(link);
+			st = fs.statSync(target);
 		} catch {
 			continue; // dangling: carries nothing, so no coverage is lost
 		}
@@ -132,21 +144,41 @@ export function check(dist) {
 		return { fatal: `no HTML under ${dist}; the build produced nothing` };
 	}
 
-	const routes = new Set(pages.map((p) => key0(p).replace(/(^|\/)index\.html$/, '$1')));
+	// Keep the served path separate from the file we read. Relative hrefs must
+	// resolve against the alias URL, and HTML file aliases need anchor checks.
+	const servedPages = new Map(pages.map((p) => [key0(p), p]));
 	for (const [from, to] of aliases) {
-		for (const r of [...routes]) {
-			if (r === to + '/') routes.add(from + '/');
-			else if (r.startsWith(to + '/')) routes.add(from + r.slice(to.length));
+		// Snapshot before adding routes: iterating the live map would follow
+		// a self-referential directory alias indefinitely.
+		const existingPages = new Map(servedPages);
+		for (const [path, file] of existingPages) {
+			if (path === to) servedPages.set(from, file);
+			else if (to === '') servedPages.set(from + '/' + path, file);
+			else if (path.startsWith(to + '/')) servedPages.set(from + path.slice(to.length), file);
 		}
 	}
+	const routes = new Set([...servedPages.keys()].map((p) => p.replace(/(^|\/)index\.html$/, '$1')));
 	const routesNFC = new Map(
 		[...routes].map((r) => [r.normalize('NFC'), r]),
 	);
 	const ids = new Map();
-	for (const p of pages) {
-		const key = key0(p).replace(/(^|\/)index\.html$/, '$1');
-		const html = readFileSync(p, 'utf8');
-		const found = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+	const links = new Map();
+	for (const [servedPath, p] of servedPages) {
+		const key = servedPath.replace(/(^|\/)index\.html$/, '$1');
+		const html = fs.readFileSync(p, 'utf8');
+		const found = [];
+		const hrefs = [];
+		// HTML parsing handles entity decoding, single/unquoted attributes and
+		// case folding, without treating comments or script text as live links.
+		const visit = (node) => {
+			for (const attr of node.attrs || []) {
+				if (attr.name === 'id') found.push(attr.value);
+				if (attr.name === 'href') hrefs.push(attr.value);
+			}
+			for (const child of node.childNodes || []) visit(child);
+		};
+		visit(parse(html));
+		links.set(key, hrefs);
 		ids.set(key, { literal: new Set(found), nfc: new Set(found.map((i) => i.normalize('NFC'))) });
 	}
 
@@ -155,11 +187,9 @@ export function check(dist) {
 	let checked = 0;
 	let fragmentsChecked = 0;
 
-	for (const p of pages) {
-		const from = key0(p).replace(/(^|\/)index\.html$/, '$1');
-		const html = readFileSync(p, 'utf8');
-		for (const m of html.matchAll(/href="([^"]*)"/g)) {
-			const c = classify(m[1], from);
+	for (const [from, hrefs] of links) {
+		for (const href of hrefs) {
+			const c = classify(href, from);
 			if (!c) continue;
 			// Normalise the same way routes are built, so an explicit
 			// /sub/index.html link resolves to the same key as /sub/.
@@ -173,7 +203,7 @@ export function check(dist) {
 				// A normalisation-only asset match is reported, not skipped.
 				if (assetsNFC.has(key.normalize('NFC'))) {
 					checked++;
-					broken.push(`${from || '/'}  ->  ${m[1]}  (unicode normalisation mismatch)`);
+					broken.push(`${from || '/'}  ->  ${href}  (unicode normalisation mismatch)`);
 					continue;
 				}
 			}
@@ -184,10 +214,10 @@ export function check(dist) {
 				const viaNFC = routesNFC.get(key.normalize('NFC'));
 				if (viaNFC !== undefined) {
 					broken.push(
-						`${from || '/'}  ->  ${m[1]}  (unicode normalisation mismatch with ${viaNFC})`,
+						`${from || '/'}  ->  ${href}  (unicode normalisation mismatch with ${viaNFC})`,
 					);
 				} else {
-					broken.push(`${from || '/'}  ->  ${m[1]}  (no such route)`);
+					broken.push(`${from || '/'}  ->  ${href}  (no such route)`);
 				}
 				continue;
 			}
@@ -200,7 +230,7 @@ export function check(dist) {
 					// the mismatch that makes an anchor fail in a real browser.
 					const only = target?.nfc.has(c.fragment.normalize('NFC'));
 					broken.push(
-						`${from || '/'}  ->  ${m[1]}  ` +
+						`${from || '/'}  ->  ${href}  ` +
 							(only ? '(unicode normalisation mismatch with the id)' : '(no such anchor on target)'),
 					);
 				}
@@ -209,19 +239,12 @@ export function check(dist) {
 	}
 
 	const orphans = [...routes].filter(
-		(r) => r && r !== '404.html' && !r.startsWith('1.2.31/') && !inbound.has(r),
+		(r) => r && !isUtilityRoute(r) && !inbound.has(r),
 	);
-	return { pages: pages.length, checked, fragmentsChecked, broken, orphans };
+	return { pages: servedPages.size, checked, fragmentsChecked, broken, orphans };
 }
 
-// pathToFileURL, not string concatenation: import.meta.url is percent-encoded
-// and resolved through symlinks, so a naive compare can silently skip this
-// block and exit 0 having checked nothing.
-// Both sides must be realpath-resolved. Node resolves the main entry through
-// realpath, so on macOS a /var path (a symlink to /private/var) makes a naive
-// compare false and silently skips this whole block. Proven, not assumed.
-const entry = process.argv[1] ? pathToFileURL(realpathSync(process.argv[1])).href : '';
-if (import.meta.url === entry) {
+if (isMain(import.meta.url)) {
 	const r = check(DIST);
 	if (r.fatal) {
 		console.error(`FATAL  ${r.fatal}`);

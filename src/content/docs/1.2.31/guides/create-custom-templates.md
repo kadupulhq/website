@@ -4,16 +4,17 @@ description: How to build a data template and a graph template by hand, when to
   copy one instead, and what editing a template later does to graphs and files
   that already exist.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 11
 slug: 1.2.31/guides/create-custom-templates
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. This page describes the intended behavior of the template
-editor, not something you can open today.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Building a template from scratch is a two step job. The data template decides what
@@ -60,7 +61,7 @@ is not revisited afterwards.
 | Data source type | `GAUGE`, `COUNTER`, `DERIVE`, `ABSOLUTE`, and others depending on the RRDtool version | A counter stored as a gauge graphs as a rising staircase |
 | Minimum | Values below this are recorded as unknown | `U` means no minimum |
 | Maximum | Values above this are recorded as unknown | `U` means no maximum, which lets counter wraps through as huge spikes |
-| Heartbeat | How long a gap can be before the interval is unknown | Conventionally twice the step |
+| Heartbeat | How long a gap can be before the interval is unknown | Profile-specific; inspect the selected profile and RRD file |
 | Output field | Which field of the data input method feeds this item | Must match, or the item is never written |
 
 Name the internal data source for the measurement, not for the device or the

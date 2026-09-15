@@ -3,12 +3,19 @@ title: Settings
 description: Every setting Kadupul stores, grouped by the tab it appears under,
   with its type and its default.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 19
 slug: 1.2.31/reference/settings
 ---
+
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
+:::
 
 The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/1.2.31/reference/configuration/).
@@ -387,7 +394,7 @@ Presets only. From 1.2 onward the live values are held on the data collector.
 
 | Name | Setting | Controls | Type | Default |
 |---|---|---|---|---|
-| `storage_location` | Location | `0` local, `1` RRDtool proxy server. | select | `0` |
+| `storage_location` | Location | Use `0` for local storage. `1` is inherited, unsupported RRDtool proxy behavior. | select | `0` |
 
 ### Structured RRD file paths
 

@@ -3,17 +3,17 @@ title: Secure an internet-facing install
 description: What to change before a monitoring system with shell access to your
   network answers requests from the public internet.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 9
 slug: 1.2.31/guides/secure-an-internet-facing-install
 ---
 
-:::caution[Nothing to expose yet]
-Kadupul has not shipped. This page records the intended security posture and the
-settings that control it. Treat it as a checklist to review, not a procedure to
-run.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Start with the honest answer: put it behind a VPN. Kadupul holds the SNMP
@@ -32,20 +32,15 @@ Then turn on the setting that redirects plain HTTP requests to HTTPS. It is off
 by default. Without it, a login form is served over HTTP and a password crosses
 the wire in the clear before anything else has a chance to matter.
 
-The session cookie's Secure flag is set based on whether the current request is
-encrypted. Two consequences:
+The application sets the session cookie's Secure flag when PHP receives a nonempty
+`$_SERVER['HTTPS']` value other than `off`. Behind a TLS-terminating proxy,
+configure the trusted web server or FastCGI layer to represent HTTPS correctly,
+and verify the resulting `Set-Cookie` header in a browser.
 
-* Behind a TLS-terminating proxy, the application sees a plain HTTP request and
-  does not set the flag unless you tell it to trust a forwarded-protocol header.
-  Trust is configured in the configuration file, by naming the specific headers
-  your proxy sets.
-* Do not set that trust to "all headers". The configuration file offers it and
-  the file's own comment advises against it. A client can send any header it
-  likes, and trusting all of them lets a client assert both its own address and
-  the connection's protocol.
-
-Name the exact headers your proxy sets, and make sure the proxy strips those same
-headers from inbound requests.
+`$proxy_headers` controls client-address resolution. It does not set the HTTPS
+server variable or enable Secure cookies. Trust only the address headers your
+proxy sets, strip client-supplied copies, and prevent direct access to the backend.
+Enforce HTTP-to-HTTPS redirects at the public proxy before credentials are sent.
 
 The HttpOnly and SameSite=Strict flags are set on the session cookie regardless.
 
@@ -246,8 +241,9 @@ real certificates for your collectors and turn it off.
 
 ## Minimum checklist
 
-1. TLS terminated, HTTP redirected to HTTPS, forwarded-protocol trust limited to
-   named headers your proxy sets and strips.
+1. TLS terminated, HTTP redirected before login, PHP HTTPS state configured by
+   the trusted server, and Secure cookies verified. Client-address headers limited
+   to those the proxy sets and strips.
 2. Default admin password changed and confirmed. Account lockout on.
 3. Database account holding rights to its own database plus the one timezone
    grant, nothing more. Database not reachable from outside the host.

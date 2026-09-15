@@ -5,8 +5,8 @@ description: How one definition covers a hundred devices, and what happens when
 sidebar:
   order: 3
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 slug: 1.2.31/concepts/templates
 ---
 

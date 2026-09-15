@@ -2,7 +2,7 @@
 title: How graphs are drawn
 description: The path from a round-robin file to a rendered image, and why the same stored numbers can produce very different pictures.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 4
 ---

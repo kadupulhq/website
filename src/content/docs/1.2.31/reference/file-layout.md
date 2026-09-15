@@ -4,8 +4,8 @@ description: What lives in each Kadupul directory, which ones the poller writes
   to, which must never be served over HTTP, and which hold data worth backing
   up.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 11
 slug: 1.2.31/reference/file-layout

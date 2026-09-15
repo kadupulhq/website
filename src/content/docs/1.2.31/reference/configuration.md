@@ -3,12 +3,19 @@ title: Configuration
 description: Which settings live in the config file on disk and which live in
   the database, and what each group controls.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 3
 slug: 1.2.31/reference/configuration
 ---
+
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
+:::
 
 Configuration is split in two. A small file on disk holds what the application
 needs before it can reach a database. Everything else lives in the database and is

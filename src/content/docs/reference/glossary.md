@@ -2,7 +2,7 @@
 title: Glossary
 description: Definitions of the domain terms that appear throughout Kadupul, in alphabetical order.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 5
 ---

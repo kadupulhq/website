@@ -4,10 +4,11 @@ description: The scope of the API compatibility promise.
 sidebar:
   order: 2
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
-Kadupul stays API compatible with Cacti for the foreseeable future.
+Preserving compatibility with Cacti is a release goal. It requires validation
+for the versions, plugins and templates you use.
 
 ## What that covers
 
@@ -20,6 +21,10 @@ read in place rather than converted.
 Where Kadupul and Cacti diverge, the divergence gets documented. The failure mode
 worth avoiding is not divergence, which is the point of a fork. It is divergence
 nobody wrote down, which turns every upgrade into an investigation.
+
+Compatibility does not require downloads, builds, plugins, documentation, or
+support from the Cacti organization. Kadupul uses its own maintained forks.
+Components without verified Kadupul sources are not part of the supported setup.
 
 ## What it is not
 

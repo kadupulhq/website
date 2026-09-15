@@ -4,16 +4,17 @@ description: How to tell a damaged round-robin archive from a misconfigured one,
   how to inspect a file, how dump and restore repairs it, and what history you
   can keep when the file has to be rebuilt.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 25
 slug: 1.2.31/guides/recover-a-corrupted-rrd
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there are no archives to repair. This page states the
-intended diagnostics and repair paths so both can be reviewed before they exist.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Genuine file corruption is rare. Most files reported as corrupt are intact and
@@ -97,7 +98,7 @@ The messages it can record, and what each one means:
 
 | Message | Meaning |
 |---|---|
-| RRDfile does not exist | No successful write has ever happened for this data source |
+| RRDfile does not exist | The file was never created, was moved or deleted, or the configured path changed |
 | RRDfile is not writable | The poller user cannot write the file |
 | RRDfile modify time older than hour | Nothing has been written for at least an hour |
 | Last update value in RRDfile is older than 1 hour | The file's own last update stamp is stale, which is stronger evidence than the modify time |

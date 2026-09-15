@@ -3,8 +3,8 @@ title: Data queries and indexes
 description: How one walk of a device becomes many data sources, what an index
   really is, and what happens when a device renumbers itself.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 5
 slug: 1.2.31/concepts/data-queries-and-indexes

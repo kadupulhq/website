@@ -2,7 +2,7 @@
 title: Why this fork exists
 description: The reason Kadupul is a separate project, stated without complaint about the one it came from.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 1
 ---

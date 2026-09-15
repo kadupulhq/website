@@ -3,16 +3,17 @@ title: A worked example, start to finish
 description: One switch taken from an empty install to a graph you can trust,
   naming every decision along the way and what the alternative would have cost.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 28
 slug: 1.2.31/guides/worked-example
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be carried out today. The page states
-the intended sequence and the reasoning behind each choice, so both can be held to.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Every other page here is a slice. This one joins them. It takes a single device

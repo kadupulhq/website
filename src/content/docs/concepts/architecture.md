@@ -4,8 +4,15 @@ description: The four moving parts, and which one is usually at fault.
 sidebar:
   order: 1
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
+
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/reference/rrdproxy/).
+:::
 
 Kadupul has four parts. Knowing which one you are looking at shortens most
 debugging sessions to a few minutes.
@@ -30,7 +37,7 @@ than the others.
 | Boundary | What crosses it | Carried by |
 |---|---|---|
 | Interface to database | Configuration reads and writes, sessions, permission checks, and the work list the interface precomputes for the poller | SQL |
-| Interface to files | Reads, at the moment somebody asks for a graph. Creating a data source also creates its file here | The local filesystem, or a socket to a remote RRDtool |
+| Interface to files | Reads, at the moment somebody asks for a graph. Creating a data source also creates its file here | The local filesystem; the inherited remote RRDtool socket is unsupported |
 | Poller to database | Reads the work list. Writes collected values, device status, and per-item countdowns | SQL |
 | Poller to devices | SNMP requests, script invocations, reachability checks | The network. The only leg that leaves the host |
 | Poller to files | One update per data source per interval | RRDtool, spawned per command or held open as a pipe |

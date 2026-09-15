@@ -3,16 +3,17 @@ title: Tune graph appearance
 description: Axis scaling, units, colour and legend settings, and what to change
   when a graph is technically correct and still unreadable.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 17
 slug: 1.2.31/guides/tune-graph-appearance
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A graph nobody can read is not doing its job, however correct the numbers are. Four

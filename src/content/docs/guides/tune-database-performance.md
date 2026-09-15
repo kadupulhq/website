@@ -2,15 +2,15 @@
 title: Tune database performance
 description: Which tables grow, what the maintenance scripts actually do, and the server settings that decide whether a collection run finishes.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 21
 ---
 
-:::caution[Nothing to tune yet]
-Kadupul has not shipped, so there is no database under load. This page records
-the intended behaviour of the maintenance tooling and the settings that govern
-it, inherited from Cacti 1.2.x.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 The database is not where measurements live. See

@@ -2,14 +2,18 @@
 /**
  * Generates the documentation map from the pages themselves.
  *
- * A hand-written index of 60 pages is wrong within a week. This reads each
+ * A hand-written index drifts as pages change. This reads each
  * page's own title and description, so the map cannot describe a page that
  * does not exist or miss one that does.
  */
-import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
+import { isMain } from './cli.mjs';
+import { getMessages, translatedLocales } from '../src/i18n/locales.mjs';
 
-const DOCS = new URL('../src/content/docs/', import.meta.url).pathname;
+const DEFAULT_DOCS = fileURLToPath(new URL('../src/content/docs/', import.meta.url));
 
 const SECTIONS = [
 	['start', 'Start here', 'Read in order, once. Takes you from nothing to a graph you can read.'],
@@ -19,9 +23,9 @@ const SECTIONS = [
 	['project', 'Project', 'What this project is, where it stands, and the terms it is offered under.'],
 ];
 
-function frontmatter(file) {
+export function frontmatter(file) {
 	const text = readFileSync(file, 'utf8');
-	if (!text.startsWith('---\n')) return null;
+	if (!text.startsWith('---\n') || text.indexOf('\n---\n', 4) === -1) return null;
 	const block = text.slice(4, text.indexOf('\n---\n', 4));
 	const grab = (key) => {
 		const m = block.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'));
@@ -31,41 +35,77 @@ function frontmatter(file) {
 	return { title: grab('title'), description: grab('description'), order: order ? +order[1] : 999 };
 }
 
-let out = `---
+export function buildMaps(DOCS, localeNames = translatedLocales, { check = false } = {}) {
+	function writeMap(path, content) {
+		if (check) {
+			if (readFileSync(path, 'utf8') !== content) throw new Error(`Stale documentation map: ${path}; run npm run build:map`);
+		} else writeFileSync(path, content);
+	}
+	const sectionFiles = new Map();
+	let out = `---
 title: Documentation map
 description: Every page on this site, grouped by what it is for, so you can see the whole from anywhere in it.
 sidebar:
   order: 0
 ---
 
-Sixty-odd pages, grouped by what you are trying to do. The four groups are not
-interchangeable: a reference page makes a poor tutorial, and a tutorial that lists
-every option is impossible to follow.
+Pages are grouped by what you are trying to do: learn the basics, complete a
+task, understand a concept, look up a reference, or read project policies.
 
 `;
 
-for (const [dir, heading, blurb] of SECTIONS) {
-	let entries;
-	try {
-		entries = readdirSync(join(DOCS, dir)).filter((f) => f.endsWith('.md') || f.endsWith('.mdx'));
-	} catch {
-		continue;
-	}
-	const pages = entries
-		.map((f) => ({ slug: f.replace(/\.mdx?$/, ''), ...frontmatter(join(DOCS, dir, f)) }))
-		.filter((p) => p.title)
-		.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
+	for (const [dir, heading, blurb] of SECTIONS) {
+		let entries;
+		try {
+			entries = readdirSync(join(DOCS, dir)).filter((f) => f.endsWith('.md') || f.endsWith('.mdx'));
+		} catch (error) {
+			if (error.code === 'ENOENT') continue;
+			throw error;
+		}
+		sectionFiles.set(dir, entries);
+		const pages = entries
+			.map((f) => ({ slug: f.replace(/\.mdx?$/, ''), ...frontmatter(join(DOCS, dir, f)) }))
+			.filter((p) => p.title)
+			.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
 
-	out += `## ${heading}\n\n${blurb}\n\n`;
-	for (const p of pages) {
-		out += `- [${p.title}](/${dir}/${p.slug}/)${p.description ? ` — ${p.description}` : ''}\n`;
+		out += `## ${heading}\n\n${blurb}\n\n`;
+		for (const p of pages) {
+			out += `- [${p.title}](/${dir}/${p.slug}/)${p.description ? ` — ${p.description}` : ''}\n`;
+		}
+		out += '\n';
 	}
-	out += '\n';
+
+	// The long dash above is deliberate in generated output only; convert to a period
+	// so the prose linter's em dash rule holds for this file too.
+	out = out.replace(/\) — /g, '). ');
+
+	writeMap(join(DOCS, 'map.md'), out);
+
+
+	// Keep untranslated entries discoverable through Starlight's English fallback.
+	for (const locale of localeNames) {
+		const t = getMessages(locale);
+		let translated = `---\ntitle: ${JSON.stringify(t.map)}\ndescription: ${JSON.stringify(t.mapDescription)}\nsidebar:\n  order: 0\n---\n\n${t.fallback}\n\n`;
+		for (const [dir] of SECTIONS) {
+			translated += `## ${t[dir]}\n\n`;
+			const files = sectionFiles.get(dir) || [];
+			for (const file of files.sort()) {
+				const original = frontmatter(join(DOCS, dir, file));
+				if (!original?.title) continue;
+				let local;
+				try { local = frontmatter(join(DOCS, locale, dir, file)); }
+				catch (error) { if (error.code !== 'ENOENT') throw error; }
+				const title = local?.title || `${original.title} (English)`;
+				translated += `- [${title}](/${locale}/${dir}/${file.replace(/\.mdx?$/, '')}/)\n`;
+			}
+			translated += '\n';
+		}
+		writeMap(join(DOCS, locale, 'map.md'), translated);
+	}
 }
 
-// The long dash above is deliberate in generated output only; convert to a period
-// so the prose linter's em dash rule holds for this file too.
-out = out.replace(/\) — /g, '). ');
-
-writeFileSync(join(DOCS, 'map.md'), out);
-console.log('documentation map generated');
+if (isMain(import.meta.url)) {
+	const { values, positionals } = parseArgs({ allowPositionals: true, options: { check: { type: 'boolean', default: false } } });
+	buildMaps(positionals[0] || DEFAULT_DOCS, translatedLocales, { check: values.check });
+	console.log(values.check ? 'documentation maps match' : 'documentation maps generated');
+}

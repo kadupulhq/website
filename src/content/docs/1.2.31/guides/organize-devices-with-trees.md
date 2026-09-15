@@ -3,16 +3,17 @@ title: Organize devices with trees
 description: How to structure graph trees so navigation and permissions still
   work at a few thousand devices, and where to model site and location instead.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 4
 slug: 1.2.31/guides/organize-devices-with-trees
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so none of this can be done today. The page states the
-intent so it can be held to it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A tree is how people find a graph. At twenty devices any structure works. At two

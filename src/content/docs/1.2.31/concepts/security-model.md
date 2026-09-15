@@ -4,8 +4,8 @@ description: Where untrusted data enters Kadupul, which process runs with which
   privilege, what the database account can do, and which boundaries the code
   enforces rather than assumes.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 12
 slug: 1.2.31/concepts/security-model

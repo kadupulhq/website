@@ -1,0 +1,13 @@
+{
+  "all": true,
+  "include": ["scripts/**/*.mjs", "src/**/*.mjs", "src/**/*.ts", "src/**/*.astro", "astro.config.mjs"],
+  "exclude": ["**/__tests__/**", "**/*.d.ts"],
+  "extension": [".mjs", ".ts", ".astro"],
+  "reporter": ["text", "html", "lcov", "json"],
+  "check-coverage": true,
+  "per-file": true,
+  "lines": 100,
+  "branches": 100,
+  "functions": 100,
+  "statements": 100
+}

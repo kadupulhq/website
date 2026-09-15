@@ -4,16 +4,17 @@ description: Get one device polling, and confirm the data is arriving before you
 sidebar:
   order: 3
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
 Add one device, confirm it is answering, and only then move on. Most trouble with a
 monitoring system traces back to a device that was never really answering in the
 first place.
 
-:::caution[Nothing to add yet]
-Kadupul has not shipped. Follow this page as the intended sequence, not as
-something you can carry out today.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Pick a device you can afford to get wrong. A switch you own, on a network you

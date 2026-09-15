@@ -3,32 +3,28 @@ title: RRDtool proxy
 description: How Kadupul writes RRD files that live on another machine, the
   verbs it sends over the wire, and what that changes about remote collection.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 16
 slug: 1.2.31/reference/rrdproxy
 ---
 
-RRDtool needs a filesystem path. Every `create`, `update`, `fetch`, and `graph` names
-a file, and RRDtool opens it locally. That is fine until the machine running RRDtool is
-not the machine holding the files.
+**Proxy deployment is unsupported. Use local RRDtool storage.** Kadupul does not
+use the Cacti organization's proxy daemon. A Kadupul-owned replacement must be
+established and validated before proxy deployment is documented.
 
-The RRDtool proxy is the answer to that. A daemon runs on the machine holding the RRD
-tree. Kadupul opens a TCP socket to it and sends the RRDtool command line as text
-instead of running RRDtool itself. The daemon runs the command against its own copy of
-the files and sends the output back.
-
-**The proxy daemon is not part of Kadupul.** It is a separate upstream project,
-[Cacti/rrdproxy](https://github.com/Cacti/rrdproxy), maintained by The Cacti Group.
-Kadupul has not forked it and does not ship it.
+The following socket details describe inherited behavior for historical diagnostics.
+RRDtool opens filesystem paths locally. The inherited proxy client instead sent
+RRDtool command text over TCP to a daemon beside the RRD files and received its
+output. This is not an installation or configuration recommendation.
 
 This page documents the client half only: what Kadupul sends, what it expects back, and
 which settings control it. All of it is read from `lib/rrd.php`, inherited from Cacti
 1.2.x. Nothing here was read from the daemon's source, so where the daemon's behaviour
 is implied rather than observed, the page says so.
 
-## Turning it on
+## Historical configuration
 
 The `storage_location` setting picks the path.
 

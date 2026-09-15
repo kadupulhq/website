@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "选择版本",
+  "i18n.untranslatedContent": "尚未翻译的页面会显示英文内容，并附有未翻译提示。",
+  "starlightVersions.link.latest": "查看<a href={{link}}>最新版本</a>。",
+  "starlightVersions.outdated.label": "此内容适用于 {{label}}。",
+  "starlightVersions.outdated.slug": "此内容适用于 {{slug}} 版本。",
+  "starlightVersions.search.link.latest": "查看<a href={{link}}>最新版本</a>的搜索结果。",
+  "starlightVersions.search.outdated.label": "搜索范围：{{label}}。",
+  "starlightVersions.search.outdated.slug": "搜索范围：{{slug}} 版本。"
+}

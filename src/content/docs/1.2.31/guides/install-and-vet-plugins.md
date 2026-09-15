@@ -4,17 +4,17 @@ description: How plugins attach themselves to the application, what to read
   before you trust one, and why installing a plugin is equivalent to granting
   shell access.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 13
 slug: 1.2.31/guides/install-and-vet-plugins
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped. There is nowhere to install a plugin today. This page
-describes the plugin architecture as it is intended to ship, and the review a
-third-party plugin deserves before it is installed anywhere.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 Start here, because everything else on this page follows from it.

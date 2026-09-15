@@ -2,7 +2,7 @@
 title: Data input methods
 description: The six ways Kadupul collects a value, the input and output fields each one takes, and the output each one must return.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 10
 ---

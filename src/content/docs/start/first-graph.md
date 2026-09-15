@@ -4,15 +4,16 @@ description: What the lines actually mean, and the three mistakes that make peop
 sidebar:
   order: 4
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
 A graph here is not a picture of your data. It is a picture of a summary of your
 data, and knowing which summary matters.
 
-:::caution[No graph to read yet]
-Kadupul has not shipped. Read this as the thing to check when you do have a graph
-in front of you.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 ## What you are looking at

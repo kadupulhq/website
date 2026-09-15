@@ -5,6 +5,8 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { classify, check } from '../check-links.mjs';
+import fs from 'node:fs';
+import { spawnSync } from 'node:child_process';
 
 const pathOf = (h, from) => { const c = classify(h, from); return c && [c.path, c.fragment]; };
 
@@ -17,10 +19,12 @@ test('classify splits fragments and queries off the path', () => {
 	assert.deepEqual(pathOf('/a/b/?x=1#f'), ['/a/b/', 'f']);
 });
 
-test('classify ignores anything that is not a site-absolute path', () => {
+test('classify ignores external schemes and resolves relative paths', () => {
 	assert.equal(classify('https://example.com/'), null);
 	assert.equal(classify('mailto:a@b.c'), null);
-	assert.equal(classify('relative/page/'), null);
+	assert.deepEqual(pathOf('relative/page/'), ['/relative/page/', '']);
+	assert.deepEqual(pathOf('../other/#ok', 'nested/page/'), ['/nested/other/', 'ok']);
+	assert.deepEqual(pathOf('?q=1#ok', 'nested/page/'), ['/nested/page/', 'ok']);
 });
 
 test('a dotted path is marked, and resolved against the build rather than a list', () => {
@@ -170,6 +174,8 @@ test('an index.html link counts as inbound, so the target is not an orphan', () 
 
 test('a protocol-relative href is external, not a site path', () => {
 	assert.equal(classify('//cdn.example.com/lib.js'), null);
+	assert.equal(classify('\\\\evil.example/x', 'a/'), null);
+	assert.equal(classify('/\\evil.example/x'), null);
 });
 
 test('a dist path with ./ or no trailing slash still yields correct keys', () => {
@@ -310,4 +316,142 @@ test('an in-build directory symlink resolves and is not fatal', async () => {
 	assert.ok(!r.fatal, 'a symlink inside the build is already covered');
 	assert.deepEqual(r.broken, [], 'the path the symlink is served under must resolve');
 	rmSync(d, { recursive: true, force: true });
+});
+
+test('relative routes and query-only anchors are validated', (t) => {
+	const d = build({
+		'index.html': '<a href="nested/page/">page</a>',
+		'nested/page/index.html': '<h2 id="ok">H</h2><a href="?q=1#ok">ok</a><a href="../missing/">bad</a><a href="?q=1#missing">bad</a>',
+	});
+	t.after(() => rmSync(d, { recursive: true }));
+	const r = check(d);
+	assert.equal(r.checked, 4);
+	assert.equal(r.broken.length, 2);
+	assert.match(r.broken[0], /no such route/);
+	assert.match(r.broken[1], /no such anchor/);
+});
+
+test('HTML attributes are parsed and entities decoded without reading comments or scripts', (t) => {
+	const d = build({
+		'index.html': `<h2 ID='a&amp;b'>H</h2>
+			<A HREF='#a&amp;b'>ok</A><a href=/#a%26b>ok</a>
+			<a href='/missing/'>bad</a><a href=/also-missing/>bad</a>
+			<!-- <a href="/comment/">ignored</a> -->
+			<script>const example = '<a href="/script/">ignored</a>';</script>
+			<p data-href="/data/">ignored</p>`,
+	});
+	t.after(() => rmSync(d, { recursive: true }));
+	const r = check(d);
+	assert.equal(r.checked, 4);
+	assert.equal(r.fragmentsChecked, 2);
+	assert.equal(r.broken.length, 2);
+	assert.ok(r.broken.every((b) => b.includes('missing/')));
+});
+
+test('anchors on in-build directory aliases use the target IDs', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/latest/#ok">ok</a><a href="/latest/#missing">bad</a>',
+		'v1/index.html': '<h2 id="ok">H</h2>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'v1'), join(d, 'latest'));
+	const r = check(d);
+	assert.equal(r.fragmentsChecked, 2);
+	assert.equal(r.broken.length, 1);
+	assert.match(r.broken[0], /#missing.*no such anchor/);
+});
+
+test('anchors on nested directory alias pages use the target IDs', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/latest/sub/#ok">ok</a><a href="/latest/sub/#missing">bad</a>',
+		'v1/sub/index.html': '<h2 id="ok">H</h2>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'v1'), join(d, 'latest'));
+	assert.equal(check(d).broken.length, 1);
+	assert.match(check(d).broken[0], /#missing.*no such anchor/);
+});
+
+test('HTML file aliases validate anchors and resolve relative links at the served URL', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/alias.html#ok">ok</a><a href="/alias.html#missing">bad</a>',
+		'v1/page.html': '<h2 id="ok">H</h2><a href="./child/">child</a>',
+		'v1/child/index.html': '<p>child</p>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'v1/page.html'), join(d, 'alias.html'));
+	const r = check(d);
+	assert.equal(r.broken.length, 2);
+	assert.ok(r.broken.some((b) => /alias.html#missing.*no such anchor/.test(b)));
+	assert.ok(r.broken.some((b) => /alias.html.*child.*no such route/.test(b)));
+});
+
+test('directory alias links are checked relative to each served base', async (t) => {
+	const { symlinkSync } = await import('node:fs');
+	const d = build({
+		'index.html': '<a href="/latest/">latest</a>',
+		'releases/v1/index.html': '<a href="../notes/">notes</a>',
+		'releases/notes/index.html': '<p>notes</p>',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	symlinkSync(join(d, 'releases/v1'), join(d, 'latest'));
+	const r = check(d);
+	assert.equal(r.broken.length, 1);
+	assert.match(r.broken[0], /latest\/.*notes.*no such route/);
+	mkdirSync(join(d, 'notes'));
+	writeFileSync(join(d, 'notes/index.html'), '<p>notes</p>');
+	assert.deepEqual(check(d).broken, []);
+});
+
+test('browser-ignored controls cannot turn an external URL into a local route', () => {
+	for (const href of ['/\t/host/path', '/\n/host/path', '/\r/host/path', '\u0000//host/path']) assert.equal(classify(href), null);
+	assert.deepEqual(pathOf('/pa\tge/'), ['/page/', '']);
+});
+
+test('malformed percent encoding is kept literal in paths and fragments', () => {
+	assert.deepEqual(pathOf('#%zz', 'page/'), ['/page/', '%zz']);
+	assert.deepEqual(pathOf('/%zz/#%zz'), ['/%zz/', '%zz']);
+});
+
+test('filesystem access failures remain fatal and distinct from broken links', (t) => {
+	const d = build({ 'index.html': '<a href="/">home</a>' });
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	const denied = () => { throw Object.assign(new Error('permission denied'), { code: 'EACCES' }); };
+	assert.match(check(d, { ...fs, realpathSync: denied }).fatal, /cannot read/);
+	assert.match(check(d, { ...fs, readdirSync: denied }).fatal, /cannot read the build: permission denied/);
+});
+
+test('an HTML symlink outside the build is fatal, even when the target is readable', (t) => {
+	const d = build({ 'index.html': '<a href="/alias.html">alias</a>' });
+	const outside = build({ 'page.html': '<p>external</p>' });
+	t.after(() => { rmSync(d, { recursive: true, force: true }); rmSync(outside, { recursive: true, force: true }); });
+	fs.symlinkSync(join(outside, 'page.html'), join(d, 'alias.html'));
+	assert.match(check(d).fatal, /symlink leaves the build/);
+});
+
+test('asset normalization mismatches are reported rather than accepted', (t) => {
+	const d = build({ 'index.html': '<a href="/caf%C3%A9.png">asset</a>', 'café.png': 'data' });
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	const result = check(d);
+	assert.equal(result.broken.length, 1);
+	assert.match(result.broken[0], /unicode normalisation mismatch/);
+});
+
+test('orphan reporting omits locale utility pages but preserves real archived orphans', (t) => {
+	const d = build({ 'index.html': '<a href="/">home</a>', 'si/404/index.html': '', 'si/1.2.31/index.html': '', 'si/1.2.31/unlinked/index.html': '', 'unlinked/index.html': '' });
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	assert.deepEqual(check(d).orphans.sort(), ['si/1.2.31/unlinked/', 'unlinked/']);
+	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url)), d], { encoding: 'utf8' });
+	assert.equal(result.status, 0, result.stderr);
+	assert.match(result.stdout, /2 page\(s\) with no inbound link/);
+	assert.match(result.stdout, /0 broken/);
+});
+
+test('default link-check CLI validates the real build', () => {
+	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url))], { encoding: 'utf8' });
+	assert.equal(result.status, 0, result.stderr);
+	assert.match(result.stdout, /internal links checked/);
 });

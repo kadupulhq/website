@@ -4,17 +4,17 @@ description: Which numbers tell you the monitoring system is healthy, which of
   them Kadupul already records about itself, the thresholds worth watching, and
   what each symptom arrives before.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 29
 slug: 1.2.31/guides/monitor-kadupul-itself
 ---
 
-:::caution[Not yet possible]
-Kadupul has not shipped, so there is nothing to measure yet. This page names the
-self-monitoring data the inherited code produces, and the thresholds that follow
-from the constants in it.
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A monitoring system that is quietly failing looks exactly like a network that is

@@ -3,17 +3,24 @@ title: Migrate to new hardware
 description: Moving a running install to another server without losing history,
   in the order that keeps each step verifiable.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is
-    intended to ship.
+  content: This is inherited 1.2.31 documentation. A supported Kadupul release
+    or migration path is not yet available. Validate procedures before use.
 sidebar:
   order: 20
 slug: 1.2.31/guides/migrate-to-new-hardware
 ---
 
-:::caution[Nothing to migrate yet]
-Kadupul has not shipped, so there is no install to move. This page records the
-intended procedure and the places where paths and ownership have to be corrected
-on the far side.
+:::caution[Inherited RRDtool proxy behavior]
+RRDtool proxy deployment is unsupported in Kadupul. Use local RRDtool storage
+(`storage_location = 0`). Proxy settings, protocol descriptions and workflows
+on this page document inherited behavior, not a supported deployment or migration
+path. See [RRDtool proxy](/1.2.31/reference/rrdproxy/).
+:::
+
+:::caution[Validate before use]
+The source is available, but there is no supported Kadupul release or migration
+path. Test these procedures on an isolated copy with backups before relying on
+them. See [project status](/project/status/).
 :::
 
 A migration is a restore onto a machine that differs from the one the backup came
@@ -222,10 +229,10 @@ transfer and delete the copy on the old machine once you are done.
 without the matching `plugins/` directory and the install disables what it cannot
 find, which looks like data loss and is not.
 
-**If RRD files are handled by a proxy rather than stored locally**, the file tree
-is not on either machine and most of this page does not apply. Move the proxy or
-repoint the setting; do not copy a local `rra/` directory that only holds
-leftovers.
+**Existing proxy storage is outside this migration procedure.** Proxy deployment
+is unsupported. Locate and back up the actual RRD files, then validate a separate
+migration to local storage on an isolated copy. A local `rra/` directory may
+contain only leftovers.
 
 **Decommission the old machine last, and not on the same day.** Leave it powered
 off but intact until the new one has collected a full retention cycle of the

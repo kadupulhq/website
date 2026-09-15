@@ -1,0 +1,10 @@
+{
+  "starlightVersions.select.accessibleLabel": "バージョンを選択",
+  "i18n.untranslatedContent": "未翻訳のページは、その旨を示す通知とともに英語で表示されます。",
+  "starlightVersions.link.latest": "最新の情報は<a href={{link}}>最新バージョン</a>を参照してください。",
+  "starlightVersions.outdated.label": "この内容は {{label}} 向けです。",
+  "starlightVersions.outdated.slug": "この内容はバージョン {{slug}} 向けです。",
+  "starlightVersions.search.link.latest": "最新の検索結果は<a href={{link}}>最新バージョン</a>を参照してください。",
+  "starlightVersions.search.outdated.label": "検索対象は {{label}} です。",
+  "starlightVersions.search.outdated.slug": "検索対象はバージョン {{slug}} です。"
+}

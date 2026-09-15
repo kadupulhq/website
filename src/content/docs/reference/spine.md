@@ -2,7 +2,7 @@
 title: Spine, the C collector
 description: What Spine is, how it differs from the PHP collector, the configuration it reads, its threading model, and when it is worth installing.
 banner:
-  content: Kadupul has not shipped. These pages describe the system as it is intended to ship.
+  content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 15
 ---
@@ -11,16 +11,15 @@ Spine is a collector written in C. It does the same job as `cmd.php`: read the
 poller cache, talk to devices, write raw values into a database table. It does that
 job with threads rather than with more processes.
 
-**Spine is not part of Kadupul.** It is a separate upstream project,
-[Cacti/spine](https://github.com/Cacti/spine), maintained by The Cacti Group and
-licensed LGPL-2.1-or-later. Kadupul has not forked it and does not ship it. What
-Kadupul provides is compatibility: the contract between the parent poller and the
-collector is a command line and a set of database tables, and Kadupul keeps its half
-of that contract so an existing Spine build keeps working.
+**Kadupul will maintain a Spine fork.** Its repository location and validated
+release pairings are not yet documented here. Use the shipped PHP collector
+until a Kadupul-maintained Spine build is available and verified. Spine is built
+and installed separately from the PHP application.
 
-Everything on this page describes either Kadupul's side of that contract, inherited
-from Cacti 1.2.x, or behaviour read from the Spine source. Where a fact is Spine's
-rather than Kadupul's, it can change without Kadupul knowing.
+The parent poller and Spine communicate through a command line and database tables.
+This page describes that interface and the collector behaviour inherited at the
+fork point. A fork does not establish that every application and collector version
+works together; validate the versions you deploy as a pair.
 
 ## Selecting it
 
@@ -206,8 +205,8 @@ Spine performs its own reachability checks rather than shelling out. It implemen
 UDP, TCP, TCP-to-a-closed-port, and SNMP, selected per device by the availability and
 ping method settings.
 
-ICMP needs a raw socket, which needs privilege. The upstream install instructions have
-the binary owned by root and set-user-id. On Linux builds with libcap support, Spine
+ICMP needs a raw socket, which needs privilege. The inherited installation procedure uses
+a binary owned by root and set-user-id. On Linux builds with libcap support, Spine
 drops to the invoking user and retains only `cap_net_raw` rather than staying root for
 the whole run.
 
@@ -216,7 +215,7 @@ that deserve the treatment in [Security model](/concepts/security-model/): the
 configuration file holds a password and should be readable only by the account the
 poller runs as.
 
-A Windows note from upstream: Windows has no TCP socket send timeout, so TCP ping
+An inherited Windows limitation: Windows has no TCP socket send timeout, so TCP ping
 there does not retry, and the first failure marks the device down.
 
 ## When it is chosen
@@ -243,7 +242,10 @@ decides this, rather than guessing from device count.
 
 ## Building it
 
-Upstream builds with Autotools:
+The following is inherited build guidance, conditional on a published Kadupul
+Spine source revision and validated dependencies. No repository location or
+validated build is documented here yet. Use the PHP collector in the meantime.
+The inherited Autotools sequence is:
 
 ```sh
 ./bootstrap
@@ -253,18 +255,18 @@ make install
 ```
 
 Then set `path_spine` to the installed binary, put a configuration file where Spine
-will find it, and set `poller_type` to Spine. Upstream's README carries the current
-instructions, the privilege setup, and the Windows procedure. Kadupul does not restate
-them, because Kadupul does not build Spine and cannot keep the copy accurate.
+will find it, and set `poller_type` to Spine. Use the README included with the
+Kadupul Spine revision you build for its dependencies and platform instructions.
+Validate collection and database writes before switching an existing poller.
 
 ## What compatibility means here
 
-Kadupul's promise is that the interface Spine expects does not move: the `poller_type`
-and path settings, the command line above, the settings Spine reads, and the shape of
-`poller_output`, `poller_item`, `poller_time`, and `host`. See
-[Compatibility with Cacti](/project/compatibility-with-cacti/).
+Kadupul plans to maintain both sides of the collector interface: the `poller_type` and path
+settings, the command line above, the settings Spine reads, and the shape of
+`poller_output`, `poller_item`, `poller_time`, and `host`.
 
-It is not a promise that any particular Spine version works, and it is not a support
-relationship. A Spine defect is an upstream defect and belongs in
-[Cacti/spine](https://github.com/Cacti/spine). If Kadupul breaks the contract, that is
-Kadupul's defect and gets written down.
+Report collector defects and integration problems in the
+[Kadupul issue tracker](https://github.com/kadupulhq/kadupul/issues). Include the
+Kadupul and Spine revisions, build platform, collector configuration without
+credentials, and relevant logs. Compatibility claims need evidence for the specific
+pair of versions being used.
