@@ -47,10 +47,10 @@ export function unitState(source, target, review) {
 	if (review !== undefined) {
 		record(review, 'a review record');
 		assert.ok(['draft', 'reviewed'].includes(review.state), 'Invalid review state');
-		for (const field of ['sourceSha256', 'targetSha256']) assert.match(review[field], /^[a-f0-9]{64}$/, `Invalid ${field}`);
+		for (const field of ['sourceSha256', 'targetSha256']) assert.ok(typeof review[field] === 'string' && /^[a-f0-9]{64}$/.test(review[field]), `Invalid ${field}`);
 		if (review.state === 'reviewed') {
 			assert.ok(typeof review.reviewer === 'string' && review.reviewer.trim(), 'Reviewed units require a reviewer');
-			assert.ok(typeof review.reviewedAt === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(review.reviewedAt) && new Date(review.reviewedAt).toISOString().replace('.000Z', 'Z') === review.reviewedAt, 'Reviewed units require a UTC review date');
+			assert.ok(typeof review.reviewedAt === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ$/.test(review.reviewedAt) && Number.isFinite(Date.parse(review.reviewedAt)) && new Date(review.reviewedAt).toISOString().replace('.000Z', 'Z') === review.reviewedAt, 'Reviewed units require a UTC review date');
 			validateReviewUrl(review.reviewUrl);
 		}
 	}

@@ -47,9 +47,11 @@ test('review states cannot survive changes to their source or target', () => {
 	assert.equal(unitState('Changed English', target, review), 'needs-update');
 	assert.equal(unitState(source, 'Changed target', review), 'draft');
 	assert.throws(() => unitState(source, target, { ...review, state: 'approved' }), /Invalid review state/);
-	for (const field of ['sourceSha256', 'targetSha256']) assert.throws(() => unitState(source, target, { ...review, [field]: 'bad' }), /Invalid/);
+	for (const field of ['sourceSha256', 'targetSha256']) {
+		for (const value of [undefined, null, 123, 'bad']) assert.throws(() => unitState(source, target, { ...review, [field]: value }), new RegExp(`Invalid ${field}`));
+	}
 	for (const reviewer of [undefined, '']) assert.throws(() => unitState(source, target, { ...review, reviewer }), /reviewer/);
-	for (const reviewedAt of [undefined, '', '2026-02-30T12:00:00Z']) assert.throws(() => unitState(source, target, { ...review, reviewedAt }), /review date/);
+	for (const reviewedAt of [undefined, '', '2026-02-30T12:00:00Z', '2026-13-01T12:00:00Z']) assert.throws(() => unitState(source, target, { ...review, reviewedAt }), /review date/);
 	for (const reviewUrl of [undefined, '', 'https://?', 'http://weblate.example/changes/1/', 'https://weblate.example/a b', 'https://user@weblate.example/', 'https://:password@weblate.example/']) assert.throws(() => unitState(source, target, { ...review, reviewUrl }), /history URL/);
 });
 
