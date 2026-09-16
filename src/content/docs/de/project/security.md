@@ -17,6 +17,4 @@ Nennen Sie Version oder Commit, Schritte zur Reproduktion, erforderliche Konfigu
 
 [Sicherheitslücke vertraulich melden](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Bei gemeinsam verwendetem Code wird die Offenlegung vor einer Veröffentlichung mit anderen betroffenen Projekten abgestimmt. Vereinbaren Sie Namensnennung und Zeitplan während der vertraulichen Prüfung.
-
 Die Richtlinie umfasst Anwendung, Poller, Installationsprogramm und Paketierung. Ausgenommen sind Drittanbieter-Plugins, RRDtool, Net-SNMP, Webserver, Datenbank und Fälle, in denen ein Administrator gegen die eigene Installation handeln muss.

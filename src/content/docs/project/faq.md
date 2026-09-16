@@ -26,22 +26,15 @@ Release status does not tell us whether anyone has deployed development code.
 
 ### Is this a replacement for Cacti?
 
-No, and it is not trying to be. Cacti is an actively maintained project with a large
-installed base. Kadupul is a fork that intends to make structural changes Cacti would
-reasonably decline to make, because Cacti has users to protect and Kadupul has none.
+Kadupul is an independent fork with its own development priorities and support
+channels. It is pre-alpha; a migration requires validation for the versions and
+extensions in use. See [Coming from Cacti](/guides/coming-from-cacti/).
 
-Kadupul maintains its own forks and support channels. See
-[Why this fork exists](/project/why-this-fork/).
+### Why a separate project?
 
-### Then why fork at all?
-
-Because the changes worth making are ones a twenty-year-old project with a change-window
-installed base is right to turn down: replacing subsystems that keep producing the same
-class of defect, raising the language floor, and changing internal shapes. Doing that in
-a fork costs nobody an upgrade they did not ask for.
-
-That page also says what the fork is not: a disagreement with Cacti's maintainers, and
-not a clean break from users.
+Kadupul provides a place to replace subsystems, raise the language baseline and
+change internal interfaces under its own release policy.
+See [Why this fork exists](/project/why-this-fork/).
 
 ### Which Cacti version does it fork from?
 
@@ -166,9 +159,9 @@ regardless of release status. See [Security policy](/project/security/).
 
 ### A vulnerability I find here probably affects Cacti too. What happens?
 
-Report it privately to Kadupul. Kadupul maintainers own triage and remediation
-for this project and coordinate disclosure with other affected maintainers when
-needed. Reporters do not need to use another organization's support process.
+Report it privately to Kadupul and include what you know about the shared code.
+Kadupul maintainers handle triage and remediation for Kadupul under the
+[repository security policy](https://github.com/kadupulhq/kadupul/blob/main/SECURITY.md).
 
 ### How do I contribute?
 

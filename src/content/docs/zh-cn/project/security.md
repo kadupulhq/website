@@ -17,6 +17,4 @@ banner:
 
 [私下报告安全漏洞](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-对于共享代码中的漏洞，维护者会在发布公告或修复前，与其他受影响项目协调披露。请在私下评估期间商定署名和发布时间。
-
 政策涵盖应用、轮询器、安装程序和仓库打包。不涵盖第三方插件、RRDtool、Net-SNMP、Web 服务器、数据库，以及必须由管理员主动损害自身安装才能触发的情况。

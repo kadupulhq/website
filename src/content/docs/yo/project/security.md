@@ -17,4 +17,4 @@ Fi ẹ̀dà tàbí commit, ìgbésẹ̀ láti tún ìṣòro náà ṣe, ètò t
 
 [Fi ìròyìn àìlera ààbò ránṣẹ́ ní ìkọ̀kọ̀](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Ìlànà náà kan ètò, olùkójọpọ̀, ètò fífi sori ẹ̀rọ àti ṣíṣe àwọn àkójọpọ̀ sọ́fitiwia. Kò kan àwọn àfikún ẹlòmíràn, RRDtool, Net-SNMP, olupin wẹ́ẹ̀bù, ibi ìpamọ́ dátà, tàbí ìṣe tí ó nílò kí alábòójútó ba ètò tirẹ̀ jẹ́. Ṣètò ìkéde àìlera nínú kóòdù tí a jọ ń lò pẹ̀lú àwọn iṣẹ́ mìíràn tí ó kan ṣáájú ìtẹ̀jáde.
+Ìlànà náà kan ètò, olùkójọpọ̀, ètò fífi sori ẹ̀rọ àti ṣíṣe àwọn àkójọpọ̀ sọ́fitiwia. Kò kan àwọn àfikún ẹlòmíràn, RRDtool, Net-SNMP, olupin wẹ́ẹ̀bù, ibi ìpamọ́ dátà, tàbí ìṣe tí ó nílò kí alábòójútó ba ètò tirẹ̀ jẹ́.

@@ -17,6 +17,4 @@ Jumuisha toleo au commit, hatua za kurudia tatizo, mipangilio inayohitajika na k
 
 [Ripoti udhaifu kwa faragha](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Udhaifu wa msimbo unaoshirikiwa unahitaji kuratibu ufichuzi na miradi mingine iliyoathiriwa kabla ya kuchapisha. Kubalianeni kuhusu kutaja mtoa ripoti na ratiba wakati wa tathmini ya faragha.
-
 Sera inahusu programu, mkusanyaji, kisakinishi na utengenezaji wa vifurushi. Haijumuishi programu-jalizi za wengine, RRDtool, Net-SNMP, seva ya wavuti, hifadhidata na hali zinazohitaji msimamizi kuchukua hatua dhidi ya usakinishaji wake mwenyewe.

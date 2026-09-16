@@ -17,4 +17,4 @@ Includi versione o commit, passaggi per riprodurre il problema, configurazione n
 
 [Segnala una vulnerabilità in privato](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-La politica copre applicazione, raccoglitore, programma di installazione e creazione dei pacchetti. Esclude plugin di terzi, RRDtool, Net-SNMP, server web, database e casi che richiedono a un amministratore di agire contro la propria installazione. Coordina la divulgazione delle vulnerabilità nel codice condiviso con gli altri progetti coinvolti prima della pubblicazione.
+La politica copre applicazione, raccoglitore, programma di installazione e creazione dei pacchetti. Esclude plugin di terzi, RRDtool, Net-SNMP, server web, database e casi che richiedono a un amministratore di agire contro la propria installazione.
