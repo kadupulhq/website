@@ -21,7 +21,7 @@ an agreement with its maintainers.
 
 ## Compatibility and migration
 
-[Compatibility](/project/compatibility-with-cacti/)
+It is also not a clean break from users. [Compatibility](/project/compatibility-with-cacti/)
 is a commitment rather than a courtesy. Plugins, templates, and the RRD files
 holding history you cannot regenerate are meant to keep working, and where they
 stop working that gets written down.
