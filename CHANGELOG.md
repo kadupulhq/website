@@ -8,5 +8,8 @@ follows [Semantic Versioning](VERSIONING.md).
 
 ### Fixed
 
+- Remove website commitments to other projects and align translated security
+  summaries with the repository policy, preserving compatibility wording.
+
 - Clarify that compatibility is a release goal requiring validation, including
   the introduction, compatibility metadata and documentation map.

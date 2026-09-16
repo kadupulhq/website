@@ -29,20 +29,11 @@ Report privately first. Maintainers assess exploitability and deployment exposur
 before deciding how to publish a fix. An unreleased branch is not automatically
 safe to discuss publicly.
 
-For shared-code vulnerabilities, maintainers contact affected projects through
-private security channels before publishing an advisory or fix and agree on a
-coordinated disclosure timeline. Include related private reports when available.
-
-## Credit
-
-Discuss attribution and publication timing during private triage. Follow the
-repository policy and the agreed disclosure timeline.
-
 ## Inherited issues
 
-Inherited vulnerabilities belong in the same private reporting process. Kadupul
-maintainers own remediation for Kadupul and coordinate with other affected
-maintainers.
+Include any known shared-code impact in your private report. Kadupul maintainers
+handle remediation for Kadupul. The repository security policy governs handling
+and disclosure; this website does not establish agreements with other projects.
 
 ## Scope
 

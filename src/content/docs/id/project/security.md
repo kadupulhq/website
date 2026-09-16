@@ -17,4 +17,4 @@ Sertakan versi atau commit, langkah reproduksi, konfigurasi yang diperlukan, dan
 
 [Laporkan kerentanan secara privat](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Kebijakan mencakup aplikasi, pengumpul, pemasang, dan pengemasan. Kebijakan tidak mencakup plugin pihak ketiga, RRDtool, Net-SNMP, server web, basis data, dan kasus yang mengharuskan administrator merusak instalasinya sendiri. Koordinasikan pengungkapan kerentanan pada kode bersama dengan proyek lain yang terdampak sebelum publikasi.
+Kebijakan mencakup aplikasi, pengumpul, pemasang, dan pengemasan. Kebijakan tidak mencakup plugin pihak ketiga, RRDtool, Net-SNMP, server web, basis data, dan kasus yang mengharuskan administrator merusak instalasinya sendiri.

@@ -17,6 +17,4 @@ Inclua a versão ou o commit, os passos para reproduzir o problema, a configura�
 
 [Comunicar uma vulnerabilidade em privado](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-As vulnerabilidades em código partilhado exigem uma divulgação coordenada com os outros projetos afetados antes da publicação. Acorde a atribuição de crédito e o calendário durante a avaliação privada.
-
 A política abrange a aplicação, o coletor, o instalador e a criação de pacotes. Exclui extensões de terceiros, RRDtool, Net-SNMP, o servidor Web, a base de dados e situações que exijam que um administrador atue contra a sua própria instalação.

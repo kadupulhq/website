@@ -17,6 +17,4 @@ Haɗa sigar ko commit, matakan maimaita matsalar, saitunan da ake buƙata da ko 
 
 [Kai rahoton raunin tsaro a sirrance](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Raunin tsaro a lambar da ake rabawa yana buƙatar daidaita sanarwa da sauran ayyukan da abin ya shafa kafin wallafawa. A amince kan ambaton mai rahoto da jadawalin sanarwa yayin tantancewa a sirrance.
-
 Manufar ta shafi manhaja, mai tattara bayanai, mai shigarwa da haɗa fakiti. Ba ta haɗa da ƙarin manhajojin wasu, RRDtool, Net-SNMP, uwar garken yanar gizo, rumbun bayanai, ko yanayin da ke buƙatar mai gudanarwa ya cutar da shigarwarsa da kansa ba.

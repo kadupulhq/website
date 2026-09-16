@@ -17,4 +17,4 @@ Podaj wersję lub commit, kroki odtworzenia, wymaganą konfigurację oraz inform
 
 [Zgłoś podatność prywatnie](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Polityka obejmuje aplikację, kolektor, instalator i tworzenie pakietów. Wyłącza wtyczki innych podmiotów, RRDtool, Net-SNMP, serwer WWW, bazę danych oraz przypadki wymagające działania administratora przeciwko własnej instalacji. Przed publikacją uzgodnij ujawnienie podatności we współdzielonym kodzie z innymi projektami, których dotyczą.
+Polityka obejmuje aplikację, kolektor, instalator i tworzenie pakietów. Wyłącza wtyczki innych podmiotów, RRDtool, Net-SNMP, serwer WWW, bazę danych oraz przypadki wymagające działania administratora przeciwko własnej instalacji.

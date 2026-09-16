@@ -17,4 +17,4 @@ Vermeld de versie of commit, reproductiestappen, vereiste configuratie en of aut
 
 [Een kwetsbaarheid vertrouwelijk melden](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Het beleid omvat de toepassing, collector, installatieprogramma en het maken van pakketten. Uitgesloten zijn plug-ins van derden, RRDtool, Net-SNMP, webserver, database en gevallen waarin een beheerder de eigen installatie moet schaden. Stem openbaarmaking van kwetsbaarheden in gedeelde code vooraf af met de andere getroffen projecten.
+Het beleid omvat de toepassing, collector, installatieprogramma en het maken van pakketten. Uitgesloten zijn plug-ins van derden, RRDtool, Net-SNMP, webserver, database en gevallen waarin een beheerder de eigen installatie moet schaden.

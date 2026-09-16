@@ -17,6 +17,4 @@ Indiquez la version ou le commit, les étapes de reproduction, la configuration 
 
 [Signaler une vulnérabilité en privé](https://github.com/kadupulhq/kadupul/security/advisories/new)
 
-Les vulnérabilités du code partagé nécessitent une divulgation coordonnée avec les autres projets concernés avant toute publication. Convenez de l’attribution et du calendrier pendant l’évaluation privée.
-
 La politique couvre l’application, le collecteur, l’installateur et le packaging. Elle exclut les plugins tiers, RRDtool, Net-SNMP, le serveur web, la base de données et les cas exigeant qu’un administrateur agisse contre sa propre installation.
