@@ -113,3 +113,23 @@ prose linter rejects unterminated frontmatter. Regression fixtures cover each
 failure case. The remaining archived banner, Brazilian Portuguese article, and
 historical proxy introduction were corrected. All 72 tests and the complete build,
 link and locale checks pass with 100% coverage in every metric.
+
+## GitHub Pages link audit (2026-09-21)
+
+The configured `kadupul.org` destination returned HTTP 200 with a Squarespace
+“Coming Soon” page, including for documentation paths. GitHub Pages was disabled.
+The maintainer requested GitHub Pages; it is now enabled for the website repository
+at `https://kadupulhq.github.io/website/`. This supersedes the earlier canonical-domain
+finding above. Publication uses the existing Actions workflow on pushes to `main`.
+
+The site base, canonical URLs, sitemap and robots sitemap now target Pages.
+Markdown links and images receive the project base during rendering; current and
+archived homepage actions include it explicitly. Link and locale checks validate
+the served base and reject origin-root destinations. Application README links use
+the same Pages URL. No custom-domain ownership or DNS change is assumed.
+
+The audit includes all rendered languages and archived pages, first-party README
+relative targets, external source destinations, and generated edit links. External
+HTTP success alone was insufficient: the parked domain required inspecting the
+response content. Example URLs and authenticated private-report destinations are
+not treated as publicly accessible documentation pages.

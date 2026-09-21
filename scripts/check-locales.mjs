@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
+import { base as siteBase } from '../src/site.mjs';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +22,7 @@ function elements(html) {
 const attr = (node, name) => node.attrs?.find((a) => a.name === name)?.value;
 const text = (node) => node.value || (node.childNodes || []).map(text).join('');
 
-export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url)), { strictDrift = false } = {}) {
+export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url)), { strictDrift = false, base = '/' } = {}) {
 	const dist = join(root, 'dist');
 	validateMessages(JSON.parse(readFileSync(join(root, 'src/i18n/messages.json'), 'utf8')));
 	function read(page) { return readFileSync(join(dist, page), 'utf8'); }
@@ -46,7 +47,8 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 		for (const option of nodes.filter((n) => n.tagName === 'option')) {
 			const value = attr(option, 'value');
 			if (!value?.startsWith('/')) continue;
-			const route = value.split(/[?#]/)[0].replace(/^\//, '');
+			assert.ok(value.startsWith(base), `Switch escapes site base: ${value}`);
+			const route = value.split(/[?#]/)[0].slice(base.length);
 			assert.ok(existsSync(join(dist, route, 'index.html')) || (route.endsWith('.html') && existsSync(join(dist, route))), `Missing switch destination ${value} on ${path}`);
 		}
 		const picker = nodes.find((n) => n.tagName === 'select' && n.childNodes.some((o) => o.tagName === 'option' && text(o) === 'English'));
@@ -89,8 +91,8 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 }
 
 if (isMain(import.meta.url)) {
-	const { values } = parseArgs({ options: { root: { type: 'string' }, 'strict-drift': { type: 'boolean', default: false } } });
-	const result = checkLocales(values.root, { strictDrift: values['strict-drift'] });
+	const { values } = parseArgs({ options: { root: { type: 'string' }, base: { type: 'string', default: siteBase }, 'strict-drift': { type: 'boolean', default: false } } });
+	const result = checkLocales(values.root, { strictDrift: values['strict-drift'], base: values.base });
 	for (const page of result.stale) console.warn(`STALE translation: ${page}; review against English before updating its source hash`);
 	console.log(`${result.locales} locales: routing, direction, navigation, fallback and ${result.sources} translation sources checked`);
 }

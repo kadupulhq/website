@@ -113,7 +113,7 @@ test('the CLI entry point fails closed', async () => {
 	const script = fileURLToPath(new URL('../check-links.mjs', import.meta.url));
 	const run = (dir) => {
 		try {
-			execFileSync(process.execPath, [script, dir], { encoding: 'utf8' });
+			execFileSync(process.execPath, [script, dir, '--base', '/'], { encoding: 'utf8' });
 			return 0;
 		} catch (e) { return e.status; }
 	};
@@ -230,7 +230,7 @@ test('a build with no internal links is fatal, not a silent pass', async () => {
 	const script = fileURLToPath(new URL('../check-links.mjs', import.meta.url));
 	const d = build({ 'index.html': '<p>no links</p>' });
 	let status = 0;
-	try { execFileSync(process.execPath, [script, d], { encoding: 'utf8' }); }
+	try { execFileSync(process.execPath, [script, d, '--base', '/'], { encoding: 'utf8' }); }
 	catch (e) { status = e.status; }
 	assert.equal(status, 2, 'checking nothing must not report success');
 	rmSync(d, { recursive: true });
@@ -273,7 +273,7 @@ test('a file argument is fatal, not a broken-link result', async () => {
 	const script = fileURLToPath(new URL('../check-links.mjs', import.meta.url));
 	const d = build({ 'index.html': '<a href="/">x</a>' });
 	let status = 0;
-	try { execFileSync(process.execPath, [script, join(d, 'index.html')], { encoding: 'utf8' }); }
+	try { execFileSync(process.execPath, [script, join(d, 'index.html'), '--base', '/'], { encoding: 'utf8' }); }
 	catch (e) { status = e.status; }
 	assert.equal(status, 2, 'a non-directory argument must exit 2, not 1');
 	rmSync(d, { recursive: true });
@@ -444,7 +444,7 @@ test('orphan reporting omits locale utility pages but preserves real archived or
 	const d = build({ 'index.html': '<a href="/">home</a>', 'si/404/index.html': '', 'si/1.2.31/index.html': '', 'si/1.2.31/unlinked/index.html': '', 'unlinked/index.html': '' });
 	t.after(() => rmSync(d, { recursive: true, force: true }));
 	assert.deepEqual(check(d).orphans.sort(), ['si/1.2.31/unlinked/', 'unlinked/']);
-	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url)), d], { encoding: 'utf8' });
+	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url)), d, '--base', '/'], { encoding: 'utf8' });
 	assert.equal(result.status, 0, result.stderr);
 	assert.match(result.stdout, /2 page\(s\) with no inbound link/);
 	assert.match(result.stdout, /0 broken/);
@@ -454,4 +454,23 @@ test('default link-check CLI validates the real build', () => {
 	const result = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url))], { encoding: 'utf8' });
 	assert.equal(result.status, 0, result.stderr);
 	assert.match(result.stdout, /internal links checked/);
+});
+
+test('project Pages links resolve under the base and reject origin-root paths', (t) => {
+	const d = build({
+		'index.html': '<a href="/website/guide/#details">guide</a><a href="/website/file.png">asset</a><a href="/guide/">wrong base</a><a href="https://example.com/">external</a>',
+		'guide/index.html': '<h2 id="details">Details</h2><a href="../">home</a><a href="#details">section</a>',
+		'file.png': 'image',
+		'404.html': '',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	const result = check(d, fs, '/website/');
+	assert.equal(result.broken.length, 1);
+	assert.match(result.broken[0], /\/guide\/.*no such route/);
+	assert.equal(result.fragmentsChecked, 2);
+	assert.deepEqual(result.orphans, []);
+	const cli = spawnSync(process.execPath, [fileURLToPath(new URL('../check-links.mjs', import.meta.url)), d], { encoding: 'utf8' });
+	assert.equal(cli.status, 1);
+	assert.match(cli.stderr, /\/guide\/.*no such route/);
+	assert.match(cli.stdout, /1 broken/);
 });
