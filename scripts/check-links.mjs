@@ -11,6 +11,7 @@
  * a count. A gate that fails open is worse than no gate.
  */
 import realFs from 'node:fs';
+import { parseArgs } from 'node:util';
 import { base as siteBase } from '../src/site.mjs';
 import { isMain } from './cli.mjs';
 import { isUtilityRoute } from '../src/i18n/routes.mjs';
@@ -20,7 +21,7 @@ import { parse } from 'parse5';
 
 // Taken from argv, not the environment: an ambient variable must not be able to
 // redirect what a release gate inspects.
-const DIST = process.argv[2] || fileURLToPath(new URL('../dist/', import.meta.url));
+const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
 
 /**
  * Every regular file under the build, following no symlinks.
@@ -87,8 +88,7 @@ export function classify(href, from = '') {
 	return { path, fragment, dotted };
 }
 
-export function check(dist, fs = realFs, base = '/') {
-	const prefix = base.slice(1);
+function inspectBuild(dist, fs) {
 	if (!fs.existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
 	}
@@ -103,7 +103,7 @@ export function check(dist, fs = realFs, base = '/') {
 	} catch {
 		return { fatal: `cannot read ${dist}` };
 	}
-	const key0 = (p) => prefix + relative(root, p).split(sep).join('/');
+	const key0 = (p) => relative(root, p).split(sep).join('/');
 	let files, skipped;
 	try {
 		({ files, skipped } = walk(root, fs));
@@ -111,6 +111,10 @@ export function check(dist, fs = realFs, base = '/') {
 		// An I/O error must not surface as exit 1, which is "broken links found".
 		return { fatal: `cannot read the build: ${e.message}` };
 	}
+	return { root, key0, files, skipped };
+}
+
+function collectAliases(root, skipped, key0, fs) {
 	const aliases = [];
 	for (const link of skipped) {
 		let target, st;
@@ -132,6 +136,10 @@ export function check(dist, fs = realFs, base = '/') {
 			return { fatal: `symlink leaves the build and carries pages that cannot be checked: ${key0(link)}` };
 		}
 	}
+	return { aliases };
+}
+
+function buildAssets(files, key0, aliases) {
 	const assets = new Set(files.map(key0));
 	// Expand each in-build symlink into the keys it serves.
 	for (const [from, to] of aliases) {
@@ -140,14 +148,10 @@ export function check(dist, fs = realFs, base = '/') {
 			else if (k.startsWith(to + '/')) assets.add(from + k.slice(to.length));
 		}
 	}
-	const assetsNFC = new Map(files.map((p) => [key0(p).normalize('NFC'), key0(p)]));
-	const pages = files.filter((p) => p.endsWith('.html'));
-	if (pages.length === 0) {
-		return { fatal: `no HTML under ${dist}; the build produced nothing` };
-	}
+	return assets;
+}
 
-	// Keep the served path separate from the file we read. Relative hrefs must
-	// resolve against the alias URL, and HTML file aliases need anchor checks.
+function buildPages(pages, key0, aliases) {
 	const servedPages = new Map(pages.map((p) => [key0(p), p]));
 	for (const [from, to] of aliases) {
 		// Snapshot before adding routes: iterating the live map would follow
@@ -159,10 +163,10 @@ export function check(dist, fs = realFs, base = '/') {
 			else if (path.startsWith(to + '/')) servedPages.set(from + path.slice(to.length), file);
 		}
 	}
-	const routes = new Set([...servedPages.keys()].map((p) => p.replace(/(^|\/)index\.html$/, '$1')));
-	const routesNFC = new Map(
-		[...routes].map((r) => [r.normalize('NFC'), r]),
-	);
+	return servedPages;
+}
+
+function readPages(servedPages, fs) {
 	const ids = new Map();
 	const links = new Map();
 	for (const [servedPath, p] of servedPages) {
@@ -183,71 +187,77 @@ export function check(dist, fs = realFs, base = '/') {
 		links.set(key, hrefs);
 		ids.set(key, { literal: new Set(found), nfc: new Set(found.map((i) => i.normalize('NFC'))) });
 	}
+	return { ids, links };
+}
 
-	const broken = [];
-	const inbound = new Map();
-	let checked = 0;
-	let fragmentsChecked = 0;
+function checkAsset(c, key, state, label, result) {
+	if (!c.dotted || state.routes.has(key) || state.routes.has(key + '/')) return false;
+	if (state.assets.has(key)) return true;
+	if (!state.assetsNFC.has(key.normalize('NFC'))) return false;
+	result.checked++;
+	result.broken.push(`${label}  (unicode normalisation mismatch)`);
+	return true;
+}
 
-	for (const [from, hrefs] of links) {
-		for (const href of hrefs) {
-			const c = classify(href, from);
-			if (!c) continue;
-			// Normalise the same way routes are built, so an explicit
-			// /sub/index.html link resolves to the same key as /sub/.
-			let key = c.path.replace(/^\//, '').replace(/(^|\/)index\.html$/, '$1');
-			// A dotted path is an asset only when it is a regular file inside the
-			// build. existsSync alone is true for directories, which silently
-			// swallowed links to dotted directories like the version tree, and it
-			// also followed ../ above the build root.
-			if (c.dotted && !routes.has(key) && !routes.has(key + '/')) {
-				if (assets.has(key)) continue;
-				// A normalisation-only asset match is reported, not skipped.
-				if (assetsNFC.has(key.normalize('NFC'))) {
-					checked++;
-					broken.push(`${from || '/'}  ->  ${href}  (unicode normalisation mismatch)`);
-					continue;
-				}
-			}
-			// A dotted path that is not a file may still be a route directory.
-			if (c.dotted && !routes.has(key) && routes.has(key + '/')) key += '/';
-			checked++;
-			if (!routes.has(key)) {
-				const viaNFC = routesNFC.get(key.normalize('NFC'));
-				if (viaNFC !== undefined) {
-					broken.push(
-						`${from || '/'}  ->  ${href}  (unicode normalisation mismatch with ${viaNFC})`,
-					);
-				} else {
-					broken.push(`${from || '/'}  ->  ${href}  (no such route)`);
-				}
-				continue;
-			}
-			if (key !== from) inbound.set(key, (inbound.get(key) || 0) + 1);
-			if (c.fragment) {
-				fragmentsChecked++;
-				const target = ids.get(key);
-				if (!target?.literal.has(c.fragment)) {
-					// Literal first here too. Folding both sides would hide exactly
-					// the mismatch that makes an anchor fail in a real browser.
-					const only = target?.nfc.has(c.fragment.normalize('NFC'));
-					broken.push(
-						`${from || '/'}  ->  ${href}  ` +
-							(only ? '(unicode normalisation mismatch with the id)' : '(no such anchor on target)'),
-					);
-				}
-			}
-		}
+function checkFragment(fragment, target, label, result) {
+	if (!fragment) return;
+	result.fragmentsChecked++;
+	if (target.literal.has(fragment)) return;
+	// Compare literal IDs first: normalization must not conceal browser failures.
+	const reason = target.nfc.has(fragment.normalize('NFC'))
+		? 'unicode normalisation mismatch with the id' : 'no such anchor on target';
+	result.broken.push(`${label}  (${reason})`);
+}
+
+function checkHref(from, href, state, result) {
+	const c = classify(href, from);
+	if (!c) return;
+	const label = `${from || '/'}  ->  ${href}`;
+	let key = c.path.replace(/^\//, '').replace(/(^|\/)index\.html$/, '$1');
+	if (checkAsset(c, key, state, label, result)) return;
+	// Dotted paths may be directories, as with archived version routes.
+	if (c.dotted && !state.routes.has(key) && state.routes.has(key + '/')) key += '/';
+	result.checked++;
+	if (!state.routes.has(key)) {
+		const viaNFC = state.routesNFC.get(key.normalize('NFC'));
+		const reason = viaNFC === undefined ? 'no such route' : `unicode normalisation mismatch with ${viaNFC}`;
+		result.broken.push(`${label}  (${reason})`);
+		return;
 	}
+	if (key !== from) state.inbound.add(key);
+	checkFragment(c.fragment, state.ids.get(key), label, result);
+}
 
-	const orphans = [...routes].filter(
-		(r) => r && !isUtilityRoute(r.slice(prefix.length)) && !inbound.has(r),
-	);
-	return { pages: servedPages.size, checked, fragmentsChecked, broken, orphans };
+export function check(dist, fs = realFs, base = '/') {
+	const build = inspectBuild(dist, fs);
+	if (build.fatal) return build;
+	const { root, key0, files, skipped } = build;
+	const aliasResult = collectAliases(root, skipped, key0, fs);
+	if (aliasResult.fatal) return aliasResult;
+	const { aliases } = aliasResult;
+	const pages = files.filter((p) => p.endsWith('.html'));
+	if (pages.length === 0) return { fatal: `no HTML under ${dist}; the build produced nothing` };
+	// Expand aliases in filesystem space before mounting the build at its URL base.
+	const prefix = base.slice(1);
+	const assets = new Set([...buildAssets(files, key0, aliases)].map((k) => prefix + k));
+	const assetsNFC = new Map(files.map((p) => [(prefix + key0(p)).normalize('NFC'), prefix + key0(p)]));
+	const servedPages = new Map([...buildPages(pages, key0, aliases)].map(([k, p]) => [prefix + k, p]));
+	const routes = new Set([...servedPages.keys()].map((p) => p.replace(/(^|\/)index\.html$/, '$1')));
+	const routesNFC = new Map([...routes].map((r) => [r.normalize('NFC'), r]));
+	const { ids, links } = readPages(servedPages, fs);
+	const inbound = new Set();
+	const state = { routes, routesNFC, assets, assetsNFC, ids, inbound };
+	const result = { pages: servedPages.size, checked: 0, fragmentsChecked: 0, broken: [] };
+	for (const [from, hrefs] of links) {
+		for (const href of hrefs) checkHref(from, href, state, result);
+	}
+	const orphans = [...routes].filter((r) => r !== prefix && !isUtilityRoute(r.slice(prefix.length)) && !inbound.has(r));
+	return { ...result, orphans };
 }
 
 if (isMain(import.meta.url)) {
-	const r = check(DIST, realFs, process.argv[2] ? '/' : siteBase);
+	const { values, positionals } = parseArgs({ allowPositionals: true, options: { base: { type: 'string', default: siteBase } } });
+	const r = check(positionals[0] || DIST, realFs, values.base);
 	if (r.fatal) {
 		console.error(`FATAL  ${r.fatal}`);
 		process.exit(2);

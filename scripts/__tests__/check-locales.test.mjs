@@ -121,7 +121,7 @@ test('missing content, incorrect fallback and versioned policy pages cannot pass
 test('locale CLI reports source drift and strict mode rejects stale translations', (t) => {
 	const { root, write } = fixture(t);
 	const script = fileURLToPath(new URL('../check-locales.mjs', import.meta.url));
-	const run = (...args) => spawnSync(process.execPath, [script, '--root', root, ...args], { encoding: 'utf8' });
+	const run = (...args) => spawnSync(process.execPath, [script, '--root', root, '--base', '/', ...args], { encoding: 'utf8' });
 	assert.equal(run('--strict-drift').status, 0);
 	write('src/content/docs/project/security.md', 'Changed English source');
 	const policy = run();
@@ -185,4 +185,11 @@ test('locale switches must include the configured project Pages base', (t) => {
 		}
 	}
 	assert.equal(checkLocales(root, { base: '/website/' }).locales, 22);
+	const script = fileURLToPath(new URL('../check-locales.mjs', import.meta.url));
+	const run = () => spawnSync(process.execPath, [script, '--root', root], { encoding: 'utf8' });
+	assert.equal(run().status, 0);
+	write('dist/es/index.html', readFileSync(join(root, 'dist/es/index.html'), 'utf8').replaceAll('value="/website/', 'value="/'));
+	const result = run();
+	assert.equal(result.status, 1);
+	assert.match(result.stderr, /Switch escapes site base/);
 });

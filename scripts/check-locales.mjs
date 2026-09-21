@@ -91,8 +91,8 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 }
 
 if (isMain(import.meta.url)) {
-	const { values } = parseArgs({ options: { root: { type: 'string' }, 'strict-drift': { type: 'boolean', default: false } } });
-	const result = checkLocales(values.root, { strictDrift: values['strict-drift'], base: values.root ? '/' : siteBase });
+	const { values } = parseArgs({ options: { root: { type: 'string' }, base: { type: 'string', default: siteBase }, 'strict-drift': { type: 'boolean', default: false } } });
+	const result = checkLocales(values.root, { strictDrift: values['strict-drift'], base: values.base });
 	for (const page of result.stale) console.warn(`STALE translation: ${page}; review against English before updating its source hash`);
 	console.log(`${result.locales} locales: routing, direction, navigation, fallback and ${result.sources} translation sources checked`);
 }
