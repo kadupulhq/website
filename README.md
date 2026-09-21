@@ -1,6 +1,6 @@
 # Kadupul website
 
-Documentation site for [Kadupul](https://github.com/kadupulhq/kadupul), built with
+[Documentation website](https://kadupulhq.github.io/website/) for [Kadupul](https://github.com/kadupulhq/kadupul), built with
 [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
 ## Develop
@@ -11,6 +11,9 @@ npm run dev      # local server with hot reload
 npm run build    # static output in dist/
 npm run preview  # serve the built output
 ```
+
+The site deploys to GitHub Pages on pushes to `main`. The `/website/` base path
+is configured in `src/site.mjs`; Markdown links are prefixed during rendering.
 
 Node 22.12 or newer. The pinned version is in `.node-version`.
 

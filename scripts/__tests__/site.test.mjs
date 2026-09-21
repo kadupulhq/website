@@ -39,7 +39,8 @@ registerHooks({
 
 test('site configuration preserves locales, version policy and excludes error pages from the sitemap', async () => {
 	const { default: config } = await import('../../astro.config.mjs');
-	assert.equal(config.site, 'https://kadupul.org');
+	assert.equal(config.site, 'https://kadupulhq.github.io');
+	assert.equal(config.base, '/website/');
 	const docs = config.integrations.find((i) => i.name === 'starlight').options;
 	assert.deepEqual(docs.locales, locales);
 	assert.equal(docs.defaultLocale, 'root');
@@ -47,9 +48,9 @@ test('site configuration preserves locales, version policy and excludes error pa
 	assert.deepEqual(docs.plugins[0].options.exclude, ['project/**', '*/project/**', '404.md', '*/404.md']);
 	assert.equal(docs.sidebar[1].items[2].translations['es-419'], 'Agregar el primer dispositivo');
 	const { filter } = config.integrations.find((i) => i.name === 'sitemap').options;
-	assert.equal(filter('https://kadupul.org/404.html'), false);
-	assert.equal(filter('https://kadupul.org/si/404/'), false);
-	assert.equal(filter('https://kadupul.org/si/project/security/'), true);
+	assert.equal(filter('https://kadupulhq.github.io/website/404.html'), false);
+	assert.equal(filter('https://kadupulhq.github.io/website/si/404/'), false);
+	assert.equal(filter('https://kadupulhq.github.io/website/si/project/security/'), true);
 });
 
 test('content collections use both documentation and translation loaders and schemas', async () => {
@@ -65,7 +66,7 @@ test('the actual footer renders localized licenses and delegates its slot to the
 	for (const [locale, config] of Object.entries(locales)) {
 		const container = await AstroContainer.create({ manifest: { i18n: { defaultLocale: 'en', locales: Object.values(locales).map((l) => l.lang), routing: 'manual' } } });
 		const html = await container.renderToString(Footer, {
-			request: new Request(`https://kadupul.org/${locale === 'root' ? '' : config.lang + '/'}`),
+			request: new Request(`https://kadupulhq.github.io/website/${locale === 'root' ? '' : config.lang + '/'}`),
 			slots: { default: '<span>Preserved slot</span>' },
 		});
 		const t = getMessages(locale);
@@ -88,4 +89,29 @@ test('frozen version metadata keeps every locale policy and error route unversio
 			assert.ok(excluded.includes(path), `Missing frozen version exclusion: ${path}`);
 		}
 	}
+});
+
+test('Markdown links and images stay within the GitHub Pages base', async () => {
+	const { baseLinks } = await import('../../src/site.mjs');
+	const tree = { children: [
+		{ properties: { href: '/start/install/#requirements' } },
+		{ properties: { src: '/images/example.png' } },
+		{ properties: { href: '/website/map/' } },
+		{ properties: { href: '//example.com/path' } },
+		{ properties: { href: 'https://example.com/' } },
+		{ properties: { href: '#section' } },
+		{ properties: { href: 'relative/' } },
+		{ properties: { href: 42 } },
+	] };
+	for (const node of tree.children) baseLinks.element.visit(node, { setProperty: (n, key, value) => { n.properties[key] = value; } });
+	assert.deepEqual(tree.children.map((n) => n.properties), [
+		{ href: '/website/start/install/#requirements' },
+		{ src: '/website/images/example.png' },
+		{ href: '/website/map/' },
+		{ href: '//example.com/path' },
+		{ href: 'https://example.com/' },
+		{ href: '#section' },
+		{ href: 'relative/' },
+		{ href: 42 },
+	]);
 });

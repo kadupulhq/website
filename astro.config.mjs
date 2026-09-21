@@ -1,13 +1,17 @@
 // @ts-check
+import { satteri } from '@astrojs/markdown-satteri';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightVersions from 'starlight-versions';
 import sitemap from '@astrojs/sitemap';
 import { locales, navigation } from './src/i18n/locales.mjs';
+import { site, base, baseLinks } from './src/site.mjs';
 import { isErrorRoute } from './src/i18n/routes.mjs';
 
 export default defineConfig({
-	site: 'https://kadupul.org',
+	site,
+	base,
+	markdown: { processor: satteri({ hastPlugins: [baseLinks] }) },
 	integrations: [
 		starlight({
 			defaultLocale: 'root',
@@ -66,6 +70,6 @@ export default defineConfig({
 				},
 			],
 		}),
-		sitemap({ filter: (page) => !isErrorRoute(new URL(page).pathname) }),
+		sitemap({ filter: (page) => !isErrorRoute(new URL(page).pathname.slice(base.length)) }),
 	],
 });

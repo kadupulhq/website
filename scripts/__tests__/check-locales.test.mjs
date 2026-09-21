@@ -173,3 +173,16 @@ test('rendered localized error pages must contain an exact robots noindex direct
 	write(path, '<html><head><meta name="ROBOTS" content="NOINDEX, FOLLOW"></head><body>Error</body></html>');
 	assert.doesNotThrow(() => checkLocales(root));
 });
+
+test('locale switches must include the configured project Pages base', (t) => {
+	const { root, write } = fixture(t);
+	assert.throws(() => checkLocales(root, { base: '/website/' }), /Switch escapes site base/);
+	for (const locale of Object.keys(locales)) {
+		const prefix = locale === 'root' ? '' : `${locale}/`;
+		for (const page of ['index.html', 'project/security/index.html', 'start/install/index.html', '1.2.31/start/install/index.html']) {
+			const path = `dist/${prefix}${page}`;
+			write(path, readFileSync(join(root, path), 'utf8').replaceAll('value="/', 'value="/website/'));
+		}
+	}
+	assert.equal(checkLocales(root, { base: '/website/' }).locales, 22);
+});

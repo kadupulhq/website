@@ -11,6 +11,7 @@
  * a count. A gate that fails open is worse than no gate.
  */
 import realFs from 'node:fs';
+import { base as siteBase } from '../src/site.mjs';
 import { isMain } from './cli.mjs';
 import { isUtilityRoute } from '../src/i18n/routes.mjs';
 import { join, resolve, relative, sep } from 'node:path';
@@ -86,7 +87,8 @@ export function classify(href, from = '') {
 	return { path, fragment, dotted };
 }
 
-export function check(dist, fs = realFs) {
+export function check(dist, fs = realFs, base = '/') {
+	const prefix = base.slice(1);
 	if (!fs.existsSync(dist)) {
 		return { fatal: `no build at ${dist}; run the build first` };
 	}
@@ -101,7 +103,7 @@ export function check(dist, fs = realFs) {
 	} catch {
 		return { fatal: `cannot read ${dist}` };
 	}
-	const key0 = (p) => relative(root, p).split(sep).join('/');
+	const key0 = (p) => prefix + relative(root, p).split(sep).join('/');
 	let files, skipped;
 	try {
 		({ files, skipped } = walk(root, fs));
@@ -239,13 +241,13 @@ export function check(dist, fs = realFs) {
 	}
 
 	const orphans = [...routes].filter(
-		(r) => r && !isUtilityRoute(r) && !inbound.has(r),
+		(r) => r && !isUtilityRoute(r.slice(prefix.length)) && !inbound.has(r),
 	);
 	return { pages: servedPages.size, checked, fragmentsChecked, broken, orphans };
 }
 
 if (isMain(import.meta.url)) {
-	const r = check(DIST);
+	const r = check(DIST, realFs, process.argv[2] ? '/' : siteBase);
 	if (r.fatal) {
 		console.error(`FATAL  ${r.fatal}`);
 		process.exit(2);

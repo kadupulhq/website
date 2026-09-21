@@ -455,3 +455,18 @@ test('default link-check CLI validates the real build', () => {
 	assert.equal(result.status, 0, result.stderr);
 	assert.match(result.stdout, /internal links checked/);
 });
+
+test('project Pages links resolve under the base and reject origin-root paths', (t) => {
+	const d = build({
+		'index.html': '<a href="/website/guide/#details">guide</a><a href="/website/file.png">asset</a><a href="/guide/">wrong base</a><a href="https://example.com/">external</a>',
+		'guide/index.html': '<h2 id="details">Details</h2><a href="../">home</a><a href="#details">section</a>',
+		'file.png': 'image',
+		'404.html': '',
+	});
+	t.after(() => rmSync(d, { recursive: true, force: true }));
+	const result = check(d, fs, '/website/');
+	assert.equal(result.broken.length, 1);
+	assert.match(result.broken[0], /\/guide\/.*no such route/);
+	assert.equal(result.fragmentsChecked, 2);
+	assert.deepEqual(result.orphans, []);
+});
