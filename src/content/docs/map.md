@@ -28,18 +28,18 @@ Task pages for someone who already has it running and has a specific goal.
 - [Troubleshoot missing data](/guides/troubleshoot-missing-data/). A step by step procedure for gaps and flat graphs, working from device reachability through poller scheduling, the poller cache, filesystem permissions and the heartbeat.
 - [Scale the poller](/guides/scale-the-poller/). What to change when collection stops finishing inside its interval, and how to tell which limit you actually hit.
 - [Back up and restore](/guides/back-up-and-restore/). Three things have to be captured together or the backup is not a backup, and the order they go back in matters.
-- [Upgrade safely](/guides/upgrade-safely/). What an upgrade actually changes, which parts can be rolled back, and the one part that cannot.
+- [Upgrade safely](/guides/upgrade-safely/). Rehearse an upgrade, preserve matched backups, check storage and schema state, and plan a coordinated rollback.
 - [Secure an internet-facing install](/guides/secure-an-internet-facing-install/). What to change before a monitoring system with shell access to your network answers requests from the public internet.
 - [Write a data collection script](/guides/write-a-data-collection-script/). How to make the poller run your own program and store what it prints, and the contract that program has to honor.
 - [Create custom templates](/guides/create-custom-templates/). How to build a data template and a graph template by hand, when to copy one instead, and what editing a template later does to graphs and files that already exist.
 - [Manage users and permissions](/guides/manage-users-and-permissions/). How accounts, groups, and per-object permissions fit together, and how to build a read-only operator account that actually stays read-only.
 - [Install and vet plugins](/guides/install-and-vet-plugins/). How plugins attach themselves to the application, what to read before you trust one, and why installing a plugin is equivalent to granting shell access.
 - [Monitor a Windows host](/guides/monitor-a-windows-host/). Graph CPU, disks, interfaces and uptime on Windows over the SNMP service, which Host Resources objects carry the data, and what to do when SNMP is not an option.
-- [Discover devices automatically](/guides/discover-devices-automatically/). Scan a network range, match found devices to a template, and let rules build the graphs and tree branches, with a dry run first so you find out what it would create before it creates it.
+- [Discover devices automatically](/guides/discover-devices-automatically/). Scan a network range, match found devices to a template, and let rules build the graphs and tree branches, with device creation disabled for an initial discovery pass.
 - [Build aggregate graphs](/guides/build-aggregate-graphs/). Combine many graphs into one, choose between a stacked view and a total, and keep the result honest when members are added and removed over time.
 - [Tune graph appearance](/guides/tune-graph-appearance/). Axis scaling, units, colour and legend settings, and what to change when a graph is technically correct and still unreadable.
 - [Import and export templates](/guides/import-and-export-templates/). What an export file actually contains, why a package is signed, and the ways an import quietly does less than you asked.
-- [Remove spikes from data](/guides/remove-spikes-from-data/). How to take a false peak out of an archive so the rest of the graph is readable again, and why that edit cannot be undone.
+- [Remove spikes from data](/guides/remove-spikes-from-data/). Preview spike corrections, preserve recovery copies, and verify changes to retained RRD samples.
 - [Migrate to new hardware](/guides/migrate-to-new-hardware/). Moving a running install to another server without losing history, in the order that keeps each step verifiable.
 - [Tune database performance](/guides/tune-database-performance/). Which tables grow, what the maintenance scripts actually do, and the server settings that decide whether a collection run finishes.
 - [Send email notifications](/guides/send-email-notifications/). Configure outbound mail in Kadupul, test it, and understand which events actually generate a message without installing a plugin.

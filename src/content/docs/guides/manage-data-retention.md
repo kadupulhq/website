@@ -87,8 +87,9 @@ The names are labels, not behaviour. Nothing enforces that the archive called
 
 ## How the profile becomes a file
 
-At creation, the profile is read once and turned into a create command. The step
-comes from the profile. Each data source item contributes a definition line
+At creation, the profile's archives and consolidation functions are read and
+turned into a create command. The step comes from the data source's stored
+`rrd_step`, normally populated from its profile. Each included data source item contributes a definition line
 carrying its name, type, heartbeat, minimum and maximum. Each archive
 contributes one line per consolidation function, carrying the function, the
 X-Files Factor, the multiplier and the row count.
@@ -96,9 +97,9 @@ X-Files Factor, the multiplier and the row count.
 Four archives times four consolidation functions is sixteen archive definitions
 in the file. That multiplication is where the disk goes.
 
-If the file already exists, creation stops and does nothing. There is no path
-that rewrites an existing file to match a changed profile. That is the whole
-reason this page exists.
+If the file already exists, the normal create path stops without rewriting it.
+Profile edits do not migrate files automatically. Explicit maintenance tools are
+a separate operation, described below.
 
 ## Choosing a policy
 
@@ -118,8 +119,8 @@ functions. `AVERAGE` answers what was typical. `MAX` answers how bad it got.
 `MIN` answers whether it ever dropped out. `LAST` answers what the final value in
 the window was, which matters for readings that are states rather than rates.
 
-Dropping a consolidation function is the most effective way to shrink files,
-because it removes a quarter of the rows at every resolution. It is also the
+Dropping one of four consolidation functions reduces the stored-value payload of
+new files by a quarter at every resolution. It is also the
 regret people write in later. Keep `MAX` unless you are certain no one will ever
 ask about a peak.
 
@@ -132,9 +133,11 @@ the interface:
 file size = 284 + (data sources x (300 + total rows x 8 x consolidation functions))
 ```
 
-The 284 bytes are the file header. Each data source in the file adds a 300 byte
-header of its own. Each stored value is 8 bytes, and total rows is the sum of the
-row counts across every archive.
+The interface uses 284 and 300 bytes as fixed overhead estimates. Treat this as
+a sizing approximation, not an exact description of every RRDtool file format.
+Each stored value is 8 bytes, and total rows is the sum of the row counts across
+the profile's archive definitions before multiplying by consolidation functions.
+Measure representative files with the installed RRDtool before sizing storage.
 
 For a single-data-source file with all four consolidation functions:
 
@@ -149,9 +152,9 @@ graph can combine fields from one file or several files. Count the actual RRD
 files and the data source items inside each.
 
 Twenty thousand data sources on the default profile is roughly 1.8 GB. The same
-twenty thousand on the 1 Minute profile is roughly 13 GB. That ratio is the real
-cost of a finer step, and it is paid in random write I/O every cycle as well as
-in bytes. See [High-volume writes](/concepts/high-volume-writes/) before choosing
+twenty thousand on the 1 Minute profile is roughly 13 GB. This ratio reflects
+both resolution and the profiles' different retention spans, not the step alone.
+Finer collection also increases write frequency. See [High-volume writes](/concepts/high-volume-writes/) before choosing
 a fine step at scale.
 
 Both profile and archive editors show a computed size as you change the numbers.
@@ -167,29 +170,56 @@ This is the part that costs people history.
 | Change a row count | Applied | None |
 | Change an aggregation level | Applied | None |
 | Add or remove a consolidation function | Applied | None |
-| Change the step | Applied | None |
-| Change the heartbeat | Applied | Database updated, file not |
-| Delete the profile | Its archives and functions go with it | None |
+| Change the step | New data sources inherit it; creation uses their stored step | No automatic file migration |
+| Change the heartbeat | Creation uses stored data-source item metadata; see save bugs below | No automatic file tuning |
+| Delete the profile | Removes the definitions needed for subsequent creation | Existing file remains, but dangling database references can break later creation |
 
-The heartbeat row deserves a closer look, because it is the one case that is
-half-applied. Changing a profile's heartbeat updates the recorded heartbeat for
-every data source using that profile, and then warns you that the files
-themselves were not touched. The interface and the file now disagree. Correct the
-files with the command line heartbeat utility, or with the tuning facility, and
-do it in the same maintenance window. A disagreement here is invisible until
-someone reads the wrong number out of the database and believes it.
+**Avoid changing the heartbeat through an in-use profile's edit form for now.**
+Two bugs affect this path:
+
+- The form disables step, but the save handler only stores the profile heartbeat
+  when step is submitted. A tested save of 900 left the profile at 600 while
+  changing the local data-source metadata to 900. Tracked in
+  [#232](https://github.com/kadupulhq/kadupul/issues/232).
+- If a template also references the profile, the propagation query can update
+  unrelated templates through their shared `local_data_id=0`. In the same test,
+  another template's heartbeat changed from 1200 to 900. Tracked in
+  [#233](https://github.com/kadupulhq/kadupul/issues/233).
+
+Neither change tuned the existing RRD file. Back up metadata as well as files,
+and compare the profile, template items, local data-source items and actual
+`rrdtool info` output after heartbeat maintenance.
+
+The main collector's `cli/update_heartbeat.php` utility can tune existing files
+and update metadata. Start with `--help`, `--list-heartbeats`,
+`--list-data-templates` and `--list-profiles`. The new heartbeat must be supported
+and at least twice the configured poller interval. Use `--data-template-id` to
+limit selection; the utility has no dry-run option.
+
+Without `--force`, the selected profiles must already have the requested
+heartbeat. With `--force`, shared profile values also change, so inventory all
+their users before proceeding. `--prev-heartbeat` filters database values, not
+the heartbeat read from each RRD: after a partial web save, selecting the old
+file value can match nothing. Verify the selection and inspect the resulting
+files. The isolated test successfully tuned its existing file from 600 to 900
+after its profile metadata was aligned.
 
 Two more traps sit next to that one.
 
-**Archive rows and levels lock once the profile is in use.** As soon as a real
-data source exists on a profile, the row count and aggregation level of its
-archives become read-only in the editor. Duplicate the profile and edit the copy.
+**The editor restricts structural changes once a profile is in use.** As soon as
+a real data source exists on a profile, step, X-Files Factor, consolidation
+functions, archive row counts and aggregation levels become read-only in the
+editor; archive add/delete controls are also hidden. Duplicate the profile and
+edit the copy. These interface restrictions do not constitute server-side
+validation of submitted requests.
 
-**Deleting a profile leaves its data sources pointing at nothing.** The profile,
-its archives and its function list are removed, and the data sources that
-referenced it are not touched. The next time one of those needs a file created,
-creation fails with a log line saying the data source has no archives assigned.
-Reassign before deleting.
+**Keep profiles while anything references them.** The list disables selection
+when a template or local data source uses a profile. However, the server's bulk
+delete handler currently accepts a submitted in-use ID and removes its archives
+and functions without reassigning those references. Existing files survive, but
+subsequent creation fails because no archives are assigned. Do not bypass the
+disabled control; inventory and reassign references before deleting. Tracked in
+[#234](https://github.com/kadupulhq/kadupul/issues/234).
 
 ## Moving data sources between profiles
 
@@ -206,8 +236,9 @@ So the sequence for a real migration is:
 
 Step four has several options, depending on the change and installed RRDtool version.
 
-**Leave them.** Two shapes coexisting is untidy and harmless. Graphs read
-whatever each file holds.
+**Leave them.** Different retention shapes can coexist. Keep each existing data
+source's polling metadata consistent with its file; changing a database profile
+reference alone does not migrate its step, fields or archives.
 
 **Rebuild.** Delete and recreate the data source. Fast, and history is gone.
 
@@ -243,4 +274,4 @@ whatever the file was built with; it just is not described anywhere you can see.
 | A week of graphs has gaps every few hours | Heartbeat too close to the step for a poller that runs late |
 | Peaks visible yesterday are gone in the month view | Only `AVERAGE` is kept, or the `MAX` archive was dropped to save space |
 | Disk grew four times faster than estimated | The estimate counted archives but not consolidation functions |
-| A new archive was rejected as too coarse or too fine | The first archive must be at the profile step, and each additional one must be coarser than every existing one |
+| A desired resolution is absent from the new-archive dropdown | The editor offers a finest archive at the profile step, then only choices coarser than existing archives |

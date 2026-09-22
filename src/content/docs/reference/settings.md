@@ -349,7 +349,7 @@ Seconds before the named background script is killed.
 
 | Name | Setting | Controls | Type | Default |
 |---|---|---|---|---|
-| `reports_timeout` | Report Generation Timeout | Report generation. `60` to `1200`. | select | `300` |
+| `reports_timeout` | Report Generation Timeout | `60` to `1200` seconds, used by process registration to detect and terminate an overdue previous worker on a later invocation. Not a PHP execution deadline; the report poller removes that limit. | select | `300` |
 | `dsstats_timeout` | Data Source Statistics Timeout | Data source statistics. `60` to `3600`. | select | `300` |
 | `rrdcheck_timeout` | RRDChecker Timeout | RRD file check. `300` to `14400`. | select | `3600` |
 | `commands_timeout` | Poller Commands Timeout | Background commands, which reindex devices and prune devices from remote collectors. `60` to `1200`. | select | `300` |
@@ -665,7 +665,7 @@ Defaults for both the interface action and `cli/removespikes.php`.
 | `notify_admin` | Notify Primary Admin of Issues | Mail the primary admin when the system hits problems. | boolean | |
 | `settings_test_email` | Test Email | Address the test message is sent to. | text | |
 | `settings_how` | Mail Services | `0` PHP `mail()`, `1` sendmail, `2` SMTP. Sendmail is removed on Windows. | select | `0` |
-| `settings_ping_mail` | Ping Mail Server | Ping the mail server before sending the test message. `0` yes, `1` no. | select | `0` |
+| `settings_ping_mail` | Ping Mail Server | SMTP preflight before the test message. `0` yes, `1` no. The legacy TLS probe can fail against working STARTTLS servers; see the email guide. | select | `0` |
 | `settings_from_email` | From Email Address | From address on outgoing mail. | text | |
 | `settings_from_name` | From Name | From name on outgoing mail. | text | |
 | `settings_wordwrap` | Word Wrap | Characters before a line wraps. `0` disables wrapping. | text | `120` |
@@ -691,8 +691,8 @@ Defaults for both the interface action and `cli/removespikes.php`.
 
 | Name | Setting | Controls | Type | Default |
 |---|---|---|---|---|
-| `reports_default_image_format` | Default Graph Image Format | Image type for inline graphs on a new report. Inline PNG always; inline JPEG and GIF appear when the GD extension is loaded. | select | `1` |
-| `reports_max_attach` | Maximum E-Mail Size | Bytes, message plus attachments. | select | `10485760` |
+| `reports_default_image_format` | Default Graph Image Format | Image handling for new reports. PNG supports inline or attached images; JPEG/GIF choices depend on GD. | select | `1` |
+| `reports_max_attach` | Maximum E-Mail Size | Intended bytes for message plus attachments; the current report send path does not enforce this setting. | select | `10485760` |
 | `reports_log_verbosity` | Poller Logging Level for Cacti Reporting | Detail the reporting poller writes. Same scale as `log_verbosity`. | select | `2` |
 | `reports_allow_ln` | Enable Lotus Notes (R) tweak | Apply the handling Lotus Notes clients need. | boolean | |
 

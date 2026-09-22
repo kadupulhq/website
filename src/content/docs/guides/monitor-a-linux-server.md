@@ -19,8 +19,8 @@ the two overlapping disk MIBs you are looking at.
 
 ## What snmpd has to expose
 
-Kadupul reads four areas. All of them have to be inside the view your community or
-v3 user is granted.
+Kadupul reads four areas. Grant the subtrees needed by the selected graphs to the monitoring identity;
+not every deployment needs every subtree.
 
 | Area | Subtree | Gives you |
 |---|---|---|
@@ -34,26 +34,34 @@ the system subtree. The device then answers, reports a system description, and
 collects nothing. That combination is the most common first failure on a Linux host,
 and it looks identical to a template problem.
 
-Verify each area from the poller host before building graphs.
+Verify required areas from the poller host using the same SNMP identity configured
+on the device. These examples use an illustrative community; replace it with the
+configured value. Numeric OIDs avoid requiring local symbolic MIB definitions.
 
 ```bash
-snmpget  -v2c -c public server.example.net sysDescr.0
+snmpget  -v2c -c public server.example.net .1.3.6.1.2.1.1.1.0
 snmpwalk -v2c -c public server.example.net .1.3.6.1.4.1.2021.10.1.3
 snmpwalk -v2c -c public server.example.net .1.3.6.1.2.1.25.2.3.1.3
 ```
 
-If the second and third return nothing while the first works, the view is the
-problem, not Kadupul.
+If only the first works, inspect the exact response: a restricted view, unavailable
+agent module, different SNMP context or empty table can explain the result. Check
+agent configuration and access before changing the Kadupul template.
 
 ## Add the device
 
-Use the net-snmp device template. It carries the data queries and graph templates
-below, so choosing it at creation time does most of the work.
+The shipped `install/templates/NetSNMP_Device.xml.gz` package contains the Net-SNMP
+device template and its dependencies. Import it if the template is unavailable,
+then select it when adding the device. Confirm query indexes and explicitly create
+the desired graphs; choosing a device template does not prove collection works. See
+[Import templates](/guides/import-and-export-templates/) and
+[Your first graph](/start/first-graph/).
 
 ## What you get without a data query
 
-These graph templates read a single fixed OID each. They apply to every host, so no
-discovery is involved.
+These fixed-OID data templates are included in the package. A graph may combine
+several of them; availability depends on the target agent. They do not require
+index discovery.
 
 | Graph | OID | Stored as |
 |---|---|---|
@@ -76,9 +84,11 @@ The memory objects are in kilobytes. The shipped memory graph applies a conversi
 so the axis reads in bytes. If you build your own graph from these OIDs, you own that
 conversion.
 
-The three CPU objects sum to roughly 100 and are stored as gauges. They give you
-utilisation, not CPU time, so a graph built on them answers "how busy" and not "how
-many seconds of work".
+The listed CPU objects are legacy percentage gauges, not cumulative CPU-time
+counters. Do not assume these three alone account for every CPU state. Net-SNMP
+marks them deprecated in favor of raw counters; raw counters require appropriate
+rate and percentage calculations, not substitution into a gauge template. See the
+[UCD-SNMP MIB](https://www.net-snmp.org/docs/mibs/ucdavis.html).
 
 ## What needs a data query
 
@@ -101,21 +111,23 @@ reads the allocation unit size as a separate field so the graph can multiply. Yo
 everything without configuring anything, and you also get a long list of entries you
 do not want.
 
-The net-snmp query reads the UCD disk table, which contains only the filesystems you
-named in `snmpd.conf`. Nothing appears until you declare it.
+The net-snmp query reads the UCD disk table, populated by `disk` directives or `includeAllDisks`. Choose explicit partitions
+or broad discovery; they are different policies.
 
 ```
 disk /      10%
 disk /var   10%
-includeAllDisks 10%
 ```
 
-A net-snmp partition query that returns no indexes almost always means those lines
-are missing, not that the query is broken.
+Alternatively, `includeAllDisks 10%` populates disks found when the agent starts.
+The 10% value configures a free-space error threshold; it is not a selection filter
+and does not itself configure Kadupul alerts. Reload/restart according to the
+installed agent, then verify indexes. An empty query can also reflect access or
+module availability. See [snmpd configuration](https://www.net-snmp.org/docs/man/snmpd.conf.html).
 
 Prefer the Host Resources query when you want coverage and will prune. Prefer the
-net-snmp one when you want a short, deliberate list that does not grow every time
-somebody adds a container mount.
+net-snmp one with explicit `disk` entries when you want a deliberate list.
+`includeAllDisks` broadens that list; recheck indexes after agent restarts.
 
 ### Interfaces
 
@@ -148,12 +160,17 @@ The output contract:
 
 For the multi-value form, pairs are separated by single spaces and the name is
 separated from the value by a colon. The parser counts delimiters against spaces, so
-a value containing a space breaks the whole line, and a trailing space does the same.
-Emit exactly one space between pairs and no trailing whitespace.
+internal extra spaces can fail validation. The PHP poller trims trailing
+whitespace, so it does not fail solely because of a trailing space. Emit the
+canonical one-space format and send diagnostics away from stdout.
 
-Data source names must match `[a-zA-Z0-9_-]` and be at most 19 characters. The whole
+Internal RRD data source names accepted by the template editor match
+`[a-zA-Z0-9_]{1,19}`; hyphens are not accepted there. Script output labels must
+match their data input field names and map to the intended internal items. The whole
 output line is stored in a 512 character column, so a script that prints a diagnostic
-alongside the numbers will lose data.
+alongside numbers may be rejected, truncated or stripped into misleading values.
+See [Collection scripts](/guides/write-a-data-collection-script/) for the tested
+PHP-poller contract.
 
 Return `U` rather than `0` when you cannot measure something. Zero is a reading and
 gets graphed as one. See
@@ -163,9 +180,9 @@ kept apart.
 ### Script server
 
 A plain script is executed once per data source per interval. For a script written in
-PHP, the script server form loads it into the running poller instead, which removes a
-PHP startup from every poll. On a host with a few dozen script data sources that is
-the difference between a poller that fits its interval and one that does not.
+PHP, the script-server form calls a function in a long-lived separate PHP process,
+reducing interpreter startup overhead. Measure the benefit; a few dozen scripts
+do not establish a universal capacity threshold.
 
 ### The whitelist trap
 
@@ -176,8 +193,13 @@ goes quiet with no error on the graph. The log says so; the interface does not.
 
 ```bash
 php cli/input_whitelist.php --audit
-php cli/input_whitelist.php --update
+php cli/input_whitelist.php --update --id=42
 ```
+
+Replace `42` with the reviewed data input method id, not a device id. Updating
+without `--id` accepts current command strings across the input inventory. Review
+changes before doing that. After updating, verify source activation and effective
+poller cache entries; whitelist approval alone does not prove resumed collection.
 
 ## Failure modes
 
@@ -187,5 +209,5 @@ php cli/input_whitelist.php --update
 | Net-SNMP partition query finds no indexes | No `disk` or `includeAllDisks` lines in `snmpd.conf` |
 | Host Resources partitions include RAM and tmpfs | Expected; the agent reports them as storage |
 | Memory graph off by a factor of 1024 | Building on the raw OIDs without the conversion |
-| Script returns a value on the command line, poller records unknown | Output format, trailing whitespace, or a data source name over 19 characters |
+| Script returns a value on the command line, poller records unknown | Output/mapping mismatch, internal delimiter errors, or invalid internal name |
 | Script works as you, fails from the poller | It runs as the poller user, with that user's environment and credentials |

@@ -14,7 +14,7 @@ in the exact source version you use; these lists are not a production support po
 
 | Component | Requirement | Absent |
 |---|---|---|
-| PHP | Manifest declares 8.0 or newer; use a security-supported version | Nothing runs |
+| PHP | Main requires 8.4 or newer; use a security-supported version | Nothing runs |
 | Database | MySQL or MariaDB, InnoDB available | Nothing runs |
 | RRDtool | A local binary; proxy deployment is not supported | No graphs, no storage |
 | net-snmp | Command line tools, unless the PHP SNMP extension is present | No SNMP collection |
@@ -114,9 +114,9 @@ required. Which path a given call takes is in [SNMP](/reference/snmp/).
 CLI runs raise `memory_limit` and `max_execution_time` themselves. The web
 interface does not.
 
-The installer's own version check compares against a floor inherited from a much
-older release and will pass on versions the manifest rejects. The manifest is the
-gate that matters.
+On current `main`, both the manifest and the installer’s
+`CACTI_PHP_VERSION_MINIMUM` require PHP 8.4 or newer. Check the target branch’s
+manifest and installer together; archived LTS versions have separate requirements.
 
 ## Database
 
@@ -240,7 +240,7 @@ No other part of Kadupul requires privilege.
 
 ## On the PHP version
 
-The application manifest declares PHP 8.0 or newer. A manifest constraint is not
-a tested compatibility matrix. PHP 8.0 and 8.1 are no longer security-supported;
-choose a version from the [PHP supported-version list](https://www.php.net/supported-versions.php)
+The current `main` application manifest and runtime guard require PHP 8.4 or
+newer. This does not change the archived LTS requirements. A manifest constraint
+is not a tested compatibility matrix; choose a version from the [PHP supported-version list](https://www.php.net/supported-versions.php)
 and verify it with the target branch's tests and dependency checks.

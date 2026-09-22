@@ -14,19 +14,20 @@ them. See [project status](/project/status/).
 :::
 
 Windows over SNMP gives you interfaces, processors, storage and a couple of counts.
-It does not give you load average, memory graphs or a declared partition list,
-because the objects those come from are a net-snmp extension and Windows does not
-implement them. Most of the work on a Windows host is knowing what is missing and
-where the replacement lives.
+The built-in Microsoft agent does not provide the Net-SNMP UCD templates' load,
+memory and configured-disk objects. Memory can still be graphed through storage
+rows when the agent exposes them. Third-party agents may expose different objects;
+check the actual agent before choosing templates.
 
 ## What the SNMP service exposes
 
-The Windows SNMP service is an optional component. Microsoft has listed it as
-deprecated for several releases, it is not installed by default, and on recent
-builds it may not be offered at all. Check that it is present before planning
-around it.
+The Windows SNMP service is deprecated and optional. For Windows 10 and 11,
+Microsoft documents installation through Optional features or Windows capabilities;
+a legacy DISM feature-name error alone does not prove it is unavailable. Check the
+instructions for your Windows edition and build before planning around it. See
+[Microsoft's SNMP installation guidance](https://learn.microsoft.com/en-us/troubleshoot/windows-client/networking/cannot-install-snmp-wmisnmpprovider).
 
-What it answers, once running:
+Check which of these subtrees your installed agent exposes:
 
 | Area | Subtree | Gives you |
 |---|---|---|
@@ -44,22 +45,27 @@ string, and the list of managers the agent will accept packets from. A host set 
 accept SNMP from a single manager address answers that manager and drops everything
 else, including your test from a laptop.
 
-Verify each area from the poller host before building graphs.
+Verify each area from the poller host before building graphs. Replace the example
+host and community with your configured values; `public` is illustrative.
 
 ```bash
-snmpget  -v2c -c public win.example.net sysDescr.0
+snmpget  -v2c -c public win.example.net .1.3.6.1.2.1.1.1.0
 snmpwalk -v2c -c public win.example.net .1.3.6.1.2.1.25.3.3.1.2
 snmpwalk -v2c -c public win.example.net .1.3.6.1.2.1.25.2.3.1.3
 ```
 
 The second walk is processor load, the third is the storage description list. If the
-first works and the other two return nothing, the agent is answering but Host
-Resources is not being served, and no template will fix that.
+first works and the other two return nothing, check access restrictions, agent
+support and the returned SNMP error. An empty walk alone does not establish that
+the entire Host Resources module is absent.
 
 ## Add the device
 
-Use the Windows device template. It carries three data queries and the graph
-templates that go with them.
+Import `install/templates/Windows_Device.xml.gz` if its templates are missing,
+following [Import and export templates](/guides/import-and-export-templates/).
+Select the Windows device template, verify query discovery, then explicitly create
+the desired graphs. A device-template association alone does not create them.
+The package carries three data queries and their associated graph templates.
 
 | Data query | Backed by | Reads |
 |---|---|---|
@@ -68,7 +74,7 @@ templates that go with them.
 | SNMP - Get Mounted Partitions | `resource/script_server/host_disk.xml` | `hrStorageTable` via `scripts/ss_host_disk.php` |
 
 The disk and processor queries are script server queries despite their names. They
-run inside the poller process and issue their own SNMP calls, using the credentials
+run in a separate, long-lived PHP script-server process and issue SNMP calls with the credentials
 the device record holds. The interface query is a plain SNMP query. The practical
 consequence is that a broken PHP script server stops disk and CPU collection on
 Windows while interface graphs carry on.
@@ -85,25 +91,27 @@ Two graph templates read one fixed OID each.
 Two more read nothing from the device at all. The uptime and polling time graphs
 call `scripts/ss_hstats.php` and return a column from Kadupul's own device record:
 `snmp_sysUpTimeInstance` for uptime, the recorded poll duration for polling time.
-They are a picture of what the poller last stored, not a fresh query. An uptime
-graph that keeps climbing while the host is unreachable is this, working as built.
+They read stored measurements, not a fresh SNMP response. The helper does not add
+elapsed time to uptime: an unchanged stored value remains unchanged. These graphs
+alone do not establish current reachability.
 
 ## The Host Resources tables
 
 ### Processors
 
 `hrProcessorLoad`, at `.1.3.6.1.2.1.25.3.3.1.2`, returns one entry per logical
-processor. The walk supplies both the index and the value, so a 32-thread server
-discovers 32 indexes and, if you graph all of them, 32 data sources.
+processor exposed by the agent. The walk supplies the indexes; do not assume that
+its row count always equals the machine's advertised hardware thread count.
 
 The value is a percentage already. The MIB defines it as an average over the last
 minute, which means a five minute poll samples a one minute average once every five
-minutes and shows you neither. Treat it as a coarse occupancy signal. If you need
-real CPU accounting on Windows, SNMP is not the road.
+minutes. That is a sampled one-minute average, not a continuous five-minute average.
+See the [Host Resources MIB definition](https://www.rfc-editor.org/rfc/rfc2790.html).
+Use a collection method and interval appropriate to the detail you need.
 
 ### Storage
 
-`hrStorageTable`, at `.1.3.6.1.2.1.25.2.3.1`, is the only storage source. The query
+The shipped storage query uses `hrStorageTable`, at `.1.3.6.1.2.1.25.2.3.1`. It
 reads six columns.
 
 | Column | OID | Direction |
@@ -116,40 +124,45 @@ reads six columns.
 | `hrStorageAllocationFailures` | `.1.3.6.1.2.1.25.2.3.1.7` | Output |
 
 Size and used are counts of allocation units, not bytes. The script multiplies each
-by the allocation unit size cached for that index, so the graph reads in bytes.
+by the allocation unit size cached for that index when both values are valid.
+Verify that cached multiplier before interpreting the result as bytes.
 
 Two things follow from that, and both bite on Windows.
 
 **The table is not a list of disks.** The agent reports whatever it considers
-storage. On Windows that includes physical memory and virtual memory alongside the
-fixed drives. Discover a host and you get `C:\`, `D:\`, `Physical Memory` and
-`Virtual Memory` in one list. Graph what you want and leave the rest; there is no
-filter in the query.
+storage. Depending on the agent, physical memory and virtual memory may appear
+alongside fixed drives. Labels such as `C:\`, `D:\`, `Physical Memory` and
+`Virtual Memory` are examples, not guaranteed rows. Select the rows you want to
+graph; the query XML does not filter them by storage type.
 
-**The counters are signed 32-bit.** A volume large enough to push the allocation
-unit count past 2147483647 comes back negative. The script detects a negative value
-and adds 4294967296 before multiplying, which recovers the true figure up to the
-next wrap. If the allocation unit size is missing or not numeric in that case, the
-sample is recorded as unknown rather than guessed.
+**Large or invalid storage values need verification.** The MIB defines size and
+used as nonnegative Integer32 values. An agent returning a negative value is outside
+that range; do not assume a universal wrap correction. The current script uses
+`(abs(value) + 2147483647) * allocation_units`, which is not unsigned 32-bit
+reinterpretation. With a missing multiplier it can return raw units for positive
+values or raise a PHP type error for negative values. Treat affected samples as
+unreliable, verify the agent and cached allocation units, and reindex after fixing
+discovery. See the [storage conversion bug](https://github.com/kadupulhq/kadupul/issues/243).
 
 If you ever attach the plain SNMP flavour of the partition query instead of the
-script server one, you lose that correction. The plain query stores the raw column
-values and leaves the multiplication to the graph template.
+script server one, conversion follows a different path: the plain query stores raw
+column values and leaves multiplication to the graph template. Switching queries
+is not proof that an invalid agent value has been repaired.
 
 ## Where Windows differs from Linux
 
-| Thing | Linux with net-snmp | Windows |
+| Thing | Linux with net-snmp | Built-in Windows agent / shipped templates |
 |---|---|---|
-| Load average | `.1.3.6.1.4.1.2021.10.1.3` | Not implemented, and not a Windows concept |
-| Memory | `.1.3.6.1.4.1.2021.4` | Appears as `hrStorage` rows, not a memory graph |
+| Load average | `.1.3.6.1.4.1.2021.10.1.3` | No UCD load-average objects |
+| Memory | `.1.3.6.1.4.1.2021.4` | Can be graphed from exposed `hrStorage` rows |
 | CPU | UCD percentages, or `hrProcessorLoad` | `hrProcessorLoad` only |
 | Disk list | `dskTable` you declare, or `hrStorage` | `hrStorage` only, unfiltered |
 | Disk I/O | `diskIOTable` | Nothing shipped reads it |
 | Interface names | Kernel names, short | Long adapter descriptions, often duplicated |
 
-The whole `.1.3.6.1.4.1.2021` subtree is absent. Attaching a net-snmp graph template
-to a Windows device produces graphs that collect nothing, with no error on the page.
-The log records the failed gets. See
+The built-in Microsoft agent does not supply the UCD `.1.3.6.1.4.1.2021` subtree.
+Attaching templates for unsupported objects does not make them collect data.
+Check the poller log and actual SNMP responses; a third-party agent may differ. See
 [Troubleshoot missing data](/guides/troubleshoot-missing-data/) for reading that
 back.
 
@@ -170,9 +183,10 @@ Read the discovered table before creating graphs, and see
 [Monitor a switch](/guides/monitor-a-switch/) for how the choice is made and what
 reindexing costs.
 
-Uptime is the default reindex trigger, and it works: a Windows reboot moves SNMP
-uptime backwards and the indexes get re-read. A driver update or an adapter
-disabled in place does not reboot the host, so it does not trigger anything.
+With uptime-based reindexing, a detected decrease in SNMP uptime triggers a new
+query. Adapter changes can occur without that decrease and go undetected by this
+method. Check the query's configured reindex method and refresh discovery after
+changes; see [Data queries and indexes](/concepts/data-queries-and-indexes/).
 
 ## When SNMP is not available
 
@@ -185,8 +199,9 @@ Two facts decide how you write it.
 your script's problem: WinRM, an agent, an HTTP endpoint, a share, whatever you
 already operate. Kadupul does not care how the number arrives.
 
-**The poller reads standard output and nothing else.** Exit status is not consulted.
-Print a number, or `U` for no reading this cycle. Do not print `0` when you mean
+**Return measurements on standard output.** The PHP poller's external-command
+path does not use the exit status as the measurement. Print a number, or `U` for
+no reading this cycle; keep diagnostics off standard output. Do not print `0` when you mean
 "could not measure".
 
 If you need one value per interface, disk or service instead of a single number, the
@@ -196,9 +211,8 @@ for one index. The shipped Windows disk and CPU queries are exactly that shape, 
 `resource/script_queries/host_cpu.xml` is a worked example that calls a PHP script
 rather than the script server.
 
-A PHP script used often should be written for the script server, which loads it into
-the running poller instead of starting a PHP process for every data source every
-cycle. See
+A PHP script can use the script server to reuse a separate PHP process across
+requests. It must follow the script-server function contract. See
 [Write a data collection script](/guides/write-a-data-collection-script/) for the
 output contract and the naming limits.
 
@@ -206,11 +220,11 @@ output contract and the naming limits.
 
 | Symptom | Usual cause |
 |---|---|
-| System description reads back, nothing else collects | Host Resources not served, or the manager list rejects the poller |
+| System description reads back, nothing else collects | Check object support, access restrictions and the specific SNMP error |
 | No response at all from a host that is up | The agent's accepted manager list, or a host firewall rule on UDP 161 |
 | Partition list includes memory | Expected; the agent reports memory as storage |
-| A large volume graphs negative or unknown | 32-bit allocation unit count wrapping, uncorrected because the allocation unit size is missing |
+| A large volume graphs negative or unknown | Invalid agent values or missing/stale allocation units; verify raw values and the known conversion bug |
 | Disk and CPU stop, interfaces keep going | Script server fault; the interface query does not use it |
-| Net-snmp templates attached, every sample unknown | The UCD subtree does not exist on Windows |
+| Net-snmp templates attached, every sample unknown | The selected agent does not expose the UCD objects required by those templates |
 | Interface history follows the wrong adapter after a change | Index resolved to `ifIndex` because names were blank or duplicated |
-| Uptime climbs while the host is unreachable | That graph reads the stored device record, not the device |
+| Uptime repeats an old value | Check whether the device record is stale; the helper does not extrapolate uptime |

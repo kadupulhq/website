@@ -10,13 +10,15 @@ sidebar:
 Three programs are involved. `poller.php` is the parent: it decides what to run,
 launches collector processes, and drains their output. The collector is either
 `cmd.php` or the spine binary; it reads the poller cache, talks to devices, and
-writes raw values to a database table. `process_poller_output()` in `lib/poller.php`
-turns those raw values into RRD updates.
+writes raw values to a database table. `process_poller_output_batch()` in `lib/poller.php`
+coordinates the writer; `process_poller_output()` parses pending values into RRD
+updates and tracks their acknowledgement.
 
 This page describes `poller.php` with `cmd.php` as the collector. Spine follows the
 same contract with the database.
 
-Inherited from Cacti 1.2.x.
+This describes current-main behavior. The output retention and acknowledgement
+path differs from the inherited Cacti 1.2.x implementation.
 
 ## Invocation
 
@@ -32,6 +34,12 @@ php -q /path/to/kadupul/poller.php [--poller=N] [--force] [--debug]
 | `--version` | `-V`, `-v` | Print version and exit. |
 | `--help` | `-H`, `-h` | Print usage and exit. |
 
+Use one scheduler: cron/Task Scheduler or `cactid.php`. The daemon reads
+`cron_interval` as its launch frequency. Match the configured scheduler interval
+to the actual launcher; stop scheduled collection before a manual forced run.
+`--force` bypasses the too-soon guard, not disabled-poller checks or writer
+failures, and is not an overlap lock. See [Installation](/start/install/).
+
 ## Phase 1: startup
 
 In order.
@@ -46,11 +54,12 @@ In order.
 | 6 | The poller's own `hostname` and `dbhost` rows are filled in if blank, `localhost`, or `127.0.0.1`. |
 | 7 | If more than one poller exists, `boost_rrd_update_system_enable` and `boost_redirect` are forced on. |
 | 8 | `poller_enabled_check()`. If `poller_enabled` is off, or this poller's `disabled` flag is `on`, it updates `last_status` and exits 1. |
-| 9 | `SIGTERM` and `SIGINT` handlers install. On signal they kill every process listed as running in `poller_time`, truncate that table, and exit. |
-| 10 | Start time recorded. |
-| 11 | `poller_table_maintenance()` creates `poller_output_boost`, `poller_output_boost_processes`, and `poller_output_realtime` if any is missing. |
-| 12 | The `poller_top` plugin hook fires. |
-| 13 | On an online connection, `update_resource_cache()` refreshes the resource cache for remote collectors. |
+| 9 | Queue/storage preflight validates the InnoDB retry queue for the primary and online remote collectors, and local RRD storage for the primary. Failure exits 1 before collection. |
+| 10 | `SIGTERM` and `SIGINT` handlers install. On signal they kill every process listed as running in `poller_time`, truncate that table, and exit. |
+| 11 | Start time recorded. |
+| 12 | `poller_table_maintenance()` creates `poller_output_boost`, `poller_output_boost_processes`, and `poller_output_realtime` if any is missing. |
+| 13 | The `poller_top` plugin hook fires. |
+| 14 | On an online connection, `update_resource_cache()` refreshes the resource cache for remote collectors. |
 
 ## Phase 2: timing decisions
 
@@ -67,9 +76,14 @@ In order.
 Derived:
 
 ```
-poller_runs        = cron_interval / poller_interval
+poller_runs        = int(cron_interval / poller_interval)
 MAX_POLLER_RUNTIME = poller_runs * poller_interval - 2
 ```
+
+Use compatible settings: the launcher interval must be at least the collection
+interval and an integer multiple of it. For example, 60/10 runs six collection
+passes per invocation; 300/300 runs one. A 60-second launcher setting with a
+300-second collection setting computes zero passes.
 
 With no `poller_interval`, `poller_runs` is 1, the interval is 300, and
 `MAX_POLLER_RUNTIME` is 298.
@@ -90,7 +104,7 @@ Two guards follow:
 
 | Guard | Behaviour |
 |---|---|
-| Running too often | If a previous run is recorded, `(start - lastrun) * 1.3 < MAX_POLLER_RUNTIME`, and `--force` was not given, log and exit. |
+| Running too often | If a previous run is recorded, `(start - lastrun) * 1.3 < MAX_POLLER_RUNTIME`, and `--force` was not given, log and exit 0 without a collection cycle. |
 | Running too rarely | If a previous run is recorded and `start - lastrun - 10 > MAX_POLLER_RUNTIME`, log a warning and mail the primary admin. The run continues. |
 
 `poller_lastrun_<id>` is then written, and `poller_lastrun` as well for poller 1.
@@ -117,11 +131,11 @@ Repeated `poller_runs` times. One pass is one collection cycle.
 | 1 | Select device ids for this poller where `disabled` and `deleted` are both empty, ordered by id. Poller 1 prepends id 0, the bucket for data sources not attached to any device. |
 | 2 | `path_webroot` is rewritten to this run's directory. |
 | 3 | `max_threads` comes from the poller row, forced to 1 when `poller_type` is 1. |
-| 4 | Rows in `poller_time` with no end time mean processes that overran the previous cycle. They are logged and the primary admin is mailed. Completed rows are deleted. |
-| 5 | Leftover `poller_output` rows for this poller are logged (first 20 data source ids), mailed, and deleted. On a remote poller only rows older than 600 seconds count, because other collectors insert asynchronously. Data left here means a previous cycle never got a complete set of values for those data sources. |
-| 6 | On poller 1 with `poller_refresh_output_table` on and only one poller, `poller_output` is swapped for a fresh table and converted back to the MEMORY engine if the swapped-in copy is not already MEMORY. |
+| 4 | Rows in `poller_time` with no end time mean processes that overran the previous cycle. They are logged and the primary admin is mailed. All registry rows for this poller are then deleted; the warning itself does not terminate the old processes. |
+| 5 | Inspect leftover `poller_output` rows, reporting up to 20 data source ids with debounced notification. Online remote pollers inspect rows older than 600 seconds; offline remote connections skip that inspection. An inspection failure exits 1 before launching collectors. |
+| 6 | Retain valid pending samples for retry. Remove orphan rows whose data source/device no longer exists. Device-attached rows without matching cache entries expire only after `5 * max(60, poller_interval)` seconds, allowing temporary cache rebuilds. This path does not swap away the pending table. |
 | 7 | If `poller_enabled` is off, the loop logs a warning and does nothing else. |
-| 8 | `hosts_per_process = ceil(devices / concurrent_processes)`. |
+| 8 | `hosts_per_process = ceil(devices / concurrent_processes)`, excluding poller 1’s host-id-zero bucket. |
 | 9 | If `poller_type` selects spine and `path_spine` does not exist, log, mail, and exit. |
 | 10 | Build the command. Spine: the spine binary, plus `-C <path_spine_config>` when that file exists. Otherwise `<path_php_binary> -q cmd.php`. When `path_stderrlog` is set on a non-Windows host, stderr is appended to it. Remote pollers add `--mode=<connection>`. |
 | 11 | Walk the device list, launching a background collector per chunk with `--poller=N --first=<id> --last=<id>`, and `--mibs` when this run collects MIBs. 100 ms between launches. |
@@ -132,18 +146,20 @@ reaches `hosts_per_process`. The device id 0 bucket never closes a chunk.
 
 ### Drain
 
-Poller 1 sets the `date` setting and opens a pipe to RRDtool with `rrd_init()`.
-Then it loops:
+Poller 1 sets the `date` setting. The batch helper opens the writer when output
+is pending, obtains the writer lease for local storage, and bounds writes by the
+parent deadline. It then loops:
 
 | Condition | Action |
 |---|---|
-| Finished collectors < started | Call `process_poller_output()` on whatever has arrived so far. If that pass took under a second, sleep one second. |
+| Finished collectors < started | Call `process_poller_output_batch()` on pending output. If that pass took under a second, sleep one second. |
 | Elapsed > `MAX_POLLER_RUNTIME` | Log, mail, send an SNMP notification, fire the `poller_exiting` hook, record stats, break. |
 | Finished collectors >= started | Fire the `poller_finishing` hook, drain the remainder, record stats, break. |
 
 "Finished" means a `poller_time` row with a non-zero `end_time`. A remote poller
 whose connection is not online truncates `poller_output` instead of processing it.
-Poller 1 closes the RRDtool pipe when the loop ends.
+Local writer batches close their pipe after processing. A proxy pipe can be
+reused, and any remaining pipe is closed at the end of the loop.
 
 ### After the cycle
 
@@ -179,27 +195,33 @@ Poller 1 closes the RRDtool pipe when the loop ends.
 | On a new device | `ping_and_reindex_check()`. It pings by the device's availability method, calls `update_host_status()` with up or down, runs any reindex the data query's reindex method calls for, and collects system MIBs when `--mibs` was passed. |
 | If the device is down | Skip every item for it. |
 | If the device is up | Collect by action: SNMP directly, `exec_poll()` for a script, or `exec_poll_php()` through the script server for a PHP script. |
-| Buffering | Append `(local_data_id, rrd_name, CURRENT_TIMESTAMP(), value)`. Flush to `poller_output` at 2000 rows. When `boost_redirect` and `boost_rrd_update_enable` are both on, the same rows also go to `poller_output_boost`. |
+| Buffering | Append `(local_data_id, rrd_name, CURRENT_TIMESTAMP(), value)`. Flush to `poller_output` on device changes and when the buffer counter exceeds 2000. When `boost_redirect` and `boost_rrd_update_enable` are both on, the same rows also go to `poller_output_boost`. |
 | Overrun | If elapsed time passes `poller_interval`, log and stop the loop. |
 
-A device whose SNMP agent restarted mid-cycle has `U` written in place of the
-value, so the RRA records unknown rather than a false reading.
+When the SNMP restart check sets spike suppression, single-value output is
+replaced with `U`. Multi-value output has separate parsing; this is not a blanket
+guarantee that every restart-related counter spike is suppressed.
 
 ## Phase 6: output to RRD
 
-`process_poller_output()` runs inside the parent, on poller 1, repeatedly during
-the drain loop.
+`process_poller_output_batch()` runs inside the parent on poller 1 during the
+drain loop. A busy maintenance lease, failed writer startup, failed queue query,
+or unacknowledged write defers work. Background retries are bounded; the final
+drain bypasses the retry delay. Deferred writes or cleanup failures make the
+parent exit 1 after end-of-run work.
 
 | Step | Detail |
 |---|---|
-| 1 | Select up to 40000 rows joining `poller_output` to `poller_item` and `data_local`, ordered by `local_data_id`. This brings `rrd_path`, `rrd_name`, and `rrd_num` alongside the value. |
-| 2 | Load `poller_data_template_field_mappings` once per process. |
-| 3 | Parse each value into an update array keyed by RRD path and then by timestamp. |
-| 4 | Discard any timestamp where the number of parsed values is below that data source's `rrd_num`. A partial set waits for the rest rather than writing a short update. |
-| 5 | Delete the consumed `poller_output` rows, in batches of 10000 data source ids. |
-| 6 | `dsstats_poller_output()` and `dsdebug_poller_output()` run, then the `poller_output` plugin hook. |
-| 7 | `boost_poller_on_demand()` decides where the values go. With boost off it returns true and `rrdtool_function_update()` writes the RRD files now, through the pipe the parent opened. With boost on the values are handed to the boost table and written later. |
-| 8 | If rows remain, the function calls itself for the next chunk. |
+| 1 | Join pending rows to `poller_item` by data source id and field name, and to `data_local`. Read pages ordered by data source id, timestamp and field name, normally 40000 rows; extend a page to complete its final timestamp group. |
+| 2 | Load field mappings and assemble updates by RRD path and timestamp. Incomplete groups remain pending rather than being written short. |
+| 3 | Ask `boost_poller_on_demand()` whether to write directly or hand off to Boost. A failed handoff retains the rows. |
+| 4 | For direct writes, track acknowledgement per path and timestamp. Unacknowledged samples remain pending; later pages do not advance that path past retained samples. Terminal rejections have separate bounded rejection handling. |
+| 5 | Publish direct-write data-source statistics, debug data and the `poller_output` hook only for accepted samples, so retrying retained writes does not replay those side effects. |
+| 6 | Delete consumed rows using their exact data source, field, timestamp and output values. Incomplete or unparseable groups older than `5 * max(60, poller_interval)` seconds are logged and expired. Continue through the remaining pages. |
+
+An empty queue and a successful parent exit are different observations. Check
+both the exit status and writer diagnostics; a poller summary alone does not
+prove that every RRD update succeeded.
 
 ### Value parsing
 
@@ -211,13 +233,13 @@ the drain loop.
 | Contains `:` | Multi-value. Each `name:value` pair maps through the field mapping to a data source name. A non-numeric value becomes `U`. Data source names no graph item references are skipped. |
 | Anything else | Logged as `Invalid output! MULTI DS[...]` with the expected field list, and every expected field is written as `U`. |
 
-### The once-per-run integrity check
+### Pending and rejected samples
 
-The first time a recursive pass finds no collector processes running, the parent
-also deletes `poller_output` rows whose `local_data_id` no longer exists in
-`data_local`, and reports data sources whose distinct value count never matches
-`rrd_num`. Those rows are deleted too, grouped by data template, with the template
-named in the log.
+Pending output is retry state, not disposable scratch data. Do not empty the
+queue to hide a writer error. Investigate the writer, storage permissions and
+maintenance state first. `poller_output_rejected` holds bounded terminal-rejection
+records; it is distinct from the retry queue. These database queues are not a
+backup or a promise of unlimited retention.
 
 ## Phase 7: end of run
 
@@ -244,7 +266,8 @@ Other pollers: flush boost if the connection is in recovery, then
 | `poller` | One row per data collector. Holds process and thread counts, item counts by type, status, and last status time. |
 | `poller_item` | The poller cache. One row per value to collect, with the RRD path, RRD name, action, and step scheduling. |
 | `poller_time` | Process registry for the current cycle. A row with no end time is a running collector. |
-| `poller_output` | Raw collected values awaiting parsing. Normally a MEMORY table, and normally empty between cycles. |
+| `poller_output` | InnoDB queue of raw values awaiting processing or retry. Successful draining normally empties it; failed writes can leave valid samples between cycles. |
+| `poller_output_rejected` | Bounded records of terminally rejected output. |
 | `poller_output_boost` | The same values written for boost to consume. |
 | `poller_command` | Queued reindex and recache work, drained by `poller_commands.php`. |
 | `poller_data_template_field_mappings` | Data input field name to data source name, used to parse multi-value output. |

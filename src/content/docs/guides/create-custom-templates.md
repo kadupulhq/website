@@ -23,13 +23,15 @@ distinct to you.
 ## Copy first, build second
 
 Start from an existing template whenever one is close. Both template lists carry a
-Duplicate action that produces an independent copy under a new name. Nothing links
-the copy back to the original.
+Duplicate action that gives the copied template a new identity and name. It does
+not automatically duplicate every dependency: graph items can still reference the
+original data-template items, and data-template copies can share input methods and
+profiles. Inspect and remap those references when you need independent behavior.
 
 Build from scratch only when no existing template shares your data shape. Copying is
-faster, and more importantly it inherits decisions someone already got right: the
-archive layout, the heartbeat, the legend spacing, the choice of `COUNTER` over
-`GAUGE`.
+a useful starting point, but validate its archive layout, heartbeat, graph units
+and data source types against the new measurement. Similar appearance does not
+prove the same collection semantics.
 
 The one case where copying is the wrong instinct is when you want the two templates
 to stay in step. A copy does not track its source. If you need one definition
@@ -47,7 +49,8 @@ an individual data source.
 **The data source profile.** The polling interval and the archive layout: how many
 samples are kept at full resolution, how they are consolidated, and how long the
 coarser buckets are retained. The profile is applied when the RRD file is created and
-is not revisited afterwards.
+does not automatically reshape existing files when edited. Database profile and
+heartbeat state can still be checked or changed later; inspect the actual RRD.
 
 **One or more data source items.** Each item is one series inside the RRD file.
 
@@ -56,7 +59,7 @@ is not revisited afterwards.
 | Internal data source name | The name inside the RRD file | 19 characters maximum, and effectively permanent once files exist |
 | Data source type | `GAUGE`, `COUNTER`, `DERIVE`, `ABSOLUTE`, and others depending on the RRDtool version | A counter stored as a gauge graphs as a rising staircase |
 | Minimum | Values below this are recorded as unknown | `U` means no minimum |
-| Maximum | Values above this are recorded as unknown | `U` means no maximum, which lets counter wraps through as huge spikes |
+| Maximum | Values above this are recorded as unknown | `U` means no maximum; choose realistic limits for unexpected derived rates |
 | Heartbeat | How long a gap can be before the interval is unknown | Profile-specific; inspect the selected profile and RRD file |
 | Output field | Which field of the data input method feeds this item | Must match, or the item is never written |
 
@@ -88,7 +91,8 @@ part of a graph template that takes the longest to get right.
 | `LEGEND`, `LEGEND_CAMM` | A grouped legend block |
 | `TEXTALIGN` | Alignment for the legend text that follows |
 
-Each drawing item points at a data source item on the data template. That pointer is
+Data-driven drawing items point at a data source item on a data template.
+Literal comments, alignment and fixed rules need not reference a series. That pointer is
 what ties the two templates together, and it is why the data template has to exist
 first.
 
@@ -103,10 +107,9 @@ Graph item inputs let one field of one or more graph items become editable on ea
 individual graph. A color, a legend string, a rule value. Everything else stays
 under template control.
 
-Expose an input when the value genuinely differs per graph and a human has to choose
-it. A per graph override is a field that will drift, will not be reviewed, and will
-not be corrected when you fix the template. Two exposed colors are useful. Twelve
-exposed fields mean you do not have a template any more, you have a form.
+Expose an input when its value needs to differ per graph. Record which fields
+remain inherited and review overrides when updating the template. Graph-level
+per-instance flags and graph-item inputs are separate mechanisms.
 
 ## Editing a template later
 
@@ -115,36 +118,42 @@ differently.
 
 ### Graph changes apply at once
 
-Graphs are drawn on demand from the template plus the current data. Change a color,
-a label, an item order, or the vertical axis, and every existing graph built from
-that template shows the change the next time it is rendered. Nothing is regenerated
-and nothing is lost.
+Saving a graph template propagates controlled fields into child graph records.
+Per-instance flags and graph-item inputs can preserve overrides, so not every
+change reaches every child. Inspect the saved child settings and render a fresh
+graph to verify the result; cached images may lag. This does not rewrite RRD history.
 
 ### Stored structure does not change
 
-The archive layout and the set of series inside an RRD file are fixed when the file
-is created. The file is created once, and creation is skipped for a path that already
+The archive layout and series are defined when an RRD is created; changing
+template records alone is not an RRD conversion. The file is created once, and creation is skipped for a path that already
 exists.
 
-So changing a data template gives you a split result:
+The normal editor restricts in-use structural changes, including input method,
+internal name and type, and hides add/remove controls in relevant in-use views.
+Do not treat the following as a supported recipe to bypass those controls. When
+configuration changes are allowed or made through other paths, verify both layers:
 
 | Change | Effect on existing data sources | Effect on existing RRD files |
 |---|---|---|
 | Add a data source item | The item appears in the configuration | No new series in the file |
 | Rename the internal data source name | The name changes in the configuration | The old name stays inside the file |
-| Change minimum or maximum | The new limit is stored | Enforced on new samples only |
+| Change minimum or maximum | Controlled child values can be updated | Inspect actual limits; a database save alone is not proof that the RRD was tuned |
 | Change type from `GAUGE` to `COUNTER` | The new type is stored | The file keeps the original type |
-| Change the data source profile | New data sources use it | Existing archives keep their layout |
+| Change the data source profile | Propagation depends on per-instance flags and the save path | Existing archives are not automatically reshaped |
 | Change the data input method | Applies to every data source | No change to the file |
 
-The configuration and the files disagree after a change like this, and the disagreement
-is silent. Graphs keep drawing from what the file holds while the editor shows what
-you meant. Reconciling the two means rebuilding the files and losing their history,
-which is a decision to make on purpose. See
+Configuration and files can disagree. Use the data-source comparison tools and
+inspect RRDtool metadata instead of assuming a graph proves consistency. Some
+header changes can be reconciled with a reviewed tune operation; structural changes
+need an explicit conversion plan. Backup, staged restore or carefully validated
+splicing can preserve some history, so reconciliation does not always require
+discarding it. See [RRD recovery](/guides/recover-a-corrupted-rrd/) and
 [Data sources and round-robin archives](/concepts/data-sources-and-rras/).
 
 The practical rule: get the internal names, types, and profile right before you create
-the first data source from a template. Everything else is cheap to change later.
+the first data source from a template. Rehearse later changes on a representative
+copy before propagating them to existing children.
 
 ### Which fields get overwritten
 
@@ -173,13 +182,14 @@ or at least before the data sources are created.
 **Two items with the same internal name.** The second one wins somewhere and loses
 somewhere else. Check names across the whole data template before saving.
 
-**A renamed output field.** Renaming an output field on the data input method breaks
-the mapping to the data source item. Collection keeps running and the value stops
-being stored.
+**A renamed output field.** Item mappings use field identities, while multi-output
+scripts emit names. Verify the script output and mappings together after a rename;
+a mismatch can leave samples incomplete or unknown. See
+[Collection scripts](/guides/write-a-data-collection-script/).
 
-**The base value.** A network template with a base of 1024, or a memory template with
-a base of 1000, produces an axis that is wrong by a few percent and a legend that
-quietly disagrees with every other tool you own.
+**The base value.** Choose decimal or binary scaling to match the displayed units
+and labels. It controls prefix scaling, not the underlying measurement; 1024-based
+memory displays and decimal storage-capacity displays can both be intentional.
 
 **Editing a stock template in place.** Upgrades may replace templates that ship with
 the system. Duplicate first, edit the copy, and point your devices at the copy.

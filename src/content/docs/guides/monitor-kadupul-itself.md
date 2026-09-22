@@ -29,8 +29,9 @@ previous one is gone. Read it and you know how the last run went. You cannot kno
 whether it was better or worse than a month ago.
 
 **The collector row holds lifetime aggregates.** The data collector's own row
-carries total time, minimum, maximum, average, and a poll count, updated on every
-run. Those are aggregates over the life of the collector, not a series. An average
+carries the latest elapsed time (`total_time`), minimum, maximum, running average
+and poll count. `total_time` is replaced, not accumulated; the other timing
+aggregates do not form a time series. An average
 across ten thousand runs moves slowly enough to hide a doubling that happened last
 week.
 
@@ -55,16 +56,17 @@ STATS: Time:34.5162 Method:spine Processes:8 Threads:8 Hosts:1043 HostsPerProces
 | `Method` | Which collector ran |
 | `Processes`, `Threads` | The concurrency actually used, which is the collector's row and not the settings preset |
 | `Hosts`, `HostsPerProcess` | The division of work |
-| `DataSources` | Values the run expected |
-| `RRDsProcessed` | Files actually written |
+| `DataSources` | Selected poller cache item count; not a count of successful measurements |
+| `RRDsProcessed` | Direct-path successful file/timestamp acknowledgements; not distinct files or proof of physical disk persistence |
 
 The settings row is per collector. Collector 1 writes `stats_poller`; every other
 collector writes `stats_poller_` followed by its id.
 
-`DataSources` against `RRDsProcessed` is the pair to read together. The ratio is a
-property of your estate, because several fields land in one file. What matters is
-that the ratio holds steady. A run where `RRDsProcessed` falls while `DataSources`
-does not is a run where values arrived and files were not written.
+Compare these metrics only with the collection mode and source cadence understood.
+A direct-write retry can acknowledge several timestamps for one file in a run.
+Deferred writes follow a different path. A falling ratio is a reason to inspect
+collection errors, retained queue age/depth and actual RRD timestamps, not proof
+that values arrived but were not written.
 
 ### The other statistics lines
 
@@ -83,7 +85,7 @@ Each subsystem that runs at the end of a cycle writes its own line, with the sam
 | Archive purging | `RRDMAINT STATS: Time:… Purged:… Archived:…` | None. Log only |
 | Log rotation | `LOGMAINT STATS: Time:… Rotated:… Removed:… Days Retained:…` | None. Log only |
 
-The last three exist in the log and nowhere else. If you want a trend on
+The last three listed statistics are log-based. If you want a trend on
 maintenance duration, the log is the only source.
 
 The deferred write detail row is the one worth knowing about when a flush is slow.
@@ -114,8 +116,7 @@ What it contains:
 The scripts read the same tables the interface reads. One of them counts poller
 cache rows grouped by collection type, so you get separate SNMP, script and script
 server counts rather than one total. Others read the deferred write buffer's size,
-row count and average row length from the server's own table metadata, which is
-the only place those numbers exist.
+row count and average row length from the server's own table metadata, which are database metadata estimates rather than exact live InnoDB row counts.
 
 **Set it up on day one, not on the day you need it.** The point of the package is
 turning point-in-time values into history, and history cannot be created
@@ -130,7 +131,8 @@ application. Both are worth having and they answer different questions.
 
 Kadupul can expose its own statistics over SNMP, which is how you get them into
 another monitoring system. The recache time is one of the objects it publishes.
-Enable it deliberately; it is another listener.
+Validate the configured agent integration and access controls before exposing it;
+this page does not validate an SNMP listener deployment.
 
 ## Poller run duration
 
@@ -147,13 +149,14 @@ budget      = poller_runs * poller_interval - 2
 
 At the shipped defaults, both intervals are 300 seconds and the budget is 298. A
 run that passes it is cut off mid-collection, its statistics are written, and it
-exits. Work that had not finished is abandoned.
+exits. Uncollected work can leave gaps, while accepted queue samples can remain
+for later retry. Inspect retained and rejected samples separately.
 
 ### Thresholds
 
 | Run time | State | What it precedes |
 |---|---|---|
-| Under 60% of budget | Healthy | Nothing |
+| Under 60% of budget | Timing headroom only | Other collection/storage failures can still exist |
 | 60% to 85% | Watch | A bad day, a slow device, or a discovery run pushes it over |
 | Over 85% | Act | Overruns on any variation in device response time |
 | Over 100% | Failing now | Abandoned work, gaps scattered across many devices |
@@ -163,7 +166,7 @@ the code's own arithmetic.
 
 ### The trend matters more than the value
 
-One run near the budget is noise. A run time climbing week over week is a capacity
+Investigate even one near-budget run when it causes missing samples. A run time climbing week over week is a capacity
 plan, and it is the reason to graph the number rather than read it.
 
 Three growth patterns and what each means:
@@ -185,14 +188,15 @@ overrunning a polling cycle. That warning is the better signal, because it survi
 the run that produced it and appears whether or not anyone was watching the log at
 the time.
 
-Treat any non-zero count as a fault. It has no benign explanation.
+Investigate any nonzero count against live processes and recent restarts or
+maintenance. A stale process record does not identify the underlying failure.
 
 ### The collector heartbeat
 
 Separately, the poller checks every enabled collector's last status time. A
 collector whose last status is older than twice the poller interval is marked with
-a failure status, logged, and the primary administrator is mailed at most once
-every 1800 seconds.
+a failure status, logged, and an admin notification is attempted subject to a per-collector 1800-second
+debounce. Actual delivery depends on configured recipients and mail transport.
 
 That is the check that catches a collector which stopped entirely rather than one
 running late. It only runs if some collector is still running, so it cannot catch
@@ -225,8 +229,8 @@ What you do have:
 
 Practical checks that follow from those:
 
-**Trend the count of cache rows.** It should change only when you create or delete
-data sources. A count that moves when nothing was created is worth a look. A count
+**Trend the count of cache rows.** Creation, deletion, disable/re-enable, whitelist
+changes, reindexing and cache rebuilds can change it. A count that moves when nothing was created is worth a look. A count
 that does not move after a bulk creation means the cache was not rebuilt.
 
 **Trend the oldest last-updated timestamp.** Entries far older than your last
@@ -242,12 +246,15 @@ choices are daily, weekly or monthly, run at midnight. Per-data-query reindex
 methods are a separate setting and are the ones that actually keep ports attached
 to their history; see [Monitor a switch](/guides/monitor-a-switch/).
 
-After any bulk configuration change, rebuild rather than wonder:
+After bulk changes, verify effective cache entries and rebuild when needed:
 
 ```bash
 php cli/rebuild_poller_cache.php
-php cli/rebuild_poller_cache.php --host-id=42
 ```
+
+The current `--host-id` filter can rebuild unrelated enabled devices; see
+[application #197](https://github.com/kadupulhq/kadupul/issues/197). Do not assume
+it scopes a diagnostic rebuild to one device.
 
 ## RRD write behaviour
 
@@ -255,25 +262,22 @@ Two failure modes, depending on which path you are on.
 
 ### Direct writes
 
-The run statistics line's `RRDsProcessed` count is the measurement. Trend it
-against `DataSources`. A drop in files written with no drop in data sources
-expected means values arrived and did not reach the files.
+`RRDsProcessed` counts successful file/timestamp acknowledgements in the direct
+path. One file can contribute more than once when retained timestamps drain.
+Inspect it together with queue age, errors and the file's last update; it is not
+a unique-file count or a stable ratio to all cache items.
 
-The system also reports the two conditions that cause that, both as warnings:
+A nonempty output queue can reflect writer failure, active maintenance, incomplete
+fields or stale mappings. The warning lists a limited set of affected ids, but
+does not delete every listed row. Valid pending samples are retained for retry.
+Orphan cleanup removes samples for missing sources/hosts, and samples without a
+matching cache item can expire after a grace period of five times the greater of
+60 seconds and the base poller interval. Rejected updates have a separate handling
+path. Investigate before rebuilding or deleting anything.
 
-| Warning | Meaning | What it precedes |
-|---|---|---|
-| The results table was not empty | Values arrived that could not be matched to a work list entry, or arrived incomplete | Those data sources silently miss samples every cycle |
-| Data sources are not returning all data | Named data templates where the field count did not match | The same, scoped to a template you can go and fix |
-
-The second one names the data template, which is the part that makes it
-actionable. A data source expecting four values that gets three has its whole
-timestamp discarded, not the one field. See
-[Troubleshoot missing data](/guides/troubleshoot-missing-data/).
-
-The first one lists the affected data source ids, up to twenty of them, and then
-deletes the rows. If you have more than twenty, the log names twenty and the rest
-are gone. Raise this to a fault the first time it appears rather than the fifth.
+Incomplete fields can defer a timestamp rather than discarding it immediately.
+Verify mappings and expected output names, then inspect the retained/rejected
+sample state. See [Troubleshoot missing data](/guides/troubleshoot-missing-data/).
 
 ### Deferred writes
 
@@ -284,7 +288,7 @@ them.
 |---|---|---|
 | Run duration | Well under the configured maximum runtime, 1200 seconds by default | A flush that never finishes; archive tables accumulate |
 | Buffer rows after a run | Back near zero | The buffer grows without bound and files fall further behind |
-| Buffer table size against the server's maximum | Comfortably under | Insert failures, which lose samples rather than delaying them |
+| Queue age and database free space | Within the tested outage/recovery budget | Backlog growth or insert failures; diagnose persistence per path |
 | Peak memory | Under the per-process limit, 1 GB by default | The flush process dies mid-run |
 
 Two triggers start a flush: a timer, defaulting to an hour, or the buffer passing a
@@ -299,8 +303,9 @@ drains the copy, dropping it when the run completes. A run that does not complet
 leaves the copy behind for the next run to pick up. One is normal during a flush.
 Several standing between flushes means the flush is losing.
 
-**The interface is not evidence.** Drawing a graph flushes that data source first,
-so the web interface shows current data while the files are an hour behind.
+**A graph alone does not prove freshness.** Graph-triggered flushing can update
+the requested data source while unrelated files remain behind; it can also fail.
+Check actual file timestamps and pending queues.
 Anything reading the files directly, backups included, sees them as they are. See
 [High volume writes](/concepts/high-volume-writes/) and
 [Back up and restore](/guides/back-up-and-restore/).
@@ -316,10 +321,10 @@ is which of it cleans itself.
 | Table | Retention |
 |---|---|
 | Collector process registry | Completed rows deleted at the start of the next cycle |
-| Results in flight | Rows deleted as they are consumed |
+| Results in flight | Acknowledged rows removed; valid failed writes retained, with separate orphan/rejection handling |
 | Realtime results | Rows older than 300 seconds; cached images older than two hours |
 | Hourly statistics cache | The configured hourly duration, defaulting to 60 minutes |
-| Deferred write archive tables | Dropped when the run that drains them completes |
+| Deferred write archive tables | Successfully drained tables can be removed; inspect retained tables after failures |
 | Deferred write detail statistics | Cleared every run |
 | Authentication caches | On a schedule, and truncated entirely when the cache is turned off |
 | Removed data sources and their files | 1,000 rows per maintenance pass, with a setting choosing delete or archive |
@@ -341,8 +346,8 @@ and a large one: see the arithmetic in
 [Capacity planning](/guides/capacity-planning/). The feature is optional. Leave it
 off if nothing reads it.
 
-**The poller cache grows with data sources and shrinks only when they are
-deleted.** It is the table that decides how heavy a collection pass is, so its row
+**The poller cache changes with source configuration, active state, queries and
+whitelist/rebuild behavior.** It is the table that decides how heavy a collection pass is, so its row
 count is the estate size number worth graphing.
 
 **The SNMP index cache grows on ports times fields times devices.** A switch with
@@ -351,7 +356,7 @@ count is the estate size number worth graphing.
 ### The measurement
 
 The interface includes a per-table report of row count, average row length, data
-length and index length, which is the right place to start when the database has
+length and index length. InnoDB row counts are estimates; this is a useful place to start when the database has
 grown and you do not know where. Trend the total monthly rather than reading it
 once.
 
@@ -385,9 +390,9 @@ something starts complaining. A log that doubles with no configuration change is
 usually a device that started failing in a way the poller reports every cycle.
 
 **Watch the collector standard error file separately.** It holds whatever the
-collector processes printed, which is the only place a fatal error inside a
-collection script is visible. It rotates with the same settings and it is empty on
-a healthy system.
+collector processes printed. Fatal errors may also appear in PHP, service or
+application logs depending on configuration. Investigate contents and freshness;
+an empty file alone does not prove healthy collection.
 
 If a distribution package installs its own rotation rule, turn the built-in
 rotation off in the configuration file rather than running both.
@@ -403,16 +408,16 @@ judgment and you should adjust them.
 | Budget itself | `runs x interval - 2`, 298s at defaults | Source constant | Work abandoned mid-run |
 | Overrunning process count | Any non-zero | Source behaviour | Already failing |
 | Collector last status age | Twice the poller interval | Source constant | A collector that stopped |
-| Results table not empty | Any occurrence | Source behaviour | Silent per-data-source loss |
-| `RRDsProcessed` against `DataSources` | Ratio should hold steady | Recommendation | Values arriving, files not written |
+| Results table not empty | Investigate persistence and age | Source behaviour | Retained backlog, mapping or writer problems |
+| `RRDsProcessed` against `DataSources` | Interpret by mode, cadence and retries | Recommendation | Possible collection/storage changes |
 | Recached device count | Sustained non-zero | Recommendation | Poll window growth from reindex churn |
 | Deferred flush duration | Against the 1200s maximum runtime | Source constant | Archive tables accumulating |
 | Deferred buffer rows after a run | Should return near zero | Recommendation | Files falling further behind |
-| Deferred buffer against the table limit | Comfortably under | Source behaviour | Insert failures, lost samples |
+| Deferred queue age and free disk | Within recovery budget | Recommendation | Backlog growth or failed writes |
 | Flush trigger | Record cap of 1,000,000 or the timer | Source constant | Changing the wrong setting |
 | Daily log size | Doubling with no change | Recommendation | Disk exhaustion, or a device failing loudly |
 | Log verbosity | Anything above LOW is temporary | Source guidance | Disk exhaustion |
-| Poller cache row count | Should move only when you change things | Recommendation | A cache that was not rebuilt |
+| Poller cache row count | Compare with configuration and active/query state | Recommendation | Unexpected cache changes |
 | Activity log row count | Unbounded by design | Source behaviour | A slow page, eventually |
 
 ## What is not measured
@@ -428,5 +433,6 @@ Stated so you do not go looking.
 | Disk free under the archive tree | The operating system. The self-monitoring package for the host covers it |
 | Whether a graph is correct | Nothing can measure this. See [Read your first graph](/start/first-graph/) |
 
-The first and the third are the two worth solving outside Kadupul. Everything else
-on this page the system will tell you, if something is sampling it.
+Use independent freshness checks so failure of Kadupul itself cannot suppress
+its own alert. Treat every proposed threshold as a starting point to validate
+against the estate, not a guarantee that lower values mean healthy collection.

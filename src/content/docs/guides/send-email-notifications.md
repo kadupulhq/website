@@ -19,7 +19,9 @@ mail about its own health, not about your data.
 
 ## Pick a transport
 
-Three transports are available. The choice lives in the mail settings.
+This page describes the current legacy mail path on main. The administrator
+notification migration in PR #196 is not merged at the audited revision. Three
+transports are available under **Settings → Mail/Reporting/DNS**.
 
 | Method | What it uses | Needs |
 |---|---|---|
@@ -30,9 +32,9 @@ Three transports are available. The choice lives in the mail settings.
 Sendmail is hidden on Windows installs; the setting and its path field are
 removed from the page there.
 
-Prefer SMTP. It is the only one of the three where a failure produces a specific
-error you can act on. The PHP mail function fails through a stack you do not
-control, and its errors arrive as a generic false.
+SMTP exposes server replies directly, which can help diagnose delivery problems.
+PHP mail and Sendmail can also report failures; they depend on local runtime/MTA
+configuration and logs. Acceptance by any transport does not prove inbox delivery.
 
 ### SMTP settings
 
@@ -45,17 +47,18 @@ control, and its errors arrive as a generic false.
 | Security | `None`, `SSL` or `TLS`. `TLS` selects STARTTLS; `SSL` selects implicit TLS on connect |
 | Timeout | Seconds |
 
-Two behaviours here are worth knowing before you debug anything.
+Check these behaviors before debugging transport failures.
 
 **Choosing `None` disables opportunistic encryption as well.** It does not mean
 "encrypt if you can". It means the connection stays in the clear even if the
 server offers STARTTLS.
 
-**The security choice rewrites the hostname, but only if the hostname has no
-colon in it.** With `SSL` or `TLS` selected, the scheme is prepended to the host.
-If you typed `mail.example.net:587` into the hostname field, the colon suppresses
-that rewrite and the encryption you selected is not applied the way you expect.
-Put the port in the port field.
+**A port in the hostname does not disable the selected encryption.** The sender
+sets PHPMailer's security mode separately from its optional hostname-prefix
+rewrite. The runtime audit delivered with STARTTLS using both `localhost` plus a
+port setting and `localhost:2525`. A plain hostname and separate port field are
+easier to inspect; explicit host schemes and failover configurations need their
+own validation.
 
 **An out-of-range timeout is not clamped to your value.** A timeout that is
 empty, negative, or above 300 is replaced with 5 seconds, not with the setting's
@@ -64,10 +67,15 @@ page suggests.
 
 ## Set the sender
 
-A From address and a From name are configured once and used for every message.
-If the From address is left blank, an address is generated from the server
-hostname. That address is almost always rejected or silently filed as spam by
-anything with a filtering policy, so set it.
+Configure a valid From address and name accepted by your mail service. Callers
+can supply their own sender, so the defaults are not mandatory overrides for
+every message.
+
+`send_mail()` rejects a missing sender with `ERROR: From Email Address Not Set`
+when neither the caller nor the settings provides one. The lower-level `mailer()`
+has a generated-address fallback, but it is not reached through that empty-sender
+wrapper path. Do not rely on a generated address to make the settings test or
+administrator notifications work.
 
 Word wrap is configurable. If it is blank or negative it falls back to 76
 characters rather than to the setting's default, and anything above 9999 is
@@ -79,21 +87,28 @@ The settings page has a test action. It sends to the test email address, which i
 a separate field from anything else. Leave that field blank and the test has no
 recipient and fails with a message telling you so.
 
-For SMTP, the test can probe the server before sending. That probe connects,
-says hello, and authenticates if a username is set. Each of those three steps
-reports its own failure with the server's last reply attached, which is the most
-useful diagnostic the system produces. You can turn the probe off; if you do, a
-connection failure shows up only as a send failure.
+For SMTP, **Ping Mail Server** optionally probes the server before sending. It
+is an SMTP connection/greeting/authentication check, not an ICMP ping. A failed
+probe prevents the test message from being sent.
 
-If the probe fails, no message is sent at all. The output says so rather than
-implying the mail was queued.
+The legacy probe has a STARTTLS defect: selecting TLS can make it start TLS at
+connection time instead of sending the SMTP `STARTTLS` command. That probe can
+fail against a working STARTTLS server even though actual message delivery works.
+Set **Ping Mail Server** to **No** to test the sender directly while retaining
+TLS; do not turn off encryption to work around a probe failure. Check the sender's
+result and the receiving server independently.
+
+An empty test recipient is rejected. The test recipient and primary administrator
+address are separate settings; a successful test does not validate administrator
+notification policy.
 
 ## Read the log
 
-Every send writes one line to the log under a mailer source, whether it worked or
-not. The line carries the method used, the resolved from, to, cc and bcc strings,
-the elapsed time in seconds, and the subject. On failure it also carries the
-mailer's own error text and a backtrace.
+Calls that reach the transport send step log under `MAILER`, including method,
+resolved addresses, subject and elapsed time. Failures add the mailer error and
+can produce a backtrace. Earlier address-validation failures use their own error
+path; `send_mail()` can return a missing-sender error before that logging occurs.
+A missing send-summary line does not uniquely mean no caller attempted mail.
 
 That line is the fastest way to answer "did it try, and what did the server say".
 Check it before changing settings.
@@ -112,15 +127,16 @@ This is the part to read before promising anyone alerts.
 ### System notifications
 
 These go to one recipient: the email address on the account named as primary
-admin. Three conditions all have to hold or nothing is sent, and the failure is
-logged rather than shown.
+admin. Four policy conditions must hold:
 
 1. A primary admin account is set.
 2. The "notify primary admin" option is on.
-3. That account has an email address.
+3. The configured account id resolves to an existing user.
+4. That account has an email address.
 
-Each failure writes a distinct warning to the log, so the log tells you which of
-the three is missing.
+Each policy failure has a distinct warning. Valid policy is still not delivery:
+the sender and transport must also work. The current `admin_email()` wrapper does
+not return a delivery result to its caller.
 
 The events that reach it are about the system, not about your measurements. A
 polling cycle exceeding its interval. The poller running out of sync with its
@@ -130,14 +146,52 @@ after an error. A poller whose hostname will not resolve. A missing core include
 file. The maximum poller runtime exceeded. A second data collector appearing.
 Boost detecting an overrun.
 
+Some call sites debounce repeated notices, but there is no single global rate
+limit or retry queue inside `admin_email()`. Suppression and retry behavior must
+be checked for the particular event.
+
 ### Scheduled reports
 
-Reports are a graph delivery mechanism. A report holds a set of graphs, a
-schedule, and a recipient list, and its own poller builds and sends the message.
-Graphs are attached inline, so the body is HTML.
+Reports deliver selected graphs on a schedule; they do not evaluate threshold
+crossings. Configure and preview a small report before enabling a broad digest.
 
-A report tells you what the graphs looked like. It does not tell you that
-something crossed a line.
+1. Choose the report owner and verify which graphs that account can access.
+   Rendering uses the owner's graph permissions. A missing owner account causes
+   the report to be disabled.
+2. Set the report's To and optional Bcc recipients, subject, and sender. These are
+   independent of the test address and primary-admin notification policy. An empty
+   subject falls back to the report name.
+3. Add graph, device, tree or text items. Set graph timespans, dimensions and image
+   handling. Reports support inline or attached images; they are not always inline.
+4. Set the first scheduled time, interval and enabled flag. Preview the content,
+   then check a controlled delivery before relying on the schedule.
+
+The main poller's end-of-run hook launches `poller_reports.php`; a second cron
+entry is normally unnecessary. A normal report run selects enabled reports whose
+`mailtime` is earlier than its start time. Future and disabled reports are skipped.
+Successful delivery updates `lastsent` and advances `mailtime` from the previous
+scheduled time. If that computed next time is still past, it is clamped to the
+current time, so long downtime can leave the report due again on the next pass.
+
+`poller_reports.php --force` bypasses its process-registration guard and selects
+all enabled reports, including future ones. It still advances their schedules and
+does not include disabled reports. Do not use it as a single-report test or as
+routine scheduling. Use the selected report's send action for a targeted check.
+
+Current reporting has two delivery limitations:
+
+- A transport failure leaves `mailtime` and `lastsent` unchanged, but the report
+  poller still exits 0 and increments its `Reports` statistic. That statistic
+  counts processing attempts, not accepted messages. Inspect report/mailer errors
+  and `lastsent`; exit status alone does not establish delivery.
+- **Maximum E-Mail Size** is present in settings but is not enforced by this send
+  path. Keep reports small and respect the receiving service's limit; do not rely
+  on that setting to reject oversized mail.
+
+Reports use an HTML body. Image attachments are generated from current RRD data
+for the selected time range, not from a historical screenshot captured at the
+scheduled instant. A preview does not prove SMTP acceptance, and SMTP acceptance
+does not prove the recipient displayed the images or received the message.
 
 ### Discovery notifications
 
@@ -153,7 +207,7 @@ what you find is conditional support: a check for whether a threshold plugin is
 enabled, and a database column that may or may not exist. Core is written to
 cooperate with that plugin, not to replace it.
 
-So the honest summary is:
+Core capabilities at the audited revision:
 
 | You want | Stock install | Needs a plugin |
 |---|---|---|
@@ -166,14 +220,14 @@ So the honest summary is:
 | Escalation, acknowledgement, on-call routing | No | Yes |
 
 See [Install and vet plugins](/guides/install-and-vet-plugins/) before adding
-one. A threshold plugin reads every data source you own on every cycle, which
-makes it a poller-performance decision as much as a notification one.
+one. A plugin’s selection, schedule and delivery behavior depend on that plugin;
+measure its collection overhead and validate its notification policy.
 
 ## Templating in a message body
 
 Where a message body is built from a template, a few tokens are substituted
-before sending: the subject, and the resolved to, cc, from and reply-to strings.
-The subject itself accepts a date and time token. Bodies that contain a graph
+before sending: `<SUBJECT>`, `<TO>`, `<CC>`, `<FROM>` and `<REPLYTO>`.
+The subject itself accepts `|date_time|`. Bodies that contain a graph
 token switch attachment handling into an inline mode so the image renders in the
 message rather than arriving as a file.
 
@@ -185,11 +239,11 @@ has nothing to render into.
 | Symptom | Usual cause |
 |---|---|
 | Test says no recipient address is set | The test email field is blank |
-| Test reports a ping failure and sends nothing | SMTP host, port, or credentials wrong. The server's reply is in the message |
-| Encryption selected but the connection is plain | A colon in the hostname field suppressed the scheme rewrite |
+| Test reports a ping failure and sends nothing | Check connectivity and credentials; the legacy STARTTLS probe defect can also reject a working server |
+| Unsure whether TLS was used | Verify the transport/session evidence; a colon in the hostname alone does not disable the selected security mode |
 | Connection is plain even though the server offers STARTTLS | Security is set to `None`, which disables opportunistic TLS |
 | Mailer gives up after about five seconds | Timeout empty, negative, or above 300, so it fell back to 5 |
 | Mail from the poller works, mail from the web interface does not | Two different users, two different environments. Check both against the same MTA |
-| System warnings never arrive | No primary admin set, notification option off, or that account has no email address. The log names which |
+| System warnings never arrive | Check primary-admin selection, account existence, notification policy, recipient address, sender and transport |
 | Nothing arrives when a value goes out of range | Expected. Core has no threshold engine |
-| Messages arrive but land in spam | The From address is the generated hostname default. Set a real one |
+| Messages arrive but land in spam | Check sender authorization, domain authentication and recipient filtering; transport acceptance does not settle those checks |

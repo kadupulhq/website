@@ -7,16 +7,25 @@ sidebar:
   order: 7
 ---
 
-There are two intervals, not one, and they belong to different things. How often
-the collector runs is a property of the installation. How often a data source
-expects a value is a property of that data source, fixed into its file at
-creation. Most timing confusion comes from treating them as the same number.
+Collection involves three clocks: the launcher cadence, the polling interval
+inside each invocation, and the RRD step. They need compatible settings.
 
-| Number | Belongs to | Set by | Changeable later |
-|---|---|---|---|
-| Polling interval | The whole installation | A setting, from ten seconds up to five minutes | Yes |
-| Step | One data source | Its profile, at creation | Not without rebuilding the file |
-| Heartbeat | One field in one data source | Its profile, at creation | Only by tuning the file |
+| Number | Belongs to | How it is used |
+|---|---|---|
+| Launcher interval | Cron, Task Scheduler or `cactid.php` | Must match `cron_interval`, interpreted by `poller.php` as 60 or 300 seconds |
+| Polling interval | Collection passes | `poller.php` computes an integer number of passes per launcher interval |
+| Step | An RRD file | Base normalization interval, set from the data source profile at creation |
+| Heartbeat | A field inside an RRD | Maximum allowed gap between updates, initially taken from the profile |
+
+For example, a 60-second launcher and 10-second polling interval produce six
+passes per invocation. A 300-second launcher and 300-second polling interval
+produce one. Do not configure the launcher interval below the polling interval:
+60/300 computes zero passes. Use one scheduler, and stop it before a manual
+`--force` run. See [Installation](/start/install/).
+
+Editing a profile does not automatically migrate existing files. Heartbeat can
+be tuned; step changes require a planned migration using the installed RRDtool's
+supported tools. Check both database definitions and `rrdtool info` afterward.
 
 ## When they agree
 
@@ -45,13 +54,13 @@ watching. Before concluding an item is broken, check whether it was due.
 
 ## When the step is shorter than the interval
 
-This one cannot be made to work. A data source whose step is shorter than the
-polling interval is asking for samples more often than anything runs. Kadupul
-detects it while building the work list, logs a warning, and mails the
-administrator saying to lower the polling interval to match and rebuild the cache.
+A shorter step cannot create measurements that the collector never took.
+Kadupul warns while building the cache when collection is too slow for the step;
+resolve the polling settings and rebuild the affected cache.
 
-The file is not damaged by this. It simply has more slots than there are values to
-fill them, so the graph is a comb.
+This mismatch does not guarantee a comb-shaped graph. RRDtool can normalize
+less frequent updates into smaller steps when heartbeat permits, but that does
+not restore missing measurement detail.
 
 ## Heartbeat is not always twice the step
 
@@ -67,21 +76,17 @@ The shipped profiles do not follow one rule.
 | One minute | 60 | 600 | 10 minutes |
 | Thirty second | 30 | 1200 | 20 minutes |
 
-The short-step profiles are deliberately forgiving, because at a thirty second
-step a single slow device would otherwise punch a hole in a graph every time it
-hesitated. The trade is that an outage takes twenty minutes to show up as a gap
-rather than one. If you want outages visible promptly on a fast-stepping data
-source, that is a decision to make at profile creation, not afterwards.
+These are shipped profile values, not an outage-detection timer. Explicit
+unknown inputs can create gaps before heartbeat expires; missing updates,
+normalization and archive thresholds affect what becomes visible. A larger
+heartbeat tolerates a longer gap between valid updates. At or below the normal
+update interval, it leaves little or no tolerance for delay.
 
-The failure mode at the other end is worse. A heartbeat at or below the polling
-interval means that any jitter at all crosses the threshold, so the file records
-unknown constantly and the graph is mostly holes. Kadupul's file audit reports
-this case by name.
-
-That audit is also where step and heartbeat drift shows up. If a profile is edited
-after its data sources exist, the database can be brought back into agreement with
-the profile, but the files cannot: their step was written at creation. The audit
-reports the disagreement rather than pretending to fix it.
+Check the actual file as well as its profile. Existing RRDs can differ from
+edited database definitions; the file audit reports such drift. Review the
+[RRDtool heartbeat definition](https://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html)
+and [tuning reference](https://oss.oetiker.ch/rrdtool/doc/rrdtune.en.html) before
+planning file changes.
 
 ## What is stored is not what the device said
 
@@ -108,9 +113,10 @@ every value in one batch carries the same one.
 
 The consequences are not obvious, so they are worth spelling out.
 
-**A device with a wrong clock still graphs correctly.** Its notion of time never
-enters the pipeline. This is genuinely useful: you do not have to fix NTP on a
-thousand switches to trust your graphs.
+**The device clock does not timestamp these SNMP samples.** The collector
+uses database insertion time. Device time can still matter to a script or to
+the meaning of a particular metric, so this is not a general reason to ignore
+clock synchronization.
 
 **A wrong clock on a collector or its database does shift the data.** Values get
 stamped into the wrong slots, and on a file that is already partly written, an
@@ -136,9 +142,11 @@ They are reassembled into one update by matching their timestamps.
 
 A set that is not complete is held back rather than written short, so that a file
 never records a half reading. Normally both halves are in the same batch and share
-a timestamp, so this is invisible. When they are split across batches they carry
-different timestamps, neither group is complete, and that cycle produces nothing
-for that data source. The leftovers are swept at the start of the next cycle.
+a timestamp, so this is invisible. Batches inserted within the same timestamp second can still match. When fields
+receive different timestamps, the groups may remain incomplete and produce no
+update. Current code retains incomplete groups across cycles, then logs and
+expires them after `5 * max(60, poller_interval)` seconds. A read-page boundary
+is extended to include its final timestamp group.
 
 Updates are also sorted into ascending time order before being written, because a
 file will not accept a value older than its last update.
@@ -149,17 +157,18 @@ When RRD writes are deferred and applied in bulk later, the recorded timestamp
 travels with the value and the batch is written in time order. A sample collected
 at noon and written at one o'clock still lands in the noon slot.
 
-That is the property that makes deferred writing safe. It is also why a backlog
-shows up as a graph that stops at the present and then fills in behind you, rather
-than as data compressed into the moment it was flushed.
+A successfully drained backlog can therefore fill in earlier history. Deferred
+writes still depend on successful storage and valid timestamp ordering; they
+do not guarantee recovery from every failure. Inspect retained and rejected
+output when a backlog does not clear.
 
 ## When the cycle does not finish
 
 A collector that passes the polling interval mid-run stops and logs it. The items
-it had not reached produce no values that cycle. One such cycle is interpolated
-away if the heartbeat allows it. A collector that overruns consistently produces a
-graph full of small gaps, which reads as a flaky network and is actually a
-capacity problem.
+it had not reached produce no values that cycle. A gap between valid updates can be bridged when heartbeat and archive
+thresholds permit. Explicit unknown values and other failures can still leave
+gaps. Repeated overruns are evidence to investigate capacity, timeouts and
+collection errors, not proof that every visible gap has the same cause.
 
 [Scale the poller](/guides/scale-the-poller/) covers what to do about it. The
 ordering of a run, including the overrun guards, is in

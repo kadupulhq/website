@@ -20,10 +20,12 @@ getting one right.
 
 ## Before you start
 
-Confirm the device answers, from the machine the poller runs on.
+Confirm the device answers from its assigned collector, preferably as the poller
+user. Substitute your configured read-only credentials. Numeric OIDs avoid a
+dependency on locally installed MIB names.
 
 ```bash
-snmpwalk -v2c -c public switch.example.net ifName
+snmpwalk -v2c -c 'your-read-only-community' switch.example.net .1.3.6.1.2.1.31.1.1.1.1
 ```
 
 Use SNMP v2c or v3. The 64-bit interface counters are SMIv2 objects and cannot be
@@ -84,22 +86,25 @@ Check the counters are actually populated before you build hundreds of graphs. T
 high capacity objects are optional and some agents leave them empty.
 
 ```bash
-snmpwalk -v2c -c public switch.example.net ifHCInOctets
+snmpwalk -v2c -c 'your-read-only-community' switch.example.net .1.3.6.1.2.1.31.1.1.1.6
 ```
 
-An empty walk means every sample will be recorded as unknown, and the graph will be
-a flat gap rather than an error.
+An empty or failed walk needs investigation: check the returned error, access
+view and agent support. It does not uniquely establish what every later sample
+or graph will contain.
 
-## The maximum is fixed at creation
+## Check the stored maximum after speed changes
 
-A traffic data source takes its maximum from the speed discovered at the moment the
-RRD file was created. `ifHighSpeed` is preferred, `ifSpeed` is used when it is
+When the data source uses a query-speed maximum, its creation resolves the
+speed from cached discovery data. `ifHighSpeed` is preferred, `ifSpeed` is used when it is
 absent, and a configured default applies when both are zero.
 
 That value is written into the file. A port discovered at 100 Mbit and later
 negotiated up can end up with a ceiling below its real traffic, and RRDtool records
-anything above the ceiling as unknown. If a port starts showing gaps at high load
-after a speed change, this is the first thing to check.
+processed rates above that ceiling as unknown. Compare the cached speed, data
+source definition and actual file with `rrdtool info`. Updating discovery does
+not by itself prove the existing file was tuned. If gaps begin after a speed
+change, inspect those values before planning a supported file update.
 
 ## The index decision
 
@@ -113,11 +118,9 @@ follows the value, not the table position.
 So the question is which field carries the value.
 
 The interface query declares a preference order: `ifName`, then `ifDescr`, then
-`ifHwAddr`, then `ifIndex`. Kadupul takes the first one that passes two tests
-against the values the device returned during discovery.
-
-1. Every discovered port has a value for it.
-2. No two ports share a value.
+`ifHwAddr`, then `ifIndex`. Kadupul normally chooses from candidates with enough distinct cached values
+and no duplicate identities. The raw index has special handling; inspect the
+actual selected type instead of assuming the preference list guarantees stability.
 
 | Field | Survives | Fails when |
 |---|---|---|
@@ -127,7 +130,7 @@ against the values the device returned during discovery.
 | `ifIndex` | Nothing worth relying on | Reseat, reboot or firmware change renumbers the table |
 
 If the query falls through to `ifIndex`, treat that as a finding rather than a
-result. It means every field above it failed one of the two tests on this device,
+result. Inspect why earlier candidates were not selected,
 and your port history is now attached to a number the switch is free to reassign.
 
 The tests run against whatever the device returned during that discovery. Discover a
@@ -143,38 +146,47 @@ Set per device, per data query. It decides when Kadupul re-reads the index field
 | None | Nothing; manual or scripted only | Free |
 | Uptime | The device's SNMP uptime going backwards | One comparison per cycle |
 | Index Count | The number of discovered indexes changing | One count per cycle |
-| Verify All | Every polling cycle | The setting's own description calls it very expensive |
+| Verify All | A cached identity assertion fails | Checks known indexes during polling; cost grows with that set |
 
 Uptime is the default and it suits most switches, because a reboot is the event that
 renumbers indexes. Index Count catches a card added or removed without a reboot, but
-not a swap that leaves the count unchanged. Verify All is for a handful of devices
-that misbehave, not for a fleet.
+not a swap that leaves the count unchanged. Verify All can detect changed identities at known indexes, but it does not
+guarantee discovery of new ports. Measure its cost before fleet-wide use.
 
 Reindexing does not run against a device that is down or disabled. A card reseat that
-also takes the device offline gets reindexed on the first cycle after it answers
-again, not during the outage.
+also takes the device offline needs a trigger or explicit rerun once reachable.
+A successful availability check does not prove that queued reindex work finished.
 
-To force one:
+To rerun a selected device and query, replace both ids with the installed ids.
+Omit `--qid` to run all queries associated with that device:
 
 ```bash
-php cli/poller_reindex_hosts.php --id=42
-php cli/poller_reindex_hosts.php --id=all
+php cli/poller_reindex_hosts.php --id=42 --qid=16
 ```
+
+`--id=all` broadens the run to all enabled devices. Avoid overlapping reindex
+runs and do not interrupt them. `--force` bypasses process registration and
+refreshes title caches, but it does not bypass down/disabled-device checks. The
+command can report completion for a skipped query, so inspect discovery results,
+resolved indexes and polling OIDs afterward.
 
 ## When a port disappears
 
-If the index value is gone from the discovered set, the data source is marked an
-orphan rather than deleted. It stops collecting and its RRD file is left where it is.
-Put the port back, reindex, and it reattaches with history intact.
+Do not assume a missing port automatically stops collection. Current reindex
+code can reset an orphan flag and retain the old polling OIDs when an identity
+is unresolved and no source changes index. Compare the stored identity with the
+new discovery cache and disable an affected source until the mapping is verified.
+See [Data queries and indexes](/concepts/data-queries-and-indexes/).
 
-A data query can declare that orphans should be removed outright. The interface query
-does not, which is the behaviour you want.
+The interface XML does not request orphan removal. Even queries that do request
+it remove polling/Boost entries, not the data source and RRD history themselves.
+When a port returns, rerun discovery and verify the resolved index before resuming.
 
 ## Large chassis
 
-Two per-device settings matter once port counts get high. The number of OIDs issued
-per SNMP get request defaults to 10; raising it cuts round trips on a device with
-several hundred ports. The number of threads used for the device defaults to 1.
+Two per-device settings matter once port counts get high. Inspect the configured OIDs per SNMP request and per-device thread count.
+Batching support and effective concurrency depend on the collector and agent;
+PHP `cmd.php` and Spine do not provide identical threading behavior.
 
 Change one at a time and watch the poller runtime, because both trade device load
 against wall clock.
@@ -186,6 +198,6 @@ against wall clock.
 | Graphs created, every sample unknown | 64-bit counters not implemented, or the device is on SNMP v1 |
 | Counters jump to absurd values | 32-bit counter wrapping more than once per interval |
 | Gaps only at high load | RRD maximum fixed from a stale discovered speed |
-| Port history attached to the wrong port after maintenance | Index resolved to `ifIndex` |
+| Port history attached to the wrong port after maintenance | Unstable identity, stale mapping, or unresolved orphan handling; verify the identity and OIDs |
 | Poller logs a warning about bad SNMP indexes | Data sources left with no index; reindex, delete or disable them |
 | Ports discovered, nothing collecting | Data sources with an empty index produce no poller cache entries |

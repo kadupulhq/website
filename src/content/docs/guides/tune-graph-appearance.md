@@ -18,9 +18,11 @@ things decide readability: what the vertical axis does, what units are printed, 
 the colours separate, and what the legend says. This page is about changing them
 deliberately.
 
-Graph settings live in two places. A graph template sets them for every graph made
-from it. An individual graph can override them, and doing so detaches that field
-from the template. Change the template unless you mean to make one graph different.
+Graph settings live in two places. A graph template controls shared fields and
+can mark fields for per-graph input. A local edit does not automatically detach a
+field: a later template push overwrites fields still controlled by the template.
+Use the template's per-graph field setting when values need to differ between
+graphs, and change the shared template when the change should apply to all of them.
 
 ## Scale
 
@@ -32,13 +34,16 @@ equivalent.
 | Alt autoscale, ignoring limits | Scales to the data's own minimum and maximum | Neither |
 | Alt autoscale max | Scales the top to the data | Lower limit only |
 | Alt autoscale min | Scales the bottom to the data | Upper limit only |
-| Alt autoscale, accepting both | Scales within the limits given | Both |
+| Alt autoscale, accepting both | Supplies both limits to autoscaling; rigid mode controls clipping | Both |
 
 The field help says that ticking auto scale makes both limits be ignored. That is
 true of the first mode only. The other three pass the relevant limit through, which
 is the whole reason they exist. If you want a traffic graph that always starts at
 zero but finds its own ceiling, that is the second mode with a lower limit of zero,
 not the first.
+
+The misleading checkbox help is tracked in
+[#230](https://github.com/kadupulhq/kadupul/issues/230).
 
 With auto scale off, the upper and lower limits you set are used directly.
 
@@ -56,9 +61,11 @@ logarithmic is also on. Linear axes use SI notation anyway.
 **Base** decides what a kilo means. 1000 for traffic, rates and counts. 1024 for
 memory and disk.
 
-Only the exact values 1000 and 1024 are passed to the graphing tool. Anything else
-is silently dropped and you get the default of 1000. A base of `1,024` or `1024 `
-with a stray space is the same as not setting it, and nothing tells you.
+Use plain `1000` or `1024`. The renderer passes a base only when its value compares
+equal to one of those numbers; another numeric value such as `2048` is omitted.
+The save form validates integer text, so a comma-separated value such as `1,024`
+is not valid input. Trailing whitespace is not a reliable example of a dropped
+renderer value: PHP 8.4 accepts `1024 ` in this numeric comparison.
 
 **Unit exponent** pins the axis multiplier so it stops moving. Set it to 3 and the
 axis reads in thousands at every zoom level, which is what you want for two graphs
@@ -66,7 +73,11 @@ that have to be compared side by side.
 
 Only non-negative integers reach the graphing tool here. The field help mentions
 using -6 to display in micro units; a negative value does not pass the check and is
-dropped. If you need a negative exponent, scale the data with a CDEF instead.
+dropped. As a workaround, scale the displayed series with a CDEF and update its
+axis and legend units together; this changes displayed values rather than merely
+pinning an axis prefix.
+The negative-exponent rendering bug is tracked in
+[#228](https://github.com/kadupulhq/kadupul/issues/228).
 
 **Unit length** reserves horizontal space for the axis labels. Increase it when your
 labels are being clipped, usually after you have pinned an exponent.
@@ -76,8 +87,9 @@ that differ in the third place. It is the right answer for a graph that sits bet
 69.998 and 70.001 and looks like a flat line. It can fight with the auto scale modes,
 so change one at a time.
 
-**Unit grid value** sets the grid step directly. Reach for it last; the automatic
-grid is usually better than a hand-picked one.
+**Unit grid value** supplies RRDtool's `grid-step:label-factor` pair. For example,
+`10:2` requests a grid line every 10 units and a label every second line. Reach for
+it last; the automatic grid is usually better than a hand-picked one.
 
 ## A second axis
 
@@ -111,7 +123,13 @@ filled area at full opacity hides everything behind it. Drop it to 40 or 50 perc
 when an area and a line have to share space, and leave stacked areas opaque, because
 a translucent stack reads as a different colour per band and defeats the point.
 
-Line width is a decimal and the field requires the decimal places: `2.00`, not `2`.
+Line width accepts integer or decimal text, such as `2` or `2.00`, despite the
+field help saying decimal precision is required. Use a decimal point for fractions.
+The renderer uses this field only for LINE:STACK. For ordinary lines, choose
+LINE1, LINE2 or LINE3 to select the width; their visible line-width field currently
+has no effect. This editor mismatch is tracked in
+[#229](https://github.com/kadupulhq/kadupul/issues/229).
+
 Dashes and a dash offset are available for the case where two series must be
 distinguishable in print or by a colour-blind reader. A dashed line and a solid line
 survive photocopying; two similar colours do not.
@@ -212,12 +230,12 @@ Work down this list. Each row is a symptom and the change that fixes it.
 | Flat line that should show variation | Alternative Y grid, or a fixed axis range around the real values |
 | One spike flattens everything else | Logarithmic scaling, or an upper limit with rigid boundaries |
 | Two graphs look the same but are not | Pin the unit exponent and set the same limits on both |
-| Axis in the wrong magnitude | Base is not exactly 1000 or 1024, so it was dropped |
+| Axis in the wrong magnitude | Check base, unit exponent and any CDEF unit conversion |
 | Legend numbers meaningless | Wrong GPRINT preset for the kind of number |
 | Legend columns ragged | Hard returns missing, or label lengths wildly different |
 | Bands indistinguishable in a stack | Colours too close, or translucent stacked areas |
 | Everything the same colour | Colour template missing on a generated graph |
-| Lines lost against the fill | Reduce the area's opacity, or raise the line width |
+| Lines lost against the fill | Reduce area opacity, choose LINE2/LINE3, or raise LINE:STACK width |
 | Labels clipped on the axis | Increase unit length |
 | Fine detail invisible | Increase the width, not the height |
 
@@ -225,11 +243,12 @@ Work down this list. Each row is a symptom and the change that fixes it.
 
 | Symptom | Usual cause |
 |---|---|
-| Base setting appears to do nothing | Value is not exactly 1000 or 1024 |
+| Base setting appears to do nothing | Renderer only supports values comparing equal to 1000 or 1024 |
 | Negative unit exponent appears to do nothing | Only non-negative integers are passed through |
+| Editing line width has no effect | LINE1/2/3 use their fixed widths; only LINE:STACK reads the field |
 | Limits ignored with auto scale on | The first auto scale mode is the one that ignores them |
 | Legend position or axis formatter has no effect | RRDtool older than 1.4 |
 | Data above the ceiling vanishes | Rigid boundaries clipping, as configured |
 | SI units checkbox does nothing | It only applies when logarithmic scaling is also on |
-| Template change does not reach a graph | That field was overridden on the graph and is now detached |
+| Template change does not reach a graph | Check whether the template marks that field for per-graph input |
 | Graph unreadable only as a thumbnail | Thumbnails are rendered with no legend |

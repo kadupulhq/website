@@ -22,8 +22,9 @@ the expensive version of this task.
 
 ## What a tree is made of
 
-A tree is a named, ordered set of nodes. Nodes nest, to a limit of 30 levels. There
-are four kinds.
+A tree is a named, ordered set of nodes. Keep nesting shallow enough to browse;
+the creation paths reviewed here do not enforce a 30-level limit. There are four
+kinds of content.
 
 | Node | Holds | Behaviour |
 |---|---|---|
@@ -58,7 +59,7 @@ never grow.
 A site is a record, not a label. It carries a name, a street address, city, state,
 postal code, country, timezone, and coordinates.
 
-Every device has a site assignment. It also has a free-text location field, which is
+Devices can have a site assignment or remain unassigned. They also have a free-text location field, which is
 short and unvalidated, and an external identifier field for tying the device to
 whatever inventory system is the source of truth.
 
@@ -88,6 +89,10 @@ and you want to open a port rather than open a category.
 Each node sets how its children are ordered: inherit from the parent, manual, or
 alphabetic, natural, or numeric ordering.
 
+The CLI defaults new nodes to alphabetic child sorting, even when the tree uses
+natural sorting. Pass `--sort-method=natural` for headers whose children should
+use that order. The web editor also supports inheritance.
+
 Natural ordering is the one to reach for with equipment names. Alphabetic puts
 `port10` before `port2`. Natural does not. Manual ordering is worth the effort at the
 top level, where you want a fixed order that matches how people think, and is not
@@ -107,16 +112,19 @@ exceptions to it.
 The part that shapes your hierarchy: **a tree is granted whole.** There is no grant
 on a branch. If a user can see the tree, they can see the tree.
 
-What stops them seeing everything in it is the second filter. When a tree is
-rendered, each node is checked against the viewer's other permissions. A device node
-for a device they cannot see is dropped. A header branch that ends up with nothing
-visible underneath is dropped too. The tree collapses to the subset that user is
-allowed, without you maintaining a parallel structure.
+Content has a second permission filter. Device nodes are checked against device
+access, graph content against graph access, and empty header branches can be
+pruned. Site nodes list the viewer's allowed devices, but a site label can remain
+even when its device list is empty. Do not treat an empty or hidden navigation
+branch as proof that a graph URL is inaccessible; test access with the intended
+account.
 
 Two consequences follow.
 
-**Grant on devices, not on trees.** Device grants scale. One tree serving everybody,
-pruned per viewer, is less work and fewer mistakes than a tree per audience.
+**Use device grants for content, with tree access for navigation.** A shared tree
+pruned per viewer can avoid maintaining duplicate structures. Device grants do not
+replace the tree grant or the Graphs viewing realm, and direct graph grants can
+still expose content beyond the allowed devices.
 
 **Use a separate tree only when the shape differs, not when the content does.** A
 network operations tree organised by site and a capacity planning tree organised by
@@ -131,15 +139,22 @@ One system-wide setting decides how the three graph-level grants combine.
 | Method | A user sees a graph when |
 |---|---|
 | Permissive | They have access to the graph, the device, or the graph template |
-| Restrictive | They have access to the graph, the device, and the graph template |
-| Device Based | They have access to the device |
-| Graph Template Based | They have access to the graph template |
+| Restrictive | They have access to the graph, or both the device and graph template |
+| Device Based | They have access to the graph or the device |
+| Graph Template Based | They have access to the graph or the graph template |
 
 Permissive is the default. The setting's own description records that Permissive and
 Restrictive both have scalability problems on very large installs, because both
-evaluate all three grants for every graph. Device Based is the one to pick on a large
-system, and it also matches how most people reason about access: you either look
-after that box or you do not.
+evaluate all three permission categories. Device Based can simplify device-oriented
+access, but direct graph grants remain effective. Set graph defaults to Deny and
+remove unintended graph grants from the user and every enabled group if content
+should follow device permissions.
+
+These formulas correct the Settings help tracked in
+[#222](https://github.com/kadupulhq/kadupul/issues/222). Effective access combines
+the user's result with results from enabled groups. See
+[Manage users and permissions](/guides/manage-users-and-permissions/) for the
+group rules and access checks.
 
 Decide this before you start granting, because changing it later changes what every
 existing user can see.
@@ -150,11 +165,29 @@ Tree construction is repetitive and worth scripting.
 
 ```bash
 php cli/add_tree.php --type=tree --name='Operations' --sort-method=natural
-php cli/add_tree.php --type=node --node-type=header --tree-id=2 --name='Europe'
-php cli/add_tree.php --type=node --node-type=site --tree-id=2 --parent-node=5 --site-id=3
+```
+
+Use the returned tree ID and the IDs from the list commands in subsequent calls.
+The following IDs are examples, not values to copy unchanged:
+
+```bash
+php cli/add_tree.php --type=node --node-type=header --tree-id=2 \
+  --name='Europe' --sort-method=natural
 php cli/add_tree.php --type=node --node-type=host --tree-id=2 --parent-node=5 \
   --host-id=42 --host-group-style=2
 ```
+
+**Create site nodes in the web tree editor for now.** The advertised
+`--node-type=site --site-id=ID` command rejects `--site-id`. The CLI also lacks the
+site type mapping, and its generic save helper does not persist the site ID.
+The editor's site-copy path does preserve it. Tracked in
+[#235](https://github.com/kadupulhq/kadupul/issues/235).
+
+**Verify parent IDs before creating nodes.** The CLI currently accepts a missing
+parent and reports success while storing an orphan node. Use `--list-trees` and
+`--list-nodes --tree-id=ID` to resolve IDs, confirm the parent belongs to the target
+tree, and inspect the resulting node. Tracked in
+[#236](https://github.com/kadupulhq/kadupul/issues/236).
 
 Permissions the same way.
 
@@ -162,8 +195,10 @@ Permissions the same way.
 php cli/add_perms.php --user-id=7 --item-type=host --item-id=42
 ```
 
-The list options on both scripts print the identifiers you need, which is what makes
-them usable from a generation script rather than by hand.
+The list options on both scripts print the identifiers you need. Treat
+`add_perms.php` as adding an exception to the account's configured policy: under
+Allow, a listed item is excluded; under Deny, it is included. Check defaults and
+group membership before interpreting the result as a grant.
 
 ## A structure that holds up
 

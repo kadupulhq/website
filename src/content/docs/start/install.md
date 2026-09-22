@@ -20,18 +20,23 @@ after the poller has been running for a week.
 ## What you need first
 
 Kadupul is a PHP application that stores configuration in MySQL or MariaDB and
-stores measurements in RRD files on disk. Four things have to exist before it runs.
+stores measurements in RRD files on disk. This page describes a new main-server
+installation from the current `main` source, not an upgrade or the archived LTS
+line. Four things have to exist before it runs.
 
 | Component | Why it is needed |
 |---|---|
-| A security-supported PHP version meeting the manifest | Runs the web interface and the poller |
+| PHP 8.4 or newer, on a security-supported release | Runs the web interface and the poller |
 | MySQL or MariaDB | Holds devices, templates, users, and the poller cache |
 | RRDtool | Creates and updates the round-robin archives, and renders graphs |
 | net-snmp | Provides the client tools and libraries used to query devices |
 
-PHP also needs a set of extensions: `pdo_mysql`, `gd`, `sockets`, `gmp`,
-`intl`, `mbstring`, `pcntl`, and `posix` among them. The full list is in
-[Requirements](/reference/requirements/).
+PHP also needs the extensions required by
+[the application manifest](https://github.com/kadupulhq/kadupul/blob/main/composer.json),
+including `pdo_mysql`, `gd`, `sockets`, `gmp`, `intl`, `ldap`, `mbstring`,
+`pcntl`, `posix`, and `sqlite3`. Install them for both the command-line and web
+runtimes. [Requirements](/reference/requirements/) distinguishes Composer
+requirements from the installer’s separate checks.
 
 ## Step 1: install the runtime
 
@@ -48,20 +53,31 @@ snmpget --version
 ```
 
 `php -m` must list the required extensions. The PHP `snmp` extension is optional
-when the net-snmp command line tools are available. A missing required extension
-blocks an installer step later, and some fail in ways that do not name themselves:
-without `gmp`, 64-bit interface counters misbehave rather than error.
+when the net-snmp command-line tools are available. Composer checks its own
+required extensions during dependency installation; the web installer has a
+separate extension check. A runtime fallback does not remove a Composer requirement.
 
-PHP reads one configuration file on the command line and another under the web
-server, and the poller runs under the first while the interface runs under the
-second. Three values have to be right in **both**: `memory_limit` at 400M or more,
-`max_execution_time` at 60 seconds or more, and `date.timezone` set to a real zone
-rather than left empty. An unset `date.timezone` is the most common reason an
-otherwise correct install refuses to proceed.
+The command-line and web-server PHP configurations can differ. Check both.
+The installer recommends `memory_limit` of at least 400M and
+`max_execution_time` of at least 60 seconds; it also accepts their unlimited
+values (`-1` and `0`, respectively). Values below those recommendations produce
+warnings, while a missing `date.timezone` is an error. Set an explicit timezone,
+such as `UTC`, and use `php --ini` to identify the command-line configuration.
 
 ## Step 2: create the database and its user
 
-Create one database, and one user with rights to that database. The user also
+Create one empty database, and one user with rights to that database. For a
+local database, run this SQL as a database administrator, replacing the example
+password before use:
+
+```sql
+CREATE DATABASE kadupul CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'kadupul'@'localhost' IDENTIFIED BY 'replace-with-a-unique-password';
+GRANT ALL PRIVILEGES ON kadupul.* TO 'kadupul'@'localhost';
+```
+
+Use the matching database account host if PHP connects from another machine.
+The user also
 needs read access to the server's time zone tables, which live in the `mysql`
 database. That is the one grant outside its own schema, and the check below
 fails without it.
@@ -107,40 +123,67 @@ here: the web server, and whatever schedules the poller. Run both as the same us
 Run the poller unprivileged and give both processes the access they need.
 Incorrect ownership or modes can prevent later updates even when graphs render.
 
-The directories that must be writable fall into two groups.
+### If you cloned the repository rather than unpacking a release
+
+A Git checkout needs both PHP dependencies and generated browser assets. With
+the repository’s `mise.toml` runtimes installed, run from the repository root:
+
+```bash
+mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
+mise exec -- npm ci --ignore-scripts
+mise exec -- npm run build
+mise exec -- php bin/console about
+```
+
+Composer populates `include/vendor/` and restores pinned compatibility files.
+The npm build creates assets under `include/js/`, `include/fa/`, and
+`include/vendor/flag-icons/`. Composer alone is not sufficient for a source install.
+
+A dependency-complete offline bundle is a separate build artifact. A generic
+GitHub source archive is not that bundle. Follow the
+[offline build and verification procedure](https://github.com/kadupulhq/kadupul/blob/main/docs/symfony-migration.md#offline-installation)
+when the target host has no internet access.
+
+Prepare the writable paths after installing dependencies:
 
 | Group | Directories | Writable when |
 |---|---|---|
 | During install | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Only while installing or upgrading |
+| During install | `include/vendor/csrf/`, or the configured `path_csrf_secret` location | The installer must create the installation-specific secret; preserve it afterward |
 | Always | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, the system temporary directory | For the life of the install |
+| Symfony runtime | `var/cache`, and `var/log` if file logging is configured | For the PHP runtime and cache-warming user |
 
 The RRD directory has to be writable for the life of the install too. It holds your
 history, so give it the care you would give a database directory.
 
-Serve the application root, and put those data directories out of reach. They sit
-inside the application tree by default and none of them should be fetchable over
-HTTP. Move them outside the document root and point the configuration at the new
-locations, or deny them in the web server configuration. An exposed RRD directory
-hands your entire measurement history to anyone who guesses a filename.
+The current migration still needs legacy login, installer, and plugin routes.
+For this combined installation, serve the repository root with explicit rules
+that deny access to private directories, configuration, dependencies and runtime
+state. Do not switch the entire installation to `public/`: that would remove
+legacy routes still in use. Symfony’s separate endpoint has different routing;
+see [the migration instructions](https://github.com/kadupulhq/kadupul/blob/main/docs/symfony-migration.md).
+
+For Nginx, start from the repository’s
+[Nginx location rules](https://github.com/kadupulhq/kadupul/blob/main/tests/e2e/nginx.conf),
+adapting the root and PHP-FPM upstream. Keep deny rules before generic PHP
+handling and preserve PATH_INFO for `/app.php/...`. Nginx does not read
+`.htaccess`. Keep RRD files, logs and secrets inaccessible over HTTP; verify the
+actual server configuration instead of assuming file permissions prevent serving.
 
 **Check it.** Become the poller user, write a file into each always-group directory,
 then delete it. A permission that looks right in `ls -l` can still be denied by
 SELinux or AppArmor, and writing the file is the only check that covers that. Then
 request a file under the log directory over HTTP. You want a refusal.
 
-### If you cloned the repository rather than unpacking a release
-
-A release archive ships with its dependencies already in place. A source checkout
-does not, and the application will fail on its first request without them,
-because `include/global.php` loads Composer's autoloader.
-
-```bash
-composer install --no-dev --optimize-autoloader
-```
-
 ## Step 4: write the configuration file
 
-Copy the distributed configuration file into place and set the database host, name,
+For a new installation, copy the distributed configuration file:
+
+```bash
+cp include/config.php.dist include/config.php
+```
+
+Do not overwrite an existing installation’s configuration. Set the database host, name,
 user, and password from step 2. Two other values matter on a first install:
 `url_path`, the path the application is served under with leading and trailing
 slashes, and `poller_id`, which is `1` on a main server and something else only on
@@ -151,9 +194,18 @@ Leave the remote collector block commented out. You are not building one yet;
 Every other setting has a working default, so read
 [Configuration](/reference/configuration/) before changing any of them.
 
-**Check it.** Load the site root in a browser. Reaching the installer means PHP ran
-and the file parsed. A database error here means the credentials are wrong, and it
-is far easier to read now than in a log later.
+Configure a deployment-specific `APP_SECRET` in the PHP process environment
+for Symfony features that use it. The bootstrap defaults to `APP_ENV=prod` and
+`APP_DEBUG=0` and does not load `.env` files. This is separate from the legacy
+installer’s CSRF secret.
+
+**Check it.** Check syntax without displaying credentials:
+
+```bash
+php -l include/config.php
+```
+
+Import the schema in the next step before opening the installer in a browser.
 
 ## Step 5: import the schema
 
@@ -180,7 +232,7 @@ sequence, and each step gates the next:
 3. Installation type: a new main server, or a remote collector.
 4. Permission check: the directories from step 3, tested by writing to them.
 5. Binary locations: the paths to PHP, RRDtool, and the net-snmp tools.
-6. Data source profile and poller interval.
+6. Data source profile and launcher interval.
 7. Template selection: which device templates to load.
 8. Table conversion, confirmation, and the install itself.
 
@@ -189,25 +241,36 @@ and the archive set written into every RRD file created afterwards, and editing 
 a separate, tested migration; they do not always require discarding history. If peaks matter, make
 sure the profile keeps maxima and not only averages: read [Data sources and
 round-robin archives](/concepts/data-sources-and-rras/) before clicking past it.
-The interval offered there is either every minute or every five minutes, and
-the launcher schedule must accommodate the collection interval you choose.
+The launcher interval offered there is one minute or five minutes. The data
+source profile sets the collection interval; the launcher and profile must be
+configured consistently.
 
-## Step 7: schedule the poller
+## Step 7: change the default credentials
 
-The poller has to be started from outside. It decides internally whether a given
-run is due, so starting it more often than the collection interval is safe. Either
-schedule it once a minute from cron or a systemd timer:
+The shipped schema seeds an administrator account named `admin` with the password
+`admin`, flagged so that the first login forces a change. It also seeds a disabled
+guest account. Change the password before the instance is reachable by anyone else,
+which means before you attach it to a network others can route to.
+
+## Step 8: schedule the poller
+
+The poller has to be started from outside. Configure its collection interval and
+launcher interval consistently; the poller supports one-minute or five-minute
+launcher intervals and has a guard against ordinary runs arriving too soon. For
+a one-minute launcher, install this entry in the unprivileged poller user’s
+crontab, replacing `php` and the application path with their absolute paths:
 
 ```
 * * * * * php -q /path/to/kadupul/poller.php > /dev/null 2>&1
 ```
 
-or run the shipped daemon under a service manager instead. The daemon exists
-because cron is awkward to make highly available; one server does not need it.
+or run the shipped `cactid.php` daemon using `service/cactid.service`, adjusted
+for your installation path and unprivileged user. Use one launcher: disable the
+cron job or timer when using the daemon.
 
-Schedule the launcher at least as often as the configured collection interval. A
-poller scheduled every five minutes while the configuration says every minute
-produces a graph full of gaps and no error message.
+Match the actual schedule to the configured launcher interval. For sub-minute
+collection profiles, the launched poller runs collection cycles within that
+interval; do not try to express a sub-minute cadence with this cron entry.
 
 **Check it.** Run one cycle by hand as the poller user:
 
@@ -215,16 +278,11 @@ produces a graph full of gaps and no error message.
 php -q /path/to/kadupul/poller.php --force --debug
 ```
 
-`--force` skips the guard that refuses a run coming too soon after the last one.
-You want a clean finish with a summary line. Then leave the scheduler alone for two
-intervals and confirm a second run happened without you.
-
-## Step 8: change the default credentials
-
-The shipped schema seeds an administrator account named `admin` with the password
-`admin`, flagged so that the first login forces a change. It also seeds a disabled
-guest account. Change the password before the instance is reachable by anyone else,
-which means before you attach it to a network others can route to.
+`--force` skips the early-run timing guard. Use this manual check with the
+scheduler stopped so it does not overlap a scheduled run. It does not bypass
+other maintenance or safety checks. You want a clean finish with a summary line.
+Then enable the scheduler and leave it alone for two intervals; confirm that
+another run happened without you.
 
 ## What goes wrong
 
@@ -238,7 +296,7 @@ These are the failures a first install actually hits.
 | Install completes, no data ever arrives | Poller never scheduled | Run `poller.php --force --debug` by hand |
 | Data for a few cycles, then nothing | Poller running as the wrong user, leaving files the web user cannot update | Owner of the files in the RRD directory |
 | Graphs full of small gaps | Scheduled interval and configured interval disagree | The crontab, against the configured interval |
-| 64-bit counters produce nonsense | `gmp` missing | `php -m` |
+| Composer refuses installation | PHP is below 8.4 or a manifest-required extension is missing | `php -v`, `php -m`, and Composer’s error output |
 | Poller cannot run more than one process | `pcntl` or `posix` missing | `php -m` |
 
 [Logging](/reference/logging/) covers where each records itself. [Troubleshoot

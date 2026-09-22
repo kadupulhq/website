@@ -13,7 +13,8 @@ path. Test these procedures on an isolated copy with backups before relying on
 them. See [project status](/project/status/).
 :::
 
-A Kadupul backup has three parts. Any one of them alone restores nothing useful.
+A complete Kadupul recovery set has three parts. Partial backups can recover
+configuration or measurements, but cannot reproduce the whole installation.
 
 | Part | What it holds | Where it lives |
 |---|---|---|
@@ -21,22 +22,23 @@ A Kadupul backup has three parts. Any one of them alone restores nothing useful.
 | RRD files | Retained measurements and consolidated archives | The RRA directory, by default `rra/` under the install |
 | Configuration | Database credentials, paths, collector configuration, plugin and script code | `include/config.php`, the spine configuration file, `plugins/`, `scripts/`, `resource/` |
 
-## Why a database-only backup is worthless
+## What a database-only backup can recover
 
-The database holds no historical archive. Not a summary of it, not a recent
-window. The exception is deferred samples: with Boost enabled, recent readings
-sit in the database until they are flushed to the files.
-None. See [Architecture](/concepts/architecture/) for why.
+The database holds graph definitions and monitoring configuration, while RRD files
+hold the historical graph archives. With Boost enabled, recent readings can also
+sit in database queues until they are flushed to files. Preserve those queues as
+part of the database backup. See [Architecture](/concepts/architecture/).
 
 Restore the database alone and you get a system that knows about four hundred
 devices, has every graph defined, and draws every one of them empty. It will
 start collecting again from the moment you start the poller, and the history is
 gone.
 
-## Why an RRD-only backup is also worthless
+## What an RRD-only backup is missing
 
-The reverse fails for a different reason. An RRD file does not know what it
-measures. It is a numbered file containing numbered data sources.
+An RRD file contains named data sources, archive definitions and values, but not
+the full Kadupul device, query, graph and permission metadata needed to reconnect
+those values to the application.
 
 The mapping from "bytes in on port 3 of switch 12" to a path on disk lives in the
 database, in a column on the data source. Restore the file tree alone and you
@@ -63,41 +65,74 @@ on disk anywhere else.
 
 Pick one of these. In descending order of preference:
 
-**Filesystem snapshot.** Quiesce the database, take an atomic snapshot of both
-the database directory and the RRA directory, release. This is the only approach
-that gets a genuinely consistent pair without stopping collection for long.
+**Coordinated snapshot.** Use the database engine's supported backup or quiescing
+procedure and coordinate it with snapshots of all RRD storage and application
+configuration. A filesystem snapshot alone does not establish consistency across
+separate volumes, remote collectors, pending queues or an active database.
 
-**Stop the poller.** Stop the launcher, flush any deferred writes, dump the
-database, copy the RRA tree, start the launcher. You lose the samples for the
-duration, which appear as a gap.
+**Quiesced logical backup.** Disable scheduled launchers and other producers,
+wait for already-running collectors to finish, then flush deferred writes and
+wait for the flush workers. Keep configuration changes, maintenance and other
+RRD writers stopped throughout capture. Collection pauses can leave missing
+samples; their appearance depends on heartbeat and consolidation.
 
-```sh
+Before running the example, complete those quiescing steps and verify queue/worker
+state. `poller_boost.php --force` returning zero alone is not proof of a complete
+flush: an already-registered Boost process can cause it to exit without doing the
+work. Coordinate any rrdcached service or remote storage separately.
+
+This Bash example assumes local storage, a database account configured in a
+private client option file, and an RRA directory containing all managed RRDs.
+Replace every path. Inventory custom absolute RRD paths, symlink targets,
+external configuration and remote collectors and capture them separately too.
+
+```bash
 set -euo pipefail
+umask 077
 
 APP=/path/to/kadupul
+RRA=/path/to/kadupul/rra             # use the actual configured storage path
 DEST=/var/backups/kadupul            # outside the served tree
-DB=$(php -r 'require "'"$APP"'/include/config.php"; echo $database_default;')
+MYSQL_CNF=/secure/path/backup-client.cnf
+DB=$(php -r 'require $argv[1]; echo $database_default;' "$APP/include/config.php")
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)
 
 install -d -m 0700 "$DEST"
+STAGE=$(mktemp -d "$DEST/.partial-XXXXXXXX")
+FINAL="$DEST/backup-$STAMP-${STAGE##*partial-}"
 
-# Stop the launcher first, then flush deferred writes.
-php "$APP/poller_boost.php" --force
+# All writers must already be stopped and deferred queues handled.
+mysqldump --defaults-extra-file="$MYSQL_CNF" \
+  --single-transaction --routines --events --triggers "$DB" > "$STAGE/db.sql"
+tar -C "$RRA" -cf "$STAGE/rrd.tar" .
+tar --exclude='./rra' --exclude='./log' --exclude='./cache' --exclude='./.git' \
+  -C "$APP" -cf "$STAGE/application.tar" .
 
-# Wait for collectors and any other RRD writer to finish before touching files.
-
-( umask 077
-  mysqldump --single-transaction --routines "$DB" > "$DEST/db-$STAMP.sql"
-  tar -C "$APP" -cf "$DEST/rra-$STAMP.tar" rra )
+( cd "$STAGE"
+  sha256sum db.sql rrd.tar application.tar > SHA256SUMS
+  sha256sum --check SHA256SUMS )
+test ! -e "$FINAL"
+mv "$STAGE" "$FINAL"
 ```
 
-Three things in that are not decoration. The destination is outside the
-application directory, because a dump written next to the application can
-overwrite the shipped `cacti.sql` schema file and, if the directory is served,
-publish your database credentials over HTTP. The database name comes from the
-configuration rather than being assumed. And `set -e` with a restrictive `umask`
-means a failed dump stops the script instead of leaving a truncated file that
-looks like a backup.
+The application archive includes configuration and matching code. Record the
+source revision, database and RRDtool versions, actual storage paths and writer
+shutdown/flush status alongside the set. The example excludes ordinary logs,
+cache and Git metadata; review those exclusions for your installation.
+
+Only a successfully captured and checksummed set receives the final directory
+name. A failed command can still leave a truncated file inside `.partial-*`;
+`set -e` stops subsequent commands but does not remove output already created.
+Do not promote that directory to a completed backup. Checksums detect later
+changes, not logical completeness; a restore test is still required.
+
+`--single-transaction` covers transactional tables, not a consistent snapshot of
+nontransactional plugin tables or concurrent schema changes. Keep writers and
+schema changes stopped, or use an engine-appropriate backup method. Resume
+collection only after confirming capture has finished and storage is usable.
+See the [mysqldump documentation](https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html)
+for transaction and privilege requirements. The earlier recipe's omissions are
+tracked in [website #12](https://github.com/kadupulhq/website/issues/12).
 
 **Accept the skew and record it.** Whichever part you capture first is the older
 one, and neither order makes a live pair consistent on its own. Write down the
@@ -112,9 +147,10 @@ Copy the files first and dump the database second, and the database is newer. A
 data source created inside the window is in the dump with no file behind it,
 which the poller recreates empty.
 
-Neither order loses history that existed before the window. What both lose is
-the samples collected during it, and a snapshot of the whole volume avoids that
-where the filesystem supports one.
+Either order can lose pre-window history if a needed file is deleted before it
+is copied. It can also capture a partially written file or inconsistent queued
+samples. Recording skew documents a limitation; it does not make an inconsistent
+pair complete or guarantee recoverability.
 
 ## What is in the backup that you did not think about
 
@@ -142,7 +178,8 @@ Order matters because each step depends on the one before it.
    nothing.
 
 3. **Restore the database.** The version table in the dump must match the code
-   you are restoring onto. A dump from an older release restored onto newer code
+   you are restoring onto. Keep all launchers and writers disabled until the
+   restored components have been checked together. A dump from an older release restored onto newer code
    sends the web interface to the installer, which is correct behaviour but not
    what you want in the middle of a recovery. Restore matching code first.
 
@@ -152,15 +189,17 @@ Order matters because each step depends on the one before it.
 
 5. **Start the poller, then check one file.** Confirm that an RRD file's last
    update time moves after the first run. If the graphs are populated to the
-   restore point and then flat, the poller is not writing, and you have a
-   permissions problem from step 2.
+   restore point and then flat, inspect collection results, queues, timestamps,
+   paths and permissions. A flat graph alone does not identify the cause.
 
 ## Traps
 
 **RRD files reject updates in the past.** An RRD file will not accept a sample at
 or before the timestamp it already holds. Restoring an older set of files against
-a newer database does not backfill; the poller resumes at the current time and
-the interval between the backup and the restore is a permanent gap. This is also
+a newer database does not by itself backfill lost samples. Retained deferred
+queues or other sources may contain recoverable readings, but replay requires
+separate validation and timestamp ordering. Without those readings, collection
+resumes with a gap. This is also
 why you cannot merge two backups by copying files between them.
 
 **Check whether your stored paths are tokenised before rewriting anything.**
