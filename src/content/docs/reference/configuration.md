@@ -14,16 +14,19 @@ on this page document inherited behavior, not a supported deployment or migratio
 path. See [RRDtool proxy](/reference/rrdproxy/).
 :::
 
-Configuration is split in two. A small file on disk holds what the application
-needs before it can reach a database. Everything else lives in the database and is
-edited through the web interface.
+Most legacy configuration is split between `include/config.php` for bootstrap
+values and database `settings` rows for runtime options. Some settings also live
+in environment variables or other files, and some database rows record state
+rather than user choices. Check the owning component before changing a value.
 
 Inherited from Cacti 1.2.x.
 
 ## The config file
 
-`include/config.php`, created by copying `include/config.php.dist`. It is plain
-PHP and sets globals. Read at the start of every request and every CLI run.
+`include/config.php`, usually created by copying `include/config.php.dist`, is
+plain PHP that sets bootstrap globals when the legacy application loads
+`include/global.php`. Symfony components also use environment configuration,
+including `APP_SECRET`; see [Installation](/start/install/) for setup.
 
 ### Database connection
 
@@ -45,7 +48,10 @@ PHP and sets globals. Read at the start of every request and every CLI run.
 ### Remote data collector
 
 The same set prefixed `$rdatabase_`, pointing at the main server. Commented out in
-the template. They have no effect unless this install is a remote poller.
+the template. They are used by remote-poller connection paths. The current connection call
+uses `$database_retries` for the main-server connection, so setting
+`$rdatabase_retries` alone does not change its retry count; see application
+[bug #281](https://github.com/kadupulhq/kadupul/issues/281).
 
 `$rdatabase_type`, `$rdatabase_default`, `$rdatabase_hostname`,
 `$rdatabase_username`, `$rdatabase_password`, `$rdatabase_port`,
@@ -66,13 +72,14 @@ the template. They have no effect unless this install is a remote poller.
 To isolate two installs from each other, use `$url_path` and
 `$cacti_session_name`, not the cookie domain.
 
-### Optional paths
+### Optional paths and installer policy
 
-Commented out in the template. They matter mostly on remote pollers, where scripts
+Most are commented out in the template. They matter mostly on remote pollers, where scripts
 and resources are not under the main web root.
 
 | Variable | Purpose |
 |---|---|
+| `$installer_allowed_php_binaries` | Optional trusted absolute PHP executables for installer probes. Keep the binaries and their parent directories outside the web user’s write permissions; an empty array disables probes. |
 | `$scripts_path` | Alternate location for data input scripts. |
 | `$resource_path` | Alternate location for resource files. |
 | `$config['purifier_cache_path']` | HTMLPurifier definition cache. Must exist and be writable by the web server user. Falls back to `cache/purifier` under the install path. |
@@ -117,8 +124,10 @@ Commented-out `define()` blocks, off by default:
 
 ## Database-held settings
 
-Everything else is a row in the `settings` table, read through
-`read_config_option()` and written through `set_config_option()`. Per-user
+Many legacy runtime options are rows in the `settings` table, read through
+`read_config_option()` and written through `set_config_option()`. This does not
+cover Symfony environment settings, file-backed secrets, generated resources or
+all application state. Per-user
 overrides live in `settings_user` and are read through `read_user_setting()`.
 
 The web interface presents these as ten tabs. Each tab holds one or more
@@ -188,7 +197,8 @@ Applied when a device is created, not retroactively.
 | `automatic_reindex` | Schedule for reindexing every device. |
 | `snmp_bulk_walk_size`, `max_get_size` | SNMP request sizing. |
 | `enable_snmp_agent` | Kadupul's own SNMP agent. |
-| `poller_refresh_output_table` | Rebuild the `poller_output` MEMORY table each cycle. |
+| `poller_refresh_output_table` | Legacy setting still displayed in the form, but the current application has no runtime reader for it. It does not rebuild `poller_output` or make a MEMORY queue safe; see
+application [bug #282](https://github.com/kadupulhq/kadupul/issues/282). |
 | `disable_cache_replication` | Stop replicating the resource cache to remote collectors. |
 | `spine_log_level` | Whether invalid responses are logged individually. |
 | `remote_agent_timeout` | Timeout for the remote agent RPC. |
@@ -200,8 +210,10 @@ The Background Timeout section sets a timeout for each background task:
 `maintenance_timeout`, `spikekill_timeout`, plus `commands_processes`.
 
 `poller_interval` and `cron_interval` must agree with the scheduler entry that
-actually runs the poller. The poller logs a warning and mails the primary admin
-when they drift apart.
+actually runs the poller. The poller can log cadence warnings and notify an administrator when actual
+launch timing is out of sync. A shorter polling pass than launcher cadence is
+valid when the launcher interval contains an integer number of passes; see
+[Time and intervals](/concepts/time-and-intervals/).
 
 ### Data
 

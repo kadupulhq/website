@@ -14,7 +14,10 @@ on this page document inherited behavior, not a supported deployment or migratio
 path. See [RRDtool proxy](/reference/rrdproxy/).
 :::
 
-All of it lives in `lib/rrd.php`. Inherited from Cacti 1.2.x.
+Command assembly is centered in `lib/rrd.php`; coordination, queue
+retention and Boost behavior also involve `lib/rrd_maintenance.php`,
+`lib/poller.php` and `lib/boost.php`. Current local write paths add
+acknowledgement and maintenance locking to inherited command handling.
 
 ## Subcommands issued
 
@@ -69,8 +72,9 @@ executable. When it is not, it logs
 ERROR: RRDtool executable not found, not executable or error in path '<path>'.  No output written to RRDfile.
 ```
 
-and returns nothing. Nothing else in the call chain treats that as fatal, so a
-wrong `path_rrdtool` shows up as missing data rather than a crash.
+and cannot run the command. A failed write can leave samples queued or
+rejected for diagnosis; inspect the reported path error and queue state before
+assuming that data was written or permanently lost.
 
 ### Pipe execution
 
@@ -82,24 +86,36 @@ $rrdtool_pipe = rrd_init();
 rrd_close($rrdtool_pipe);
 ```
 
-`__rrd_init()` opens `popen("<path_rrdtool> - ", 'w')`, or with output
-suppressed when `$output_to_term` is false: `> nul` on Windows,
-`> /dev/null 2>&1` elsewhere. Every subsequent command is a line written into
-that handle. Nothing is read back, so a pipe-mode command cannot return output.
+`rrd_init()` coordinates local writers with an RRD maintenance lease. A legacy
+write-only pipe uses `popen("<path_rrdtool> - ", 'w')`; it does not read command
+responses. Current collection and Boost write paths request an **acknowledged**
+pipe instead. On Unix, that uses `proc_open()` with read and write streams and
+waits for an `OK` or `ERROR` response within a bounded timeout. A successful
+`fwrite()` alone is not treated as an accepted RRD update. An unavailable or
+timed-out response fails the command and retains the sample for retry. On
+Windows, boolean writes use a synchronous response-reading fallback.
+
+Destructive maintenance requests an exclusive lease. A failed exclusive pipe
+aborts the rewrite rather than reopening it and losing ownership. Readers such
+as graph, fetch and info do not need that writer lease. See
+[Corrupted RRD recovery](/guides/recover-a-corrupted-rrd/) for maintenance
+precautions.
 
 Callers that use a pipe: `poller.php`, `poller_boost.php`,
 `poller_maintenance.php`, `poller_realtime.php`, `rrdcleaner.php`,
 `utilities.php`, `cli/poller_output_empty.php`, and the boost, dsstats and
 rrdcheck libraries.
 
-When a pipe write fails, `__rrd_execute()` assumes RRDtool has crashed:
+For the older write-only pipe, a failed write triggers crash recovery and logs:
 
 ```
 ERROR: Detected RRDtool Crash on '<command>'.  Last command was '<last>'
 ```
 
-It closes the pipe, calls `rrd_init()` for a fresh one, and retries. After five
-attempts it gives up on that command with
+The nonexclusive legacy path can reopen and retry. An exclusive maintenance
+pipe instead aborts, and an acknowledged pipe reports the command failure or
+response timeout without treating a write as success. After repeated legacy
+restart attempts it gives up with
 
 ```
 FATAL: RRDtool Restart Attempts Exceeded. Giving up on '<command>'.
@@ -159,7 +175,7 @@ The fourth constant family in `include/global_constants.php`.
 | `RRDTOOL_OUTPUT_STDOUT` | 1 | Read stdout and return it. |
 | `RRDTOOL_OUTPUT_STDERR` | 2 | Read the merged stream and print it. |
 | `RRDTOOL_OUTPUT_GRAPH_DATA` | 3 | Read stdout and return it. Used for image bytes. |
-| `RRDTOOL_OUTPUT_BOOLEAN` | 4 | Proxy only. |
+| `RRDTOOL_OUTPUT_BOOLEAN` | 4 | Return whether an acknowledged or synchronous command succeeded; also used by the proxy path. |
 | `RRDTOOL_OUTPUT_RETURN_STDERR` | 5 | Read the merged stream and return it. |
 
 `2` and `5` append `2>&1` to the command, but only on a non-Windows host and only
@@ -261,8 +277,10 @@ ERROR: Invalid RRD update time for local_data_id: <id>.
 ```
 
 Values are normalised before they go out. A null, an empty string, or anything
-non-numeric becomes `U`. A numeric value has `,` replaced with `.`, which sidesteps
-`LC_NUMERIC` locale behaviour without truncating 64-bit counter precision. Data
+non-numeric becomes `U`. Accepted numeric strings are sent without integer truncation. The code
+replaces commas only after `is_numeric()` succeeds; a string containing a
+comma normally becomes `U`, so do not emit locale-formatted numbers from
+collection scripts. Data
 source names not used by any graph are skipped.
 
 The file is created on demand: when it does not exist, `update` calls
@@ -283,8 +301,10 @@ The first output line is the data source names. Each later line is
 `<timestamp>: <value> <value> ...`. `nan` and `-nan` in any case become `U` when
 `$show_unknown` is set and are dropped otherwise.
 
-`boost_fetch_cache_check()` runs first so a boost install flushes pending
-updates into the file before it is read.
+`boost_fetch_cache_check()` is called before the read and may attempt an
+on-demand Boost flush when that mode is enabled. A failed writer initialization
+or update can leave samples pending; a fetch alone does not prove the backlog
+was applied. See [High-volume writes](/concepts/high-volume-writes/).
 
 ## graph and xport
 
@@ -366,7 +386,8 @@ fall back to the plain ones when the variant is absent.
 
 ## tune and resize
 
-`rrdtool_function_tune()` does not go through `rrdtool_execute()`. It builds and
+`rrdtool_function_tune()` rejects tuning while `RRDCACHED_ADDRESS` is set,
+then builds and
 `popen()`s the command itself:
 
 ```

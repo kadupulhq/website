@@ -125,8 +125,9 @@ deserialization of untrusted input, file writes outside its own directory, and
 network calls to hosts you did not expect:
 
 ```sh
-rg -n 'exec|shell_exec|passthru|system|proc_open|popen|eval|unserialize|assert' plugins/<name>/
-rg -n 'curl_|file_get_contents\(.*https?://|fsockopen' plugins/<name>/
+plugin_dir='plugins/myplugin' # Replace with the plugin directory you are reviewing.
+rg -n 'exec|shell_exec|passthru|system|proc_open|popen|eval|unserialize|assert' "$plugin_dir"
+rg -n 'curl_|file_get_contents\(.*https?://|fsockopen' "$plugin_dir"
 ```
 
 Hits are not automatically wrong. A collection plugin that runs a command is doing

@@ -1625,3 +1625,579 @@ Pre-commit remains skipped by user instruction; the other Git hooks are retained
 Final batch `check:all` passed: 86 tests with 100% coverage, 3,168 generated pages,
 385,328 internal links including 123,562 anchor targets, and zero broken links.
 The 42 existing translation freshness warnings remain. `git diff --check` passed.
+
+
+## Worked switch example validation — 2026-09-21
+
+After opening documentation batch PR #27, started a separate local branch
+`docs/validate-worked-example` from `0c9e500f5cc985435e91125c3247f2c5fff60548`.
+Reviewed `guides/worked-example.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`, especially `cli/add_graphs.php`,
+`lib/api_automation_tools.php` and `lib/rrd.php`, plus the already validated switch,
+retention, reindex, first-graph and recovery guides. No new application defect was
+inferred or application code changed.
+
+Corrected symbolic SNMP probes, missing output-counter checks, cached listings
+versus live discovery, unquoted shell placeholders, installation-specific query
+IDs, existing-association reindex settings, retention-change claims, port identity
+guarantees, counter timing, RRD existence/recency interpretation, archive selection
+and utilization arithmetic. Four saturated minutes out of sixty is about 6.7%,
+not 10%. Examples passed bash -n; creation commands were not executed. Internal
+documentation navigation remains on GitHub Pages.
+
+Filed [website #28](https://github.com/kadupulhq/website/issues/28), native Bug type,
+labels bug/documentation and assignee `somethingwithproof`, with component,
+severity, revisions, environment, reproduction, actual/expected results,
+workaround, acceptance criteria and scope. No milestone/project was established.
+No live-switch, SNMP network, graph-creation, RRD or fleet test was performed;
+prior subsystem fixtures were not rerun. These changes remain local and are not
+included in PR #27. Pre-commit remains skipped as requested.
+
+Worked-example `check:all` passed: 86 tests with 100% coverage, 3,168 generated
+pages, 385,328 internal links including 123,562 anchor targets, zero broken links.
+The 42 existing translation freshness warnings remain. `git diff --check` passed.
+PR #27's separate CI website checks also passed; its analysis step was still running
+at handoff. Copilot completed review with no findings and recommended approval
+(review state COMMENTED, not a formal approving review). No merge was performed.
+
+
+## Access-audit guide validation — 2026-09-21
+
+Reviewed `guides/audit-who-can-see-what.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`, especially `lib/auth.php`
+(get_permission_string, get_policy_where, get_policy_join_select, user_disable),
+`user_admin.php`, and the prior same-revision permissions fixture matrix. Corrected
+direct graph grants in Device/Template Based modes, Restrictive pairs within each
+source, device enumeration, policy-aware exception removal, guest/provisioning
+scope and actual access verification. Display labels and tooltips are no longer
+presented as definitive proof. Documentation navigation remains on GitHub Pages.
+
+An isolated mise PHP 8.4.25 probe executed the unchanged get_permission_string
+function with settings/translation stubs. Under Restrictive and all Deny defaults,
+no direct graph grant plus a device grant and no template grant displayed Granted.
+Adding the template grant changed the display to Restricted. Inspected authorization
+SQL and the prior is_graph_allowed matrix have the opposite, intended results.
+This is a display/authorization mismatch, not a demonstrated authorization bypass.
+Evidence: `/tmp/kadupul-permission-display-probe.php`,
+`/tmp/kadupul-permission-display-probe.jsonl`, and the complete issue reproducer.
+No new database, browser/session or HTTP authorization fixture was run.
+
+Filed [application #263](https://github.com/kadupulhq/kadupul/issues/263) and
+[website #29](https://github.com/kadupulhq/website/issues/29), native type Bug,
+assignee `somethingwithproof`, bug plus php/security or documentation labels.
+Reports include component, severity, revisions, environment, reproducible evidence,
+expected/actual behavior, workaround, acceptance criteria and limits. No open
+milestones or organization projects were available. Application defect remains
+unresolved; application worktree is unchanged.
+
+The previous batch PR #27 now has build and both Sonar checks passing, no unresolved
+review threads, and Copilot's no-findings review. It remains unmerged. This guide and
+the worked-example changes are local on `docs/validate-worked-example`, outside PR
+#27. Pre-commit remains skipped as requested.
+
+Access-audit `check:all` passed: 86 tests with 100% coverage, 3,168 generated pages,
+385,328 internal links including 123,562 anchor targets, and zero broken links.
+The 42 existing translation freshness warnings remain. `git diff --check` passed.
+
+
+## Internet-facing security guidance validation — 2026-09-21
+
+Reviewed `guides/secure-an-internet-facing-install.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: global/bootstrap/settings, authentication,
+installer, whitelist/cache, remote-agent and secure-header source, plus the checked-in
+Nginx example and migration notes. Corrected RRA-path configurability, private-path
+inventory, asset exceptions, DB-account isolation claims, config ownership, basic-auth
+scope, legacy-mode handling, whitelist update selection and cache timing. Linked Apache
+and PHP primary documentation; GitHub Pages navigation remains intact.
+
+Pure PHP 8.4.25 calls to CactiSecureHeaders::buildCspPolicy confirmed legacy
+unsafe-inline and nonce-based policy construction. Header-name selection for nonce
+versus nonce-report was inspected in source. No HTTP/browser CSP enforcement,
+plugin compatibility, live proxy, network exposure, database-grant mutation,
+whitelist update or penetration test was performed. Shell block passed bash -n.
+
+Filed [application #265](https://github.com/kadupulhq/kadupul/issues/265) for Settings
+help that describes existing nonce enforcement as future functionality, and
+[website #30](https://github.com/kadupulhq/website/issues/30) for guide inaccuracies.
+Both have native Bug type, bug/documentation labels (plus php for the application),
+assignee `somethingwithproof`, component, severity, revisions, reproduction,
+expected/actual results, evidence, workaround, acceptance criteria and scope.
+No new exploit or vulnerability was demonstrated. No applicable open milestone or
+organization project was available. Changes remain local outside PR #27;
+pre-commit skipped as requested.
+
+Security-guide `check:all` passed: 86 tests, 100% coverage, 3,168 pages,
+385,372 internal links (123,562 with anchors), zero broken links; 42 existing
+translation freshness warnings remain. `git diff --check` passed.
+
+
+## Permissions concept validation — 2026-09-21
+
+Reviewed `concepts/permissions-and-access.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`, including get_policy_where,
+is_realm_allowed, get_simple_graph_perms, user_disable and realm registration.
+Reused the prior same-revision authorization matrix and display mismatch probe;
+no new database/browser/runtime authorization test was performed.
+
+Corrected direct graph grants in Device/Template Based modes, Restrictive pairing
+within each source before union, two versus one exception categories, enabled-group
+realm scope, stored exceptions versus default policies, exclusions versus global
+denial, query-shortcut scope, and session/guest evidence. Linked known application
+issues #222 and #263 and the GitHub Pages audit guide. No new application defect
+was inferred. Application worktree remains unchanged.
+
+Filed [website #31](https://github.com/kadupulhq/website/issues/31), verified native
+Bug type, bug/documentation labels and assignee `somethingwithproof`, with
+component, severity, revisions, reproduction, expected/actual results, evidence,
+workaround, acceptance criteria and limits. No milestone/project was established.
+These corrections remain local alongside the worked example, access-audit and
+security guides on `docs/validate-worked-example`, outside PR #27. Pre-commit
+remains skipped at the user's request.
+
+Permissions-concept `check:all` passed: 86 tests, 100% coverage, 3,168 pages,
+385,394 internal links (123,562 with anchors), zero broken links. The 42 existing
+translation freshness warnings remain. `git diff --check` passed.
+
+
+## Plugin concept validation — 2026-09-21
+
+Reviewed concepts/plugins.md and its linked install-and-vet-plugins guide against
+application revision 661a57ff43ebf275e6b07211d4284dd727103959, particularly lib/plugins.php
+hook dispatch, remote routing, entrypoint naming, realm registration, uninstall and
+tracked schema cleanup. Corrected process privilege/isolation claims, notification
+side effects, transformation warnings, repeated registration, missing-callback logs,
+uninstall callback/source-file behavior, realm grants, disabled/direct URL scope,
+remote routing exceptions and call-site-dependent polling frequency.
+
+Reused the earlier same-revision isolated plugin lifecycle evidence in this report;
+no fresh plugin installation, remote runtime or adversarial execution was performed.
+The original unquoted plugins/<name>/ operand passes bash -n but fails an isolated
+execution probe before rg runs: the shell attempts to read a file named name.
+Replaced it with a quoted plugin_dir variable; both guide shell blocks pass bash -n.
+Application source remains unchanged. GitHub Pages navigation is retained.
+
+Filed website [#32](https://github.com/kadupulhq/website/issues/32), verified native
+Bug type, bug/documentation labels and assignee somethingwithproof. Report includes
+component, severity, revisions, environment, reproduction, expected/actual behavior,
+evidence, workaround, acceptance criteria and verification limits. No new application
+vulnerability was demonstrated; no milestone/project was established. Changes remain
+local outside PR #27; pre-commit remains skipped as requested.
+
+Plugin-concept check:all passed: 86 tests, 100% coverage, 3,168 pages,
+385,416 internal links (123,562 with anchors), zero broken links. The 42 existing
+translation freshness warnings remain. git diff --check passed.
+
+
+## Remote data collection concept validation — 2026-09-21
+
+Reviewed concepts/remote-data-collection.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: include/global.php connection selection,
+poller.php scheduling/Boost/replication checks, cmd.php result routing,
+lib/poller.php replication/status/liveness helpers, targeted device/plugin replication,
+poller_recovery.php transfer loop and lib/database.php failure returns.
+
+Corrected periodic replication eligibility and targeted updates, connection-mode
+precedence, Boost activation, selected-column status pushes and liveness limits.
+Removed unsupported lossless-delivery and universal collector-ownership-check claims;
+preserved the unsupported proxy warning and linked GitHub Pages operational guides.
+
+An isolated PHP 8.4.25 probe executes the unchanged recovery while loop with database
+stubs. One failed central insert is followed by a local DELETE attempt, while the
+inserted counter increases to one. Evidence: /tmp/kadupul-remote-recovery-probe.php.
+The probe tests the final packet failure branch; partial-packet failure was inspected
+in source. No live remote database outage, production loss, multi-collector deployment
+or RRD replay was tested. Application source remains unchanged.
+
+Filed application [#268](https://github.com/kadupulhq/kadupul/issues/268) for unchecked
+recovery writes followed by local deletion, and website
+[#33](https://github.com/kadupulhq/website/issues/33) for incorrect guarantees.
+Both reports have verified native Bug type, bug label, appropriate php/documentation
+label, assignee somethingwithproof, component, severity, revisions, environment,
+reproduction, expected/actual behavior, evidence, workaround, acceptance criteria and
+limits. No new exploit or authorization bypass was demonstrated. No milestone/project
+was established. Changes remain local outside PR #27; pre-commit skipped by request.
+
+Full check:all passed: 86 tests, 100% coverage, 3,168 pages, 385,460 internal links
+(123,562 with anchors), zero broken links; 42 existing translation freshness warnings
+remain. After final prose cleanup, build and link checks passed again with the same
+counts. git diff --check passed.
+
+
+## High-volume writes concept validation — 2026-09-21
+
+Reviewed concepts/high-volume-writes.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: schema and queue preflight,
+poller_boost.php scheduling/rotation/child completion, and lib/boost.php archive
+requeue, sample deletion, on-demand graph paths and RRDtool update handling.
+Replaced obsolete MEMORY queue claims with InnoDB/retry behavior; distinguished
+command batching from physical I/O, threshold estimates from exact counts, normal
+intervals from maximum staleness, rotation from completed writes and acknowledged
+commands from late samples skipped by RRDtool. Qualified graph freshness and crash
+handling, linked known remote recovery limitations and retained Pages navigation.
+
+An unchanged-function PHP 8.4.25 probe at /tmp/kadupul-boost-scheduler-probe.php
+confirmed boost_time_to_run queries nonexistent pollers in its disabled branch,
+then clears system-enable on a failed count. Schema defines poller. Numeric-zero
+fallback stores 120 minutes while scheduling an initial delay of 120 seconds.
+Normal before-timer, timer-due, over-threshold and forced-run cases returned expected
+results. The probe uses configuration/database stubs; it is not a live database or
+multi-collector scheduling test. No new Boost flush, crash, concurrency, graph request
+or remote replay was exercised. Application source remains unchanged.
+
+Filed application [#270](https://github.com/kadupulhq/kadupul/issues/270) and website
+[#34](https://github.com/kadupulhq/website/issues/34), both verified native Bug type,
+bug label, php/documentation labels respectively and assignee somethingwithproof.
+Reports include component, severity, revisions, environment, reproduction,
+expected/actual results, evidence, workaround, acceptance criteria and limits.
+No exploit demonstrated; no milestone/project established. Local documentation is
+outside PR #27; pre-commit remains skipped as requested.
+
+Full check:all passed: 86 tests, 100% coverage, 3,168 pages, 385,504 internal links
+(123,562 with anchors), zero broken links. The 42 existing translation freshness
+warnings remain; git diff --check passed.
+
+
+## Templates concept validation — 2026-09-21
+
+Reviewed concepts/templates.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: lib/template.php creation/reuse and push
+helpers, data_templates.php save paths and structural editor controls,
+lib/api_device.php device template application/synchronization, and lib/boost.php
+image-cache handling. Reused prior same-revision custom-template, graph appearance
+and retention/recovery findings; no fresh live template or RRD maintenance test ran.
+
+Corrected discovery/cardinality and delayed file creation, field flags versus other
+propagation paths, input-method save handling, path preservation, device sync selection
+and removal of unused associations, automation/plugin hooks, index stability, cached
+rendering and alternatives to destructive file recreation. Existing graph deletion is
+not implied by removal of a device-template association. GitHub Pages links point to
+the custom-template, appearance and retention guides.
+
+Filed website [#35](https://github.com/kadupulhq/website/issues/35), verified native
+Bug type, bug/documentation labels, and assignee somethingwithproof. Report contains
+component, severity, revisions, environment, reproduction, expected/actual behavior,
+evidence, workaround, acceptance criteria and limits. No new application defect was
+inferred. No milestone/project established. Application worktree unchanged; local
+changes remain outside PR #27; pre-commit skipped by request.
+
+The first validation caught an incorrect appearance-guide route introduced during
+editing. Corrected it to /guides/tune-graph-appearance/ and restarted all checks
+against the final source.
+
+Final full check:all passed: 86 tests, 100% coverage, 3,168 pages, 385,570 internal links (123,562 with anchors), zero broken links. The 42 existing translation freshness warnings remain; git diff --check passed.
+
+
+## Graph-rendering concept validation — 2026-09-21
+
+Reviewed concepts/how-graphs-are-drawn.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: lib/rrd.php renderer/resolution/CSV paths,
+lib/functions.php consolidation fallback and numeric filtering, lib/boost.php image
+cache, and upstream RRDtool rrdgraph_data/rrdgraph_graph primary documentation.
+Corrected cache assumptions, profile estimates versus actual archive selection,
+main-poller-derived default end time, item-specific fallback, GPRINT matching and
+no-match behavior, VDEF drawing and CSV restrictions, and archive-maintenance limits.
+Links include GitHub Pages Boost/retention guidance and upstream references.
+
+An isolated temporary RRD fixture used RRDtool 1.11.0 with a GAUGE, 60-second step,
+AVERAGE archive and three samples. A MAXIMUM VDEF rendered as LINE1 in a 481x155 SVG
+(exit 0); XPORT of the same scalar failed (exit 1, Cannot shift a VDEF). Python 3.12.12
+through mise orchestrated the fixture; its temporary files were removed. The application
+renderer maps VDEF drawing items to scalar names and selects export columns by drawing
+type without the claimed skip. No fresh end-to-end HTTP/database export, browser cache
+or archive selection matrix was tested. Application code remains unchanged.
+
+Filed application [#273](https://github.com/kadupulhq/kadupul/issues/273) and website
+[#36](https://github.com/kadupulhq/website/issues/36), verified native Bug type,
+bug label, php/documentation labels respectively and assignee somethingwithproof.
+Reports include component, severity, revisions, environment, reproduction,
+expected/actual results, evidence, workaround, acceptance criteria and limits.
+No exploit demonstrated; no milestone/project established. Changes remain local
+outside PR #27; pre-commit skipped by request.
+
+Full check:all passed: 86 tests, 100% coverage, 3,168 pages, 385,614 internal links (123,562 with anchors), zero broken links. The 42 existing translation freshness warnings remain; git diff --check passed.
+
+
+## Architecture concept validation — 2026-09-21
+
+Reviewed concepts/architecture.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: graph_realtime.php/poller_realtime.php,
+poller.php/cmd.php and durable queues, lib/boost.php, lib/rrd.php creation/ownership,
+lib/rrd_maintenance.php trust/account checks and lib/ping.php ICMP implementation.
+Reused prior same-revision queue, realtime, storage and graph audit evidence; no new
+live collection, HTTP realtime request, ownership change or ping privilege test ran.
+
+Corrected measurement queues versus historical storage, web-triggered collection and
+writes, deferred RRD creation, network boundaries, retry/backlog implications,
+consistent backups, request/poller overlap, account/trust requirements, OS ping
+invocation and configuration/cache scope. Replaced definitive symptom diagnoses with
+investigation checks. Renamed the misleading storage heading while retaining its old
+anchor for existing links. Navigation targets GitHub Pages guides and concepts.
+
+Filed website [#37](https://github.com/kadupulhq/website/issues/37), verified native
+Bug type, bug/documentation labels and assignee somethingwithproof, with component,
+severity, revisions, environment, reproduction, expected/actual behavior, evidence,
+workaround, acceptance criteria and limits. No new application defect or exploit was
+inferred. No milestone/project established. Application worktree unchanged; local
+changes remain outside PR #27; pre-commit skipped by request.
+
+Full check:all passed: 86 tests, 100% coverage, 3,168 pages, 385,570 internal links (123,562 with anchors), zero broken links. After the final heading/anchor adjustment, build, link and locale checks passed again; rendered heading and legacy anchor were verified. The 42 existing translation freshness warnings remain; git diff --check passed.
+
+
+## Data-source/RRA concept validation — 2026-09-21
+
+Reviewed concepts/data-sources-and-rras.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: lib/rrd.php creation, interface-speed
+substitution, bounds and unused-field handling; include/global_arrays.php type map;
+cacti.sql profile/archive/function rows; upstream RRDtool rrdcreate semantics.
+Reused prior same-revision retention/migration evidence; no new live counter-reset,
+COMPUTE creation, consolidation-boundary, polling or file-migration test ran.
+
+Corrected object/field terminology, creation versus explicit maintenance, normalized
+values/rates, conditional bound substitution and normalization, heartbeat source,
+consolidation extrema, unknown-data interpretation, payload versus total disk,
+intervals versus physical writes and graph references versus visible drawing.
+Kept the old permanent-decisions anchor while replacing the misleading heading.
+Preserved accurate profile numbers and GitHub Pages links.
+
+Recomputed shipped SQL through mise Python 3.12.12: per-field slots
+11,488 / 40,284 / 81,716, payload KiB 89.75 / 314.71875 / 638.40625,
+and 10,000 two-field payload GB 1.83808 / 6.44544 / 13.07456. These are archive
+value payloads, not measured total storage. No new application defect inferred.
+
+Filed website [#38](https://github.com/kadupulhq/website/issues/38), verified native
+Bug type, bug/documentation labels, assignee somethingwithproof, and report metadata
+covering component, severity, revisions, environment, reproduction, expected/actual
+behavior, evidence, workaround, acceptance criteria and limits. No exploit
+demonstrated; no milestone/project established. Application code unchanged. Changes
+remain local outside PR #27; pre-commit skipped by request.
+
+Full check:all passed: 86 tests, 100% coverage, 3,168 pages, 385,570 internal links (123,562 with anchors), zero broken links. The 42 existing translation freshness warnings remain; git diff --check passed.
+
+
+## Security-model concept validation — 2026-09-22
+
+Reviewed concepts/security-model.md against application revision
+661a57ff43ebf275e6b07211d4284dd727103959: request helpers in lib/html_utility.php,
+exec_poll and result parsing, import signature/path handling, auth/CSRF bootstrap,
+remote-agent enabled-collector/address handling, account/storage trust and runtime
+Boost DDL. Reused prior same-revision package, collection-script, security-guide,
+permissions and storage evidence. Read application SECURITY.md private-reporting
+requirements; no new exploit, bypass or application vulnerability was established.
+
+Corrected request read/cache/logging scope, script-output/backend distinctions,
+package containment and layered controls, web-triggered collection/writes, runtime
+DDL requirements, configuration protection, conditional enforcement, illustrative
+endpoint inventory, proxy-header configuration and guest-account interpretation.
+GitHub Pages links connect the operational import, upgrade and security guides.
+No new live package import, adversarial execution, authorization request,
+database-grant change or penetration test was performed. Application code unchanged.
+
+Filed website [#39](https://github.com/kadupulhq/website/issues/39), verified native
+Bug type, bug/documentation labels and assignee somethingwithproof. Report includes
+component, severity, revisions, environment, reproduction, expected/actual behavior,
+evidence, workaround, acceptance criteria and limits. No milestone/project established.
+Changes remain local outside PR #27; pre-commit skipped by request.
+
+Full check:all passed after correcting one prose-lint word: 86 tests, 100% coverage, 3,168 pages, 385,658 internal links (123,562 with anchors), zero broken links. The 42 existing translation freshness warnings remain; git diff --check passed.
+
+
+## Time-and-intervals concept validation — 2026-09-22
+
+Reviewed `concepts/time-and-intervals.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: `cmd.php` due-row query,
+countdown update and SQL insertion timestamp, `lib/api_poller.php` process
+leveling and short-step warning, `poller.php` field alignment, `lib/poller.php`
+output grouping and epoch conversion, `lib/rrd.php` field heartbeat at creation,
+and `lib/boost.php` past-update filtering. Checked RRDtool's current creation
+and update references.
+
+Corrected unconditional every-cycle/every-other-cycle wording and documented
+mode-dependent countdown resets and leveling limits. Clarified heartbeat's
+field source, SQL-generated timestamps, database versus collector clock effects,
+RRDtool normalization, multi-field assembly, backlog ordering and last-update
+limits, and the PHP collector's overrun check. GitHub Pages navigation links
+point to the poller-cache and high-volume-writes concepts; the external update
+reference points to upstream RRDtool. No live collector, clock-skew, RRD
+migration or backlog failure was run; no new application defect was inferred.
+
+Filed website [#42](https://github.com/kadupulhq/website/issues/42), verified
+with native Bug type, `bug`/`documentation` labels and assignee
+`somethingwithproof`. It includes component, severity, affected revision,
+environment, reproduction, expected/actual behavior, evidence, workaround,
+verification and limits. No milestone/project was established. The application
+worktree is unchanged. Documentation changes remain local outside PR #27;
+pre-commit was skipped by request.
+
+Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages, 385,702 internal
+links (123,562 anchors), zero broken. The 42 existing translation freshness
+warnings remain; `git diff --check` passed.
+
+
+## Logging reference validation — 2026-09-22
+
+Reviewed `reference/logging.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: `lib/functions.php`
+`cacti_log()`, selective logging and viewer tail/filter functions,
+`poller_maintenance.php` rotation and cleanup, `poller.php` collector redirection
+and retained output handling, and logging settings in `include/global_settings.php`.
+
+Corrected the destination/verbosity ordering, selective-debug scope,
+retention-by-age semantics, 30-day frequency, conditional stderr redirection,
+viewer scan behavior, and failed/deferred poller-output retention. Replaced
+unconditional missing-value and Spine-silence claims with diagnostic checks.
+
+An isolated PHP 8.4.25 probe invoked the unchanged
+`logrotate_file_clean()` function with logging/count helpers stubbed. With
+`cacti.log` active, cleanup deleted a separate writable
+`backup-cacti.log-20200101` in the same temporary directory. Probe source:
+`/tmp/kadupul-log-clean-probe.php`; output: `UNRELATED_FILE_DELETED`. The
+probe removed the temporary files. No full scheduled maintenance or production
+log rotation was run. Application code remains unchanged. The logging reference
+links the reproduced application issue and warns about dated lookalike files.
+
+Filed application [#280](https://github.com/kadupulhq/kadupul/issues/280) for
+cleanup of unrelated dated files and website
+[#43](https://github.com/kadupulhq/website/issues/43) for inaccurate logging
+guidance. Both have verified native Bug type, `bug` plus `php` or
+`documentation` labels, assignee `somethingwithproof`, component, severity,
+affected revision, environment, reproduction, expected/actual behavior,
+evidence, workaround, acceptance criteria and limits. No milestone/project was
+established. Documentation changes remain local outside PR #27; pre-commit was
+skipped by request.
+
+Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages, 385,702 internal
+links (123,562 anchors), zero broken. After the final rotation note, prose,
+build and link checks passed again with the same page/link counts. The 42
+existing translation freshness warnings remain; `git diff --check` passed.
+
+
+## Configuration reference validation — 2026-09-22
+
+Reviewed `reference/configuration.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: `include/config.php.dist`
+bootstrap variables and installer PHP allowlist, `include/global.php` local/remote
+database connection calls, `include/global_settings.php` tabs and poller options,
+`poller.php` remote/queue handling, and Symfony `APP_SECRET` configuration in
+`config/packages/framework.yaml`.
+
+Corrected the exhaustive file/database split: Symfony environment and file-backed
+secrets also participate in configuration. Added the installer probe allowlist,
+explained the remote-main retry argument uses `$database_retries` rather than
+`$rdatabase_retries`, and marked `poller_refresh_output_table` as a legacy
+form-only option with no current runtime reader. Clarified that launcher/poller
+intervals can differ when the launcher contains an integer number of passes.
+Navigation links point to the GitHub Pages installation and time concepts.
+
+Filed application [#281](https://github.com/kadupulhq/kadupul/issues/281)
+for the ignored remote retry value and
+[#282](https://github.com/kadupulhq/kadupul/issues/282) for the inert,
+misleading poller-output refresh setting. Filed website
+[#44](https://github.com/kadupulhq/website/issues/44) for the documentation
+claims. All three have verified native Bug type, `bug` plus `php` or
+`documentation` labels, assignee `somethingwithproof`, component, severity,
+revision, environment, reproduction, expected/actual behavior, evidence,
+workaround, acceptance criteria and limits. No milestone/project was established.
+This was a source audit: no remote outage, installer probe, queue refresh or live
+setting change was run. Application code remains unchanged; documentation changes
+remain local outside PR #27; pre-commit skipped by request.
+
+Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages and 385,746
+internal links (123,562 anchors), zero broken. After adding the issue links,
+prose, build and link checks passed again with the same counts. The 42 existing
+translation freshness warnings remain; `git diff --check` passed.
+
+
+## Data-input-methods reference validation — 2026-09-22
+
+Reviewed `reference/data-input-methods.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: input types and fields,
+`lib/functions.php` command substitution and output validation, `lib/poller.php`
+script execution and RRD field mapping, `cmd.php` collection dispatch, and
+`lib/utility.php` input controls. Reused prior same-revision collection-script
+and poller-cache evidence. No live collector, script-server request or RRD update
+was run.
+
+Corrected the one-line output statement for the ordinary `shell_exec()` fallback,
+explained that multi-value fields need `name:value` even though the initial
+validator recognizes another delimiter, and made input-policy guidance depend
+on inspecting commands and resulting cache rows. Added the application issue
+link for the delimiter mismatch. The page does not claim that a configured
+policy file alone proves every method was vetted. The application code remains
+unchanged.
+
+Filed application [#284](https://github.com/kadupulhq/kadupul/issues/284)
+for the accepted-but-unmapped output delimiter and website
+[#45](https://github.com/kadupulhq/website/issues/45) for inaccurate
+documentation. Both have verified native Bug type, `bug` plus `php` or
+`documentation` labels, assignee `somethingwithproof`, component, severity,
+revision, environment, reproduction, expected/actual behavior, evidence,
+workaround, acceptance criteria and limits. No milestone/project was established.
+Potential security implications discovered in the same input-control review
+are excluded from public issue details pending private triage under the
+application security policy. Documentation changes remain local outside PR #27;
+pre-commit skipped by request.
+
+Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages, 385,746 internal
+links (123,562 anchors), zero broken. After adding the application link, prose,
+build and link checks passed again with the same counts. The 42 existing
+translation freshness warnings remain; `git diff --check` passed.
+
+
+## Graph-items reference validation — 2026-09-22
+
+Reviewed `reference/graph-items.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: graph-item type maps in
+`include/global_arrays.php`, editor shorthand handling, `lib/rrd.php` CF choice,
+CDEF substitution, VDEF creation and export selection, and RRDtool graph/XPORT
+primary references. Reused prior same-revision VDEF fixture and application
+[#273](https://github.com/kadupulhq/kadupul/issues/273); no new HTTP export or
+database graph edit was performed.
+
+Corrected the claim that CSV/XPORT skips VDEF-backed drawing items: the current
+export branch selects AREA, fixed LINE and legacy STACK types without a VDEF
+guard, so a scalar can reach `XPORT` and fail. Clarified generic GPRINT's
+selection of a related drawing item's CF, RRD-step substitution for
+`CURRENT_DATA_SOURCE_PI` and similar placeholders, UI shorthand scope, and
+source versus file duplicate semantics. Linked application #273 and the GitHub
+Pages graph concept; upstream RRDtool graph and XPORT references were checked.
+
+Filed website [#46](https://github.com/kadupulhq/website/issues/46), verified
+with native Bug type, `bug`/`documentation` labels and assignee
+`somethingwithproof`. The report includes component, severity, revisions,
+environment, reproduction, expected/actual behavior, evidence, workaround,
+acceptance criteria and limits. No new application defect was inferred and no
+milestone/project was established. Application worktree unchanged; documentation
+changes remain local outside PR #27; pre-commit skipped by request.
+
+Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages, 385,768 internal
+links (123,562 anchors), zero broken. The 42 existing translation freshness
+warnings remain; `git diff --check` passed.
+
+
+## RRDtool-integration reference validation — 2026-09-22
+
+Reviewed `reference/rrdtool-integration.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: `lib/rrd.php` local
+execution, `rrd_init()` and acknowledged command responses, update/fetch
+paths, `lib/rrd_maintenance.php` lease coordination, `lib/poller.php` retained
+output and `lib/boost.php` on-demand fetch behavior. Reused earlier same-revision
+RRD maintenance and Boost source evidence; no new live writer failure, queue
+replay, RRDCACHED test or proxy deployment was run.
+
+Corrected legacy write-only versus acknowledged pipe behavior, local boolean
+results, maintenance ownership, response timeout/error handling and failed
+sample retention. Qualified missing-binary, fetch-flush and locale-formatted
+numeric claims, and noted the tuning guard against `RRDCACHED_ADDRESS`. GitHub
+Pages links point to recovery and high-volume-writes guidance. No new
+application defect was inferred; application code remains unchanged.
+
+Filed website [#47](https://github.com/kadupulhq/website/issues/47), verified
+with native Bug type, `bug`/`documentation` labels and assignee
+`somethingwithproof`. The report includes component, severity, revisions,
+environment, reproduction, expected/actual behavior, evidence, workaround,
+acceptance criteria and limits. No milestone/project was established. Changes
+remain local outside PR #27; pre-commit skipped by request.
+
+Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages, 385,812 internal
+links (123,562 anchors), zero broken. The 42 existing translation freshness
+warnings remain; `git diff --check` passed.

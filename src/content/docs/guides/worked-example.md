@@ -18,8 +18,9 @@ from nothing to a graph and names the decision at each step, what was chosen, an
 what the alternative would have broken.
 
 The device is `sw-ac-03.example.net`, a 48-port access switch with four uplinks.
-The goal is traffic on the four uplinks, correct at a week's zoom, with history
-that survives a line card being reseated.
+The goal is traffic on the four uplinks, correct at a week's zoom, with continuity
+checked after a line card is reseated. Device behavior must be verified; this is an
+illustrative procedure, not a recorded live-switch test.
 
 Follow the links rather than expecting this page to re-explain them. It is the
 spine, not the body.
@@ -32,22 +33,23 @@ spine, not the body.
 | 2 | SNMP version | v2c | v1 has no 64-bit counters |
 | 3 | Availability method | SNMP uptime | ICMP ping needs a raw socket |
 | 4 | Device template | Generic SNMP, interface query attached | Vendor template is fine; the query is the same |
-| 5 | Retention profile | 5 Minute Collection | 1 Minute costs about seven times the disk |
+| 5 | Retention profile | 5 Minute Collection | Compare actual profile retention and collection cost |
 | 6 | When to run the data query | Before creating anything | You build on an index you never looked at |
 | 7 | Counter width | 64-bit | A gigabit port wraps a 32-bit counter in 34 seconds |
 | 8 | Index field | `ifName` | `ifIndex` moves when the chassis renumbers |
-| 9 | Reindex method | Uptime | None misses reboots, Verify All costs a walk per cycle |
+| 9 | Reindex method | Uptime | None misses reboots, Verify All adds checks; measure the cost |
 | 10 | How many ports first | Four | Forty-eight is unreadable when something is wrong |
-| 11 | How long to wait | Two intervals | One interval cannot tell you anything |
+| 11 | How long to wait | Two intervals | Rates require successive valid samples and completed buckets |
 
 The rest of the page is those eleven in order, with the commands.
 
 ## 1. Prove the device answers, from the right machine
 
-Run this on the host the poller runs on. Not your workstation.
+Run this on the poller host. Replace the example hostname and community with your
+configured values; `public` is illustrative.
 
 ```bash
-snmpget -v2c -c public sw-ac-03.example.net sysDescr.0
+snmpget -v2c -c public sw-ac-03.example.net .1.3.6.1.2.1.1.1.0
 ```
 
 **Why from there.** The poller host and your desk are usually on different paths
@@ -62,18 +64,18 @@ Then check the table you actually want, because a device can answer `sysDescr` a
 still refuse the interface table.
 
 ```bash
-snmpwalk -v2c -c public sw-ac-03.example.net ifName
-snmpwalk -v2c -c public sw-ac-03.example.net ifHCInOctets
+snmpwalk -v2c -c public sw-ac-03.example.net .1.3.6.1.2.1.31.1.1.1.1
+snmpwalk -v2c -c public sw-ac-03.example.net .1.3.6.1.2.1.31.1.1.1.6
+snmpwalk -v2c -c public sw-ac-03.example.net .1.3.6.1.2.1.31.1.1.1.10
 ```
 
-Two walks, not one. The first proves the interface table is visible. The second
-proves the counters you are about to graph are populated, which is a separate
-question and one that quietly fails later if you skip it.
+These walks check `ifName`, `ifHCInOctets` and `ifHCOutOctets`. Confirm the same
+uplink indexes are present in all three. One accessible column does not establish
+coverage of every interface or both counter directions.
 
-**What an empty second walk means.** The high capacity counters are optional in the
-MIB and some agents leave them unimplemented. Build on them anyway and every sample
-is recorded as unknown. The graph is then a flat empty band, not an error, and
-nothing in the interface says why. See
+**If a counter walk is empty.** Check the exact SNMP response, access restrictions
+and agent support. Do not conclude from an empty walk alone that the hardware lacks
+high-capacity counters, or create graphs for objects you have not verified. See
 [Monitor a switch](/guides/monitor-a-switch/).
 
 ## 2. SNMP v2c, not v1
@@ -115,9 +117,9 @@ Take a vendor template if one matches the hardware. Take the generic SNMP one if
 none does, and attach the interface data query to it. Port discovery comes from the
 same place either way.
 
-**What picking wrong costs.** Nothing permanent. No data source exists yet, so you
-change the template and reapply. This is the one decision on this page you can
-revisit for free, which is worth knowing so you do not stall on it.
+**Before creating graphs.** Review the selected template and associated queries.
+Changing a template does not prove obsolete associations were removed; check the
+resulting device configuration before proceeding.
 
 **What picking right does not do.** It does not create a graph. People stop here,
 see an empty device, and conclude the template failed. [Templates](/concepts/templates/)
@@ -126,34 +128,46 @@ sets out what a template does and does not propagate.
 ## 5. Retention: the 5 Minute profile
 
 The profile decides the step, the heartbeat, the consolidation functions kept, and
-the archive sizes. It is read once, at file creation, and then fixed for the life of
-that file.
+the archive sizes. New files use these settings at creation. Existing RRDs do not
+automatically follow every profile edit; inspect the actual file and use a reviewed
+propagation, tuning or resize procedure when changing it.
 
-The 5 Minute Collection profile is the default and the right answer for switch
-traffic. It keeps all four consolidation functions, which means a peak you can still
-see at a month's zoom.
+The shipped 5 Minute Collection profile is the default used in this example. It
+keeps four consolidation functions, including MAX. A MAX series can preserve peaks
+present in collected samples at retained resolutions; it cannot recover bursts
+missed between polls.
 
 **What the 1 Minute profile would have cost.** Roughly seven times the disk per data
-source, and five times the poller work, for a resolution question that uplink traffic
-rarely asks. The numbers are on
+source for the shipped profiles, whose retention spans also differ. Polling five
+times as often increases collection frequency, but total runtime cost depends on
+the collector and device. Choose based on the resolution you actually need. The numbers are on
 [Manage data retention](/guides/manage-data-retention/), and the whole-system version
 is [Capacity planning](/guides/capacity-planning/).
 
-**Why it cannot wait.** There is no path that rewrites an existing file to match a
-changed profile. Decide now or rebuild later.
+**Why to plan now.** RRD changes require deliberate handling, and finer historical
+samples cannot be recreated later. Some structural changes can preserve existing
+history; see the retention and recovery procedures before recreating files.
 
 ## 6. Run the data query and read what came back
 
 A switch is the case data queries exist for. You do not know how many ports there
 are, the count changes, and each port needs its own data source.
 
-Run the interface query once against the device. It walks the interface table and
-returns one row per port with the fields it collected.
+Refresh the interface query through the device's query controls, or explicitly
+reindex the test device. Then inspect its cached fields and values. The list
+commands below read `host_snmp_cache`; they do not themselves perform a fresh walk.
+An interface row is not necessarily a physical port.
 
 ```bash
 php cli/add_graphs.php --list-snmp-queries
-php cli/add_graphs.php --list-snmp-fields --host-id=42
-php cli/add_graphs.php --list-snmp-values --host-id=42 --snmp-field=ifName
+# Example IDs only: select your device and its interface query from the lists.
+host_id=42
+query_id=1
+php cli/poller_reindex_hosts.php --id="$host_id"
+php cli/add_graphs.php --list-snmp-fields --host-id="$host_id" --snmp-query-id="$query_id"
+php cli/add_graphs.php --list-snmp-values --host-id="$host_id" --snmp-query-id="$query_id" --snmp-field=ifName
+php cli/add_graphs.php --list-query-types --snmp-query-id="$query_id"
+php cli/add_graphs.php --list-graph-templates
 ```
 
 **Read the result before creating anything.** That table is the evidence for
@@ -170,8 +184,9 @@ Check three things in it:
 
 The third one is the trap. The RRD maximum for a traffic data source is taken from
 the speed discovered at the moment the file is created, and written into the file.
-A port discovered while negotiated at 100 Mbit keeps a 100 Mbit ceiling after it
-comes up at gigabit, and RRDtool records everything above the ceiling as unknown.
+If the stored bound remains based on an earlier 100-Mbit speed after a change to
+gigabit, valid higher rates can become unknown. Verify the actual maximum and
+update it through a supported procedure when needed.
 The graph then gaps at high load and looks healthy when quiet.
 
 ## 7. The 64-bit counters
@@ -201,8 +216,9 @@ The interface query declares a preference order, `ifName`, then `ifDescr`, then
 `ifHwAddr`, then `ifIndex`, and takes the first field that is populated on every
 discovered port and unique across them.
 
-On a switch, `ifName` almost always wins, and that is what you want: it survives a
-reboot, a reseat and a renumbering.
+Prefer a field whose identity remains stable on this device. `ifName` can survive
+an index renumbering, but names may change or be reused; test representative changes
+and review the chosen field rather than assuming continuity.
 
 **What falling through to `ifIndex` costs.** SNMP interface indexes are not stable.
 A card reseat, a reboot or a firmware change renumbers the table. Your port history
@@ -224,17 +240,18 @@ argument in full.
 The reindex method decides when the index fields are read again. Set per device, per
 data query.
 
-Uptime triggers on the device's SNMP uptime going backwards, which is the event that
-renumbers indexes on a switch. It costs one comparison per cycle.
+Uptime-based reindexing triggers on a detected decrease in SNMP uptime. Some index
+changes occur without that decrease, so this method does not cover every reseat or
+configuration change. Verification and refresh have collection costs to measure.
 
 **What None would have cost.** The index is never re-read. A reboot that renumbers
 the table leaves every data source pointing at a stale position until somebody
 notices and reindexes by hand.
 
-**What Verify All would have cost.** A full index walk of every queried device on
-every cycle. It is the right answer for a handful of devices that misbehave and the
-wrong one for a fleet, because it multiplies your poll window by the number of
-devices you applied it to.
+**Verify All Fields.** This adds checks for the query's verification fields.
+Measure its work for the actual query and collector; it is not a universal full
+walk or a fixed multiplier of the poll window. Unchanged numeric identities alone
+cannot detect a physical port being replaced.
 
 Index Count sits between them. It catches a card added or removed without a reboot,
 and misses a swap that leaves the count unchanged.
@@ -254,11 +271,20 @@ collector's work list. Nothing is collected until that entry exists.
 The list options above give you the ids; pass them back in.
 
 ```bash
-php cli/add_graphs.php --graph-type=ds --host-id=42 \
-  --graph-template-id=<id> --snmp-query-id=<id> --snmp-query-type-id=<id> \
-  --snmp-field=ifName --snmp-value=Gi1/0/49 \
-  --reindex-method=1
+# Set these from the listings above; they are installation-specific IDs.
+: "${host_id:?Set the device ID}"
+: "${query_id:?Set the interface query ID}"
+: "${graph_template_id:?Set the selected 64-bit graph template ID}"
+: "${query_type_id:?Set the matching query graph type ID}"
+php cli/add_graphs.php --graph-type=ds --host-id="$host_id" \
+  --graph-template-id="$graph_template_id" --snmp-query-id="$query_id" \
+  --snmp-query-type-id="$query_type_id" --snmp-field=ifName \
+  --snmp-value=Gi1/0/49 --reindex-method=1
 ```
+
+Repeat for each verified uplink name. Check the per-device query's reindex setting
+explicitly: `--reindex-method` initializes a new association but does not change
+an existing one in this CLI path.
 
 **Why four.** You are proving the path works. Four rows in a log are readable and
 forty-eight are not, and if three of four work you have learned something specific
@@ -268,27 +294,22 @@ covers doing this at fleet scale.
 
 ## 11. Wait two poller intervals
 
-Two, not one.
-
-A counter data source has nothing to report on its first sample, because a rate needs
-two readings. The first interval producing unknown is correct behaviour. The second
-one producing unknown is a fault.
-
-A graph drawn before any data exists is empty, and an empty graph looks identical to
-a graph of a device that is down. The second interval is what removes that ambiguity,
-and it is the reason this step is on the page at all.
+Start with at least two successful counter readings spanning completed RRD buckets.
+Rate calculation needs successive values, but poll timing, heartbeat, step alignment
+and graph consolidation affect when data becomes visible. A second unknown sample
+alone does not diagnose a fault. Continue with the checks below.
 
 ## 12. Verify, in this order
 
-Each check rules out everything after it.
+Use these checks together; no single check proves the entire collection path.
 
 **The poller ran.** One statistics line per completed run, in the application log. No
-line means nothing is scheduling the poller, which is an install problem and not a
-device problem. See [Logging](/reference/logging/).
+line means you should inspect scheduling, logging configuration, permissions and
+errors; it does not by itself prove the scheduler never ran. See [Logging](/reference/logging/).
 
-**The file exists.** The file is created on the first successful update, not when the
-data source is created. A file that is absent means no value has ever been written,
-which separates "never worked" from "stopped working" in one check.
+**The file exists.** Creation and update are separate operations. A present RRD can
+contain only unknown values; a missing file can reflect path, permission, deletion
+or creation failures. Neither state establishes its full collection history.
 [File layout](/reference/file-layout/) has where it lives.
 
 **The file is current.**
@@ -297,7 +318,8 @@ which separates "never worked" from "stopped working" in one check.
 rrdtool last /path/to/rra/sw_ac_03_traffic_in_117.rrd
 ```
 
-The timestamp should be within one interval of now.
+Compare the timestamp with the configured cadence, clock and any deferred-write
+queue. Recency alone does not prove that samples are numeric.
 
 **The file has the shape you asked for.**
 
@@ -311,14 +333,17 @@ maximum should reflect the port speed you saw in decision 6. A ceiling derived f
 100 Mbit on a port now running at gigabit is decision 6's trap, caught here before
 it costs you anything.
 
-**The values are real numbers.** Two consecutive numbers, not `U`. If they are `U`,
-work [Troubleshoot missing data](/guides/troubleshoot-missing-data/) from step 4,
+**The values are real numbers.** Inspect an appropriate recent range using
+`rrdtool fetch` with the intended consolidation function; unknown values may appear
+as `NaN`. `rrdtool info` describes structure and is not a sample-history check. If
+values remain unknown, work [Troubleshoot missing data](/guides/troubleshoot-missing-data/) from step 4,
 because at this point the device answers and the poller runs.
 
 ## 13. Read the graph correctly
 
-Open the four hour window first. At four hours you are reading the finest archive,
-one point per stored sample, with no consolidation in the way.
+Open a recent window first. Archive choice depends on the requested range, graph
+width, step and available RRAs; a four-hour view does not guarantee one rendered
+point per original sample.
 
 Three things about it are normal:
 
@@ -329,9 +354,9 @@ Three things about it are normal:
 | The first sample is missing | A rate needs two readings |
 
 Then widen to a week, and expect the peak to drop. The week view reads a coarser
-archive where your peak was averaged with its quiet neighbours. Nothing was lost. A
-link that saturates for four minutes an hour reads as about a tenth of capacity in an
-hourly bucket, and the traffic was still saturated.
+archive where an AVERAGE series smooths peaks. Four minutes at full capacity and
+56 minutes idle averages about 6.7% over an hour. Use the appropriate retained MAX
+series to examine sampled peaks; averages alone do not preserve their shape.
 
 Three readings to avoid:
 
@@ -340,8 +365,9 @@ maximum. That works because decision 5 kept all four consolidation functions. Ha
 dropped `MAX` to save disk, the peaks were never written down and no graph could
 recover them.
 
-**A gap is not a zero.** A gap means no value arrived. A line at the axis means the
-device reported no traffic. Kadupul keeps those distinguishable on purpose.
+**A gap is not a zero.** Missing samples, rejected values, insufficient coverage
+and graph expressions can all create gaps. A numeric zero is different, but should
+still be interpreted in the context of collection and graph transformations.
 
 **Two graphs scale independently.** A small bump and a large one look identical when
 each graph scales to its own data. Check the axis, and check its base, because a
@@ -353,7 +379,8 @@ numbers make different pictures.
 
 ## What this example deliberately skipped
 
-Each of these is a real decision. None of them belongs in a first device.
+Each of these is a real decision. Some can follow the pilot, while access controls should be established before
+other users or exposed services depend on it.
 
 | Skipped | When you need it |
 |---|---|
@@ -366,8 +393,9 @@ Each of these is a real decision. None of them belongs in a first device.
 
 ## The same eleven decisions at 200 switches
 
-Nothing above changes. What changes is that you make each decision once, encode it,
-and apply it.
+Reuse the tested configuration where devices match, but repeat discovery and
+capacity checks for the fleet. Permissions and access policy belong in the pilot,
+not after other users begin using the installation.
 
 - Decisions 2, 3 and 4 become device template and discovery rule settings. See
   [Discover devices automatically](/guides/discover-devices-automatically/).
