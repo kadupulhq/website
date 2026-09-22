@@ -1,189 +1,242 @@
 ---
 title: File layout
-description: What lives in each Kadupul directory, which ones the poller writes to, which must never be served over HTTP, and which hold data worth backing up.
+description: What lives in the current hybrid application tree, which paths are writable, which must stay private, and what belongs in a backup.
 banner:
   content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
   order: 11
 ---
 
-The tree is inherited from Cacti 1.2.x. Paths below are relative to the install
-root, which the code calls `$config['base_path']`.
+Paths on this page are relative to the install root, which legacy code calls
+`$config['base_path']`. Current `main` is a hybrid tree: most pages and polling
+commands still use the inherited application layout, while migrated routes use
+Symfony code under `src/`, `config/`, `templates/`, `public/` and `bin/`.
 
-## Top level directories
+Do not infer a safe document root from directory names alone. During the
+migration, legacy entry points in the repository root must remain reachable.
+`public/index.php` is the Symfony front controller, but `public/` is not yet a
+complete replacement document root for the whole installation.
 
-| Directory | Contents |
+## Top-level directories
+
+| Directory | Contents and role |
 |---|---|
-| `cache/` | Working files for boost, the MIB cache, HTMLPurifier, realtime graphs and spike kill. Five subdirectories. |
-| `cli/` | 45 command line scripts plus an `index.php` that redirects to the site root. |
-| `contrib/` | Third party contributions. Not part of the running system. |
-| `docs/` | `audit_schema.sql`, `security-headers.md`, and a security policy note. |
-| `formats/` | Four `.format` files used for graph formatting presets. |
-| `images/` | Static images served to the browser. |
-| `include/` | Configuration, global arrays, constants, form definitions, settings, session handling, page headers, themes, fonts, JavaScript and the Composer vendor tree. |
-| `install/` | The installer, its templates, and one upgrade script per schema version. |
-| `lib/` | The libraries. 57 of them, plus an `index.php`. Everything substantive lives here. |
-| `locales/` | Translation catalogues and the scripts that build them. |
-| `log/` | `cacti.log` and `cacti_stderr.log`. |
-| `mibs/` | The three Kadupul MIB files: `CACTI-MIB`, `CACTI-BOOST-MIB`, `CACTI-SNMPAGENT-MIB`. |
-| `plugins/` | Installed plugins, one directory each. Ships empty apart from `index.php`. |
-| `resource/` | Data query XML definitions. Three subdirectories: `snmp_queries`, `script_queries`, `script_server`. |
-| `rra/` | RRD files. Ships with only an `.htaccess`. |
-| `scripts/` | Data collection scripts, 31 of them. Perl and PHP. |
-| `service/` | A systemd unit for the Spine daemon and a README. |
-| `tests/` | The test suite. Not installed. |
+| `assets/` | Source branding artwork and generation notes. It is not the legacy browser asset directory. |
+| `bin/` | Symfony console entry point and compatibility CLI helpers. Never expose it over HTTP. |
+| `cache/` | Runtime image, MIB, realtime-graph and spike-removal state. See [Writable and runtime paths](#writable-and-runtime-paths). |
+| `cli/` | Legacy administration and maintenance commands. |
+| `config/` | Symfony bootstrap, services, routes, package configuration and translation catalogues. |
+| `contrib/` | Third-party contributions that are not part of the normal runtime. |
+| `docker/` | Container entry point, cron and PHP/FPM configuration used by the project environment. |
+| `docs/` | Application-repository architecture, migration, security and testing notes. These are separate from this GitHub Pages site. |
+| `formats/` | Graph formatting presets. |
+| `images/` | Static images used by legacy browser pages. |
+| `include/` | Legacy configuration and bootstrap files, global definitions, browser assets, themes and the Composer vendor directory. |
+| `install/` | Web installer, templates and schema upgrade scripts. |
+| `lib/` | Legacy application, poller, storage and integration libraries. |
+| `LICENSES/` | License texts for the source distribution. |
+| `locales/` | Legacy gettext catalogues and their build tooling. |
+| `log/` | Default application and poller-error logs. Configured log paths may point elsewhere. |
+| `mibs/` | The `CACTI-MIB`, `CACTI-BOOST-MIB` and `CACTI-SNMPAGENT-MIB` sources. |
+| `plugins/` | Installed legacy plugins, one directory per plugin. The repository ships only its guard file. |
+| `public/` | Symfony front controller. It is only one entry path while legacy routing remains. |
+| `resource/` | SNMP query, script-query and script-server definitions. |
+| `rra/` | Default local RRD storage. External proxy storage and custom data-source paths can put data elsewhere. |
+| `scripts/` | Legacy data-collection scripts. |
+| `service/` | Service unit and operational notes for the Spine daemon. |
+| `src/` | Namespaced Symfony/domain/application/infrastructure PHP code. |
+| `templates/` | Twig templates for migrated Symfony pages. |
+| `tests/` | Automated tests and validation harnesses. Do not deploy them as web content. |
+| `tools/` | Build, dependency, migration, security and offline-verification tools. |
+| `var/` | Ignored Symfony runtime state such as environment caches and logs. |
 
-Web entry points, the poller, and `script_server.php` sit in the root itself.
+Legacy web entry points, pollers and `script_server.php` remain in the repository
+root. See [Architecture](/website/concepts/architecture/) for the runtime
+boundaries; a deployment must account for both parts of the tree.
 
-## Directory roles in detail
-
-### `include/`
+## Important `include/` paths
 
 | Path | Role |
 |---|---|
-| `include/config.php` | Database credentials, `$url_path`, and optional path overrides. Created by the installer from `config.php.dist`. Not in version control. |
-| `include/config.php.dist` | Template for the above. |
-| `include/global.php` | Builds `$config`, loads the libraries, starts the session. |
-| `include/global_constants.php` | Every `define()`. |
-| `include/global_arrays.php` | Enumerations: realms, input types, RRDtool versions, timespans. |
-| `include/global_settings.php` | Every setting, with its type, default and description. |
-| `include/global_form.php` | Form field definitions for the edit pages. |
-| `include/vendor/` | Composer packages. Ignored by git and installed from `composer.lock`. |
-| `include/themes/` | One directory per theme. Each may carry an `rrdtheme.php`. |
+| `include/config.php` | Installation-specific database, URL and optional path configuration. The installer creates it from `config.php.dist`; git ignores it. |
+| `include/config.php.dist` | Versioned configuration template. |
+| `include/global.php` | Legacy bootstrap that constructs `$config` and loads the procedural runtime. Migrated Symfony requests do not use it. |
+| `include/global_constants.php` | Legacy constants. |
+| `include/global_arrays.php` | Legacy enumerations and option maps. |
+| `include/global_settings.php` | Setting definitions, defaults and form metadata; a definition does not by itself prove a runtime consumer. |
+| `include/global_form.php` | Legacy edit-form field definitions. |
+| `include/vendor/` | Composer dependencies, installed from `composer.lock` into a non-default vendor path. |
+| `include/themes/` | Shipped and locally installed legacy themes. |
 
-### `$config` path variables
+## `$config` path variables
 
-`include/global.php` derives these. Three can be overridden from
-`include/config.php`.
+`include/global.php` derives these values for the legacy runtime. Symfony code
+uses its own kernel paths and trusted adapters where it has been migrated.
 
-| Variable | Default | Overridable |
+| Variable | Default | Configuration |
 |---|---|---|
-| `base_path` | The install root, derived from `include/`'s location | no |
-| `library_path` | `<base_path>/lib` | no |
-| `include_path` | `<base_path>/include` | no |
-| `rra_path` | `<base_path>/rra` | no |
-| `scripts_path` | `<base_path>/scripts` | yes, `$scripts_path` |
-| `resource_path` | `<base_path>/resource` | yes, `$resource_path` |
-| `input_whitelist` | unset | yes, `$input_whitelist` |
-| `url_path` | `$url_path` from config, else empty | yes, `$url_path` |
+| `base_path` | Install root derived from `include/` | Derived, not configured |
+| `library_path` | `<base_path>/lib` | Derived |
+| `include_path` | `<base_path>/include` | Derived |
+| `rra_path` | `<base_path>/rra` | Derived; individual data sources and proxy storage can differ |
+| `scripts_path` | `<base_path>/scripts` | `$scripts_path` in `include/config.php` |
+| `resource_path` | `<base_path>/resource` | `$resource_path` in `include/config.php` |
+| `input_whitelist` | Unset | `$input_whitelist` in `include/config.php` |
+| `path_csrf_secret` | `include/vendor/csrf/csrf-secret.php` | `$path_csrf_secret` may select a file or directory elsewhere |
+| `url_path` | `$url_path`, falling back to `/` | `$url_path` in `include/config.php` |
 
-`$scripts_path` and `$resource_path` exist so a remote data collector can hold
-its scripts and query definitions somewhere other than under the web root. The
-script server treats both `base_path` and `scripts_path` as allowed roots when it
-validates an include file.
+Remote collectors can place scripts and query definitions outside the install
+root. Treat every configured external path as part of the installation's
+permission, web-exposure and backup review.
 
-## What the poller writes
+## Writable and runtime paths
 
-| Path | Written by | Contents |
-|---|---|---|
-| `rra/` | The RRD update path in `lib/rrd.php` | RRD files, one per data source. |
-| `log/cacti.log` | `cacti_log()` | The application log. |
-| `log/cacti_stderr.log` | Backgrounded processes | Standard error from spawned children. |
-| `cache/boost/` | boost | Cached graph images and staged RRD updates. |
-| `cache/mibcache/` | `snmpagent_mibcache.php` | `mibcache.tmp` and `mibcache.lock`. |
-| `cache/realtime/` | The realtime graph path | Short lived per-session RRD and image files. |
-| `cache/spikekill/` | spike kill | Working files for spike removal. |
-| `cache/purifier/` | HTMLPurifier, via `lib/html.php` | Its serializer cache. |
+The installer always checks the system temporary directory, `log/`, and four
+cache directories:
 
-`lib/installer.php` checks these for writability on every install and on every
-run of a remote data collector: the system temp directory, `log/`,
-`cache/boost/`, `cache/mibcache/`, `cache/purifier/`, `cache/realtime/` and
-`cache/spikekill/`. It checks `resource/snmp_queries/`,
-`resource/script_server/`, `resource/script_queries/` and `scripts/` at install
-time, and on every run when the install is a remote data collector.
+| Default path | Runtime use |
+|---|---|
+| `cache/boost/` | Optional rendered-graph image cache. Deferred RRD samples themselves are held in database queue tables, not this directory. |
+| `cache/mibcache/` | SNMP-agent MIB cache and lock state. |
+| `cache/realtime/` | Short-lived per-session realtime RRD and PNG files. |
+| `cache/spikekill/` | Spike-removal working files and, depending on settings, backups of original RRD files. |
+| `log/` | Default application and poller-error logs. The `path_cactilog` and `path_stderrlog` settings can move the files. |
+| `rra/` | Default local RRD storage. Installer validation also accounts for the selected local or proxy storage configuration. |
 
-### RRD file paths
+There is no `cache/purifier/` in the audited tree. Package-import preview creates
+HTMLPurifier with its definition cache disabled.
 
-A data source's path is stored in `data_template_data.data_source_path` using the
-`<path_rra>` token, which expands to `$config['rra_path']`. With the
-`extended_paths` setting off, files land directly in `rra/`. With it on,
-`extended_paths_type` picks one of four shapes:
+For a primary installation, `resource/snmp_queries/`,
+`resource/script_server/`, `resource/script_queries/`, `scripts/` and the CSRF
+secret destination are install-time checks. For a remote-poller installation,
+the installer classifies those paths as continuously writable so synchronization
+can update them. Do not grant broad write access to the entire application tree.
 
-```
+Configured paths can replace several defaults. Review the effective settings,
+service account and filesystem mounts on the actual host instead of copying a
+permission list from this page.
+
+## RRD file paths
+
+A data source path is stored in `data_template_data.data_source_path`. The
+`<path_rra>` token expands to `$config['rra_path']`. With structured paths off,
+new default names include the cleaned host description, data-source name and
+local data ID directly under `rra/`.
+
+With structured paths on, `extended_paths_type` selects one of these shapes:
+
+```text
 <path_rra>/<host_id>/<local_data_id>.rrd
 <path_rra>/<host_id>/<data_query_id>/<local_data_id>.rrd
 <path_rra>/<hash_id>/<host_id>/<local_data_id>.rrd
 <path_rra>/<hash_id>/<host_id>/<data_query_id>/<local_data_id>.rrd
 ```
 
-`hash_id` is `host_id` modulo the `extended_paths_hashes` setting. Changing the
-setting does not move existing files; `cli/structure_rra_paths.php` does that.
+`hash_id` is `host_id` modulo `extended_paths_hashes`. A missing data-query ID is
+represented as zero when a new path is generated. Changing these settings does
+not by itself relocate existing files; run `cli/structure_rra_paths.php` with its
+explicit `--proceed` option after reviewing its plan and taking a backup.
 
-When the poller runs as root it chowns and chgrps new RRD files and new
-structured directories to the owner and group of `rra/` itself.
+When a local-storage poller running as root creates structured directories and
+RRD files, it attempts to copy ownership from `rra/`. At the audited revision,
+the directory group comparison reads the owner twice, so verify group ownership
+independently; see [application issue #287](https://github.com/kadupulhq/kadupul/issues/287).
 
-## Directories that must not be served
+## Paths that must stay private
 
-Eleven directories ship with an `.htaccess` that denies everything. Under Apache
-2.4 it is `Require all denied`; the file carries an `Order Allow,Deny` fallback
-for 2.2.
+The audited tree contains deny `.htaccess` files in these 17 directories:
 
-| Directory | Why |
-|---|---|
-| `cache/boost/` | Cached images and staged data. |
-| `cache/mibcache/` | MIB cache and lock file. |
-| `cache/purifier/` | Purifier serializer cache. |
-| `cache/realtime/` | Per-session graph output. |
-| `cache/spikekill/` | Spike kill working files. |
-| `cli/` | Command line scripts. |
-| `contrib/` | Unreviewed third party files. |
-| `log/` | Contains the application log. |
-| `mibs/` | MIB sources. |
-| `rra/` | Every RRD file on the system. |
-| `scripts/` | Collection scripts, several of which take arguments. |
+```text
+bin/
+cache/boost/
+cache/mibcache/
+cache/realtime/
+cache/spikekill/
+cli/
+config/
+contrib/
+log/
+mibs/
+rra/
+scripts/
+src/
+templates/
+tests/
+tools/
+var/
+```
 
-`log/.htaccess` adds two further blocks: a `<Files .htaccess>` deny, and a
-`<FilesMatch "\.(log)$">` deny.
+The older guard files include Apache 2.4 and 2.2 directives. The newer Symfony
+and tool guards use `Require all denied`. Nginx ignores all of them, and Apache
+also ignores them when overrides are disabled. Mirror the deny policy in the
+virtual-host configuration and verify it with HTTP requests.
 
-On a web server that ignores `.htaccess`, which includes nginx and any Apache
-configured with `AllowOverride None`, these files do nothing. Deny those paths in
-the server configuration instead.
+The list of `.htaccess` files is not a complete allowlist. For example,
+`docker/` and repository metadata do not carry these per-directory guards but
+must not be served. A redirecting or empty `index.php` only affects a directory
+request; it does not prevent a client from requesting a known file. Prefer an
+explicit server policy that exposes required legacy entry points and static
+assets while denying source, configuration, tests, tools, runtime data,
+dependency metadata and dotfiles.
 
-Directories without an `.htaccess` carry an `index.php` that either redirects to
-the site root or produces nothing, so a directory listing cannot be obtained.
-`rra/` has an `.htaccess` but no `index.php`.
-
-`.htaccess.dist` at the root is a different thing: an optional security header
-overlay, not an access denial. Renaming it to `.htaccess` makes Apache apply
-`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` and a narrow
-Content-Security-Policy to the static files that never reach PHP. PHP responses
-already emit the full header set from `CactiSecureHeaders::emitHeaders()`. A
-distribution that manages Apache centrally should put the same directives in its
-own config file rather than enable this one.
+Root `.htaccess.dist` is an optional security-header overlay. It adds headers to
+PHP and static responses when renamed to `.htaccess`; it does not implement the
+directory deny policy above. PHP responses also emit application security
+headers. Centrally managed Apache deployments should place equivalent directives
+in their virtual-host configuration.
 
 ## What to back up
 
-| Path | Why |
-|---|---|
-| The database | Every definition: devices, templates, graphs, trees, users, settings. |
-| `rra/` | All collected history. Nothing else holds it. |
-| `include/config.php` | Credentials and path overrides. Not in version control. |
-| `resource/` | Data query XML. Gitignored, so a source checkout will not restore customised files. |
-| `scripts/` | Collection scripts. Gitignored below the shipped set. |
-| `plugins/` | Installed plugins and their own data. |
-| `include/themes/` | Any theme directory beyond the eleven shipped ones. |
-| The input whitelist file | Wherever `$input_whitelist` points. Often outside the tree. |
+Start with the data and configuration required to reconstruct the installation:
 
-`log/` and `cache/` are reproducible. `rra/` is not; there is no second copy of
-the time series.
+| Path or system | Why |
+|---|---|
+| Database | Devices, templates, graphs, users, settings and deferred-output queues. Coordinate it with RRD storage for a consistent recovery point. |
+| Effective RRD storage | Collected time-series history, whether under `rra/`, at custom data-source paths or behind the configured proxy. |
+| `include/config.php` and deployment environment | Database, URL, path and Symfony environment configuration. Protect credentials as secrets. |
+| CSRF secret destination | Preserve the configured secret file when continuity is required; it may live outside the tree. |
+| `resource/` and configured `resource_path` | Shipped and locally added query definitions. |
+| `scripts/` and configured `scripts_path` | Shipped and locally added collection scripts. |
+| `plugins/` | Installed plugin code plus any plugin-owned files; inspect each plugin for database or external state too. |
+| `include/themes/` | Local themes and custom styling. |
+| Input whitelist | The file selected by `$input_whitelist`, often outside the install root. |
+| Operationally valuable logs and spike backups | Logs are evidence, and `cache/spikekill/` may contain original RRD backups until its purge policy removes them. |
+
+Most realtime images, generated caches, installed dependencies and Symfony cache
+files can be regenerated. That does not make every file under `cache/`, `log/`
+or `var/` safe to discard without inspection. Confirm queue state, incident
+retention needs, plugin behavior and the restore procedure for your deployment.
 
 ## Gitignored paths
 
-Worth knowing before restoring from a source checkout, because a clean clone will
-not contain them.
+The repository broadly ignores installation-specific and generated content,
+including:
 
-```
+```text
 include/config.php
+.env
+.env.local
+include/vendor/
+vendor/
+node_modules/
 log/**
 rra/**
 cache/**
 plugins/**
 resource/**
 scripts/**
-include/themes/*        (the eleven shipped themes are re-included)
-include/vendor/*
-locales/po/*.mo
+include/themes/*
+var/*
+dist/
+build/
+coverage/
 ```
 
-The shipped contents of `resource/` and `scripts/` are tracked despite the wide
-ignore, because they were added before it. Anything added later needs `git add -f`.
+Negated rules and already tracked files preserve shipped scripts, resources,
+themes, cache guards and selected placeholders. A clean clone therefore restores
+versioned defaults, not local additions or runtime state. Back up local content
+explicitly rather than relying on whether `git status` displays it.
+
+At the audited application revision, `.gitignore` also contains a residual merge
+marker; see [application issue #286](https://github.com/kadupulhq/kadupul/issues/286).
+The interpreted policy above excludes that unintended line.
