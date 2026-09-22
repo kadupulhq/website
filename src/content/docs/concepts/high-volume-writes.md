@@ -7,121 +7,124 @@ sidebar:
   order: 10
 ---
 
-An RRD update is a small write at a scattered offset in a file that never grows. The
-number that matters is updates per second, not bytes per second. A few hundred bytes
-per data source per interval is nothing. A few thousand separate files touched in the
-same second is a storage problem.
-
-This is the limit you hit that the rest of the system does not warn you about. The
-poller finishes on time, the database is idle, and the graphs still have gaps.
+RRD updates touch many files and can be limited by storage latency and I/O operations,
+not just transfer bandwidth. Deferred writes, also called Boost, collect samples in
+the database and batch updates for each file. Measure the writer and database before
+choosing it: graph gaps alone do not identify a storage bottleneck.
 
 ## The default path
 
-The poller writes its results into an in-flight results table. A pass reads that table,
-groups the values by file, and issues one update per file.
+Collectors insert results into the in-flight `poller_output` queue. The writer groups
+samples by file and timestamp, updates the RRD, and tracks acknowledgement before
+removing eligible samples. Failed writes can leave rows for retry, so the queue is
+not restricted to the current polling pass.
 
-That is the floor. One write per data source per interval, and there is no way to batch
-across the interval, because this interval's sample does not exist until this interval
-happens.
+In the reviewed revision, this queue uses InnoDB. Collection preflight rejects a
+MEMORY queue; a database restart does not inherently discard committed rows as it
+would for a MEMORY table. Durability still depends on database configuration, storage
+health and backups. See [Upgrade safely](/guides/upgrade-safely/) for queue migration
+and storage checks.
 
-Two properties of that table are worth knowing. It is an in-memory table, so a database
-restart discards whatever was in flight. And it holds only the current pass, so its
-size is a function of the estate rather than of time.
-
-The arithmetic is simple enough to do on the back of an envelope. Divide your data
-source count by your step in seconds. Ten thousand data sources on a 300 second step is
-about thirty-three file updates a second, each to a different file. Compare that against
-what your storage does in small random writes. If it is comfortable, nothing on this
-page applies to you.
+As a rough load estimate, 10,000 distinct files updated every 300 seconds imply about
+33 file updates per second on average. Actual writes arrive in bursts; multiple data
+source fields can share one file, steps can differ, and command count does not equal
+physical disk I/O count. Compare measured writer latency and queue age with the
+available polling window.
 
 ## What batching changes
 
-With deferred writes enabled, the poller stops calling the RRD writer. It inserts the
-samples into a buffer table on disk instead, and returns.
+With deferred writes enabled, collection stages samples in `poller_output_boost` for
+later processing. The batch writer groups samples by data source in timestamp order
+and can send several timestamps in one RRDtool update command. Twelve samples may fit
+in one command, but this does not guarantee one physical disk write.
 
-Later, a separate pass takes one data source at a time, reads every buffered sample for
-it in time order, and sends them as a single update command carrying many timestamps.
-An hour of samples for one file becomes one write instead of twelve.
+The configured maximum argument length bounds update strings; the default is 2,000.
+It affects batching. Do not infer a particular operating-system limit from this
+setting: local acknowledged writes use an RRDtool command stream, and the actual
+transport and supported command size matter.
 
-How many timestamps fit in one command is bounded by a configured argument length,
-because the command has to fit within the operating system's limit on argument size.
-That setting is not a tuning knob so much as a compatibility one.
+The scheduler normally becomes eligible when its timer is due (60 minutes by default)
+or the estimated buffer row count exceeds the configured threshold (1,000,000 by
+default). The row estimate includes live and archive tables. A scheduler invocation
+must still occur, and process checks, preparation or writer failures can delay work.
+Forced runs, draining after disabling, and on-demand graph updates are additional paths;
+the defaults are not a one-hour freshness guarantee.
 
-The flush runs when either of two conditions is met: a timer elapses (one hour by
-default), or the buffer exceeds a row count (one million by default). Whichever comes
-first.
+The scheduler also has known defects in its disabled-mode collector query and
+numeric-zero interval fallback. See
+[application bug #270](https://github.com/kadupulhq/kadupul/issues/270).
+Use an explicit valid interval and inspect the resulting state; the normal default
+is 60 minutes, not the defective fallback case.
 
 ## The rotation, and why it is there
 
-Draining a table the poller is still inserting into would mean contending with the
-poller for the same rows. So the flush does not drain the buffer. It renames the buffer
-aside to a timestamped archive table and puts a fresh empty table in its place, in one
-statement.
+The batch setup creates an empty table matching the live buffer, then swaps names
+with a single `RENAME TABLE` statement. The old live table becomes a timestamped
+archive and producers target the replacement. This separates the batch from new
+inserts, but database locks and resource contention can still delay collection.
 
-The poller keeps inserting into the new table and never notices. The flush drains the
-archive at its own pace and drops it only when the run completes. If the run does not
-complete, the archive survives and the next run picks it up alongside the current one.
+Workers process current and retained archives. The parent checks child completion and
+status; failed or unverifiable runs retain archives for retry. During eligible cleanup,
+empty archives can be dropped and remaining samples can be requeued into the live
+buffer before dropping an archive. A nonempty archive is not simply discarded because
+the process ended. Inspect both live and archive queues when diagnosing a backlog.
 
-This is why the flush can take a long time without stalling collection, and why a
-crashed flush loses nothing that was committed.
+This is retry handling, not a universal crash-safety guarantee. Database errors,
+concurrent activity, storage faults and backup consistency still need validation in
+the deployment being operated.
 
-## Why the graphs are still right
+## Why viewing a graph can update its files
 
-The files can be an hour behind and the web interface still shows current data. Drawing
-a graph flushes that one data source's buffered samples first, then reads the file.
+The normal graph path can attempt on-demand updates for each data source referenced by
+the graph before rendering. It does not flush every pending sample unconditionally:
+collector checks, realtime/source/error-output paths, active polling cutoffs, query
+limits and update failures affect what runs. Recent or failed samples may remain queued.
 
-This is what makes the mode usable. It is also what makes the staleness invisible from
-the one place you are most likely to look. **The interface is not evidence that the
-files are current.** Anything that reads the files directly, which includes your
-backups, sees them as they actually are.
+A graph that looks current therefore does not prove the entire RRD tree is current,
+and requesting a graph does not guarantee successful replay. Check writer errors,
+queue age and actual RRD timestamps. File-only backups omit pending database samples;
+see [Back up and restore](/guides/back-up-and-restore/).
 
 ## What you trade away
 
-**Freshness of the files.** Up to a full flush interval of data lives in the database
-and not in the RRD tree. A snapshot of the RRD tree alone is an incomplete backup, and
-restoring it discards whatever was buffered. See
-[Back up and restore](/guides/back-up-and-restore/).
+**Freshness of the files.** Samples remain in the database until successfully processed.
+A healthy timer-driven installation may lag roughly a flush interval; a failed or
+undersized writer can lag longer. Back up pending queues and files consistently.
 
-**A second clock.** You now have a polling interval and a flush interval, and problems
-can hide in either. A flush that cannot keep up shows as a buffer table that grows
-between runs rather than returning to empty.
+**A second schedule.** Monitor polling and flushing separately. Observe live rows,
+retained archives, oldest sample age, failed workers and writer throughput. A live
+table need not become empty while producers are still inserting, and rotation alone
+can make it look smaller without completing any RRD updates.
 
-**Ordering.** RRD files do not accept writes older than their last update. Because the
-flush applies samples late, a sample that arrives after the file has moved past its
-timestamp is discarded rather than inserted. The flush orders samples by time and skips
-past updates for exactly this reason. Under deferred writes, a collector that delivers
-a backlog very late may find the file has already moved on.
+**Ordering.** RRD files do not accept older timestamps after newer updates. The modern
+Boost path uses skip-past-updates, and the legacy path filters timestamps against the
+file's last update. A command acknowledged as successful can therefore skip old data;
+late delivery does not guarantee that a sample appears in the graph.
 
-**Operational surface.** A buffer table to watch, a flush process with its own memory
-limit, optional parallel flush processes, and archive tables that should not be
-accumulating.
-
-What you do *not* trade away is durability of the buffered samples themselves. The
-buffer table is on disk and transactional. Samples that were committed survive a
-database restart and a failed flush. The exposure is that the files are behind, not
-that the data is gone.
+**Operational surface.** There is a database buffer, a flush process with a memory
+limit, optional parallel workers, and retained archives or requeued samples to monitor.
+Local writer failures generally retain samples for retry, but this does not establish
+end-to-end losslessness. In particular, the remote recovery path has a confirmed
+unchecked-insert/deletion defect; see
+[Remote data collection](/concepts/remote-data-collection/) and
+[application bug #268](https://github.com/kadupulhq/kadupul/issues/268).
 
 ## When it is worth it
 
-Reach for it when the disk is the limit. The signature is a poller run that finishes
-comfortably, a database that is not busy, and storage that is saturated during the
-write phase.
+Consider deferred writes when measurement shows the RRD writer is the bottleneck and
+the database has capacity for buffering and batch queries. It does not remove device
+latency or repair an overloaded database. Compare throughput, queue age, file freshness
+and resource use before and after enabling it.
 
-It is not a fix for a slow database, slow devices, or a poller that cannot finish. It
-moves work from the storage tree to the database, so a database that is already the
-bottleneck gets worse rather than better.
-
-It stops being optional the moment you have a second data collector, because that is
-how a collector's samples reach the main install at all. See
+The main poller automatically enables deferred updating when an enabled remote data
+collector is configured. That setting alone does not establish a validated remote
+storage or recovery deployment; use the limits in
 [Remote data collection](/concepts/remote-data-collection/).
-
-The reasoning to apply is a comparison, not a rule. Batching turns many small writes
-into few large ones and charges you an hour of file staleness plus a buffer to operate.
-If the small writes were not hurting, you have paid the price and bought nothing.
 
 ## A different feature with the same name
 
-Rendered graph images can also be cached, and that setting lives beside the deferred
-write settings. It solves an unrelated problem: the CPU cost of drawing the same graph
-for many viewers. Turning one on does not turn the other on, and neither one implies
-anything about the other.
+Rendered graph images can also be cached. Image caching reduces repeated rendering;
+deferred writes batch database samples into RRD updates. Their settings are distinct,
+but their execution paths interact: graph requests can check pending samples before
+using a cached image, and successful updates can cause a new image to be rendered.
+Evaluate image freshness separately from queue and RRD freshness.

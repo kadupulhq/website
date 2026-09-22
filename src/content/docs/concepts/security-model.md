@@ -39,25 +39,24 @@ Four entry points, in rough order of how much an operator controls them.
 
 ### HTTP parameters
 
-The request layer is `lib/html_utility.php`. `get_filter_request_var()` runs a
-value through `filter_var()` with a declared filter, defaulting to
-`FILTER_VALIDATE_INT`, and kills the request with an input error when the value
-fails. `get_nfilter_request_var()` returns the value untouched, for cases where the
-caller intends to validate it some other way.
+Request helpers live in `lib/html_utility.php`. `get_filter_request_var()` defaults
+to integer validation, but it also has special cases for empty, undefined and regex
+values. A caller still needs to check whether a value is required and appropriate
+for the operation. Filtering does not establish authorization.
 
-Both write the result back into `$_REQUEST`, `$_GET`, and `$_POST` through
-`set_request_var()`. A later unfiltered read of the same name therefore returns the
-filtered value, which is convenient and also means the read order matters.
+`set_request_var()` caches a value in `$_CACTI_REQUEST` and mirrors it into the
+request arrays. `get_nfilter_request_var()` reads that cache or the raw request and
+does not itself validate or write the value. Later reads can therefore observe a
+previously stored value, and read order matters.
 
-Nothing forces a page to call the filtering variant. The `log_validation` setting
-exists for exactly this: with it on, every read of a request variable that was not
-filtered first is logged. Treat it as an audit tool for your own plugins, not as a
-control.
+With `log_validation` enabled, `get_request_var()` logs certain uncached request
+reads. Direct superglobal reads and `get_nfilter_request_var()` are not all covered.
+It is diagnostic assistance, not complete validation auditing or enforcement.
 
 ### SNMP values
 
-A data query walks a device, and every value it gets back is written to
-`host_snmp_cache` as a string. `data_query_format_record()` in `lib/data_query.php`
+Data-query discovery stores selected indexed values in `host_snmp_cache`; ordinary
+SNMP polling results follow the sample path. `data_query_format_record()` in `lib/data_query.php`
 applies two transformations before storage: an optional `rewrite_value` map from
 the query definition, and `bin2hex()` on any value whose encoding
 `mb_detect_encoding()` cannot identify. That second one is a guard against binary
@@ -71,18 +70,23 @@ query, where `get_script_query_path()` passes each part through
 
 The escaping and the RRDtool validators described in
 [RRDtool integration](/reference/rrdtool-integration/) are the boundary here.
-Device data is not trusted; it is escaped at each point where it crosses into
-another program. That is a per-call-site property, which is the part worth holding
-on to: it holds where it is applied.
+Device data must remain untrusted. Validation and escaping are properties of each
+call site; the presence of helpers is not proof that every consumer uses them
+correctly. Check both the command structure and the substituted argument.
 
 ### Script output
 
-`exec_poll()` reads one line, at most 8192 bytes, and everything after the first
-line is discarded. `prepare_validate_result()` accepts a number, `U`, or a
-hexadecimal string, and turns anything else into `U`. A script cannot return a
-value that reaches an RRD file without passing that filter.
+The `popen()` branch of `exec_poll()` reads with `fgets(..., 8192)`, returning at most
+8,191 bytes or the first newline. Its `shell_exec()` fallback has different output
+behavior, and script-server collection follows another path.
 
-That constrains the data. It does not constrain the script, which already ran.
+`prepare_validate_result()` recognizes numeric and unknown values, hexadecimal
+forms and some multi-field output shapes. It can also strip text to obtain a numeric
+value; it is not a universal strict scalar filter. Subsequent parsing and RRDtool
+validation matter too. See [Data input methods](/reference/data-input-methods/).
+
+Output checks do not sandbox a script that has already executed. Review the command,
+input whitelist and operating-system privileges before enabling collection.
 
 ### Templates and packages
 
@@ -107,26 +111,29 @@ any key below 2048 bits before attempting verification, which the older key, at 
 bits, does not clear. Each contained file carries its own signature, verified
 separately.
 
-Packages may then write files. A file whose name contains `scripts/` or
-`resource/` is written under the installation path. The name is checked for NUL
-bytes, for `..` path segments, and for an absolute path, and a file failing any of
-those is skipped with a warning. A package that passes verification writes
-executable PHP into the install tree by design. The signature is the whole of the
-control.
+Packages may then write selected files. Accepted names start with `scripts/` or
+`resource/`, optionally beneath a valid `plugins/<name>/` prefix. The importer rejects
+NUL, traversal and absolute paths and resolves containment under the installation
+root; merely containing a directory name is insufficient. Destination writability
+also controls whether the write succeeds. A package that passes verification writes
+executable PHP into the install tree by design. Signature verification establishes accepted signing identity and integrity, not
+that code is harmless. Realm authorization, path containment, selected files,
+filesystem permissions and command-whitelist policy also matter.
 
 Both mechanisms sit behind realm 17. The stock Template Editor role holds realm 17
-and realm 2 (Data Input Methods). An account with that role can define what the
-poller executes. That is what the role is for, and it is worth knowing before
-handing it out as a mild permission.
+and realm 2 (Data Input Methods). An account with those permissions can define collection commands, subject to
+validation and whitelist handling. That is what the role is for, and it is worth knowing before
+granting it. See [Import and export templates](/guides/import-and-export-templates/)
+for the validated workflow and known limitations.
 
 ## What runs with which privilege
 
 | Process | Started by | Runs as | Does |
 |---|---|---|---|
 | Web interface | The web server | The web server user | Reads and writes the database, renders graphs through RRDtool, writes RRD files on demand, writes package files during import |
-| `poller.php` | cron | The cron user | Reads the poller cache, launches collectors, writes RRD files |
-| `cmd.php` or spine | `poller.php` | The same user | Performs SNMP gets, executes script command lines |
-| `script_server.php` | `cmd.php` or spine | The same user | Includes a PHP file and calls a function in its own process |
+| `poller.php` | Configured scheduler or service | Scheduler/service account | Reads the poller cache, launches collectors, writes RRD files |
+| `cmd.php` | Poller or realtime collection path | Launching account | Performs SNMP gets and collection commands |
+| `script_server.php` | Collector | Launching account | Includes a PHP file and calls a function in its own process |
 | RRDtool | Either the web process or the poller | Whichever called it | Reads and writes files under `rra/` |
 
 Two of those deserve a closer look.
@@ -141,43 +148,46 @@ be false, and the function's defining file must also be under an allowed root. O
 those pass, the code runs with the poller's full privilege. A Script Server method
 is a way of running PHP inside Kadupul, not a way of running PHP next to it.
 
-**The web process writes RRD files.** `rrdtool_function_create()` runs from the
-interface as well as the poller, and under `extended_paths` it creates the parent
-directory too. A web request that cannot write to `rra/` logs a warning and leaves
-the work to the poller, so this is not a hard requirement. It is, however, why
-`rra/` ends up writable by the web server user on many installations. When the
-creating process runs as root, the new file is chowned to match `rra/` itself,
-which keeps ownership consistent without narrowing who may write there.
+**The web process can write RRD files.** Graph requests can trigger on-demand Boost
+updates and file creation. A warning that defers one directory-creation path to the
+poller does not make web write access universally optional. The current storage
+preflight and maintenance coordination also check account access and trusted numeric
+UID/GID configuration. Root-run creation attempts to match storage ownership, but
+failures can be logged. See [Upgrade safely](/guides/upgrade-safely/).
 
-The web user and the poller user are frequently the same account. Nothing requires
-that and nothing prevents it.
+The web and scheduled poller accounts can differ. Realtime collection launched from
+a web request can inherit the web account, so command execution is not restricted
+to the scheduled poller's identity. The inherited Spine integration requires separate
+validation against the actual binary; this page does not establish a supported build.
 
 ## What the database account needs
 
-The credentials in `include/config.php` are a single account used by the web
-interface, the poller, and every command line tool.
+Processes using the same database configuration normally share its account. Remote
+collectors can have separate local and central credentials; deployment-specific
+configuration may differ. Inspect actual grants for every configured account.
 
 | Requirement | Why |
 |---|---|
 | Full DML on the Kadupul schema | Ordinary operation |
-| DDL on the Kadupul schema | Upgrades run `ALTER TABLE` and `CREATE TABLE` from the interface, through `db_install_execute()` |
+| DDL on the Kadupul schema | Upgrades and runtime operations such as Boost table rotation, temporary tables and plugin lifecycle changes |
 | `SELECT` on `mysql.time_zone_name` | Site and data collector timezone lists read that table directly |
 
-The DDL requirement is the one with consequences. Because the upgrade path runs
-from the web interface, the account the web interface uses can alter the schema at
-any time, not only during an upgrade. Separating a low-privilege runtime account
-from a high-privilege upgrade account is not something the code supports.
+Do not remove DDL privileges on the assumption that only upgrades need them. The
+application does not universally switch to a separate migration identity; account
+separation requires deployment-specific validation of all affected runtime paths.
 
-`include/config.php` holds that password in plain text and lives inside the
-document root. On a remote data collector it also holds `$rdatabase_*`, the
-credentials for the central database. File permissions are the only thing
-protecting it.
+`include/config.php` contains database credentials and remote collectors can also
+hold central `$rdatabase_*` credentials. Filesystem permissions, HTTP access rules,
+PHP handler configuration and backup protection all matter. PHP normally executes
+the file rather than serving its source, but that is not a substitute for protecting
+it from direct disclosure. See
+[Secure an internet-facing install](/guides/secure-an-internet-facing-install/).
 
 Device credentials are stored the same way. `host.snmp_community`,
 `host.snmp_password`, and `host.snmp_priv_passphrase` are ordinary columns, written
 by `api_device_save()` through `form_input_validate()` with no encryption step, and
-copied onto `poller_item` rows for the poller to read. Read access to the database
-is read access to every device credential. User passwords are the exception:
+copied onto `poller_item` rows for the poller to read. Read access to the relevant tables can expose stored device credentials; it does
+not imply access to every possible external credential source. User passwords are the exception:
 `compat_password_hash()` uses PHP's `password_hash()` with `PASSWORD_DEFAULT`, and
 a legacy MD5 hash that still verifies is rehashed on next login.
 
@@ -185,31 +195,31 @@ a legacy MD5 hash that still verifies is rehashed on next login.
 
 This is the distinction that matters most when reasoning about a change.
 
-### Enforced by code
+### Code mechanisms and their scope
 
 | Boundary | Mechanism |
 |---|---|
-| Authentication | `include/auth.php`, included by every interface page but the six listed below |
-| CSRF | A token validated before dispatch on every POST |
+| Authentication | Common interface pages use `include/auth.php`; specialized endpoints have their own handling |
+| CSRF | Shared web bootstrap configures token handling; malformed token arrays are rejected. Check each endpoint and dispatch path rather than assuming universal coverage |
 | CLI-only scripts | `include/cli_check.php` answers `404` and exits when the SAPI is not `cli` |
 | Data query XML location | `cacti_path_is_within()` against `<base_path>/resource`, logged and refused otherwise |
 | Package authenticity | Signature against a compiled-in key, minimum 2048 bits, per-file signatures |
-| Package file placement | NUL, `..`, and absolute paths rejected |
+| Package file placement | Invalid names rejected; allowed script/resource prefixes and resolved root containment checked |
 | Script server targets | `realpath()` containment, plus the function checks above |
-| Shell arguments | `cacti_escapeshellarg()` at each construction site |
+| Shell arguments | Escaping, structured command helpers and validators where applied; inspect the actual call site |
 | RRDtool arguments | Control-character and shape validators in `lib/functions.php` |
-| SQL | Prepared statements through the `db_*_prepared()` family |
+| SQL | Prepared helpers bind values; dynamic SQL, identifiers and non-prepared calls still require review |
 | Remote agent callers | Source address must match an enabled row in `poller`, by exact IP or by a forward-confirmed reverse lookup |
 
-### Conventional, and therefore your problem
+### Deployment and call-site responsibilities
 
 | Boundary | Why it is not enforced |
 |---|---|
 | Request filtering | A page chooses `get_filter_request_var()` or does not. `log_validation` reports, it does not block |
 | Output escaping | `html_escape()` and `html_purify()` are applied per call site |
-| Authorization per page | The realm check uses `$user_auth_realm_filenames`, keyed on filename. A page absent from that map gets realm 0, and realm 0 skips the check. Plugin pages rely on the plugin registering its realm |
+| Authorization per page | The realm check uses `$user_auth_realm_filenames`, keyed on filename. An unmapped page does not receive a positive realm check from that map alone. Additional endpoint/object checks may apply; plugin pages must register and enforce their access policy |
 | Directory denial | The `.htaccess` files under `cli/`, `log/`, `rra/`, `scripts/`, `contrib/`, `mibs/`, and `cache/*` are Apache directives. Under nginx, or under Apache with `AllowOverride` off, none of them apply |
-| Security headers on static files | `.htaccess.dist` is shipped unrenamed. PHP responses get the full set from `CactiSecureHeaders::emitHeaders()`; static assets get nothing until you enable the overlay or put the directives in the server config |
+| Security headers on static files | `.htaccess.dist` is shipped unrenamed. PHP header emission depends on its response path and settings; static responses depend on actual server/proxy configuration |
 | Separation of web and poller users | A convention, not a requirement |
 | Permissions on `include/config.php` | Set by whoever installed it |
 
@@ -219,7 +229,9 @@ a named file.
 
 ## Endpoints that answer before authentication
 
-Six files do not include `include/auth.php`.
+These are examples of specialized entry points, not an exhaustive inventory of
+public endpoints. Absence of the common include does not establish absence of
+authentication or authorization elsewhere in the request path.
 
 | File | Behaviour |
 |---|---|
@@ -235,15 +247,14 @@ hostnames and addresses in the `poller` table. There is no shared secret. A call
 whose address matches an enabled data collector row can invoke the agent's actions:
 poll data, run a data query, ping a device, perform SNMP gets and walks, request
 graph data, and run network discovery. Two protections shape this. First, the
-function returns false outright when only one data collector is defined, so a
-single-server install never accepts remote agent calls. Second, when the match is
+function returns false outright when at most one enabled collector row is returned, so that case is rejected by this function. Second, when the match is
 by hostname rather than by exact IP, the reverse lookup is confirmed by a forward
 lookup before it is accepted.
 
 `get_client_addr()` reads `REMOTE_ADDR` and nothing else unless `$proxy_headers` is
-set in `include/config.php`. The shipped default is `null`. Setting it makes
-Kadupul believe a header, which is correct behind a proxy that overwrites that
-header and wrong anywhere else. This is the single configuration line that most
+set in `include/config.php`. The shipped default is `null`. Enabling supported proxy headers changes the ordered sources from which a valid
+client address is selected. Use only headers controlled by the trusted ingress
+proxy, and prevent clients from bypassing or supplying those values themselves. This is the single configuration line that most
 changes the meaning of every address-based decision in the system, including
 remote agent authorization and the addresses recorded in the log.
 
@@ -252,15 +263,17 @@ remote agent authorization and the addresses recorded in the log.
 The `guest_user` setting names an account whose permissions are used for graph
 pages without a login. It defaults to no user, and graph viewing then requires
 authentication like everything else. Setting it publishes whatever that account may
-see, to anyone who can reach the web server. That is the intent of the feature. It
-is also a permission grant that does not appear in any user list.
+see, to anyone who can reach the web server. That is the intent of the feature. The account still exists in the user records; the guest setting is what makes its
+applicable graph permissions usable without a normal login. Verify actual requests
+and object permissions, not just the configured account name.
 
 ## How to reason about a change
 
 Ask three questions in order.
 
 Which process will run this, and as which user? The answer for a data input method
-is the poller's user, not the browsing operator's.
+is normally the launching collector's operating-system account; web-triggered
+collection can differ from scheduled collection.
 
 What does the data touch on its way through? A value from a device that only ever
 lands in an RRD file has crossed one boundary. The same value in a graph title has

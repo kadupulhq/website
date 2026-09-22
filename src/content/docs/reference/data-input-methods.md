@@ -169,9 +169,11 @@ display strings and the `|name|` markers in a data query's script arguments.
 
 ## Output contract
 
-The poller reads one line. `exec_poll()` takes `fgets($fp, 8192)` from a `popen`
-handle; `exec_poll_php()` takes `fgets($pipes[1], 8192)` from the script server.
-Anything after the first line is discarded.
+The normal `popen()` paths read one line, up to 8,191 bytes, from the
+command or script server. When `popen()` is unavailable, `exec_poll()` falls
+back to `shell_exec()`, which returns the command’s complete stdout; do not
+rely on multiline output or output beyond the normal line limit. Keep script
+results to one short line.
 
 ### Single value
 
@@ -189,9 +191,12 @@ Space separated `name:value` pairs, where each name is an output field's
 users:14 load:0.42 procs:198
 ```
 
-`prepare_validate_result()` accepts `:` or `!` as the separator and requires the
-delimiter count to equal the space count plus one. `process_poller_output()` then
-splits on whitespace, splits each token on `:`, and maps the name to a
+`prepare_validate_result()` accepts `:` or `!` when it counts name/value
+separators, but downstream `process_poller_output()` splits each token only on
+`:`, so `!` output is not mapped into RRD fields. Use `:` in scripts and test
+the resulting RRD updates; see application [bug #284](https://github.com/kadupulhq/kadupul/issues/284). The validator also
+requires the delimiter count to equal the space count plus one for multi-token
+output. The output processor splits on whitespace and maps the name to a
 `data_template_rrd.data_source_name`. A value that is neither numeric nor `U`
 nor hexadecimal becomes `U`. Unmapped names are dropped.
 
@@ -291,7 +296,9 @@ which is logged as
 FATAL: Malicious path traversal detected in Data Query script path: <path>
 ```
 
-and then `cacti_escapeshellcmd()`ed.
+and then `cacti_escapeshellcmd()`ed. This string check applies to the
+constructed data-query script path; it is not a general sandbox for scripts or
+filesystem access.
 
 Reindexing uses the same builder with `arg_index` and `arg_num_indexes`, and
 field discovery uses `arg_query` plus the field's `query_name`. Field output is
@@ -305,13 +312,14 @@ method through `data_input_whitelist_check()` before building poller items.
 
 | State | Result |
 |---|---|
-| Setting absent | Everything is allowed. |
-| Setting present, file missing | Nothing is allowed. |
-| Setting present, file parsed | The method's hash must map to its current input string. |
+| Setting absent | Input methods are not checked against a whitelist. |
+| Setting present, file missing | Methods are rejected. |
+| Setting present, file parsed | Inspect the validation log and resulting poller cache; the presence of a file alone does not prove that every method was approved. |
 
-A method that fails the check produces no poller items. On a commit pass, the
-buffer flush still runs, so rows that used to pass are deleted rather than
-stranded.
+Treat the whitelist as a supplementary control alongside restricted method
+editing and script-file permissions. Verify a method's current command and its
+poller-cache rows after changing the policy. Do not assume the checkbox or file
+path alone establishes enforcement.
 
 `data_input.php` shows the verification state on the edit form and warns when the
 input string changes that `cli/input_whitelist.php` must be rerun with `--audit`

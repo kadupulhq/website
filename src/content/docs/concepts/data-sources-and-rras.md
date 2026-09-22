@@ -7,8 +7,9 @@ banner:
   content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
-A data source is one thing being measured over time. Bytes in on port 3. Load
-average on a server. Each data source maps to one RRD file.
+A Kadupul data source groups measurements over time and normally maps to one RRD
+file. Each named field inside that file is also called a data source (DS) by RRDtool.
+Distinguish the application object from its fields when comparing counts or settings.
 
 One file is not always one number. A data source can carry several fields, and an
 interface is the ordinary case: bytes in and bytes out share a file, are collected
@@ -25,18 +26,19 @@ maximum for each. The second is the archives: a consolidation function, how many
 steps of raw data go into one slot, how many slots there are, and how much of a
 slot may be unknown before the slot itself becomes unknown.
 
-Every number in both lists is written at creation and read on every update
-afterwards. None of it is configuration in the sense that the database is
-configuration. It is file format.
+Creation records these definitions in the file. Database metadata and actual file
+definitions can subsequently diverge; inspect the file with `rrdtool info` rather
+than assuming the current template describes it exactly.
 
-## The decisions that are permanent
+<span id="the-decisions-that-are-permanent"></span>
+
+## Creation decisions and later maintenance
 
 An RRD file is allocated at creation. Profile edits do not migrate existing
 files. RRDtool provides tuning and resizing operations that can preserve stored
-data, but they need separate validation and backups. Kadupul will not rewrite a file
-that already exists; the create path checks, finds the file, and returns without
-touching it. A data template edited two years in changes what the next file looks
-like and nothing about the ten thousand already on disk.
+data, but they need separate validation and backups. The normal create path checks for an existing file and returns without replacing
+it. That protection does not prohibit explicit tuning or migration. A template save
+alone does not update the layout of existing files.
 
 Four choices are recorded at that moment.
 
@@ -49,13 +51,17 @@ metadata or planning a migration.
 
 **The data source type.** See below. This is the one that fails quietly.
 
-**The bounds.** A minimum and a maximum, either of which may be undefined. A sample
-outside the range is recorded as unknown rather than clamped. Kadupul fills these in
-from the data template, and for an interface it substitutes the discovered link
-speed into the maximum, which is what discards the impossible spike a counter reset
-would otherwise produce. It also repairs a nonsensical pair before writing it: a
-maximum at or below the minimum becomes undefined for a gauge and the minimum plus
-one otherwise, and a minimum and maximum both at zero become undefined.
+**The bounds.** A minimum and maximum constrain acceptable values; for rate-producing
+DS types, those limits apply to the calculated rate, not the raw counter total.
+Out-of-range data becomes unknown rather than being clamped. Query-based maxima can
+resolve interface-speed placeholders; not every interface source automatically gets
+a correct link-speed limit. Check template units and the actual file definition.
+
+Creation has specific normalization branches. For a literal maximum at or below the
+minimum, GAUGE and ABSOLUTE use an undefined maximum; other types use minimum plus
+one. Query substitutions take a separate branch. A later zero/zero check changes the
+maximum only, and earlier normalization may already have changed it. Do not treat
+this as a general validator or assume both bounds become undefined.
 
 **The archives.** How many samples to keep at which resolutions, and which
 consolidation function to use for each. This is what decides whether you can answer
@@ -65,34 +71,37 @@ a question in two years.
 
 | Type | Stores | Fits |
 |---|---|---|
-| `GAUGE` | The value as given | Temperature, load average, memory in use, queue depth |
+| `GAUGE` | A level, normalized to the file step | Temperature, load average, memory in use, queue depth |
 | `COUNTER` | Rate of change per second, correcting for the counter wrapping at 32 or 64 bits | Interface octets, packet and error counts |
 | `DERIVE` | Rate of change per second, allowed to be negative | A counter that can legitimately go down or be reset |
 | `ABSOLUTE` | The value as given, divided by the time since the last reading | A count that the device resets every time you read it |
 | `COMPUTE` | A value calculated from other fields in the same file rather than collected | A derived field, such as a total or a ratio |
 
-RRDtool 1.5 added `DCOUNTER` and `DDERIVE`, which behave as their namesakes but
-accept a fractional input. Kadupul offers them only when the configured RRDtool
-version is 1.5 or later.
+Kadupul exposes `DCOUNTER` and `DDERIVE` when the configured RRDtool version is
+1.5 or later. They accept floating-point counters; DCOUNTER also detects counting
+direction and resets, so it is not simply COUNTER with decimals. The table describes
+RRDtool semantics, not proof that every type is supported by every Kadupul editor or
+creation path; validate the generated definition, especially for COMPUTE expressions.
+See the upstream [RRDtool creation reference](https://oss.oetiker.ch/rrdtool/doc/rrdcreate.en.html).
 
 ### Getting the type wrong
 
-Two of the four mistakes announce themselves and two do not.
+These examples illustrate mismatches; their visibility depends on the data and bounds.
 
-`GAUGE` on a counter is obvious. You graph the raw counter, which climbs forever,
-rescales the axis, and looks nothing like traffic.
+`GAUGE` on an increasing counter graphs its level instead of throughput. It may climb
+until a wrap or reset; that can be noticeable but is not guaranteed to look obviously
+wrong over a short window.
 
-`COUNTER` on something that decreases is obvious after the first incident. RRDtool
-treats any decrease as a wrap and adds the counter's full range back, so a small
-drop becomes a spike of billions. This is the spike that people write scripts to
-remove. `DERIVE` with a minimum of zero is the usual fix, because it discards
-negative rates instead of inventing enormous positive ones.
+`COUNTER` interprets decreases using wrap correction, so a reset can become a large
+positive rate or be rejected by its maximum. `DERIVE` with a minimum of zero rejects
+negative rates, including genuine wraps; choose it only when that tradeoff fits the
+metric. A maximum does not distinguish every reset from a legitimate wrap.
 
 `COUNTER` on a gauge is the dangerous one. The stored value becomes the change in
 the gauge divided by the elapsed time. A device sitting steadily at 40 degrees
-records zero. A one degree rise across five minutes records 0.0033. The graph is
-smooth, the units look sane, the axis is plausible, and every number on it is
-meaningless. Nothing in the file, the interface, or the logs says so.
+records zero. A one degree rise across five minutes records 0.0033. The graph may look plausible while measuring change instead of temperature. That
+rate is useful only if it is the quantity you intended; it does not represent the
+original gauge level.
 
 `ABSOLUTE` on a counter that does not reset on read is the same class of quiet
 failure in the other direction, producing values that scale with how long the
@@ -114,8 +123,8 @@ the thirty-second profile uses 1,200 seconds. Missing-poll tolerance therefore
 cannot be described by one fixed count; normalization and consolidation also
 affect which graph intervals are unknown.
 
-The heartbeat is per field, not per file, and it comes from the profile alongside
-the step. The shipped profiles do not use a single ratio, and the reasoning behind
+The heartbeat is per field, not per file. Profile values inform metadata, but file
+creation reads the local item heartbeat, which may differ from the profile. The shipped profiles do not use a single ratio, and the reasoning behind
 each, along with what a heartbeat set too close to the step does, is in
 [Time and intervals](/concepts/time-and-intervals/).
 
@@ -125,46 +134,54 @@ As updates arrive, RRDtool also consolidates them into coarser buckets; it does 
 wait for the finest archive to expire. The function is chosen per archive, and each function answers
 a different question.
 
-- `AVERAGE` answers "what was typical".
-- `MAX` answers "how bad did it get".
-- `MIN` answers "did it ever drop out".
-- `LAST` answers "what was the final reading in that bucket".
+- `AVERAGE` summarizes the contributing primary data points.
+- `MAX` keeps their largest value.
+- `MIN` keeps their smallest value.
+- `LAST` keeps their last value under RRDtool consolidation rules.
+
+These operate on normalized primary data points, not necessarily the original raw
+readings. A MAX archive cannot recover an instantaneous peak already averaged within
+a primary interval; MIN is not a reliable detector of every outage.
 
 A file stores one archive per function per resolution, so keeping all four at four
-resolutions means sixteen archives and four times the disk of keeping averages
-alone. The shipped profiles all keep four functions, which is the expensive choice
-made on your behalf, and it is the right default.
+resolutions means sixteen archives and four times the value payload of keeping
+averages alone with the same rows. Header and preparation-state overhead also uses
+space. All three shipped profiles select four functions; choose retention according
+to the questions and capacity requirements of your deployment.
 
 If you only keep averages, you cannot later ask about peaks. The peaks were never
 written down. This is the single most common regret in a long-lived installation,
 and it cannot be fixed retroactively.
 
-It is also silent at render time. A graph item asking for `MAX` against a file that
-holds only averages does not fail. It reads averages and says nothing, which is
-covered in [How graphs are drawn](/concepts/how-graphs-are-drawn/).
+Some drawing-item paths substitute an available function when the requested one is
+missing; other paths can fail. Verify the generated DEF and actual archives as
+described in [How graphs are drawn](/concepts/how-graphs-are-drawn/).
 
 ## Unknown is a real value
 
-An RRD distinguishes zero from unknown, and so should you. Zero means the device
-said zero. Unknown means nothing arrived. Collapsing the two makes an outage look
-like idleness.
+An RRD distinguishes zero from unknown. Zero can be a reported level or a calculated
+rate, such as an unchanged counter. Unknown can result from missing updates, heartbeat
+expiry, explicit unknown input, rejected bounds or insufficient consolidation data.
+Replacing unknown with zero can make missing or invalid measurements look like idleness.
 
 Unknown propagates through consolidation under a threshold set per archive. The
 shipped profiles set it at half: a coarse slot built from partly missing inputs
 stays a real number until more than half of its inputs are unknown, at which point
-the whole slot goes unknown. A brief outage therefore dents the daily archive and
-vanishes entirely from the yearly one. A long outage survives into every archive.
+the whole slot goes unknown. Visibility depends on bucket alignment, heartbeat,
+normalization, consolidation and graph presentation. There is no universal outage
+duration that guarantees a gap appears or disappears in every archive.
 
 Unknown is also what the bounds produce. A reading above the configured maximum is
-not clipped to the maximum, it is discarded. On an interface whose maximum is the
-link speed, a counter reset produces a gap rather than a spike, which is the
-intended outcome and looks identical to an outage.
+not clipped to the maximum. A counter reset may produce an out-of-range rate and
+a gap, but bounds do not catch every reset. Unknown data alone does not identify
+the cause; compare collection errors and timestamps.
 
 ## Sizing
 
-Disk is decided entirely at creation, by arithmetic you can do in advance. RRDtool
-stores eight bytes per value, so a file's payload is the total number of slots
-across every archive, times the number of fields, times eight.
+For an unchanged layout, the archive value payload is the total slots across all
+archives, times the number of fields, times eight bytes. Total file and deployment
+size also includes headers, preparation state, filesystem allocation, queues and
+backups. Explicit layout maintenance can change file size.
 
 The three shipped profiles differ more than their names suggest.
 
@@ -175,7 +192,7 @@ The three shipped profiles differ more than their names suggest.
 | 1 Minute Collection | 60 s | 81,716 | about 640 KiB | 7 |
 
 A two-field interface data source doubles each of those. Ten thousand interfaces
-on the five minute profile is roughly 1.8 GB and stays roughly 1.8 GB. The same
+on the five minute profile has roughly 1.8 GB of archive value payload. The same
 ten thousand on the one minute profile is closer to 13 GB, and the reason is not
 the step by itself; that profile also keeps a much deeper monthly archive and a
 ten year yearly one.
@@ -188,20 +205,23 @@ need to answer a question about last April at five minute resolution, the label
 will tell you that you can and the archive will not.
 
 Write load moves with the profile too, and it arrives well before the disk does.
-Every data source is one small write per step, so a thirty second profile issues
-ten times the writes of a five minute one across the same estate. See
+At full collection cadence, a thirty-second step produces ten times as many sample
+intervals as a five-minute step. Batching, shared fields, due-work selection and
+failed retries affect command and physical write counts; they are not a fixed ratio. See
 [High volume writes](/concepts/high-volume-writes/).
 
 ## Which fields reach the file
 
 A data source built from a data template gets a field in the file only for the
-fields some graph item references. Fields nothing draws are collected and dropped
-before the file is written. A data source with no template gets every field, on
+fields some graph item references in the normal creation path. Update code can
+exclude unreferenced template fields; whether they are collected depends on the
+input method and cache, not merely whether a line is visible. A data source with no template gets every field, on
 the grounds that there may be no graph to ask.
 
-This is why adding a field to a data template and waiting for numbers to appear
-does not work until something draws it. Rebuilding the poller cache does not fix
-it, because the work list was never wrong.
+A reference need not draw a visible line: inspect graph-item mappings as well as the
+cache and file definition. Adding a template field alone does not establish that
+collection, graph mapping and storage are all ready. Rebuilding the cache addresses
+collection metadata; it does not add fields to an existing RRD.
 
 It also means adding a field to a template does not automatically add it to
 existing files, even once a graph item references it. Adding a field requires

@@ -12,7 +12,8 @@ second. There are four kinds, and they stack.
 
 **Data templates** define what to collect and how to store it: the fields, their
 types, their bounds, the storage profile, and which input method fetches the
-numbers. Every data source created from a data template shares that structure.
+numbers. Per-object fields and existing RRD files can differ from the current
+template; the template is not proof of the file layout.
 
 **Graph templates** define how to draw it: which items, in which order, which
 colours, which legend lines, and what the axis says.
@@ -22,7 +23,8 @@ of hardware, so choosing the right one when adding a device does most of the wor
 
 **Data queries** handle the case where you do not know in advance how many things
 there are. A switch has some number of ports, discovered by walking the device, and
-a data query turns that walk into one data source per port.
+a data query records indexed results for graph creation. Discovery alone does not
+create a fixed number of graphs or data sources.
 
 ## How they stack
 
@@ -32,28 +34,29 @@ pointing at it.
 | Kind | Points at | Produces |
 |---|---|---|
 | Device template | Graph templates, and data queries | Nothing directly. It is a list of what to offer for a device |
-| Data query | A graph template per discovered thing | One data source and one graph per index |
-| Graph template | Data template fields, one per graph item | One graph |
-| Data template | An input method and a storage profile | One data source, and one file |
+| Data query | Graph definitions and mappings for indexed results | Discovered rows; selected graph creation can create or reuse data sources |
+| Graph template | Data template fields where an item needs data | A graph that can reference multiple data sources |
+| Data template | An input method and a storage profile | Data-source metadata; an RRD is created when the write path needs it |
 
-Graph items point at data template fields, not at data sources, which is what lets
-one graph template serve every device using the data template it references.
-Resolving the item to an actual file happens when the graph is created, not when
-the template is edited.
+Data-bearing template items refer to template fields; instantiated items are mapped
+to local fields. Text and constant items need not have a data-source reference.
+Graph creation resolves those mappings, and later retemplating or item changes can
+also alter them. Graph creation can reuse compatible data sources instead of
+creating a new file for every graph.
 
 ## Templated, or per object
 
-Every field a template can control carries a companion flag on the template row.
-The flag decides what happens to that field on every child when the template is
-saved.
+Many graph-level and data-source fields have companion flags on the template row.
+For those fields, the flag governs the normal push to linked children. Other fields,
+graph items and input mappings have separate propagation rules.
 
 | Flag | Meaning | On save |
 |---|---|---|
 | Clear | The field is templated | Written down onto every child, overwriting whatever was there |
 | Set | The field is per object | Left alone on every child |
 
-The flag is per field. A graph template can push its colours and its axis label
-onto a thousand graphs while leaving each one's title and vertical limit to
+The flag is per field. A graph template can push its axis label
+onto linked graphs while leaving each one's title and vertical limit to
 whoever created it. That mixture is the normal case, not an exception.
 
 Two properties of this design catch people out.
@@ -77,13 +80,12 @@ and two deliberately do not.
 | Active | Yes | Templated or per object |
 | Step | Yes | Templated or per object |
 | Storage profile | Yes | Templated or per object |
-| Input method | No, and marked always templated | The template decides, and no child may differ |
-| Path to the RRD file | No, and marked never templated | No push can reach it |
+| Input method | No, and marked always templated | The template save handler explicitly updates linked data-source rows |
+| Path to the RRD file | No, and marked never templated | Normal template pushes exclude it; retemplating preserves the existing path |
 
-The path is the important absence. A push that rewrote paths would detach every
-child from its history in one action, so the mechanism to do it does not exist
-rather than being switched off. Re-templating a data source onto a different data
-template preserves the path for the same reason.
+Path preservation protects the existing association with history during normal
+template changes. It does not mean paths cannot be edited or relocated through
+other administrative operations. Review file identity before changing them.
 
 Fields on a data source item all carry a flag: the field's name, its type, its
 heartbeat, its minimum, its maximum, and which input field feeds it.
@@ -107,38 +109,41 @@ why editing one can change a graph that the template has not touched.
 | Graph template field, templated | Yes, on save | Written onto every graph from that template |
 | Graph template field, per object | No | The child keeps its own value |
 | Graph item appearance | Yes, on save | Colour, transparency, item type, line width, dashes, CDEF, VDEF, shift, consolidation function, alignment, text and legend format |
-| Graph item added, removed or repointed at another field | Yes, on save | Every child's item list is rebuilt, matching items by the template item they came from and adding whatever is missing |
+| Graph item added, removed or repointed at another field | Operation-dependent | Matching, adding, deleting and remapping use different paths; verify the resulting local item mappings |
 | Data template field, templated | Yes, on save | Written onto every data source from that template |
-| Data template input field values | Yes, on save | Except the data query index fields, which must stay per data source |
+| Data template input field values | When templated | Template and child per-object flags, query index fields and host-field rules constrain propagation |
 | Data template storage profile, step, archives | Database only | Existing files keep the structure they were created with |
 | Fields added to a data template | Database only | Existing files have nowhere to put them |
-| Device template contents | No | Nothing happens to existing devices until you re-apply it |
+| Device template contents | Separate synchronization | Editing associations alone does not synchronize every existing device |
 
-The split in that table is the whole page. Everything that is only a database row
-propagates. Everything that is a decision baked into a file on disk does not.
+Database propagation depends on the save path and override rules. Updating template
+metadata does not by itself migrate existing RRD files; file maintenance is a
+separate operation. Some structural controls are read-only in the in-use data-template
+editor. See [Create custom templates](/guides/create-custom-templates/).
 
-## Device templates do not propagate at all
+## Device templates have an explicit synchronization path
 
-A device template is a list of associations, and associating is a one-time act
-performed when a device is created or re-templated. Adding a graph template to a
-device template changes what the next device offers and does nothing to the four
-hundred devices already using it.
+Editing a device template's associations changes what it offers to new devices.
+Existing devices use a separate reapply/synchronize operation. The bulk helper normally
+selects devices in Up or Recovering state unless its caller includes down devices;
+check the operation's selection before assuming every device was updated.
 
-Re-applying a device template across existing devices is a separate, explicit
-operation. It adds any missing data query and graph template associations, runs the
-data queries, and stops there. It adds and never removes. Taking a graph template
-out of a device template and re-applying it does not delete a single graph.
+Synchronization adds missing graph-template associations, refreshes selected data
+queries and can remove unused graph-template associations that are no longer needed.
+It does not directly delete existing graphs just because their template was removed
+from the device template. It also invokes automation and plugin hooks, so it is not
+limited to association bookkeeping and may cause configured graph automation to run.
 
-That is the safe behaviour, and it is also why a device template drifts. What a
-device has is the union of every version of the template it has ever been through,
-plus anything added by hand.
+Review the resulting device associations and graphs after synchronization. They are
+not necessarily a permanent union of every template version ever applied.
 
 ## Indexes, and why ports move
 
 A data query has to decide which discovered thing matches which existing data source.
-That is the index. Index by the SNMP table position and a card reseat renumbers
-everything, silently attaching three months of port 3 history to what is now port 7.
-Index by something stable, such as the interface name, and it survives.
+That is the index. Numeric indexes can change after hardware or configuration changes.
+A suitable stable field can help preserve identity, but interface names can also be
+renamed or reused. Verify uniqueness, persistence and the reindex behavior on the
+actual device; no field name alone guarantees continuity.
 
 This decision looks trivial when you make it and expensive when you get it wrong.
 It is also made per device per run rather than once for the query, so two identical
@@ -148,24 +153,21 @@ happens when an index disappears, and what it costs to detect renumbering are in
 
 ## Changing a template later
 
-Changes to how a graph is drawn apply immediately, because graphs are rendered on
-demand. There is no stored image to invalidate and no migration to run. A colour
-changed on a template is a colour changed on every graph the next time anyone looks.
+Graph changes affect subsequent rendering after the relevant save and propagation
+complete. Overrides and image caching can affect what a viewer sees, so do not assume
+every graph changes immediately. Inspect a representative child graph and its item
+mappings; see [Tune graph appearance](/guides/tune-graph-appearance/).
 
-Changes to how data is stored do not apply at all. The structure was fixed when each
-RRD file was created, and the create path refuses to touch a file that exists.
-Changing the data template changes what new files look like, and leaves existing
-files exactly as they were.
+Saving a data template does not automatically reshape existing RRD files. The file's
+actual data-source definitions and archives can disagree with the database profile.
+Inspect both before maintenance; creating a replacement file is only one option.
 
-The database and the files then disagree, and both readings of the truth are used
-for different things. The file decides what is stored. The database row decides what
-the interface tells you is stored. Kadupul's file audit exists to report that
-disagreement rather than to paper over it.
-
-Reconciling the two means rebuilding the files and accepting the loss of history,
-which is a decision to make deliberately rather than discover. What a rebuild costs,
-and what the archive layout buys you in the first place, is in
-[Data sources and round-robin archives](/concepts/data-sources-and-rras/).
+Depending on the change, supported RRDtool tuning, archive resizing or controlled
+dump/restore work can preserve some or all existing history. Those operations have
+limits and need backups and verification; they do not reconstruct data that was never
+stored. Deleting and recreating a file loses its history and is not the mandatory
+solution for every mismatch. See [Manage data retention](/guides/manage-data-retention/)
+and [Data sources and round-robin archives](/concepts/data-sources-and-rras/).
 
 ## Other things called templates
 

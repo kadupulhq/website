@@ -7,9 +7,10 @@ sidebar:
   order: 9
 ---
 
-Kadupul has one application log. Everything the web interface, the poller and
-the maintenance scripts have to say goes through a single function and lands in
-one file, optionally also in syslog. Inherited from Cacti 1.2.x.
+Kadupul uses a common application logging function for many web, poller and
+maintenance messages. The destination can be a file, syslog/eventlog, or both.
+Collector process output and queued measurements are separate. Individual
+callers can also write to other files or standard output.
 
 ## Destinations
 
@@ -80,7 +81,7 @@ tag. Filtering by tag means filtering on the string.
 
 | Value | Name | Includes |
 |---|---|---|
-| 1 | NONE | Nothing in the logfile. Syslog only, if selected. |
+| 1 | NONE | No application logfile output. Eligible classified messages may reach syslog if selected. |
 | 2 | LOW | Statistics and errors. |
 | 3 | MEDIUM | Statistics, errors and results. |
 | 4 | HIGH | Statistics, errors, results and major I/O events. |
@@ -92,8 +93,10 @@ Each `cacti_log()` call may carry a level. The rules:
 - A call with no level is always logged.
 - At verbosity 1 through 5, a call is logged when its level is at or below the
   configured verbosity.
-- Setting `log_verbosity` to `1` suppresses the logfile completely, whatever
-  level individual calls carry. Syslog is unaffected.
+- Setting `log_verbosity` to `1` suppresses the application logfile completely.
+  Syslog is still possible for calls that pass the per-call level gate and match
+  an enabled syslog class. A level above the configured verbosity returns before
+  either destination is considered.
 
 DEVEL is not a superset. At verbosity 6, calls tagged DEVEL are logged and calls
 at LOW or below are logged, but calls tagged MEDIUM, HIGH and DEBUG are
@@ -126,13 +129,13 @@ globally. Use these instead of turning the whole log to DEBUG.
 
 | Setting | Selects by | Effect |
 |---|---|---|
-| `selective_debug` | File name | Every call from the named files is treated as DEBUG. |
-| `selective_plugin_debug` | Plugin directory | Every call from a file under the named plugin is treated as DEBUG. |
+| `selective_debug` | File name | Calls from matching entry scripts bypass the per-call level gate; this does not change their stored level or destination. |
+| `selective_plugin_debug` | Plugin directory | Calls from matching plugin entry paths bypass the per-call level gate; this does not change their stored level or destination. |
 | `selective_device_debug` | Device id | Every call about the named devices is logged during collection. |
 
 `selective_debug` and `selective_plugin_debug` are multi-select lists in the
-interface. The matched level is computed once per process and cached, so a change
-takes effect on the next poller run, not mid-run.
+interface. The match is computed once per PHP process and cached. A running process may
+continue using its earlier selection; a fresh process reads the new setting.
 
 ### Selective device debug
 
@@ -158,10 +161,12 @@ you turn it off.
 | Setting | Default | Meaning |
 |---|---|---|
 | `logrotate_enabled` | on | Rotate at all. |
-| `logrotate_frequency` | `1` | `1` daily, `7` weekly, `30` monthly. |
-| `logrotate_retain` | `7` | Rotated files to keep. `0` never removes any. Values are clamped to 0 through 365. |
+| `logrotate_frequency` | `1` | `1` every day, `7` every seven days, `30` every thirty days. |
+| `logrotate_retain` | `7` | Age in days before dated rotations are removed, not a file count. `0` disables age cleanup. A negative/blank value falls back to 7; values above 365 are capped. |
 
-Both `path_cactilog` and `path_stderrlog` are rotated.
+The application log is rotated; the collector output file is included when
+`path_stderrlog` is configured. Rotation runs when maintenance checks its
+schedule, so the date suffix need not match the most recent contents.
 
 The rotated name is the log path with yesterday's date appended:
 
@@ -181,13 +186,19 @@ rotation entirely, which is the option to use when a distribution package
 installs its own `logrotate.d` rule. It is a file setting, not a database
 setting, so a packager can set it without touching a running install's data.
 
+Until application [bug #280](https://github.com/kadupulhq/kadupul/issues/280)
+is fixed, keep unrelated dated files whose names contain the application log
+basename out of that log directory; cleanup can mistake them for rotations.
+
 When rotation cannot proceed it says why rather than failing silently. A missing
 file logs "Skipped missing"; an unwritable file or directory logs a permissions
 error naming the path.
 
 ## The log viewer
 
-The interface reads the file from the end. The filters match on message text:
+The interface selects the latest matching lines. Its implementation scans the
+file to count matches, then reads again to return the selected page. Filters
+match the complete line, including the environment tag:
 
 | Value | Filter | Matches on |
 |---|---|---|
@@ -222,19 +233,19 @@ Three different things get called "the poller log". They are separate.
 
 | Thing | Where | Contains |
 |---|---|---|
-| Application log | `path_cactilog` | Text messages from every part of the system, including the poller's own statistics and errors. |
-| Collector standard error | `path_stderrlog` | Whatever the collector processes write to stdout and stderr. |
-| Poller output | `poller_output` table | Collected values on their way into RRD files. Not text, not a log, and deleted as soon as it is consumed. |
+| Application log | `path_cactilog` | Application messages routed to the file by destination and verbosity settings, including many poller statistics and errors. |
+| Collector standard error | `path_stderrlog` | Output redirected from launched collector processes when a path is set on Unix. |
+| Poller output | `poller_output` table | Collected values awaiting RRD processing. Acknowledged rows are removed; failed or deferred rows can remain queued. |
 
-A missing value shows up in all three differently. `poller_output` will simply
-have no row for it. The application log will carry a `WARNING:` at whatever
-verbosity that failure was logged at, often `HIGH`. The standard error log will
-have anything a script printed on the way out, which is the only place a fatal
-error inside a collection script is visible.
+A missing value need not leave an entry in every destination. Check the
+application log at the configured verbosity, collector output if redirection
+is enabled, and the pending or rejected output queues. A failed collection may
+produce a warning, an unknown value, no row, or a retained row depending on the
+path; inspect the relevant collector diagnostics before drawing a conclusion.
 
 The standard error redirect is appended with `>>` and only set up on non-Windows
-systems, and only when `path_stderrlog` is non-empty. On Windows, collector
-output is discarded.
+systems, and only when `path_stderrlog` is non-empty. On Windows, this redirect is not configured by this launcher; the fate of
+collector output depends on how the process is started.
 
 `spine_log_level` controls how much the spine collector says about values it
 could not use:
@@ -245,4 +256,5 @@ could not use:
 | 1 | Summary. Count of output errors per device. |
 | 2 | Detailed. Every error. |
 
-It defaults to `0`, so invalid data is silent until you raise it.
+It defaults to `0`, so Spine does not emit its optional invalid-output
+summary by default. Other checks and log paths may still report errors.

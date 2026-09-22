@@ -11,13 +11,14 @@ A graph is an ordered list of items. Each row in `graph_templates_item` becomes
 one or more arguments on the RRDtool graph command line, in `sequence` order.
 This page lists what those rows can be.
 
-Everything here is inherited from Cacti 1.2.x. Two parts of the vocabulary
-depend on the installed RRDtool version and are called out where that applies.
+The item vocabulary largely follows inherited Cacti behavior; actual command
+construction is in Kadupul’s current `lib/rrd.php`. RRDtool version and graph
+mode affect which commands are accepted or emitted.
 
 ## Item types
 
-`graph_templates_item.graph_type_id` holds the numeric id. The column names in
-the interface come from the same table.
+`graph_templates_item.graph_type_id` holds the numeric id. The interface labels come from the graph-item type map in
+`include/global_arrays.php`.
 
 | Id | Name | Emits | Draws |
 |---|---|---|---|
@@ -29,7 +30,7 @@ the interface come from the same table.
 | 6 | `LINE3` | `LINE3` | Three pixel line. |
 | 7 | `AREA` | `AREA` | Filled area from zero. |
 | 8 | `AREA:STACK` | `AREA:...:STACK` | Filled area stacked on the item before it. |
-| 9 | `GPRINT` | `GPRINT` | Legend value using the item's own consolidation function. |
+| 9 | `GPRINT` | `GPRINT` | Legend value; the selected series may use the preceding matching drawing item’s consolidation function. |
 | 10 | `LEGEND` | nothing | Shorthand. Expands on save. See below. |
 | 11 | `GPRINT:LAST` | `GPRINT:...:LAST` | Legend value, consolidation fixed to `LAST`. |
 | 12 | `GPRINT:MAX` | `GPRINT:...:MAX` | Legend value, consolidation fixed to `MAX`. |
@@ -46,8 +47,9 @@ display order.
 ### LEGEND and LEGEND_CAMM are not stored
 
 Selecting `LEGEND` or `LEGEND_CAMM` writes several `GPRINT` rows and no row of
-that type. Nothing in the database ever has `graph_type_id` 10 or 15 after a
-save, and the graph renderer has no case for them.
+that type. The normal editor save expands these shorthands instead of storing ids 10
+or 15. Imported or manually modified rows may differ; the renderer does not
+have a drawing case for those ids.
 
 | Shorthand | Expands to, in order |
 |---|---|
@@ -98,10 +100,14 @@ empty comment is emitted as a single space, because RRDtool rejects an empty one
 **`GPRINT`** drops the consolidation function from the command line when
 `vdef_id` is set, since a VDEF has already reduced the series to one value.
 
-**CSV and XPORT export** only emit `AREA`, `AREA:STACK`, `LINE1`, `LINE2`,
-`LINE3` and `STACK` items, and only when `vdef_id` is `0`. Items backed by a VDEF
-are skipped, because `XPORT` cannot reference one. Every other type is dropped
-from an export.
+**CSV and XPORT export** selects `AREA`, `AREA:STACK`, fixed-width
+`LINE1`–`LINE3`, and legacy `STACK` graph-item types. The current export path
+does not check `vdef_id` before emitting `XPORT`. A VDEF-backed drawing item
+can therefore produce an invalid export even when it renders as an image.
+See application [bug #273](https://github.com/kadupulhq/kadupul/issues/273)
+and [How graphs are drawn](/concepts/how-graphs-are-drawn/).
+`LINE:STACK` is not in that export selection, and text/rule/tick items are
+not exported.
 
 ## Consolidation functions
 
@@ -215,11 +221,11 @@ graph's own data. They are what makes a CDEF reusable across graphs.
 | Placeholder | Resolves to |
 |---|---|
 | `CURRENT_DATA_SOURCE` | The data source of the item this CDEF is attached to. |
-| `CURRENT_DATA_SOURCE_PI` | That item's polling interval. |
+| `CURRENT_DATA_SOURCE_PI` | The item’s configured RRD step when a local data source is present; otherwise the global polling interval. |
 | `ALL_DATA_SOURCES_NODUPS` | Every data source on the graph, duplicates removed. |
 | `ALL_DATA_SOURCES_DUPS` | Every data source on the graph, duplicates kept. |
 | `SIMILAR_DATA_SOURCES_NODUPS` | Data sources on the graph sharing this item's DS name, duplicates removed. |
-| `SIMILAR_DATA_SOURCES_NODUPS_PI` | The polling interval of that same set. |
+| `SIMILAR_DATA_SOURCES_NODUPS_PI` | The current item’s configured RRD step when available; otherwise the global polling interval. |
 | `SIMILAR_DATA_SOURCES_DUPS` | The same set with duplicates kept. |
 | `CURRENT_DS_MINIMUM_VALUE` | The item's data source minimum. |
 | `CURRENT_DS_MAXIMUM_VALUE` | The item's data source maximum. |
@@ -231,7 +237,8 @@ graph's own data. They are what makes a CDEF reusable across graphs.
 | `COUNT_SIMILAR_DS_DUPS` | Count of similar data sources, duplicates kept. |
 
 The `DUPS` and `NODUPS` pair matters on a graph where two items read the same
-RRD file. `NODUPS` counts that file once.
+RRD file. `NODUPS` removes repeated references to the same data source; a file can
+contain several distinct RRD fields.
 
 ### Shipped CDEFs
 
@@ -275,7 +282,7 @@ types apply.
 | 11 | `LSLINT` |
 | 12 | `LSLCORREL` |
 
-`CURRENT_DATA_SOURCE` is the only special data source a VDEF accepts. RRDtool
+`CURRENT_DATA_SOURCE` is the only special data source offered for VDEF items. RRDtool
 does not allow arithmetic inside a VDEF, so anything more involved has to be
 done in a CDEF first and referenced from there.
 

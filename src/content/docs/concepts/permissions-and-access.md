@@ -7,10 +7,11 @@ sidebar:
   order: 8
 ---
 
-Access is two systems that do not talk to each other. One decides which parts of the
-interface an account may open. The other decides which devices, graphs, and trees an
-account may see. Holding every realm grants no graphs. Being allowed every graph
-opens no console.
+Access has separate realm and object-policy checks. Realms control which interface
+functions an account may use; object policies determine permitted graphs, devices,
+templates and trees. A request can depend on both. Realm grants do not themselves
+grant graphs, and graph grants do not themselves grant Console functions. Account
+state, authentication mode and view settings also matter.
 
 This page explains why the model is shaped that way. For the mechanics of building an
 account, see [Manage users and permissions](/guides/manage-users-and-permissions/).
@@ -30,21 +31,23 @@ configured, and an account misconfigured in either one looks broken in the same 
 
 ## Realms are a fixed numbered list
 
-A realm is a section of the interface, identified by a number. Pages ask whether the
-current account holds their realm number. That is the whole mechanism.
+A realm identifies an interface permission by number. Core mappings associate pages
+with realms, while plugins can register additional realms. Check the required
+realms and identity for the actual route rather than treating page access as a
+complete object-authorization decision.
 
 Numbers, rather than filenames, because a realm covers several pages and pages get
 renamed. The number survives; the file list behind it is a mapping that can change
 without touching any account.
 
-An account's realms come from itself and from every group it belongs to, combined as
+An account's realms come from itself and from enabled groups it belongs to, combined as
 a union. Roles are sets of realm numbers applied in one action. A role writes its
 numbers onto the account and is then finished: it is a starting point, not a live
 link, so an account created from a role does not change when the role does.
 
 Plugins add realms of their own, stored separately and held by accounts exactly like
 core realms. A plugin therefore ships new access-controlled surface that your existing
-policy says nothing about. See [Plugins](/concepts/plugins/).
+policy must explicitly review. See [Plugins](/concepts/plugins/).
 
 ## Objects are stored as a default plus exceptions
 
@@ -55,8 +58,10 @@ exceptions. An exception is a single row: who, which object, which kind. The row
 identical in both policy modes. The policy decides what the row means.
 
 This is the load-bearing decision in the whole model. Only divergence from the default
-is stored. An installation where everyone sees everything stores nothing. An account
-allowed five devices out of four thousand stores five rows. Whichever way the estate
+is stored in the exception tables. Allow defaults with no exceptions can grant
+broad policy access without exception rows; the account, defaults and realm rows
+still exist. Five explicitly allowed devices under a Deny device default require
+five device exceptions, but other graph grants and methods can affect visibility. Whichever way the estate
 leans, the stored data stays the size of the interesting part rather than the size of
 the estate.
 
@@ -64,10 +69,11 @@ the estate.
 
 | Mode | Meaning | Behaviour when a device is added |
 |---|---|---|
-| Allow, with exceptions | Everything except the listed objects | The new device is immediately visible |
-| Deny, with exceptions | Nothing except the listed objects | The new device is invisible until granted |
+| Allow, with exceptions | Objects of that kind except listed exclusions | The device policy permits the new object; other checks still apply |
+| Deny, with exceptions | Only listed objects of that kind | This source grants no new device; other sources or graph grants may permit access |
 
-Neither mode is a safer version of the other. They describe different shapes.
+The defaults differ in how they handle new objects. Choose the policy scope and
+failure behavior deliberately; neither describes the entire request's access checks.
 
 "Everyone in networking, except the two racks that belong to finance" is two rows under
 allow and four thousand under deny. "This contractor, and only these five devices" is
@@ -75,18 +81,21 @@ five rows under deny and four thousand under allow. Forcing one mode would mean 
 half of all real policies could only be written by listing the entire estate, and a
 list that long is never maintained.
 
-The trade is in the failure direction. Allow fails open. Deny fails closed. That is
-not a defect of allow; it is the price of being able to express "everything except" at
-all. Choose deny when you can express what you want with it, and understand that
-choosing allow means accepting that tomorrow's device is visible today.
+An Allow default includes newly added objects of its kind unless excluded. A Deny
+default requires an explicit exception from that source. These are default-policy
+semantics, not guarantees about error handling. Review other users/groups and graph
+permission methods before concluding that a Deny device default hides its graphs.
 
 ## Access is a union, and there is no deny
 
 Effective access is evaluated for the account's own policy and for every enabled group
-it belongs to, and an object is permitted if any one of them permits it.
+it belongs to. For graph access, apply the selected graph method within each source
+first, then union those results. Under Restrictive, a device grant in one group
+and a template grant in another do not form the required pair.
 
-A group can only ever add. There is no way to say "allowed everywhere, except by
-members of this group". This is a deliberate narrowing: a model with both grants and
+There is no group deny that overrides a grant from another source. An exclusion
+under an Allow default still removes that source's contribution; it is not a global
+deny. Removing such an exclusion expands access, unlike removing a grant under Deny. This is a deliberate narrowing: a model with both grants and
 denials needs precedence rules, and precedence rules are where permission systems
 become impossible to audit by reading them.
 
@@ -110,14 +119,15 @@ which combination counts. The decision is one installation-wide setting.
 | Method | The question it asks | Exception sets consulted |
 |---|---|---|
 | Permissive | Is any one of the three allowed? | Three |
-| Restrictive | Are the required ones all allowed? | Three |
-| Device based | Is the device allowed? | One |
-| Graph template based | Is the template allowed? | One |
+| Restrictive | Is the graph allowed, or are both device and template allowed within one source? | Three |
+| Device based | Is the graph or the device allowed? | Two |
+| Graph template based | Is the graph or the template allowed? | Two |
 
-The first two are the expressive ones and the source describes them as having
-scalability problems on very large installations. The last two exist as an escape from
-that cost. They also happen to be far easier to reason about, which is the more useful
-reason to choose one.
+These rules describe the implemented authorization checks. The Settings help has a
+[known discrepancy](https://github.com/kadupulhq/kadupul/issues/222). Direct graph
+grants remain effective in all four methods; choosing Device based does not suppress
+them. Measure performance with the actual policy and estate rather than assuming
+an exception-set count predicts query cost.
 
 Permissive is the default, and it is the setting that surprises people. Under
 permissive, allowing a graph template allows every graph built from it, on every
@@ -126,7 +136,7 @@ as described. The description is just not what most people assume.
 
 ## Permissions are compiled into queries
 
-Every list in the interface is a paginated query. A page showing twenty of four
+Graph-list permission filtering is incorporated into database queries. A page showing twenty of four
 thousand graphs cannot fetch four thousand rows and drop the ones the account may not
 see, because then the count is wrong, the page boundaries are wrong, and the work
 scales with the estate rather than with the page.
@@ -136,10 +146,10 @@ to the database. The permission model is shaped the way it is partly because it 
 survive that translation. Sets of ids and a default flag compile into SQL. Arbitrary
 per-object logic does not.
 
-One shortcut follows directly. An account whose policy is allow and which holds no
-exceptions of that kind can see everything of that kind, and the whole construction is
-skipped. The simplest policy is also the cheapest, which is a large part of why most
-installations never notice any of this.
+The graph path has a shortcut for broad graph permissions, including a user's
+Allow graph default with no graph exceptions. Do not generalize it to every object
+kind or every route. Realm, account-state and view checks still need verification;
+permission-query optimization is not a substitute for access testing.
 
 ## Trees are a separate axis
 
@@ -163,7 +173,11 @@ method combine badly, which is another reason the coarse methods exist.
 
 The auditing consequence matters more than the performance one. **A tree view is not a
 report of what an account can access.** It is a report of what an account can access
-*and someone put on that tree*. To audit access, read the policies and the lists.
+*and someone put on that tree*. To audit access, inspect policies and verify actual
+permitted and denied requests. The Effective Policy display has a
+[confirmed Restrictive-mode bug](https://github.com/kadupulhq/kadupul/issues/263), so
+its label and tooltip cannot be the only evidence. See
+[Audit who can see what](/guides/audit-who-can-see-what/).
 
 ## Caching, and why changes land at odd moments
 
@@ -172,7 +186,12 @@ same question on every page. An administrator's change marks the affected accoun
 cached answers stale, and the next page that account loads rebuilds them rather than
 waiting for a fresh login.
 
-Disabling an account goes further: its stored logins are dropped and its session ends.
+Disabling an account clears persisted login credentials, cached permissions and
+server-side sessions. Protected requests also check enabled/locked state; a page
+already loaded in a browser is not erased. Guest-capable routes may resolve a
+separate guest identity when configured, so a successful response alone does not
+prove the disabled account retains access.
 
-This is why a permission change sometimes appears to take effect instantly and
-sometimes appears to take effect on the next click. Both are the same mechanism.
+Verify changes using existing and fresh sessions, checking both retained and revoked
+access and recording response content and identity. Do not use HTTP status alone
+as proof of authorization, or assume that every cache consumer refreshes identically.
