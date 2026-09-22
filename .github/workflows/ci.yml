@@ -35,7 +35,7 @@ jobs:
           if-no-files-found: error
           retention-days: 14
       - name: Analyze code and coverage
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        if: github.actor != 'dependabot[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: SonarSource/sonarqube-scan-action@5bc5285b684b9f0e940031dc8ddc4b6387a2f493
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
