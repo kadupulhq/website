@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { readdirSync, readFileSync, lstatSync, realpathSync, writeFileSync } from 'node:fs';
+import { basename, dirname, join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { translatedLocales } from '../src/i18n/locales.mjs';
@@ -61,10 +61,29 @@ export function unitState(source, target, review) {
 	return review.state;
 }
 
+/** Resolve symlinks before enforcing a directory boundary, including new outputs. */
+function containedPath(root, path, allowNewFile = false) {
+	let resolved;
+	try {
+		resolved = realpathSync(path);
+	} catch (error) {
+		if (!allowNewFile || error.code !== 'ENOENT') throw error;
+		assert.ok(!lstatSync(path, { throwIfNoEntry: false })?.isSymbolicLink(), 'Translation output must not be a dangling symlink');
+		resolved = join(realpathSync(dirname(path)), basename(path));
+	}
+	const baseDir = root.endsWith(sep) ? root.slice(0, -1) : root;
+	if (resolved !== baseDir && !resolved.startsWith(baseDir + sep)) {
+		throw new Error('Translation path is outside the allowed directory');
+	}
+	return resolved;
+}
+
 export function buildSiteTranslations(root, { check = false } = {}) {
-	const catalogFiles = readdirSync(join(root, 'translations/site')).filter((name) => /\.json$/i.test(name)).sort((a, b) => a.localeCompare(b));
+	root = realpathSync(root);
+	const pathFor = (path, allowNewFile = false) => containedPath(root, join(root, path), allowNewFile);
+	const catalogFiles = readdirSync(pathFor('translations/site')).filter((name) => /\.json$/i.test(name)).sort((a, b) => a.localeCompare(b));
 	assert.deepEqual(catalogFiles, ['en', ...translatedLocales].map((locale) => `${locale}.json`).sort((a, b) => a.localeCompare(b)), 'Catalog filenames must match the supported lowercase locale keys');
-	const read = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
+	const read = (path) => JSON.parse(readFileSync(pathFor(path), 'utf8'));
 	const source = read('translations/site/en.json');
 	validateCatalog(source, source);
 	const reviews = read('translations/site-reviews.json');
@@ -92,15 +111,27 @@ export function buildSiteTranslations(root, { check = false } = {}) {
 		}
 		report.locales[locale] = { counts, units };
 	}
-	for (const [path, value] of Object.entries({ 'src/i18n/messages.json': messages, 'public/site-translation-status.json': report })) {
-		if (check) assert.equal(readFileSync(join(root, path), 'utf8'), json(value), `Stale generated translations: ${path}; run npm run translations:build`);
-		else writeFileSync(join(root, path), json(value));
+	// Validate both destinations before writing either generated file.
+	const outputs = Object.entries({ 'src/i18n/messages.json': messages, 'public/site-translation-status.json': report })
+		.map(([path, value]) => {
+			const destination = pathFor(path, !check);
+			const entry = lstatSync(destination, { throwIfNoEntry: false });
+			assert.ok(!entry || entry.isFile(), 'Translation output must be a regular file');
+			return { path, value, destination };
+		});
+	for (const { path, value, destination } of outputs) {
+		if (check) assert.equal(readFileSync(destination, 'utf8'), json(value), `Stale generated translations: ${path}; run npm run translations:build`);
+		else writeFileSync(destination, json(value));
 	}
 	return report;
 }
 
 if (isMain(import.meta.url)) {
 	const { values, positionals } = parseArgs({ allowPositionals: true, options: { check: { type: 'boolean', default: false } } });
-	buildSiteTranslations(positionals[0] || fileURLToPath(new URL('../', import.meta.url)), { check: values.check });
+	assert.ok(positionals.length <= 1, 'Expected at most one translation root');
+	const root = positionals.length
+		? containedPath(realpathSync(process.cwd()), positionals[0])
+		: fileURLToPath(new URL('../', import.meta.url));
+	buildSiteTranslations(root, { check: values.check });
 	console.log(values.check ? 'Site translation catalogs match generated files' : 'Site translation files generated');
 }
