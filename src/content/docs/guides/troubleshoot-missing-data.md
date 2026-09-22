@@ -63,8 +63,10 @@ concluding it is down.
 
 ## 2. Is the device enabled
 
-A disabled device produces no work list entries at all. It stays in the interface,
-keeps its graphs, and collects nothing. Check this before reading any logs.
+A disabled device is excluded from collection even if cached work entries
+remain. Bulk Enable reuses existing cache entries or rebuilds an empty cache.
+Check both the enabled flag and the resulting work list; graph history can remain
+visible while collection is disabled.
 
 ## 3. Is the poller running, and finishing
 
@@ -94,17 +96,20 @@ looking at the per-device polling times before changing anything.
 
 This is where most single data source reports end.
 
-The poller does not consult the configuration tables each run. It reads a precomputed
-work list, described in [Architecture](/concepts/architecture/). That list holds a
+The poller reads a precomputed work list and joins live device state, as described
+in [Architecture](/concepts/architecture/). The work list holds a
 snapshot: the hostname, the SNMP credentials and version, the port and timeout, the
 OID or command, the RRD file path, and how many values the data source expects.
 
-Everything in that snapshot is stale until the list is rebuilt. A community string
-changed on the device page, an OID corrected in a template, a data source renamed:
-none of it reaches the poller until then.
+Supported saves normally refresh affected cached fields; direct database edits
+can bypass that work. Inspect the cache for the expected device, OID or command,
+RRD path and field names. For one device, use **Repopulate Poller Cache** on its
+legacy device page. The current CLI does not forward `--host-id` to workers,
+so that option does not reliably limit the rebuild to one device. See
+[The poller cache](/concepts/the-poller-cache/). For a broad rebuild, run from
+the application root as the poller user; avoid overlapping runs and let it finish.
 
 ```bash
-php cli/rebuild_poller_cache.php --host-id=42
 php cli/rebuild_poller_cache.php
 ```
 

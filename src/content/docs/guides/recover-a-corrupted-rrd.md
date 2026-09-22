@@ -18,11 +18,11 @@ disagree with the database, or cannot be written by the poller, or stopped recei
 values for a reason that has nothing to do with the file. Work out which of those you
 have before you touch anything, because the repair for one makes the others worse.
 
-:::danger[Repairs overwrite in place]
-The restore path described below replaces the target file. `rrdtool tune` on a
-maximum, `rrdtool resize` when shrinking, and deleting an archive from a dump all
-discard data permanently. **Copy the file before every repair on this page.** There is
-no undo and no version history in an RRD.
+:::danger[Preserve the original]
+**Copy the file before every repair on this page.** Restore into a separate candidate
+and inspect it before replacing the live file. Shrinking an archive or deleting one
+discards retained history. Changing a maximum affects later input validation; it does
+not retroactively erase stored samples. There is no automatic undo in an RRD.
 :::
 
 ## 1. Name the failure
@@ -30,16 +30,16 @@ no undo and no version history in an RRD.
 | What you see | Usually means | Go to |
 |---|---|---|
 | Graph draws an error instead of a picture | The file is missing, unreadable, or the directory is not writable | Step 2 |
-| Graph is empty but no error | No value has ever been written | [Troubleshoot missing data](/guides/troubleshoot-missing-data/) |
+| Graph is empty but no error | No usable values in the selected range, or a graph definition problem | [Troubleshoot missing data](/guides/troubleshoot-missing-data/) |
 | Graph stops at a fixed moment and never resumes | Poller, permissions, or heartbeat | Step 3 |
 | Graph has data but the shape changed without a config change | The file and the database disagree | Step 4 |
-| Values are present and all unknown | Collection failure, not corruption | [Troubleshoot missing data](/guides/troubleshoot-missing-data/) |
-| `rrdtool` refuses to read the file at all | Real corruption | Step 5 |
+| Retained values are all unknown | Collection, timing, limits or data source configuration need checking | [Troubleshoot missing data](/guides/troubleshoot-missing-data/) |
+| `rrdtool` refuses to read the file | Missing path, access failure, incompatible format or damage | Steps 2 and 3, then 5 |
 
 Kadupul turns the first case into a readable message rather than a broken image,
 distinguishing a directory it cannot write from a file it cannot write, and reporting an
-absent file as the poller not having run yet. That last one is accurate: the file is
-created on the first successful write.
+absent file as the poller possibly not having run yet. That message is a hint, not a
+diagnosis: deletion, a changed path or an incomplete restore can also leave it missing.
 
 ## 2. Inspect the file
 
@@ -59,8 +59,9 @@ rrdtool info /path/to/rra/42/1337.rrd
 
 The header gives the step, the last update time, every data source name with its type,
 heartbeat, minimum and maximum, and every archive with its consolidation function, row
-count and resolution. If this command errors, you have real corruption: go to step 5.
-If it succeeds, the file is readable and your problem is one of the other kinds.
+count and resolution. If this command errors, retain the error and check the path,
+permissions and RRDtool compatibility before diagnosing corruption. A successful
+`info` reads metadata; also inspect `fetch` output and test a dump to check the history.
 
 ## 3. Check the mechanical causes first
 
@@ -69,14 +70,19 @@ If it succeeds, the file is readable and your problem is one of the other kinds.
 | File ownership and mode | A file created by root during maintenance is unwritable by the poller from that moment on |
 | Directory ownership and mode | The poller cannot create a replacement file in a directory it cannot write |
 | Free space and inodes | A full filesystem produces short writes that look like damage |
-| Whether a second writer exists | Two collectors writing one file produce skipped updates and a clean log |
+| Whether a second writer exists | Concurrent or out-of-order updates can fail or invalidate a maintenance snapshot; inspect the logs |
 
-Run every maintenance command as the poller user. Most permanent damage on this page
-starts with a repair run as root that left a file the poller could no longer touch.
+Run maintenance as the account that owns and updates the RRD, and preserve its mode,
+owner and group. Stop all writers before copying or replacing files, including remote
+collectors, scheduled jobs and manual maintenance. Drain pending writes only after
+their producers stop. Plain shell commands do not acquire Kadupul's storage locks.
+See [storage requirements](/reference/requirements/) and the quiescing procedure in
+[Back up and restore](/guides/back-up-and-restore/).
 
 ## 4. Read what the checker already found
 
-Kadupul can walk every archive on a schedule and record what it finds. It is off by
+Kadupul can check graph-linked data sources on enabled devices on a schedule and
+record what it finds; this is not an inventory of every file on disk. It is off by
 default. The interface says where to switch it on: Configuration -> Settings -> Data.
 
 | Setting | Default | Effect |
@@ -102,8 +108,8 @@ The messages it can record, and what each one means:
 | There are more, or less, Data Sources in the database than in the RRDfile | The template gained or lost fields after the file was created |
 | The Data Source '...' exists in RRDfile, but not in database | Names the field, from the file's side |
 | Data Source name '...' exists in the Database, but not in RRDfile | Names the field the poller is writing that has no home in the file |
-| The RRDfile Minimal Heart... is lower than polling interval | The heartbeat cannot tolerate one late poll, so gaps are guaranteed |
-| The RRDfile minimal heartbeat... should be 'N' and is currently 'M' | The file disagrees with the profile |
+| The RRDfile Minimal Heart... is lower than polling interval | The checker flags heartbeat less than or equal to the polling interval; late samples may become unknown |
+| The RRDfile minimal heartbeat... should be 'N' and is currently 'M' | The file's heartbeat is below the profile heartbeat; this check does not flag a larger one |
 | Stale values for last 24 hours, or last hour | Every sample read back in that window was unknown |
 | More than 50% (n/m) values are NaN in last 24 hours, or last hour | Partial collection failure |
 | No data returned, maybe corrupted Data Source | A fetch against the file returned nothing at all |
@@ -115,71 +121,99 @@ repaired, because either side could be the wrong one.
 
 ## 5. Dump, edit, restore
 
-This is the repair path for anything structural. RRDtool can serialise a file to XML
-and rebuild a file from that XML, and every change Kadupul makes to an existing file's
-shape goes through that pair: adding a data source, deleting an archive, and cloning an
-archive under a different consolidation function.
+RRDtool can serialise a readable file to XML and rebuild a candidate from it.
+This can help with a known structural mismatch, but does not reconstruct lost samples
+or guarantee that a damaged file can be parsed. Kadupul also uses dump/restore helpers
+for structural changes. The local restore helper builds a temporary sibling and
+renames it over the destination after success; this does not provide a backup.
 
-By hand:
+With writers stopped, run this as the RRD owner. Replace the example path with the
+actual data source path. The private work directory is created beside the source so
+the candidate is on the same filesystem:
 
 ```bash
-cp  /path/to/rra/42/1337.rrd /var/tmp/1337.rrd.bak
-rrdtool dump /path/to/rra/42/1337.rrd > /var/tmp/1337.xml
-# edit /var/tmp/1337.xml
-rrdtool restore -f /var/tmp/1337.xml /path/to/rra/42/1337.rrd
+set -eu
+umask 077
+rrd=/path/to/rra/42/1337.rrd
+work=$(mktemp -d "$(dirname "$rrd")/rrd-recovery.XXXXXX")
+cp -p "$rrd" "$work/original.rrd"
+rrdtool dump "$work/original.rrd" > "$work/recovery.xml"
+# Edit recovery.xml only when the required correction is understood.
+rrdtool restore "$work/recovery.xml" "$work/candidate.rrd"
+rrdtool info "$work/candidate.rrd"
+rrdtool fetch "$work/candidate.rrd" AVERAGE --start end-1h --end now
 ```
 
-`-f` overwrites without asking. That is the flag Kadupul's own helpers pass, and why
-the backup on the first line is not optional. The XML holds every stored value as text,
-so it is far larger than the file; Kadupul's in-place helpers write it beside the RRD
-and delete it afterwards, which means the archive directory needs the room and has to be
-writable by whoever runs the repair. And a dump that fails is itself the diagnosis: if
-`rrdtool dump` cannot parse the file, the header or the data blocks are damaged and
-editing cannot help.
+Choose a fetch range and consolidation function that contain known retained data;
+the last hour is only an example. Compare source and candidate data source names,
+step, archives, last-update timestamp and sample values. An unchanged dump/restore
+can alter binary layout, so compare values rather than requiring identical file hashes.
+
+Keep the original copy. Only after validation, restore the candidate's required mode,
+owner and group and rename it to the live path while writers remain stopped. Verify
+that the poller account can read and update it before resuming collection. This example
+stops before installation so a readable but incorrect candidate is not installed.
+
+The XML and candidate require additional disk space. A failed dump can leave partial
+XML; do not restore it. Check access, free space and the reported error. If the original
+cannot be dumped after those checks, restore a known-good backup instead. RRDtool's
+[`restore -f`](https://oss.oetiker.ch/rrdtool/doc/rrdrestore.en.html) allows overwriting
+the destination; the staged example deliberately uses a new destination.
 
 ## 6. What survives, and what does not
 
 | Damage | History recoverable |
 |---|---|
-| File unwritable, otherwise intact | Yes, entirely. Fix ownership and the next poll resumes |
+| File unwritable, otherwise intact | Retained history survives. Missed updates are not recovered merely by fixing access |
 | Heartbeat, minimum or maximum wrong | Yes. `rrdtool tune` changes the header without touching stored values |
-| Step wrong | No, not in place. The file must be rebuilt, and old samples can be spliced in |
+| Step wrong | Requires an explicit, validated conversion; changing the database profile alone does not convert the file |
 | Data source missing from the file | The existing fields keep their history. The new field starts empty |
 | Archive deleted or never created | No. A resolution that was never stored cannot be reconstructed |
 | Archive rows reduced by a shrinking resize | No. The dropped rows are gone at the moment the command runs |
 | Truncated file, dump fails | No. Restore from backup |
-| Header intact, tail truncated | Sometimes. A dump may still yield usable XML for what survived |
+| Header intact, tail truncated | Do not assume an apparently readable header means a complete dump; use a verified backup if dumping fails |
 
-The third row catches people. An RRD's step and archive layout are fixed at creation, so
-changing the poller interval, or moving a data source to a different retention profile,
-does not reshape files that already exist. See
+Changing the poller interval or moving a data source to another retention profile
+does not automatically reshape existing files. RRDtool also exposes structural
+[`tune` operations](https://oss.oetiker.ch/rrdtool/doc/rrdtune.en.html), including a
+step option; validate conversion behavior for your installed version and archive
+layout instead of assuming a lossless interval change. See
 [Data sources and archives](/concepts/data-sources-and-rras/) and
 [Manage data retention](/guides/manage-data-retention/). Raising a maximum with `tune`
 is safe; lowering one records every later value above the new ceiling as unknown.
 
 ## 7. Rebuild while keeping what can be kept
 
-When the file has to be recreated, you do not have to lose the history. Kadupul ships a
-splice utility that merges an old file into a new one.
+Kadupul ships a splice utility that can populate a new file from an older readable
+one. Treat its result as a candidate: it can fill gaps and replace legitimate zeros,
+so it is not a lossless copy of measured history. Run from the application root on
+the main data collector, using isolated copies in trusted writable directories.
+
+Create `new.rrd` with the intended structure inside the private `$work` directory
+from step 5, then preview the merge:
 
 ```bash
-php cli/splice_rrd.php --oldrrd=/var/tmp/1337.rrd.bak \
-                       --newrrd=/path/to/rra/42/1337.rrd \
-                       --finrrd=/var/tmp/1337.merged.rrd --dryrun
+php cli/splice_rrd.php --oldrrd="$work/original.rrd" \
+                       --newrrd="$work/new.rrd" \
+                       --finrrd="$work/merged.rrd" --dryrun
 ```
 
-Both input files must already exist. The new file supplies the structure, which makes
-this the supported way to change a file's step: create a file with the step you want,
-let the poller write to it, then splice the old one in behind it. Without `--finrrd` the
-result is written beside the new file with a timestamp appended. `--owner` sets
-ownership and needs root. `--dryrun` does the whole merge and writes nothing.
+Both input files must already exist and pass the utility's writability checks.
+The new file supplies the structure. Without `--finrrd`, the output is the new file's
+path plus `.new`; use a fresh explicit output path to avoid replacing an earlier
+candidate. `--dryrun` parses and merges using temporary XML and, when available,
+SQLite storage, but skips the final RRD restore. It does not prove that the final
+restore will succeed. Remove `--dryrun` to produce the separate candidate.
+Avoid `--owner` during previews and run as the required service account; check the
+output's actual ownership before installation.
 
 :::caution[The splice treats zero as a hole]
 The merge walks the new file and, for every slot holding unknown **or zero**, looks for
 the nearest matching value in the old file and writes that instead. A genuine zero in
 the new file is therefore replaced by old data. On anything that legitimately reads zero
 for long stretches, an idle port, a queue that empties, a counter at rest, inspect the
-result before you put it in place.
+result before you put it in place. The old file's unknowns are also filled using
+preceding values, so the merged output can invent continuity across missing data.
 :::
 
 After splicing, put the file where the data source expects it, with the ownership the
@@ -230,13 +264,13 @@ points at. Check the list against your own record of what changed first.
 
 | Symptom | Cause |
 |---|---|
-| Repair succeeded, graph still empty | The repair ran as root and the poller can no longer write the file |
-| `rrdtool dump` errors on the file | Real corruption. Restore from backup |
-| Tune applied, nothing changed | Only one of the file and the database moved. Both have to |
+| Repair succeeded, graph still empty | Check access, selected time range, data collection and graph definition |
+| `rrdtool dump` errors on the file | Check the path, access, storage and format before concluding it is damaged |
+| Tune applied, nothing changed | Header changes do not retroactively fill historical unknown samples; verify both file and database definitions |
 | Narrow gaps everywhere after an interval change | The files still carry the old step and heartbeat |
 | Spliced file has old data where the new file read zero | Expected. The splice fills zeros as well as unknowns |
 | Checker list grows and never shrinks | Findings are recorded until purged; fixing the cause does not clear them |
 
 Back up the archive directory and the database together, on one schedule, and test the
-restore. A working backup turns every row of the step 6 table into "yes". See
+restore. Recovery is limited to what that backup retained at its capture time. See
 [Back up and restore](/guides/back-up-and-restore/).

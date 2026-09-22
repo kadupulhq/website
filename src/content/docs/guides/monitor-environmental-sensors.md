@@ -13,9 +13,9 @@ path. Test these procedures on an isolated copy with backups before relying on
 them. See [project status](/project/status/).
 :::
 
-Sensor readings are measurements, not counters. Everything that makes them
-awkward follows from that: the scaling is arbitrary, the index is unstable, and
-a graph tuned for traffic will draw them badly.
+Temperature, humidity and instantaneous power are measurements, usually stored as
+`GAUGE`. Cumulative energy or event totals may require a counter type instead.
+Check each object's units, identity and semantics before choosing a template.
 
 Check what already ships before you write anything.
 
@@ -33,8 +33,10 @@ none of them is environmental.
 
 Sensor coverage arrives two other ways.
 
-**Script server queries, shipped in the tree.** Three definitions read the
-net-snmp lmSensors tables through a bundled PHP script.
+**Script-server queries, bundled in the Net-SNMP device package.** Import
+`install/templates/NetSNMP_Device.xml.gz` to deploy its three lmSensors query XML
+files under `resource/script_server/`. The helper
+`scripts/ss_netsnmp_lmsensors.php` also exists in the source checkout.
 
 | Query | Table |
 |---|---|
@@ -42,16 +44,24 @@ net-snmp lmSensors tables through a bundled PHP script.
 | Net-SNMP - Sensors - Get Fan Sensors | `.1.3.6.1.4.1.2021.13.16.3.1` |
 | Net-SNMP - Sensors - Get Voltage Sensors | `.1.3.6.1.4.1.2021.13.16.4.1` |
 
-Each table has the same three columns: index, name, reading. The script walks
-them and returns the sensor name as the index label.
+The helper uses index, name and reading columns. The query indexes on numeric
+`sensorDevice`; `sensorName` supplies a display name that the helper truncates to
+18 characters. Names are not guaranteed unique sensor identities.
 
-Two conversions happen inside that script, not in a graph. Temperature and
-voltage readings are divided by 1000, because the MIB reports milli-units. Fan
-readings are not scaled, because they are already RPM. Voltage also gets a
-signed correction: a reading above 2147483647 has 4294967296 subtracted from it,
-which recovers a negative rail from an unsigned SNMP integer.
+The normal `get sensorReading` path returns raw values: millidegrees for the legacy
+temperature object, millivolts for voltage, and RPM for fans. The thermal graph
+applies a `Divide by 1000` CDEF. The voltage graph has no CDEF despite its Volts
+label, a [confirmed scaling bug](https://github.com/kadupulhq/kadupul/issues/247).
 
-If you build your own query against those same tables, you own both conversions.
+The separate `query sensorReading` path scales temperature and voltage, and attempts
+signed voltage conversion using the incorrect constant 4294967294. It can also
+[throw on unavailable readings](https://github.com/kadupulhq/kadupul/issues/248).
+Do not infer stored units from this discovery output.
+
+The helper still uses legacy temperature column `.2.1.3`. Current upstream
+[LM-SENSORS-MIB](https://raw.githubusercontent.com/net-snmp/net-snmp/master/mibs/LM-SENSORS-MIB.txt)
+deprecates that unsigned object in favor of signed column `.2.1.4`; verify support
+and negative-temperature behavior on the actual agent before adapting a template.
 
 **Device packages, shipped as importable archives.** Several carry their own
 query XML and write it into the query directories at import time. The ones that
@@ -65,13 +75,15 @@ matter here:
 | APC InfraStruXure InRow CRAC | Queries for unit and group statistics, including temperatures, humidity, airflow and fan speed |
 | BayTech PDU | An outlet query and a three-phase circuit query, with current, voltage, power and temperature |
 
-Import the matching package before you write a query by hand. The work is
-already done, and the package also carries the scaling definitions its graphs
-need.
+Inspect the matching package before writing a query by hand. Follow
+[Import and export templates](/guides/import-and-export-templates/), verify file
+deployment and discovery, then explicitly create the desired graphs. Package
+presence does not prove device compatibility or correct scaling; the UPS and
+lmSensors defects below need attention.
 
 ## The two shapes a sensor takes
 
-Every sensor is one of two things, and the choice determines the whole build.
+For SNMP collection, distinguish scalar objects from indexed table instances.
 
 **A fixed OID.** One scalar value at one address, the same address on every
 device of that type. Battery temperature. Total output power. Use a fixed-OID
@@ -81,8 +93,8 @@ data source: an SNMP get against a literal OID, and one data source per reading.
 outlet strips, per-phase measurements. Use a data query, which walks the table,
 learns the index, and lets you pick which rows become graphs.
 
-The shipped UPS package uses both, and it is worth copying that split. Things
-there is exactly one of are fixed OIDs. Things there are several of are queries.
+The shipped UPS package uses both. Follow the MIB's object structure: a device
+with only one current probe may still expose it as an indexed table row.
 
 | UPS reading | Shape | OID |
 |---|---|---|
@@ -95,42 +107,46 @@ there is exactly one of are fixed OIDs. Things there are several of are queries.
 | Output voltage, current, power, load | Query | `.1.3.6.1.2.1.33.1.4.4.1` |
 
 Every one of those data sources is a `GAUGE`. None is a counter. The shipped
-templates give them a 60 second step with a 600 second heartbeat, a minimum of
-zero, and no maximum, except temperature, which has no minimum either because a
-sensor can legitimately read below zero.
+template archive declares a 60-second step and 600-second heartbeat, a minimum of
+zero, and no maximum, except temperature, which has no minimum. Check the imported
+profile and actual RRD configuration; these declarations do not establish the
+running poll cadence. A valid negative reading also needs a graph axis that shows it.
 
 ## Find the OIDs
 
 Walk the device before you write anything. You are looking for three things: a
 table of readings, a parallel table of labels, and whatever multiplier the
-vendor chose.
+vendor chose, plus validity/status objects where available.
 
 ```bash
 snmpwalk -v2c -c public probe.example.net .1.3.6.1.2.1.33
-snmpwalk -v2c -c public probe.example.net .1.3.6.1.4.1.<vendor>
+# Replace this example enterprise number with the vendor's actual number.
+vendor_oid='.1.3.6.1.4.1.318'
+snmpwalk -v2c -c public probe.example.net "$vendor_oid"
 ```
 
-Load the vendor MIB so the walk returns names rather than numbers. It is the
-only practical way to tell a reading apart from a threshold or a status code
-sitting next to it in the same table.
+Replace the example host and community with configured values and run probes from
+the poller. Load the matching MIB and dependencies to inspect names, units and
+semantics; vendor object documentation can also explain numeric OIDs. A nearby
+threshold or status code is not interchangeable with a measurement.
 
 ```bash
-snmptranslate -Td -OS .1.3.6.1.2.1.33.1.2.7
+snmptranslate -m +UPS-MIB -Td -OS .1.3.6.1.2.1.33.1.2.7
 ```
 
 The MIB definition is where the scaling is documented. A vendor that reports
 tenths of a degree will say so in the object's description or units clause, and
-nowhere else. Guessing from a single reading is how a probe at 23.5 degrees ends
-up graphed as 235.
+in associated vendor documentation. Guessing from one reading can turn 23.5 degrees
+into a graph of 235.
 
 Standard MIBs cover more than people expect. UPS-MIB at `.1.3.6.1.2.1.33` is
 generic across vendors. ENTITY-SENSOR-MIB gives a sensor value with its own
 scale and precision fields alongside it. Check for those before reaching for an
 enterprise subtree.
 
-Walk the device twice, some hours apart, before you commit to a table. If the
-index moved, you have a reindex problem to solve now rather than after you have
-built forty graphs.
+Compare discovery across representative reboots and probe changes in a test
+installation. Two unchanged walks alone do not prove index stability. Record stable
+sensor identities where available before creating long-lived graphs.
 
 ## Build a fixed-OID data source
 
@@ -139,8 +155,9 @@ OID as a literal value and one data source item in it. Set the type to `GAUGE`,
 give the minimum a real value only when the sensor genuinely cannot go below it,
 and leave the maximum undefined unless the vendor documents a ceiling.
 
-A wrong maximum is silent. Readings above it are stored as unknown, and the
-graph shows a gap where the interesting event was.
+Values outside RRD data-source bounds become unknown. Set those bounds in the
+stored raw units, not the graph's converted units; otherwise valid readings can
+be lost before a display CDEF is applied.
 
 ## Build a data query
 
@@ -150,16 +167,19 @@ field per column you want.
 The UPS output query is a short worked example. It indexes on the line table,
 parses the index off the end of each returned OID with a regular expression, and
 declares one input field for the index and four output fields for voltage,
-current, power and load. Each output field names the column OID and nothing
-else. See [Data queries and indexes](/concepts/data-queries-and-indexes/) for how
+current, power and load. Output definitions include method, source, direction and
+column OID. A column OID can be a valid index-walk root; matching the query's
+parser and the actual returned OIDs is what matters. See [Data queries and indexes](/concepts/data-queries-and-indexes/) for how
 the index is chosen and stored.
 
 Pick a reindex method deliberately. The choices are none, on uptime going
-backwards, on the index count changing, and verifying every field. Sensor tables
+backwards, on the index count changing, and Verify All Fields. Sensor tables
 are the case where the weaker methods fail: unplug one probe from a rack unit and
 plug in another, and the count may not change while every reading behind the
 index now belongs to a different sensor. Full verification costs SNMP work on
-every cycle. For a probe with a handful of sensors, pay it.
+each cycle. Verify which identity fields the query can check: unchanged numeric
+indexes or duplicate/truncated labels cannot prove that a physical probe is the
+same one. Refresh discovery and review graph associations after replacement.
 
 ## Scale the value
 
@@ -167,65 +187,77 @@ Decide where the conversion happens, and only put it in one place.
 
 | Where | When to use it |
 |---|---|
-| In the collection script | The raw unit is never wanted. The lmSensors script divides by 1000 here |
+| In the collection script | Use a documented collector contract; lmSensors get currently returns raw units |
 | In a CDEF on the graph item | The raw value is worth storing, and the display unit is a presentation choice |
 
 A CDEF is the usual answer for a vendor multiplier. The shipped packages carry
-exactly this: a `Divide By 10` definition built from three items, the current
-data source, the string `10`, and the division operator. The PDU and CRAC
-packages add a `Divide By 100` alongside it. The UPS package adds one that turns
-timeticks into minutes by dividing by 6000.
+definitions such as `Divide By 10`, built from the current data source, `10`, and
+division. Apply them only to objects with the corresponding raw unit.
+
+The UPS package has [incorrect power and time CDEFs](https://github.com/kadupulhq/kadupul/issues/249):
+its On Battery series divides seconds by 6000 instead of 60, and input/output Watts
+series divide watts by 10. For a conforming agent, 600 seconds should display as
+10 minutes and 1000 watts as 1000 watts. Battery voltage and line current do require
+division by 10; estimated runtime is already minutes. See
+[RFC 1628's UPS object units](https://www.rfc-editor.org/rfc/rfc1628.html).
 
 Storing the raw reading and dividing on the graph keeps the RRD file honest and
-lets you fix a wrong multiplier later without losing history. Scaling before
-storage is permanent. If you are unsure which the vendor meant, store raw.
+lets you correct a display multiplier without rewriting raw history, provided the
+samples survived data-source bounds and retention. Collector-side conversion
+changes the stored unit and may discard precision; document it. Unexplained raw
+readings should not be presented as a verified engineering unit.
 
 Do not apply the conversion twice. A CDEF on a graph whose script already scaled
-the value is the most common wrong sensor graph, and it looks plausible.
+the value can produce a plausible but incorrect reading.
 
 ## Give it graph settings that suit a measurement
 
-The defaults on a traffic graph template are wrong for a sensor in four ways.
+Choose settings for the measurement instead of copying traffic defaults blindly.
 
 | Setting | Traffic | Sensor |
 |---|---|---|
 | Data source type | `COUNTER` | `GAUGE` |
 | Base value | 1000, so the axis reads in k and M | Still 1000, but the prefix is meaningless on degrees |
 | Autoscale | Wanted, since the range is unknown | Usually unwanted, since the range is known |
-| Upper and lower limit | Ignored | The whole point |
+| Upper and lower limit | Depend on autoscale mode | Choose a useful visible range |
 
 Set an explicit upper and lower limit and a vertical label that names the real
 unit. The shipped UPS temperature graph does this: a lower limit of 0, an upper
 limit of 100, and `C` as the vertical label.
 
 The autoscale option is a set of choices, not a switch. The one the shipped
-temperature graph uses scales to the maximum while honouring the lower limit, so
-the floor stays pinned at zero and the ceiling follows the data. Pick the variant
+temperature graph uses passes a lower limit with `--alt-autoscale-max`; it does
+not pass the stored upper limit of 100. Without rigid boundaries, an out-of-range
+reading can expand a passed limit. A configured limit is not automatically pinned. Pick the variant
 that keeps the boundary you care about:
 
 | Option | Effect |
 |---|---|
 | Autoscale ignoring limits | Both ends float. Use when you have no idea of the range |
-| Autoscale accepting a lower limit | Floor pinned, ceiling floats. The usual choice for temperature |
-| Autoscale accepting an upper limit | Ceiling pinned, floor floats |
-| Autoscale with both limits | Both honoured |
+| Autoscale accepting a lower limit | Passes the lower limit; maximum follows data |
+| Autoscale accepting an upper limit | Passes the upper limit; minimum follows data |
+| Autoscale with both limits | Passes both limits; expansion still depends on rigid mode |
 
 There is also a rigid boundaries option that stops the axis expanding when a
 value falls outside the limits you set. Turn it on when a fixed axis matters more
 than seeing the excursion, and leave it off when it does not, because a rigid
-graph draws an out-of-range reading as nothing at all.
+graph can clip an excursion outside the displayed range. This does not delete the
+stored sample. See the [RRDtool graph limits reference](https://rrdtool.org/rrdtool/doc/rrdgraph.en.html).
 
-Leave the unit exponent alone unless you know you want it. Forcing everything
-onto one prefix is useful for a rate and confusing for a humidity reading.
+For degrees or percent where SI prefixes would confuse readers, consider a units
+exponent of 0. Base 1000 controls prefix steps; it does not itself disable prefixes
+or convert measurement units.
 
 ### Consolidation matters more here than on traffic
 
 An interface counter averaged over an hour still tells you roughly what happened.
 A temperature averaged over an hour hides the ten minute excursion that mattered.
 Make sure the storage profile behind these data sources keeps a `MAX` archive,
-and read the graph's maximum rather than its average.
+and configure the plotted series to read the appropriate `MAX` consolidation.
+A legend maximum over an `AVERAGE` series does not recover the original peak.
 
-The peak cannot be recovered later if it was never written. See
+Even a MAX archive only preserves peaks represented in collected samples; it
+cannot recover an excursion between polls or values rejected before storage. See
 [Manage data retention](/guides/manage-data-retention/) and
 [Data sources and archives](/concepts/data-sources-and-rras/).
 
@@ -251,6 +283,6 @@ is not a probe reading zero degrees.
 | Sensor graphs go flat after a probe is swapped | The table reindexed and the data source now points at a different sensor |
 | Readings above a threshold appear as gaps | A maximum was set on the data source and real values exceed it |
 | Axis labelled in k or M on a degree reading | Base value and unit settings inherited from a traffic template |
-| An excursion is invisible on a week view | Only `AVERAGE` archives are kept |
-| A query returns no indexes | The index OID is a column, not the table, or the index parse expression matches nothing |
-| The lmSensors queries find nothing on a Linux host | The agent has no lmSensors support compiled or enabled |
+| An excursion is invisible on a week view | Check the selected consolidation, retained resolution, poll interval and rejected samples |
+| A query returns no indexes | Check returned OIDs, parser matches, access restrictions and object support; a column root can be valid |
+| The lmSensors queries find nothing on a Linux host | Check agent support, access, exposed sensor rows and exact SNMP errors |

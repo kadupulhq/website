@@ -23,11 +23,14 @@ asking you about.
 
 ## Before you start
 
-The device must be reachable and must answer SNMP. Confirm that from the machine
-Kadupul runs on, not from your laptop. The two often have different firewall paths.
+For this SNMP example, the device must answer queries from its assigned
+collector. Run the checks on that collector, preferably as the poller user; a
+request from your laptop can take a different firewall path. Replace the example
+address and community with the read-only credentials configured on your device.
+Numeric OIDs below also work when local MIB name files are not installed.
 
 ```bash
-snmpget -v2c -c public switch.example.net sysDescr.0
+snmpget -v2c -c 'your-read-only-community' switch.example.net .1.3.6.1.2.1.1.1.0
 ```
 
 If that returns a description string, continue. If it times out, fix that first.
@@ -38,21 +41,25 @@ Then check the table you actually want to graph, because a device can answer
 `sysDescr` and still refuse the interface table.
 
 ```bash
-snmpwalk -v2c -c public switch.example.net ifDescr
+snmpwalk -v2c -c 'your-read-only-community' switch.example.net .1.3.6.1.2.1.2.2.1.2
 ```
 
-You want one line per interface. An empty result, or an authorization error, means
-the agent's view excludes that subtree. That is a change on the device, not here.
+The second OID is the `ifDescr` column. You want one row per exposed interface.
+An empty result can mean a restricted SNMP view or an unsupported table; an
+authorization error points to credentials or access policy. Inspect the returned
+error before changing the device or Kadupul configuration.
 
 Two facts about SNMP versions decide things later, so settle them now.
 
 | Version | What it means for you |
 |---|---|
-| v1 | No 64-bit counters. A gigabit interface will wrap and produce nonsense |
-| v2c | 64-bit counters, community string sent in the clear |
-| v3 | Authentication and privacy, more to configure and more to get wrong |
+| v1 | No Counter64 support. Fast links can wrap 32-bit octet counters multiple times between polls, making the rate ambiguous |
+| v2c | Supports Counter64 when the agent exposes it; community strings are sent in clear text |
+| v3 | Supports authentication and encryption with `authPriv`; choosing v3 alone does not enable both |
 
-Use v2c or v3. If the device only speaks v1, expect the counter problems in the
+Prefer v3 with `authPriv` where supported, or v2c on a restricted management
+network. Select the 64-bit interface graph type as well as the SNMP version.
+If the device only speaks v1, consider the polling interval and traffic rate in the
 failure table at the bottom of this page. [SNMP](/reference/snmp/) covers the
 credential fields in full.
 
@@ -75,22 +82,25 @@ can still be reported down. A TCP ping against a port you know is open avoids th
 
 ## Add it
 
-1. Create the device with its hostname or address, SNMP version, and community or
-   credentials.
+1. In the legacy **Devices** page (`host.php`), choose **Add**. Device creation
+   and graph setup still use this page during the Symfony migration. Enter a
+   description, hostname or address, assigned collector, SNMP version, and credentials.
 2. Set the availability method you chose.
 3. Choose the device template.
-4. Save, and read the status panel it shows you.
+4. Save, confirm the device is enabled, and read its availability/SNMP panel.
+   A saved database record is not evidence that collection has succeeded.
 
 ## What the device template decides
 
-A device template is a bundle of associations, not a bundle of graphs. Applying one
-associates a set of graph templates and data queries with the device. It does not
-create a single data source or a single graph on its own.
+A device template associates graph templates and data queries with the device.
+Applying it also runs data queries to populate their indexes. With graph
+automation disabled, those associations do not by themselves create graphs.
+When graph automation is enabled, template/query hooks can create graphs under
+matching rules; inspect the existing graphs before adding another copy.
 
-That matters in two directions. Picking the wrong template does not corrupt
-anything, because nothing has been created yet; you change the template and
-reapply. And picking the right template does not finish the job, because you still
-have to create graphs from what it made available.
+Changing a template can alter associations and run those hooks again. It is not
+a reset of existing graphs or data sources. Check the selected template and
+queried indexes before applying it to a device that already has history.
 
 A data query is the part that finds the repeating things: interfaces, disks,
 sensors. It walks a table on the device and produces one index per row, which is
@@ -105,10 +115,11 @@ and reports back. This is the check that matters, and it is the one people skip.
 
 | What you see | What it means |
 |---|---|
-| System, Uptime, Hostname, Location, Contact, all filled in | The session worked. Continue |
+| System and uptime queries succeed | The panel can read basic SNMP metadata. This does not yet prove interface collection |
+| Location or Contact is empty | These optional metadata fields may be unset; emptiness alone is not a collection failure |
 | SNMP not in use | No community or username on the device, or the version is set to none |
-| Session SNMP error | The session could not be opened at all. Address, port, or firewall |
-| System SNMP error | The session opened but `sysDescr` did not come back. Usually a view restriction |
+| Session SNMP error | Session setup failed; inspect the displayed error, credentials, protocol and connection settings |
+| System SNMP error | Reading `sysDescr` failed; check the returned error, agent view, credentials and reachability |
 | Host SNMP error | Neither description nor uptime came back |
 | Uptime shown as `U` | Uptime was not readable. Some devices genuinely do not report it |
 
@@ -116,66 +127,75 @@ If the availability method includes ping, a separate ping result appears below.
 Read both. A device can pass one and fail the other, and which one fails tells you
 where to look.
 
-A device that saves cleanly but reports no system description is not being polled.
-Treat that as a failure even though nothing showed an error.
+A blank system description does not prove that collection is failing. The code
+accommodates agents with an empty description and usable uptime. Disabled
+devices bypass the availability check, and non-SNMP availability methods do not
+show this SNMP panel. Verify the actual query and poller cache next.
 
 ## Create the data sources and graphs
 
-The device is now known and reachable. It is still not collecting anything, because
-no data source exists yet.
+For a new device without automation-created graphs, the next step is to create
+the graph and its data source. Check **Data Source List** and **View Poller Cache**
+on the device page instead of assuming they are empty.
 
-From the device's own page, create graphs from what its template made available.
+From the device page, choose **Create Graphs for this Device**.
 For a switch this means running the interface data query, picking the interfaces
 you care about, and choosing a graph type for them. Pick two or three interfaces,
 not all forty-eight. You are proving the path works, and a small first batch is far
 easier to read in the next step.
 
-Creating a graph from a data query creates the data source behind it, and creating
-the data source is what puts an entry into the poller cache. Nothing is collected
-until that entry exists.
+An indexed graph associates data sources with the chosen interface and prepares
+their poller-cache entries; compatible existing sources can be reused. The graph
+creation response is not proof of polling. Check that the cache contains the
+expected device, interface OIDs and RRD path.
 
 ## Confirm it is collecting
 
-Give it two poller intervals, then check that the data source has a recent update
-time. A graph drawn before any data exists is empty, which looks identical to a
-graph of a device that is down. Waiting for the second interval removes that
-ambiguity.
+Wait for scheduled collection cycles, then check both timestamps and values.
+An empty graph can mean startup normalization, an unknown value or failed
+collection. Two counter readings are necessary to calculate a rate, but two
+poller runs do not guarantee a completed, valid archive bucket.
 
 Check three things, in this order.
 
-**The poller ran.** The log records the end of each run with a summary. No entries
-means nothing is being scheduled, and that is an install problem, not a device
-problem. See [Logging](/reference/logging/).
+**The poller ran.** Look for the end-of-run summary in the configured log. If it
+is absent, check scheduling, log destination and permissions, and whether the
+poller exited before completing. See [Logging](/reference/logging/).
 
-**The file exists and is recent.** Default file names are built from the device
-description, the data source name, and an internal id, under the RRD directory; see
+**The file exists and is recent.** Copy the actual RRD path from the data source or poller cache; do not guess
+it from the hostname. Paths and names can be customized. See
 [File layout](/reference/file-layout/). Ask RRDtool when the file was last written:
 
 ```bash
-rrdtool last /path/to/rra/switch_example_net_traffic_in_12.rrd
+rrdtool last /path/to/rra/the_actual_file.rrd
+rrdtool lastupdate /path/to/rra/the_actual_file.rrd
+rrdtool fetch /path/to/rra/the_actual_file.rrd AVERAGE --start end-30m --end now
 ```
 
-The timestamp should be within one interval of now. A file that exists with a
-creation-time timestamp means the poller created it and never fed it.
+The timestamp should advance on successful writes. A recent timestamp can still
+accompany an unknown value, and buffered writes can delay the on-disk timestamp.
+For `rrdcached` or Boost, check that component’s flush state as well.
 
-**The value is not unknown.** Two consecutive real numbers are what you are after.
-A counter data source has nothing to report on its first sample, because a rate
-needs two readings, so the first interval producing unknown is normal. The second
-one producing unknown is not.
+**The value is not unknown.** `lastupdate` shows the latest supplied values; for
+a counter these are counters, not computed traffic rates. Inspect completed rows
+from `fetch` for finite rates. Startup timing, step alignment, heartbeat, bounds
+and the archive’s unknown-data threshold all affect when a usable row appears.
+Do not diagnose a fault from the first two rows alone. If unknowns persist, inspect
+the collected values, data-source type, heartbeat and poller errors.
 
 ## Common first failures
 
 | Symptom | Usual cause |
 |---|---|
-| Saves, but no system description | Wrong community string, or SNMP v3 credentials rejected |
+| Saves, but system-description lookup reports an error | Check credentials, agent view and collector reachability; an empty description alone is not sufficient evidence |
 | Session SNMP error from Kadupul, `snmpget` works from your laptop | Firewall path differs, or the agent restricts by source address |
 | Device shows down, but SNMP data arrives | Availability set to ICMP ping, which cannot open a raw socket |
 | Description appears, no data | Poller not scheduled, or running as a user that cannot write the RRD directory |
 | Data query returns no interfaces | Agent view excludes the interface table, or the device needs a reindex |
 | First value unknown, then fine | Normal for a counter. It needs two readings to produce a rate |
-| Every value unknown | Data source type is wrong, or the device returns a string where a number is expected |
+| Unknown values persist | Failed collection, invalid values, type/bounds mismatch, heartbeat or archive normalization |
 | Data for a while, then gaps | Poller taking longer than its interval, or the device rate limiting SNMP |
-| Counters that jump absurdly | 32-bit counter wrapping on a fast interface, use 64-bit counters |
+| Counter rates are implausible | Multiple 32-bit wraps, a counter reset, units or data-source settings; use supported 64-bit counters on fast links |
 | Interfaces graph the wrong ports after a reboot | Indexes shifted. The data query needs a reindex method that notices |
 
 The last one is worth understanding before you have a hundred switches: SNMP

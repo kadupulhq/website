@@ -1,6 +1,6 @@
 ---
 title: Remove spikes from data
-description: How to take a false peak out of an archive so the rest of the graph is readable again, and why that edit cannot be undone.
+description: Preview spike corrections, preserve recovery copies, and verify changes to retained RRD samples.
 banner:
   content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 sidebar:
@@ -13,10 +13,11 @@ path. Test these procedures on an isolated copy with backups before relying on
 them. See [project status](/project/status/).
 :::
 
-:::danger[This rewrites history and there is no undo]
-Spike removal dumps the archive, edits the values, and restores the result over
-the original file. The samples it replaces are gone. Run it with `--dryrun`
-first, every time, and make sure the backup directory is set and writable.
+:::danger[This rewrites history; recovery requires a backup]
+Spike removal dumps the archive, edits values, restores a temporary sibling file
+and replaces the original after validation. There is no automatic undo. Preserve
+and verify a recovery copy, run `--dryrun` first, and confirm the target samples
+before committing a change.
 :::
 
 A spike here means one or two samples so much larger than everything around them
@@ -28,10 +29,10 @@ baseline. The measurement is wrong, and it is also loud.
 Most spikes on a counter-based data source are arithmetic, not measurement.
 A counter data source stores a rate computed from the difference between two
 readings. Anything that makes the second reading much larger than the first,
-relative to the time between them, produces a rate that never happened. A device
-reboot that resets the counter, a counter that wraps, an interface re-index that
-moves a value onto a different data source, a delayed sample that lands with a
-short interval: all of them show up the same way.
+relative to the time between them, can produce a false rate. Counter resets,
+incorrect wrap handling, an interface re-index that moves readings onto the wrong
+data source, or timestamp errors can cause this. A normal counter wrap is not
+itself proof of a bad sample; verify the data-source type and input readings.
 
 See [Data sources and RRAs](/concepts/data-sources-and-rras/) for how the rate is
 derived.
@@ -49,10 +50,14 @@ which values to replace, and restores the result.
 | `stddev` | Values more than N standard deviations from the mean | No |
 | `variance` | Values more than N percent above the mean after outliers are dropped | No |
 | `float` | Everything inside a stated time window | Yes |
-| `fill` | Gaps inside a stated time window | Yes |
+| `fill` | Unknown and zero-valued samples inside a stated time window | Yes |
 
 `stddev` and `variance` hunt. `float` and `fill` do what you tell them inside a
 range you name, and both fail immediately if you do not give a start and an end.
+
+`fill` is not limited to missing data: it can replace measured zeroes with
+nonzero values. Do not use it on a range containing valid idle or zero readings
+unless that alteration is intentional.
 
 The variance method drops the top and bottom N samples before computing the
 average it compares against, where N is the outliers setting. That is what stops
@@ -63,35 +68,46 @@ Whatever is selected gets replaced, and there are three replacements.
 | Replacement | Result |
 |---|---|
 | `last` | The last known good value. The default. |
-| `avg` | The data source average. |
-| `nan` | Unknown. The graph shows a gap. |
+| `avg` | A calculated average for the field/archive; the calculation depends on the method. |
+| `nan` | Unknown for statistical methods; see the window-method limitation below. |
 
-`nan` is the honest one. It says a value was there and it was wrong. `last` and
-`avg` both invent a number that reads as real to anyone looking at the graph
-later. Pick `nan` unless you have a reason not to.
+Unknown records that a usable measurement is unavailable. `last` and `avg`
+substitute values that can look measured to someone reading the graph later.
+Choose the replacement deliberately and verify the actual stored result.
+
+**Window-method limitation:** `float` and `fill` currently accept `--avgnan=nan`
+but leave the selected values unchanged, despite returning success. Do not rely
+on that combination. Statistical methods with optional time bounds can replace
+detected outliers with unknown, but are not equivalent to blanking a whole window.
+Tracked in [#237](https://github.com/kadupulhq/kadupul/issues/237).
 
 ## Preview, then commit
 
 ```sh
-# see what would be changed, touch nothing
-php cli/removespikes.php --rrdfile=/path/to/file.rrd --method=stddev --dryrun
+# preview this exact method and replacement
+php cli/removespikes.php --rrdfile=/path/to/file.rrd \
+    --method=stddev --avgnan=nan --dryrun
+
+# after reviewing that preview, repeat its exact selection without --dryrun
+php cli/removespikes.php --rrdfile=/path/to/file.rrd \
+    --method=stddev --avgnan=nan --backup
 
 # narrow it to a known incident
 php cli/removespikes.php --rrdfile=/path/to/file.rrd \
-    --method=float --outlier-start='2026-03-14 02:00' --outlier-end='2026-03-14 03:00' \
+    --method=stddev --outlier-start='2026-03-14 02:00' --outlier-end='2026-03-14 03:00' \
     --avgnan=nan --dryrun
 
-# commit
-php cli/removespikes.php --rrdfile=/path/to/file.rrd --method=stddev --avgnan=nan
 ```
 
-A dry run performs the dump and the full analysis and prints the statistics and
-the proposed changes. It does not write the XML back and does not touch the RRD
-file. It is the same code path up to the point of writing, so what it reports is
-what would happen.
+A dry run dumps the RRD and analyzes it without rewriting the live file. It still
+needs a usable work directory and maintenance access. A preview does not reserve
+the file until a later commit: new samples or changed options can change the
+result. The windowed example still uses statistical selection; it does not remove
+every value in that window.
 
 The time arguments accept either a Unix timestamp or a date string. A string that
-cannot be parsed is rejected before anything runs.
+cannot be parsed is rejected before rewriting. Use Unix timestamps when timezone
+interpretation would otherwise be ambiguous.
 
 ## What actually happens to the file
 
@@ -101,12 +117,21 @@ Worth knowing before you run it on something you care about.
 2. Comments are stripped and every archive is scanned for the statistics.
 3. Selected values are replaced in the XML.
 4. The original file is copied into the backup directory.
-5. The edited XML is restored over the original path, forcing an overwrite.
+5. The edited XML is restored to a private sibling, validated, and renamed over
+   the original while preserving its owner, group and mode.
 
 Step 4 is the safety net, and it is not optional: if the copy fails, the restore
 does not run. That copy, not any command line flag, is what you would restore
-from. It is named after the original file and lands in the configured backup
-directory, so check that setting before you need it.
+from. Its name is based on the original and may receive a unique suffix to avoid
+overwriting an existing artifact. `--backup` additionally requests a persistent
+recovery snapshot. Read the reported paths and verify the copies before relying
+on them.
+
+The operation requires trusted local POSIX directories and maintenance locking;
+writable mode bits alone are insufficient. It refuses unsupported storage and a
+configured rrdcached endpoint. Stop external writers, which do not participate in
+Kadupul's lock protocol. Run as the intended storage-owning service account.
+See [installation requirements](/reference/requirements/) for storage access.
 
 ## Settings that control the defaults
 
@@ -121,7 +146,7 @@ from the interface.
 | Number of standard deviations | 10 | Threshold for the `stddev` method |
 | Variance percentage | 1000 | Threshold for the `variance` method |
 | Variance number of outliers | 5 | High and low samples dropped before averaging |
-| Max kills per RRA | 5 | Ceiling on replacements per archive |
+| Max kills per RRA | 5 | Intended ceiling; currently not reliably enforced |
 | RRDfile backup directory | `cache/spikekill/` under the install | Where the dump and the copy go |
 | Backup retention | 3 months | How long copies are kept |
 
@@ -137,26 +162,30 @@ result. Restrict the template list tightly if you turn it on at all.
 failed; it has told you the values are within the band you asked for. Tighten the
 threshold rather than switching methods at random.
 
-**Max kills per RRA limits what one run does.** The `stddev` and `variance`
-methods stop after that many replacements per archive. A file with a long run of
-bad samples needs a window-based method, not repeated hunting runs.
+**Do not rely on Max kills per RRA as a safety boundary.** Review the complete
+preview and use a narrow time window. The implementation resets its counter per
+row rather than maintaining an archive-wide count.
+In a test with one field and one archive, `--number=1` still replaced three peaks
+with unknown and reported zero total changes. NaN edits are also missing from the
+summary counter. Verify stored values, not just the message. Tracked in
+[#238](https://github.com/kadupulhq/kadupul/issues/238).
 
 **A consolidated value cannot be recovered.** Older archives hold one value per
 bucket, already averaged. Replacing that value does not restore the true
 measurement for the bucket; it substitutes a plausible one. The further back you
 go, the more the correction is a guess.
 
-**The backup directory must be set and writable.** The dump file and the pre-write
-copy both go there. An empty setting leaves the tool deriving paths from an empty
-string, which is not a state you want to discover mid-run.
+**The backup directory must be configured and trusted.** The dump and recovery
+copies go there. Missing, unsafe or unverifiable directories are rejected; do not
+make a directory world-writable to bypass a failure.
 
-**Every run is logged with who ran it and with which parameters.** That is
-deliberate. Spike removal changes recorded history, so it leaves a record of who
-changed it.
+**Keep your own change record as well as application logs.** Record the operator,
+command, time range, backup paths and before/after checks. Summary counts alone
+are insufficient evidence of what changed.
 
-**The file must be writable by the account running the command.** The tool checks
-and refuses up front. Running it as root on a file owned by the poller user
-leaves you with a file the poller can no longer update.
+**Run as the intended service account.** Successful replacement preserves file
+ownership and mode. Root is not a shortcut around the directory trust checks;
+verify that normal polling can still update the result.
 
 **Removing the spike does not fix the graph if the data source is wrong.** If an
 interface re-index moved values onto the wrong data source, the spike is a

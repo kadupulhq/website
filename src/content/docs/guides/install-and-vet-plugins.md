@@ -19,7 +19,9 @@ Start here, because everything else on this page follows from it.
 code is included into the same PHP process that serves the web interface and into
 the processes that run the poller. It holds the same database credentials, reads and
 writes the same files, and executes with the same operating system account. There is
-no sandbox, no privilege separation, and no code signing check at install time.
+no plugin sandbox, privilege separation, or plugin signature check at install
+time. The process account and its database/filesystem permissions determine the
+actual access; installing a plugin does not inherently grant root privileges.
 
 Installing a plugin is a decision of the same weight as giving someone a shell
 account on the server. Treat it that way.
@@ -34,8 +36,11 @@ Two files do the work.
 
 **`INFO`** is an INI file describing the plugin: its name, long name, version,
 author, homepage, the minimum core version it supports, and any capabilities it
-claims. A plugin declaring a minimum core version newer than the running one is
-marked incompatible and will not install.
+claims. The management listing marks a plugin incompatible when its declared
+minimum core version is newer than the running version. Do not assume every
+installation path enforces that result: the current CLI can install it anyway.
+Check `compat` in `INFO` before invoking the CLI. See
+[issue #223](https://github.com/kadupulhq/kadupul/issues/223).
 
 **`setup.php`** defines two functions the installer requires, named after the
 plugin directory:
@@ -46,10 +51,12 @@ plugin directory:
 | `plugin_<name>_install()` | Registering hooks and realms |
 
 Installation includes `setup.php`, records the plugin, and calls the install
-function. Hook and realm registration is only accepted from a function whose name
-looks like an install, upgrade, or setup routine; a call from anywhere else is
-refused and logged. After the install function returns, the plugin's configuration
-check decides whether it is ready to enable or is parked as needing configuration.
+function. Hook and realm registration checks whether the calling function's name
+contains `install`, `upgrade`, or `setup`; this is a convention check, not a trust
+boundary. After installation, an optional configuration check determines whether
+the plugin is installed but disabled (status 4) or needs configuration (status 2).
+With no configuration-check callback, an existing `setup.php` is treated as ready.
+Enabling runs the check again and sets status 1 only when it passes.
 
 ## Hooks
 
@@ -85,10 +92,10 @@ escapes the directory is refused and logged as a security event.
 
 | Capability | Notes |
 |---|---|
-| Create database tables | Recorded so uninstall can drop them |
-| Add columns to existing tables, including core tables | Recorded so uninstall can drop them |
+| Create database tables | Tables created through the tracking helper are recorded for uninstall cleanup |
+| Add columns to existing tables, including core tables | Columns added through the tracking helper are recorded for cleanup |
 | Register permission realms | New sections of the interface with their own access control |
-| Grant itself realms on install | The primary administrator and the installing account can be granted the new realm automatically |
+| Auto-grant new realms | With registration auto-grant enabled, grants go to the configured primary admin and current session user, if present |
 | Require other plugins | Declared dependencies are version checked before install |
 | Run on remote pollers | Governed by capabilities the plugin declares |
 
@@ -105,9 +112,8 @@ identify, a tag or commit you can point at. "Found it on a forum" is not provena
 If the plugin ships as an archive, get the corresponding source and confirm the two
 match.
 
-**Read `setup.php` end to end.** It is usually short. It tells you every hook the
-plugin registers, every realm it declares, and every schema change it makes. If you
-read nothing else, read this.
+**Read `setup.php` end to end.** It is usually short. Follow the files and callbacks it loads as well: registration and schema changes
+can be delegated, and top-level code runs as soon as the file is included.
 
 **List the hooks and ask why.** A graph annotation plugin hooking user save is
 worth a question. So is a reporting plugin hooking the poller. The hook list is a
@@ -119,19 +125,20 @@ deserialization of untrusted input, file writes outside its own directory, and
 network calls to hosts you did not expect:
 
 ```sh
-grep -rnE 'exec|shell_exec|passthru|system|proc_open|popen|eval|unserialize|assert' plugins/<name>/
-grep -rnE 'curl_|file_get_contents\(.*https?://|fsockopen' plugins/<name>/
+rg -n 'exec|shell_exec|passthru|system|proc_open|popen|eval|unserialize|assert' plugins/<name>/
+rg -n 'curl_|file_get_contents\(.*https?://|fsockopen' plugins/<name>/
 ```
 
 Hits are not automatically wrong. A collection plugin that runs a command is doing
 its job. A hit you cannot explain is the problem.
 
 **Check how it builds SQL.** Values concatenated into a query string, rather than
-passed as parameters, are the single most common flaw in plugin code. Grep for the
-database helpers and look at what is inside the string.
+passed as parameters, need review. Search for database helpers and inspect how
+untrusted values reach each query.
 
 **Check how it emits output.** Values printed into HTML without escaping, in a
-plugin reachable by an unauthenticated page, is the second most common flaw.
+page, can introduce cross-site scripting. Check escaping in authenticated pages
+as well as anonymous ones.
 
 **Check the realms it registers.** Note whether it auto-grants them on install and
 to whom. A realm is a new access-controlled surface, and it inherits none of your
@@ -141,8 +148,10 @@ existing policy.
 older release will install if its declared minimum permits it, and then call
 functions that have changed.
 
-**Read what it does at uninstall.** Tables it created are dropped, along with their
-data. Know that before you install, not on the day you remove it.
+**Read what it does at uninstall.** The plugin callback runs before core cleanup.
+Tracked tables are dropped with their data and tracked columns are removed;
+custom schema or file changes may need plugin-specific cleanup. Back up those
+objects before removal.
 
 ## Installing
 
@@ -156,33 +165,68 @@ Once you have decided:
 4. Review the realms it registered, and grant them deliberately rather than leaving
    whatever the install granted. See
    [Manage users and permissions](/guides/manage-users-and-permissions/).
-5. Enable it, then watch the log. Plugin problems show up as hook warnings about
-   missing functions or about a hook that failed to return its argument.
+5. Enable it, confirm its recorded state, then exercise its actual feature and
+   inspect logs. Not every missing callback or bad return produces a warning, so
+   a quiet log is not proof that all hooks worked.
 
 Install on a test instance first. A plugin that adds a column to a core table is not
 something you want to discover on production.
 
+## Command-line lifecycle
+
+Use one plugin and one action at a time while validating:
+
+```sh
+php cli/plugin_manage.php --plugin=myplugin --install
+php cli/plugin_manage.php --plugin=myplugin --enable
+php cli/plugin_manage.php --plugin=myplugin --disable
+php cli/plugin_manage.php --plugin=myplugin --uninstall
+```
+
+Replace `myplugin` with the reviewed directory name. Installation and enabling
+are separate, though the CLI also accepts `--install --enable`. Use repeated
+`--plugin` options for multiple plugins, and verify each resulting state. There
+is no dry-run option. The CLI's success messages and exit status do not establish
+compatibility or successful configuration.
+
+Do not rely on `--allperms` to grant existing plugin realms. It re-registers them,
+but the current registration code only auto-grants when creating a new realm.
+A realm initially registered without auto-grant can remain unassigned after
+`--install --allperms`. Review and grant it explicitly in user/group management.
+This flag is intended for administrative accounts, not every user. See
+[issue #224](https://github.com/kadupulhq/kadupul/issues/224).
+
 ## Traps
 
 **Disabled is not inert.** Disabling a plugin stops most of its hooks, but the ones
-that supply settings pages and configuration arrays keep running, and its files keep
-being included. Disabling is a feature switch, not a containment measure. If you do
-not trust a plugin, uninstall it and remove its directory.
+named `config_settings`, `config_arrays`, and `config_form` retain their active
+status. Their files can still be included and their callbacks run. Other hook
+registrations are disabled. Disabling also does not delete PHP files or guarantee
+that a plugin's direct URLs are unavailable.
 
-**Uninstall destroys data.** Tables the plugin created are dropped and columns it
-added are removed. Export anything you care about first.
+Uninstalling invokes plugin code too. If a plugin is suspected of being malicious,
+isolate the installation and review the removal procedure before invoking its
+uninstall callback.
+
+**Uninstall removes tracked data, not the plugin directory.** The normal path
+runs the plugin callback, removes hooks, realm definitions, user/group realm
+grants, and the configuration row, then drops tracked tables and columns. Plugin
+source files remain on disk. Untracked changes are not automatically reversed.
+Export anything you need before uninstalling, then review remaining files.
 
 **Plugin order is load-bearing.** When two plugins transform the same value, the
 order decides the result. Reordering plugins to fix one thing can silently change
 another.
 
-**The poller runs plugins too.** A hook on the poller path runs once per cycle, in
-every poller process. Slow code there consumes the polling interval, and the symptom
-is graphs with gaps, which nobody connects to a plugin.
+**The poller runs plugins too.** Call frequency depends on the hook: some are
+per poller run, others are per device/status/output event. Remote capability and
+connection checks can further limit dispatch. Measure the plugin on the relevant
+poller path; slow callbacks can consume the polling interval.
 
-**Auto-granted realms accumulate.** Each install can add a realm to the primary
-administrator. Review the administrator's realm list occasionally rather than
-assuming it is what you set.
+**Realm grants depend on registration and lifecycle.** New realms may be granted
+automatically, depending on the registration flag. Disabling preserves realm
+definitions and grants; normal uninstall removes them. Review grants after an
+install or upgrade rather than assuming prior assignments cover new realms.
 
 **Upgrading the core can strand a plugin.** The declared minimum version says the
 oldest core the plugin supports. It says nothing about the newest. Re-check your

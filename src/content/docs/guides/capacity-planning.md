@@ -17,9 +17,8 @@ them. See [project status](/project/status/).
 sizes the whole install: disk, write rate, poll window, database and memory, from
 two counts you already have.
 
-Everything here scales on data sources, not on devices. One switch with 400
-monitored ports outweighs fifty servers with three graphs each. Plan on the first
-number and the second takes care of itself.
+Data source counts are useful, but device latency, script cost and archive layout also matter. One switch with 400
+monitored ports outweighs fifty servers with three graphs each. Measure both the number of items and the cost of collecting them.
 
 ## The four inputs
 
@@ -28,11 +27,18 @@ Gather these before doing any arithmetic. Three are counts; the fourth is a choi
 | Symbol | What it is | Where it comes from |
 |---|---|---|
 | `S` | RRD files. One per data source | Count of data sources |
-| `F` | Data source fields. The `DS` lines across all files | Sum of `rrd_num` over the poller cache |
+| `F` | Data source fields. The `DS` lines across all files | Count local data source items and verify actual RRD definitions |
 | `C` | Poller cache rows | Row count of `poller_item` |
 | `P` | Retention profile | Your choice of data source profile |
 
-`F` is the one that decides disk. `S` decides write rate. `C` decides how much
+Do not derive `F` from `SUM(poller_item.rrd_num)`: query rows repeat the number of
+outputs, while a multi-output script can have one row with `rrd_num = 1`.
+For a database inventory, count distinct `(local_data_id, data_source_name)` pairs
+in `data_template_rrd` with `local_data_id > 0`, restricted to the active estate.
+Reconcile that inventory against actual files: templates, missing files, custom
+paths and stale definitions can otherwise distort the estimate.
+
+`F` helps estimate disk. `S` decides write rate. `C` decides how much
 database you need in flight. They are not the same number and substituting one for
 another is the usual way an estimate comes out four times wrong.
 
@@ -63,7 +69,7 @@ each time. An access switch with 24 monitored ports, in and out, is 24 files and
 
 ### The formula
 
-The profile editor computes a file's size from three constants: a 284 byte file
+The profile editor estimates size using three constants: a 284 byte file
 header, a 300 byte header per data source in the file, and 8 bytes per stored
 value.
 
@@ -81,11 +87,14 @@ Across a whole install:
 tree bytes = S * 284 + F * (300 + total_rows * 8 * consolidation_functions)
 ```
 
-The first term is noise. The second is the answer.
+This is the editor's estimate, not an exact portable RRD file-size formula.
+Measure representative files and filesystem allocation on the target platform.
+Sum separately for different field counts and archive layouts, and allow space
+for backups, XML dumps, staged restores and filesystem overhead.
 
 ### The shipped profiles
 
-All three shipped profiles keep all four consolidation functions, so every one of
+The three profiles used in this example keep all four consolidation functions, so every one of
 them multiplies its row count by four.
 
 | Profile | Step | Archive rows | Rows x 8 x 4 | Bytes per field |
@@ -114,12 +123,11 @@ Derived from the table above, at one field per `DS` line.
 
 The tree does not grow after creation. Every archive is allocated in full when the
 file is made, which is why a new data source shows eleven months of empty space.
-Provision once, at creation, and the number does not move until you add data
-sources.
+Existing allocation stays stable under ordinary updates, but explicit resize,
+rebuild or storage-layout changes can change it.
 
-That cuts both ways. There is no path that rewrites an existing file to match a
-changed profile, so an under-provisioned tree cannot be shrunk by editing the
-policy. See [Manage data retention](/guides/manage-data-retention/).
+That cuts both ways. Editing a profile alone does not rewrite existing files; explicit conversion
+or resizing requires separate validation and a backup. See [Manage data retention](/guides/manage-data-retention/).
 
 ## Write rate
 
@@ -136,21 +144,21 @@ updates per second = S / step
 | B, 20,000 files | 67 | 333 | 667 |
 | C, 200,000 files | 667 | 3,333 | 6,667 |
 
-Derived by division. Each of those is a small write at a scattered offset in a file
-that never grows, so compare the number against what your storage does in small
-random writes, not against its sequential throughput.
+These are average logical updates at a uniform step, not measured physical IOPS.
+Mixed steps require summing each group separately. Filesystem caching, archive
+updates, batching and deferred writes affect actual disk operations and latency.
 
-This is the limit nothing warns you about. The poller finishes on time, the
-database is idle, and the graphs still have gaps.
+Storage pressure can cause latency, retained queue growth and update errors even
+when collection finishes on time. Inspect those signals before diagnosing gaps.
 [High volume writes](/concepts/high-volume-writes/) explains the shape of it and
 what deferred writes trade away.
 
-Two rules of thumb that follow from the arithmetic rather than from measurement:
+Two limitations of these estimates:
 
-- A step five times finer multiplies the write rate by five and the disk by about
-  seven. Both, not one.
-- Scale C on a 5 minute step is already past what a single spinning disk does.
-  Scale B on a 30 second step is in the same place.
+- A fivefold cadence increase multiplies logical update demand for the affected
+  files by five. Disk depends on the chosen archive layout, not cadence alone.
+- No table here establishes the throughput of a particular disk. Benchmark
+  representative collection and flush work on the intended storage.
 
 ## The poll window
 
@@ -165,7 +173,8 @@ budget      = poller_runs * poller_interval - 2
 
 With the shipped defaults, both intervals are 300 seconds, `poller_runs` is 1, and
 the budget is 298 seconds. A run that passes the budget is cut off, and the work
-that had not finished produces a gap rather than a zero.
+not yet collected can leave gaps; samples already queued can remain for later
+acknowledgement rather than being discarded.
 
 ### The requirement
 
@@ -200,8 +209,10 @@ The one input that cannot be derived is how long a device takes. Measure it:
 spine --first=42 --last=42 --threads=1 --verbosity=HIGH --stdout --readonly
 ```
 
-`--readonly` collects without writing results, so it is safe alongside a live
-poller. Take a handful of devices across the range of sizes you actually have and
+This is an inherited example, not a validated Kadupul Spine deployment.
+`--readonly` does not prove side-effect-free execution: scripts and device requests
+still run. Test only against isolated fixture devices with production producers
+and notifications excluded. Take a handful of devices across the range of sizes you actually have and
 use the mean for the fleet arithmetic and the maximum for the lower bound.
 
 ### Three scales
@@ -216,8 +227,10 @@ Substitute your own.
 | B, 1,000 devices | 3,000 | Spine, 8 x 8 | 64 | 47s | Yes |
 | C, 10,000 devices | 30,000 | Spine, 16 x 20 | 320 | 94s | Yes |
 
-Scale B is where the PHP collector runs out. Adding processes past twice the CPU
-core count stops helping, and the guidance in the source says so.
+These are idealized arithmetic examples, not measured capacity limits. The source
+recommends at most twice the CPU core count for PHP processes; it does not prove
+a universal saturation threshold. Spine thread multiplication is not evidence of
+linear speedup or of an available validated build.
 [Scale the poller](/guides/scale-the-poller/) covers which limit you actually hit.
 
 ### The constraint scale C hits
@@ -226,16 +239,13 @@ Threads are not free. Each spine thread holds a database connection, and so does
 each script server:
 
 ```
-connections = processes * (threads + script_servers + 1)
+estimated worker connections = processes * (threads + script_servers)
 ```
 
-Scale C at 16 processes and 20 threads is 16 x 22, which is 352 connections from
-one collector before anybody logs in. That is past a common default server limit.
-Raise the limit, cut the thread count, or split the estate across data collectors.
-
-Running out of connections does not look like a connection error. It looks like
-missing samples on a rotating set of devices, because the threads that failed to
-connect are different every run.
+With 16 processes, 20 threads and one script server, that estimate is 336
+worker connections before parent processes, web requests and maintenance.
+Measure peak connections and memory consumption; do not treat the formula as an
+upper bound. Missing samples alone do not diagnose connection exhaustion.
 
 ## Database size
 
@@ -248,42 +258,24 @@ One row per `C`, holding the device address, the SNMP credentials, the expanded
 file path and the arguments, all denormalised so the collector needs no join. It
 carries seven secondary indexes.
 
-The declared column widths put a ceiling of about 1.5 KB on a row if every
-variable column were full. Real rows are far shorter. Budget 2 KB per row including
-indexes as a ceiling and measure the real figure once you have one.
-
-| Scale | `C` rows | Ceiling |
-|---|---|---|
-| A | 4,000 | 8 MB |
-| B | 40,000 | 80 MB |
-| C | 400,000 | 800 MB |
-
-Derived from the declared widths, deliberately pessimistic.
+Measure representative row/index allocation on the actual database version and
+character set. A 2 KB-per-row allowance would produce 8 MB, 80 MB and 800 MB for
+these example scales, but it is a planning assumption, not a proven ceiling.
+Include fragmentation, indexes, growth and maintenance headroom.
 
 ### Results in flight
 
-The results table is a `MEMORY` table with a fixed row shape: a data source id, a
-19 character name, a timestamp, and a 512 character output column. `MEMORY` stores
-`VARCHAR` at its declared maximum rather than its actual length, so the row
-footprint is set by the declaration.
+The current `poller_output` queue is InnoDB and retains unacknowledged samples.
+Its declared 512-character output width is not a fixed MEMORY-row allocation.
+Measure actual InnoDB data/index bytes per queued row and allow for redo/binlog,
+transaction and temporary-work overhead.
 
-That makes the character set part of the sizing. At one byte per character a row
-is about 0.6 KB. At `utf8mb4`'s four bytes per character it is about 2.2 KB.
-`utf8mb4` is the recommended server character set, so provision against the larger
-figure.
-
-| Scale | Worst-case rows | At 2.2 KB |
-|---|---|---|
-| A | 4,000 | 9 MB |
-| B | 40,000 | 88 MB |
-| C | 400,000 | 880 MB |
-
-Derived. The worst case is a full pass landing before the drain catches up, which
-is what you size the server's memory table limit against. The same allowance is
-wanted for temporary tables, so double it when budgeting memory.
-
-Exceeding the limit does not degrade. Inserts fail and the samples in that pass are
-lost. See [Tune database performance](/guides/tune-database-performance/).
+A full collection pass is not the worst-case backlog: writer failures can retain
+many passes. Estimate retained rows from arrival rate and the maximum outage you
+plan to tolerate, then measure recovery drain rate while new samples arrive.
+Monitor oldest pending timestamps and free disk space. Increasing a heap-table
+limit does not fix this queue's capacity. See
+[Tune database performance](/guides/tune-database-performance/).
 
 ### The deferred write buffer
 
@@ -306,8 +298,10 @@ Derived. The useful part is the last column. Past roughly 83,000 cache rows on a
 thing that decides when a flush happens. Operators who raise the interval to
 reduce flush frequency at that size find nothing changes.
 
-One more multiplier: when results are written straight into the durable table as
-well as the in-flight one, every value is inserted twice per cycle.
+Verify the configured ingestion path before counting database writes. Direct
+boost insertion is not a universal promise that every result is inserted into
+both queues. The hourly arithmetic assumes one row per cache item per step and
+no graph-triggered flush, retained failures or mixed source cadences.
 
 ### Per-period statistics
 
@@ -328,8 +322,7 @@ Derived from the table shape: the rollups are keyed on data source and field nam
 There is an additional `MEMORY` cache holding raw samples for the configured hourly
 duration, which scales the same way.
 
-Leave the feature off if nothing reads it. At scale C it is the largest table in
-the install.
+Leave the feature off if nothing reads it. Measure its size relative to retained queues and other application tables.
 
 ### The one that surprises people
 
@@ -342,11 +335,12 @@ It scales on ports and fields, not on devices, and it is not in the `C` count.
 
 ## Memory
 
-Add the pieces. They do not overlap.
+Budget simultaneous peak use. Configuration limits are not reservations, and
+some buffers are allocated per operation or table rather than once globally.
 
 ```
 RAM >= buffer pool
-     + memory table limit + temporary table limit
+     + actual concurrent MEMORY and temporary-table allocations
      + boost processes x boost memory limit
      + connections x per-connection buffers
      + page cache for the hot part of the RRD tree
@@ -355,11 +349,11 @@ RAM >= buffer pool
 
 | Term | How to size it | Notes |
 |---|---|---|
-| Buffer pool | About a quarter of system memory, checked against the database's on-disk size | The recommendation the install itself checks |
-| Memory and temporary table limits | Twice the results-in-flight figure above | Both get the same allowance |
+| Buffer pool | Active working set within available RAM | Leave room for other services and caches |
+| MEMORY and temporary tables | Actual concurrent workload | The InnoDB queue is not sized by these limits |
 | Deferred write processes | Parallel processes times the per-process limit, defaulting to 1 GB each | Only when deferred writes are on |
 | Per-connection buffers | The connection count from the poll window section, times the sort and join buffers | Allocated per connection, so the multiplier is the trap |
-| Page cache | Whatever fraction of the tree you want resident | Not provisionable at scale C |
+| Page cache | Measure hot-file behavior | Whole-tree residency is not required for every workload |
 
 Two collector facts worth knowing before budgeting:
 
@@ -368,13 +362,12 @@ unlimited at startup. There is no knob to cap them, so their footprint is whatev
 the estate makes it.
 
 **The deferred write process is the one with a limit.** It defaults to 1 GB per
-process, and the number of parallel processes is configurable. That product is a
-real allocation on the poller host.
+process, and the number of parallel processes is configurable. That product is a configured ceiling for those PHP processes, not an allocation
+that is necessarily resident; measure actual and peak process memory.
 
-The page cache line is the one that bites at scale. A 37 GB tree does not sit in
-memory on a machine sized for the database, so every RRD update is a real disk
-operation. That is the same conclusion the write rate section reached by a
-different route, which is a reason to trust it.
+A tree larger than RAM does not imply that every logical update requires a
+physical seek. Measure cache behavior, flush latency and storage operations under
+representative load rather than deriving IOPS directly from file size.
 
 ## What does not scale linearly
 
@@ -386,7 +379,7 @@ projection.
 | Poll window | A process takes whole devices, so one oversized device sets a floor that more processes cannot lower |
 | Deferred write flushes | Past the record cap, the flush trigger changes and so does the buffer's steady-state size |
 | Database connections | Threads multiply connections, and the server limit is a cliff rather than a slope |
-| Page cache | Fine until the tree stops fitting, then every write becomes a seek |
+| Page cache | Working set and writeback behavior affect physical I/O; the full tree need not fit |
 | Index cache | Scales on ports times fields, which is unrelated to your device count |
 
 ## Reserve for growth
@@ -395,11 +388,11 @@ Three reservations worth making at provisioning time rather than later.
 
 **Disk headroom on the RRD tree.** Growth is a step function: adding data sources
 adds their full allocation the moment the files are created. A bulk discovery run
-that creates 20,000 data sources on the 5 Minute profile takes 1.8 GB the same
-afternoon. Keep enough free space for the largest single creation you expect.
+that creates 20,000 one-field files on the example 5 Minute profile has an
+editor estimate of about 1.85 GB; two fields per file roughly doubles it. Keep enough free space for the largest single creation you expect.
 
 **Poll window headroom.** A run at 90 percent of budget has no room for a device
-that starts answering slowly. Treat 60 percent as the working ceiling and the
+that starts answering slowly. Use 60 percent as an illustrative planning target, not a tested universal ceiling and the
 remainder as the margin that absorbs a bad day.
 
 **Connection headroom.** The formula covers collectors. It does not cover
@@ -421,12 +414,11 @@ Stated plainly so you can check them.
 | Flush triggers and their defaults | The deferred write settings |
 | Rows per rollup table | The statistics table keys |
 
-Everything in the scale tables is arithmetic performed here on those inputs. The
-three seconds per device is a placeholder and the only figure in the page that is
-neither read nor derived.
+Everything in the scale tables is arithmetic performed here on those inputs. The three seconds per device, per-row storage allowances, concurrency efficiency
+and headroom targets are assumptions. None of the tables is a capacity benchmark.
 
 Once the install exists, stop projecting and start measuring. See
 [Monitor Kadupul itself](/guides/monitor-kadupul-itself/) for which of these
 numbers the system already records about itself, and
-[Tune database performance](/guides/tune-database-performance/) for the per-table
-size report.
+[Tune database performance](/guides/tune-database-performance/) for database
+measurement and maintenance considerations.

@@ -27,7 +27,7 @@ There are two intervals and they are not the same setting.
 | | What it is | Allowed values |
 |---|---|---|
 | Launcher interval | How often the operating system starts the collector, from cron or from the `cactid` service | 60 or 300 seconds |
-| Poller interval | How often a data source is sampled | 10, 15, 20, 30, 60 or 300 seconds |
+| Poller interval | Base collection cadence; individual data source steps can be longer | 10, 15, 20, 30, 60 or 300 seconds |
 
 When the poller interval is shorter than the launcher interval, one launch
 performs several collection passes in a loop. The number of passes is the
@@ -43,25 +43,30 @@ Three distinct things, and they produce three distinct log lines.
 
 **The run is cut off.** When the elapsed time passes the budget, the poller logs
 that the maximum runtime was exceeded, writes its statistics, and exits. Work
-that had not finished is abandoned. The affected data sources get no sample for
-that interval, which appears on the graph as a gap, not a zero.
+that has not produced a sample can leave a gap. Samples already accepted into
+the durable queue can remain pending for a later successful RRD write; an overrun
+does not imply every unflushed measurement was discarded. Inspect queue depth and
+logs alongside the graph, and do not clear retained rows to make the next run look clean.
 
 **The next run notices the wreckage.** At startup the poller counts process rows
 that were never closed out and warns that processes were detected as overrunning
-a polling cycle. A non-zero count here is the clearest signal that you are over
-budget, because it survives the run that produced it.
+a polling cycle. Investigate unfinished or stale process records and actual
+running children; the warning alone does not identify the bottleneck.
 
 **The clocks drift apart.** If more time passed since the last run than the
 budget allows, the poller warns that the launcher is out of sync with the poller
 interval. This one is usually the launcher, not the poller: a cron entry at the
 wrong frequency, a stopped service, or a host that was asleep.
 
-All three also email the primary admin account, if one is set with a valid
-address.
+These paths call the admin notification helper. Delivery depends on configured
+recipients, notification controls and functioning mail transport; a log warning
+does not prove that an email arrived. See [Email notifications](/guides/send-email-notifications/).
 
 There is a fourth case that is not an overrun. If the poller is started again
 sooner than it expects, it logs that it is configured to run too often and exits
-without collecting. Run it by hand with `--force` to override that check.
+without collecting. `--force` bypasses that timing check; use it only during a
+controlled diagnostic with scheduled and other manual launches stopped. It does
+not add capacity or make overlapping collection safe.
 
 ## The statistics line
 
@@ -69,8 +74,9 @@ Every completed run writes one statistics line to the log. It carries the
 elapsed time, the collection method, the process and thread counts, the number
 of devices, devices per process, data sources, and RRD files processed.
 
-Trend that elapsed time. A single run near the budget is noise. A run time that
-climbs week over week is a capacity plan.
+Trend elapsed time, tail latency, queue depth and failed updates. Investigate even
+an isolated near-budget run when it causes gaps; sustained growth helps identify
+when capacity or collection behavior needs to change.
 
 ## Processes and threads
 
@@ -93,9 +99,10 @@ preset does not change an existing collector.
 There is also a per-device thread count, which is how a single large device gets
 divided. It applies only to the C collector.
 
-An option called Balance Process Load distributes poller items evenly across
-processes rather than splitting device ids into equal-sized ranges. Turn it on
-when your devices are wildly different sizes, which is most networks.
+Balance Process Load uses accumulated item counts to choose boundaries between
+whole devices in device-id order. It does not split one device or guarantee equal
+item counts, and item count is not execution time. Compare per-process timing
+before and after enabling it on an isolated representative workload.
 
 ## The PHP collector versus the C collector
 
@@ -114,17 +121,16 @@ or supported Kadupul deployment.
 | Install | Ships with the code | Planned fork; no validated Kadupul build documented |
 
 The forced thread count is worth stating plainly: if the collector is set to the
-PHP one, the thread setting is overwritten with 1 at the start of every run. Any
-number you put in the field is discarded. Scaling the PHP collector means more
+PHP one, the runtime thread variable is set to 1; this does not rewrite the stored
+collector thread setting. Scaling the PHP collector can involve more
 processes, and the guidance in the source is to stay at or under twice the CPU
 core count.
 
-Spine reads its runtime options from the same settings the web interface writes,
-so most of what you configure applies to both. It reads database credentials from
-its own configuration file, searched for in the current directory, then `/etc`,
-then `/etc/cacti`, then `../etc`, unless you pass a path explicitly.
+Spine configuration and command behavior require validation against the exact
+binary being evaluated. The PHP application source alone does not establish its
+configuration search order, thread behavior or side effects.
 
-Spine can be driven by hand, which is the fastest way to time one device:
+Inherited examples for an isolated Spine evaluation, not validated Kadupul commands:
 
 ```sh
 spine --first=42 --last=42 --threads=1 --verbosity=HIGH --stdout
@@ -140,17 +146,16 @@ Threads are not free. Each spine thread holds its own database connection, and s
 does each script server.
 
 ```
-connections = processes * (threads + script_servers + 1)
+estimated worker connections = processes * (threads + script_servers)
 ```
 
-That is per data collector. Sum it across collectors, then add headroom for
-interactive logins, then compare against the server's connection limit. The
-recommended floor for that limit is 100, and a busy install with several threads
-per process passes it quickly.
+This is the estimate in the application settings help, not a measured upper bound.
+Sum it across collectors and add capacity for poller parents, web requests,
+maintenance and other clients. Measure actual peak connections and rejected
+connections before choosing the database limit; increasing it also consumes resources.
 
-Running out of connections does not look like a connection error in the graphs.
-It looks like missing samples on a rotating set of devices, because the threads
-that failed to connect are different every run.
+Connection exhaustion can cause missing samples, but rotating gaps are not a
+unique diagnosis. Confirm it with database connection metrics and application errors.
 
 ## Deferred RRD writes
 
@@ -168,9 +173,19 @@ Two facts about it that matter operationally:
   [Back up and restore](/guides/back-up-and-restore/) before you snapshot
   anything.
 
-The in-flight results table, separate from the buffer, is a memory table. Size
-the server's heap table limit for it, or inserts fail under load and you lose the
-samples in that pass.
+The main in-flight `poller_output` queue is also InnoDB in this revision. Storage
+preflight rejects a MEMORY queue; increasing the heap-table limit does not resolve
+that refusal. With producers stopped and a matched backup retained, convert an
+inherited unsuitable queue explicitly, then check storage as each service account:
+
+```sh
+php cli/upgrade_database.php --migrate-poller-queue
+php cli/upgrade_database.php --check-rrd-storage
+```
+
+These are separate operations. Preserve pending rows and monitor database disk
+space and queue age as well as row count. See [Upgrade safely](/guides/upgrade-safely/)
+for queue selection, service-account trust checks and restart prerequisites.
 
 ## When to move to remote collectors
 
@@ -185,11 +200,12 @@ side:
 - Round-trip latency to a group of devices dominates the run, and that group sits
   behind one link.
 - A site is on the far end of a WAN you do not want to poll across.
-- You need collection to continue when the central site is unreachable.
+- You need isolated-site collection, and have validated offline buffering and
+  recovery for that collector before relying on it.
 
-Do not move to one to fix a slow database or a slow disk under the RRD tree. Both
-of those get worse with remote collectors, because every collector writes into
-the same database.
+Remote collectors do not remove central database or RRD write limits. Measure
+central ingestion and flush capacity before increasing collection throughput;
+extra producers can increase an existing backlog.
 
 Each collector carries its own process and thread counts, its own database
 credentials, and a synchronisation interval, which defaults to two hours. There
@@ -201,24 +217,28 @@ deploy code some other way.
 
 ## Which limit did you hit
 
-Work down this table. Each row rules out the ones below it.
+Use this table to form hypotheses, then verify them with logs and measurements.
+Several limits can occur together. Spine options remain unvalidated here.
 
 | Observation | Limit | What to change |
 |---|---|---|
-| Launcher out of sync warning, poller otherwise fast | Nothing is running the poller on time | The cron entry or the service, not the poller |
-| Run time flat, one device always late | Single device too large for one process | Per-device threads, spine, or split the device |
-| Run time scales with device count, CPU saturated | Collector CPU | More processes, or a remote collector |
-| Run time scales with device count, CPU idle | Device round-trip latency | More threads, which means spine |
-| Missing samples on a rotating set of devices | Database connections | Connection limit, or fewer threads |
+| Launcher out of sync warning, poller otherwise fast | Scheduling delay, prior overrun or host interruption | Inspect launch history and process state |
+| Run time flat, one device always late | Slow responses, expensive scripts or concentrated work | Time its input methods and review timeout/retry behavior |
+| Run time scales with device count, CPU saturated | Collector CPU pressure | Measure whether more processes help; consider collector placement |
+| Run time scales with device count, CPU idle | Network, script or database waits | Measure wait sources before changing concurrency |
+| Missing samples on a rotating set of devices | Connections, timeouts or other collection failures | Check errors, connection metrics and retained queues |
 | Run time fine, RRD writes slow, disk busy | Storage | Deferred RRD writes, or faster disk |
 | Everything slow including the web interface | Database | Buffer pool size, then the database host |
 
 Two traps worth naming.
 
-**Changing the poller interval does not take effect until the poller cache is
-rebuilt.** The cache carries the step for each item. Change the interval, rebuild
-the cache, and expect a discontinuity in the affected RRD files.
+**Changing the base interval is not the same as changing every data source step.**
+Reconcile profiles, cached item steps and RRD heartbeat/step definitions. Rebuilding
+the cache does not reshape existing RRD files. See
+[Data retention](/guides/manage-data-retention/) and
+[Time and intervals](/concepts/time-and-intervals/).
 
 **A faster interval multiplies everything.** Going from 300 seconds to 60 does
-not make the run five times shorter. It makes five runs happen where one did, each
-doing the same work, inside the same launcher window.
+not make the work five times cheaper. Sources configured for that faster cadence
+are collected more often; sources retaining longer steps need not run on every
+base pass. Measure the resulting load rather than assuming every pass has equal work.

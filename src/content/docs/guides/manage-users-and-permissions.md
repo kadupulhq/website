@@ -49,8 +49,9 @@ Two settings matter when a directory is in play.
 
 **The template user.** New accounts created on first successful directory login are
 copied from a designated template account, taking its realms, its group memberships,
-and its policies. Without a template account, new arrivals fall back to the
-permissions of the guest account. Set the template account before you enable
+and its policies. If no user can be created and a guest account is configured,
+an authenticated arrival can use that guest identity. Without either usable
+account, access is denied; guest fallback is not automatic anonymous access. Set the template account before you enable
 directory authentication, not after the first twenty people log in.
 
 **The guest user.** An account nominated to supply permissions for unauthenticated
@@ -70,9 +71,11 @@ pages that belong to it. The two that matter most are:
 | View Graphs | The graph viewer |
 | Console Access | The administrative console at all |
 
-Everything else sits behind Console Access. An account that can reach graphs but
-holds no Console Access realm has no configuration surface, which is exactly what
-you want for most people.
+Console Access controls console entry and navigation; it is not an umbrella check
+required by every configuration page. Pages also enforce their own mapped realms.
+For example, granting Settings can allow its URL even without Console Access.
+A viewing account must lack the individual administrative realms as well as
+Console Access. Password/profile flows may remain available independently.
 
 The realm list is grouped into roles you can apply in one action rather than ticking
 individually: a normal viewing role, a template editing role, a general
@@ -96,10 +99,11 @@ For each kind, an account carries a default policy and a list of exceptions.
 | Allow | Everything is permitted except the objects listed |
 | Deny | Nothing is permitted except the objects listed |
 
-Deny with an explicit list is the setting to reach for. It fails closed: a device
-added next month is invisible until someone grants it. Allow with an exception list
-fails open, and every new device is visible to everyone with that policy until
-someone notices.
+Use Deny with an explicit list for limited access, across the user and its enabled
+groups. Denying new devices alone does not guarantee their graphs are hidden:
+graph/template defaults, direct grants, and the selected graph-permission method
+can still allow them. Allow includes new objects automatically unless an applicable
+exception excludes them.
 
 ### How graph permission is decided
 
@@ -111,14 +115,21 @@ setting with four options.
 |---|---|
 | Permissive | The account is allowed the graph, or the device, or the graph template |
 | Restrictive | The account is allowed the graph, or both the device and the graph template |
-| Device based | The account is allowed the device |
-| Graph template based | The account is allowed the graph template |
+| Device based | The account is allowed the graph or the device |
+| Graph template based | The account is allowed the graph or the graph template |
 
 Permissive is the default and is the one that surprises people. Under permissive,
 granting a graph template grants every graph built from it, on every device,
 including devices the account was never given. If you intend permissions to follow
-devices, choose the device based method and stop maintaining graph level exceptions
-entirely.
+devices, choose the device based method, set graph defaults to Deny, and remove
+unintended graph grants from both the user and its groups. Direct graph grants
+remain effective in that mode.
+
+The current Settings help describes Restrictive as requiring all three grants and
+omits the graph-grant alternative from Device based and Graph template based. The
+table above describes the implemented permission checks; verify actual access when
+changing the method. See
+[issue #222](https://github.com/kadupulhq/kadupul/issues/222).
 
 Device based and graph template based exist because the first two get slow on large
 installations. They are also considerably easier to reason about.
@@ -128,14 +139,20 @@ installations. They are also considerably easier to reason about.
 A group carries the same four policies and the same four exception lists as a user,
 and users are placed into it.
 
-Effective access is the union. An account is allowed an object if its own policy and
-exception list permit it, or if any group it belongs to permits it. A group cannot
+Effective graph access is the union of the results calculated for the user and
+each enabled group. In Restrictive mode, the device-and-template combination is
+evaluated within each source: a device grant in one group plus a template grant
+on the user does not combine into that pair. A group cannot
 take away something the account already has. If you need to remove access, remove it
 from the account and from every group that grants it.
 
-Disabling a group removes its grants from every member at once, which makes a group
-a better revocation handle than a pile of individual edits. Disabling an account
-clears its cached permissions and its sessions immediately.
+Disabling a group removes its grants and invalidates members' permission caches;
+other grants still apply. Disabling an account clears persisted login credentials,
+cached permission rows, and server-side sessions. Protected requests also recheck
+whether the account is enabled or locked. A page already loaded in a browser is
+not erased by revocation. If guest access is enabled, a revoked session may still
+reach guest-capable graph pages as a guest. Check a login-required endpoint and
+the guest policy separately when validating revocation.
 
 Put the permissions on groups. Put people in groups. Per-user exception lists are
 where permission models go to rot, because nobody audits a hundred of them.
@@ -148,10 +165,10 @@ Tree permission decides whether the tree appears at all. Graph permission decide
 what the account sees once inside it. Being granted a tree does not grant its
 contents, and being granted a graph does not require being granted a tree.
 
-Branches containing nothing the account may see are hidden, and the check descends:
-a branch whose sub-branches are all empty for this account is itself hidden. The
-practical result is that two people looking at the same tree see two different
-shapes, and neither sees an empty folder hinting at what they are missing.
+Tree rendering checks branch contents and descendant branches against the
+account's allowed graphs, devices, and sites. Two accounts can therefore see
+different tree contents. Do not treat the resulting shape as a complete report of
+effective access or assume that hiding a branch revokes direct graph access.
 
 This is usually what you want. It also means a tree is a poor auditing tool. To
 check what an account can see, inspect its policies and lists, not its tree view.
@@ -164,15 +181,22 @@ The person who watches graphs and does not change anything.
 
 | Setting | Value |
 |---|---|
-| Realms | View Graphs, and any log viewing or profile realm you want them to have |
+| Realms | View Graphs; add only specifically reviewed viewing/profile realms |
 | Console Access | Not granted |
-| Graph policy | Deny, with the devices or templates they need listed |
-| Device policy | Deny, with their devices listed |
+| Graph policy | Deny, with no direct graph grants unless deliberately needed |
+| Device policy | Deny, with their devices listed in the granting user/group |
+| Graph template policy | Deny, with grants only where the chosen graph method needs them |
 | Tree policy | Deny, with their trees listed |
-| Group | Yes, grant through a group rather than on the account |
+| Group | Grant through reviewed groups; keep the user's defaults at Deny too |
 
-Without Console Access there is no configuration surface to protect, so the
-remaining permissions are about scope rather than safety.
+Check the account's effective realms across all enabled groups. Do not grant
+Settings, Users/Groups, template editing, device/graph management, or plugin
+administration merely because Console Access is absent. For device-scoped viewing,
+use Device based with explicit device grants and no broader direct graph grants.
+
+Validate with a dedicated test account and separate browser session: confirm an
+allowed graph, a denied graph, and denied administrative URLs. Test a group grant
+and its removal as well as the user's own policies.
 
 ### Administrator
 
@@ -194,8 +218,10 @@ before you decide what to grant.
 **Allow as a default policy.** New objects are visible immediately, to everyone
 carrying that policy, with no notification. Use deny.
 
-**Auditing by logging in as the user.** You cannot, and impersonation would defeat
-the point. Read the account's four policies and four lists.
+**Auditing only the policy editor or tree view.** Inspect policies, exception
+lists, enabled group memberships, and realms together. Then exercise representative
+allowed and denied requests using a dedicated account with the intended grants;
+do not borrow another person's password.
 
 **Editing the template account.** Changing it does not retroactively change accounts
 already created from it. Those accounts have to be fixed individually, or moved into
@@ -204,6 +230,8 @@ a group that carries the correct permissions.
 **Revoking by removing one grant.** Access is a union across the account and every
 group. Removing it in one place removes nothing if another place still grants it.
 
-**Relying on a disabled account staying gone.** Disabling clears sessions and cached
-permissions, but if the account is backed by a directory and the directory still has
-the user, review whether a fresh login can recreate it from the template account.
+**Confusing disabling with deleting a directory account.** An existing disabled
+account is rejected; template provisioning applies when an account is absent.
+Deleting a directory-backed account can therefore allow it to be provisioned
+again if directory authentication and the template configuration still permit it.
+Review the external directory and local account together.

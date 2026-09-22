@@ -40,12 +40,14 @@ Both checks run before anything is created, so you find out at selection time.
 ## How the graph is assembled
 
 The member graphs' items are copied into one new graph, member by member, in the
-order you selected them. Each copied item is disconnected from its source template,
-so editing the original template later does not reach into the aggregate.
+order supplied at creation. Rebuilds can change that order; see
+[Ordering](#ordering). Each copied item is disconnected from its source template.
+A later rebuild copies the member graphs again, so changes to those members can
+reach the aggregate then.
 
-Some items are dropped in the copy. Horizontal rules are not carried over, because a
-rule per member is meaningless. Percentile comment lines are dropped for the same
-reason.
+Some items are dropped from each member's copy, including horizontal rules and
+recognized percentile comments. With totals enabled, the aggregate's percentile
+handling can reconstruct percentile comments and horizontal rules for the total.
 
 You get a per-item table of controls, applied to the corresponding item of every
 member:
@@ -94,13 +96,14 @@ into one number, which on the same traffic graph adds inbound to outbound and gi
 you a figure that is rarely what anyone wanted.
 
 Totalling works by rewriting the CDEF on each participating item so it operates over
-the matching set of data sources rather than its own, and that rewrite is applied to
+the matching set of data sources without duplicates rather than its own, and that rewrite is applied to
 the legend items too, so the printed numbers are the totals rather than one member's
 value.
 
 "Totals only" deserves an explanation, because the graph still has to read the member
 data to add it up. The member items are kept as data definitions and given a system
-CDEF that multiplies them by zero, so they contribute to the total and draw nothing.
+CDEF that multiplies them by zero to suppress their drawn contribution. This does
+not turn an unknown input into a measured zero.
 If you ever see an unexplained CDEF named `_MAKE 0` in the list, that is what it is
 for. Do not delete it.
 
@@ -162,15 +165,19 @@ member list. Anything you hand-edited on the aggregate's own items is gone. Make
 change through the aggregate's settings, which are stored and re-applied, rather than
 by editing the resulting items.
 
-**A deleted member leaves debris until it is pruned.** When a member graph is
-deleted, the membership row and the now-dangling items are removed by a cleanup pass
-rather than at once. Between the two, the aggregate can render short or produce an
-error from the graphing tool.
+**Remove membership before deleting a member graph.** Graph deletion currently
+passes incorrect arguments to aggregate cleanup. If you retain the data sources,
+pruning removes the missing graph's membership row but can leave its copied items
+referencing those data sources. The aggregate can therefore include data from a
+graph no longer listed as a member. Remove the member explicitly before deleting
+its graph. If it is already deleted, prune membership and rebuild the aggregate;
+review the resulting items and order. This is tracked in
+[#227](https://github.com/kadupulhq/kadupul/issues/227).
 
-**Unknowns punch through a stack.** A member that stops reporting records unknown,
-not zero, and a stack containing an unknown drops for that interval. The graph
-appears to show a sudden fall in total traffic when what happened is that one poll
-failed. Check the members before believing a cliff edge. See
+**Unknown is not zero.** Missing samples can change the appearance of a stack or
+total; the result depends on the graph items and CDEFs. Do not interpret every gap
+or drop as a measured decrease. Check the members and their data before believing
+a cliff edge. See
 [Read your first graph](/start/first-graph/) on gaps against zeroes.
 
 ## Ordering
@@ -179,13 +186,20 @@ The item order decides the stacking order and the legend order. Four options:
 
 | Order | Groups by |
 |---|---|
-| No Reordering | Selection order, items copied member by member |
+| No Reordering | Supplied member order at creation; see rebuild limitation below |
 | Data Source, Graph | All members' first data source, then all members' second |
 | Graph, Data Source | Each member's full item set together |
 | Base Graph Order | The order the source graph template defines |
 
 On a traffic aggregate, data-source-first groups every inbound line together and
 every outbound line together, which is usually easier to read than alternating.
+
+**Rebuild limitation:** the rebuild query does not sort members by their stored
+sequence. In an isolated test, creating members in order `6,5` and rebuilding with
+No Reordering changed the stored order to `5,6` and reordered the copied items.
+Review stacking, legend and color assignments after membership changes or template
+pushes. Manual edits to copied items do not survive a rebuild. Tracked in
+[#226](https://github.com/kadupulhq/kadupul/issues/226).
 
 ## Templates
 
@@ -210,5 +224,6 @@ where they are.
 | Legend prints a different statistic than the member graph did | Aggregate rewrote the current and maximum tokens |
 | Hand edits to the aggregate's items vanish | A member change or template push rebuilt every item |
 | A historic total changed without anyone touching history | Membership changed; the graph is recomputed from current members |
-| Sudden cliff in a stacked total | One member recorded unknown for those intervals |
-| Graph errors after a device was deleted | Dangling member items awaiting the cleanup pass |
+| Stack, legend or color order changes after rebuilding | Rebuild currently ignores stored member sequence |
+| Sudden cliff in a stacked total | Check missing samples and CDEF behavior as well as measured changes |
+| Deleted member still contributes after pruning | Retained data sources can leave stale copied items; rebuild the aggregate |

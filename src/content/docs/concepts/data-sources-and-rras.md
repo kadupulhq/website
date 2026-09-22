@@ -43,8 +43,9 @@ Four choices are recorded at that moment.
 **The step.** How often a value is expected, usually 300 seconds. RRDtool normalizes updates onto step boundaries; more frequent readings are
 not simply discarded. Whether slower updates produce unknown data depends on
 the heartbeat and consolidation rules. The step
-comes from the data source profile, which is also where the archives come from, so
-the two are chosen together and cannot be chosen apart.
+normally comes from the data source profile. File creation reads the data source's
+stored step and the referenced profile's archives, so verify both when changing
+metadata or planning a migration.
 
 **The data source type.** See below. This is the one that fails quietly.
 
@@ -120,8 +121,8 @@ each, along with what a heartbeat set too close to the step does, is in
 
 ## Consolidation
 
-When samples are older than the finest archive, they are consolidated into coarser
-buckets. The function that does it is chosen per archive, and each function answers
+As updates arrive, RRDtool also consolidates them into coarser buckets; it does not
+wait for the finest archive to expire. The function is chosen per archive, and each function answers
 a different question.
 
 - `AVERAGE` answers "what was typical".
@@ -202,7 +203,9 @@ This is why adding a field to a data template and waiting for numbers to appear
 does not work until something draws it. Rebuilding the poller cache does not fix
 it, because the work list was never wrong.
 
-It also means a field added to a template after the files exist has nowhere to go
-in those files, even once a graph item references it. The file was created with
-the fields it was created with. Adding one is a rebuild, with the same loss of
-history as any other structural change.
+It also means adding a field to a template does not automatically add it to
+existing files, even once a graph item references it. Adding a field requires
+explicit maintenance or migration. Depending on the installed RRDtool version,
+tuning can add data sources while retaining existing data; deleting and recreating
+a file loses its history. See [Manage data retention](/guides/manage-data-retention/)
+for the maintenance options and checks.
