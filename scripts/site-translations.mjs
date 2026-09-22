@@ -71,7 +71,10 @@ function containedPath(root, path, allowNewFile = false) {
 		assert.ok(!lstatSync(path, { throwIfNoEntry: false })?.isSymbolicLink(), 'Translation output must not be a dangling symlink');
 		resolved = join(realpathSync(dirname(path)), basename(path));
 	}
-	assert.ok(resolved === root || resolved.startsWith(root.endsWith(sep) ? root : root + sep), 'Translation path is outside the allowed directory');
+	const baseDir = root.endsWith(sep) ? root.slice(0, -1) : root;
+	if (resolved !== baseDir && !resolved.startsWith(baseDir + sep)) {
+		throw new Error('Translation path is outside the allowed directory');
+	}
 	return resolved;
 }
 
@@ -110,7 +113,12 @@ export function buildSiteTranslations(root, { check = false } = {}) {
 	}
 	// Validate both destinations before writing either generated file.
 	const outputs = Object.entries({ 'src/i18n/messages.json': messages, 'public/site-translation-status.json': report })
-		.map(([path, value]) => ({ path, value, destination: pathFor(path, !check) }));
+		.map(([path, value]) => {
+			const destination = pathFor(path, !check);
+			const entry = lstatSync(destination, { throwIfNoEntry: false });
+			assert.ok(!entry || entry.isFile(), 'Translation output must be a regular file');
+			return { path, value, destination };
+		});
 	for (const { path, value, destination } of outputs) {
 		if (check) assert.equal(readFileSync(destination, 'utf8'), json(value), `Stale generated translations: ${path}; run npm run translations:build`);
 		else writeFileSync(destination, json(value));

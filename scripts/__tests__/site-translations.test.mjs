@@ -196,3 +196,18 @@ test('missing and invalid paths fail without writing through dangling output sym
 	writeFileSync(join(root, 'src/i18n'), 'not a directory');
 	assert.throws(() => buildSiteTranslations(root), /ENOTDIR/);
 });
+
+
+test('non-regular output destinations are rejected before either artifact changes', (t) => {
+	for (const path of ['src/i18n/messages.json', 'public/site-translation-status.json']) {
+		const { root, write } = fixture(t);
+		buildSiteTranslations(root);
+		const other = path.startsWith('public/') ? 'src/i18n/messages.json' : 'public/site-translation-status.json';
+		const before = readFileSync(join(root, other), 'utf8');
+		write('translations/site/en.json', { label: source, other: 'Changed fallback' });
+		rmSync(join(root, path));
+		mkdirSync(join(root, path));
+		for (const check of [false, true]) assert.throws(() => buildSiteTranslations(root, { check }), /regular file/);
+		assert.equal(readFileSync(join(root, other), 'utf8'), before);
+	}
+});
