@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, renameSync, rmSync, symlinkSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,7 +11,7 @@ import { translatedLocales } from '../../src/i18n/locales.mjs';
 const source = 'Kadupul documentation';
 const target = 'Documentation Kadupul';
 const review = { sourceSha256: hash(source), targetSha256: hash(target), state: 'reviewed', reviewer: 'fluent-reviewer', reviewedAt: '2026-09-14T12:00:00Z', reviewUrl: 'https://translate.kadupul.net/changes/' };
-const run = (args) => spawnSync(process.execPath, [fileURLToPath(new URL('../site-translations.mjs', import.meta.url)), ...args], { encoding: 'utf8' });
+const run = (args, cwd) => spawnSync(process.execPath, [fileURLToPath(new URL('../site-translations.mjs', import.meta.url)), ...args], { encoding: 'utf8', cwd });
 
 test('catalog validation accepts missing translations but protects keys, markup, placeholders and product names', () => {
 	validateCatalog({ label: source }, { label: target });
@@ -122,13 +122,77 @@ test('catalog discovery rejects mistyped and unsupported JSON filenames, includi
 
 test('CLI generates and checks catalogs, returns failures and checks the actual repository by default', (t) => {
 	const { root, write } = fixture(t);
-	const result = run([root]);
+	const result = run([root], root);
 	assert.equal(result.status, 0, result.stderr);
 	assert.match(result.stdout, /files generated/);
-	assert.equal(run(['--check', root]).status, 0);
+	assert.equal(run(['--check', root], root).status, 0);
 	write('translations/site/es.json', { unknown: 'text' });
-	assert.notEqual(run(['--check', root]).status, 0);
+	assert.notEqual(run(['--check', root], root).status, 0);
 	const repository = run(['--check']);
 	assert.equal(repository.status, 0, repository.stderr);
 	assert.match(repository.stdout, /catalogs match/);
+});
+
+
+test('CLI confines explicit roots to canonical cwd, rejecting traversal, sibling prefixes and symlink escapes', (t) => {
+	const { root } = fixture(t);
+	const { root: outside } = fixture(t);
+	for (const candidate of [outside, '../' + outside.split('/').at(-1)]) {
+		const result = run([candidate], root);
+		assert.notEqual(result.status, 0);
+		assert.match(result.stderr, /outside the allowed directory/);
+	}
+	const sibling = root + '-sibling';
+	mkdirSync(sibling);
+	t.after(() => rmSync(sibling, { recursive: true, force: true }));
+	assert.match(run([sibling], root).stderr, /outside the allowed directory/);
+	symlinkSync(outside, join(root, 'escape'));
+	assert.match(run(['escape'], root).stderr, /outside the allowed directory/);
+	assert.match(run(['.', '.'], root).stderr, /at most one/);
+	assert.equal(run(['.'], root).status, 0);
+	// A symlink naming cwd itself is allowed after canonicalization.
+	symlinkSync(root, join(root, 'self'));
+	assert.equal(run(['self'], root).status, 0);
+	assert.equal(run([root], '/').status, 0);
+});
+
+test('catalog directory, catalog files and review manifest cannot escape through symlinks', (t) => {
+	for (const path of ['translations/site', 'translations/site/en.json', 'translations/site-reviews.json']) {
+		const { root } = fixture(t);
+		const { root: outside } = fixture(t);
+		rmSync(join(root, path), { recursive: true });
+		symlinkSync(join(outside, path), join(root, path));
+		assert.throws(() => buildSiteTranslations(root), /outside the allowed directory/);
+	}
+});
+
+test('generated outputs and their parents cannot escape, and neither output is written on rejection', (t) => {
+	for (const path of ['src/i18n/messages.json', 'public/site-translation-status.json', 'src/i18n', 'public']) {
+		const { root, write } = fixture(t);
+		const { root: outside } = fixture(t);
+		buildSiteTranslations(root);
+		buildSiteTranslations(outside);
+		const first = readFileSync(join(root, 'src/i18n/messages.json'), 'utf8');
+		const sentinel = readFileSync(join(outside, 'public/site-translation-status.json'), 'utf8');
+		write('translations/site/en.json', { label: source, other: 'Changed fallback' });
+		rmSync(join(root, path), { recursive: true });
+		symlinkSync(join(outside, path), join(root, path));
+		for (const check of [false, true]) assert.throws(() => buildSiteTranslations(root, { check }), /outside the allowed directory/);
+		assert.equal(readFileSync(join(root, 'src/i18n/messages.json'), 'utf8'), first);
+		assert.equal(readFileSync(join(outside, 'public/site-translation-status.json'), 'utf8'), sentinel);
+	}
+});
+
+test('missing and invalid paths fail without writing through dangling output symlinks', (t) => {
+	const { root } = fixture(t);
+	const { root: outside } = fixture(t);
+	const target = join(outside, 'not-created.json');
+	symlinkSync(target, join(root, 'src/i18n/messages.json'));
+	assert.throws(() => buildSiteTranslations(root), /dangling symlink/);
+	assert.throws(() => readFileSync(target), /ENOENT/);
+	rmSync(join(root, 'src/i18n/messages.json'));
+	assert.throws(() => buildSiteTranslations(root, { check: true }), /ENOENT/);
+	rmSync(join(root, 'src/i18n'), { recursive: true });
+	writeFileSync(join(root, 'src/i18n'), 'not a directory');
+	assert.throws(() => buildSiteTranslations(root), /ENOTDIR/);
 });
