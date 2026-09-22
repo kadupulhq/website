@@ -2236,3 +2236,14 @@ Full `check:all` passed through `mise` with Node 22.22.2: 91 tests, 100%
 coverage, 3,168 pages and 385,790 internal links (123,518 with anchors), zero
 broken. The 42 existing translation freshness warnings remain; `git diff
 --check` passed.
+
+Copilot review then identified four wording corrections in the file-layout page
+and a confirmed contradiction in `reference/requirements.md`. Clarified that
+`path_csrf_secret` selects a file, distinguished the shipped `/cacti/` URL path
+from the empty-value fallback, and documented that the RRD restructuring command
+has no dry-run phase. Corrected the requirements filesystem table to describe
+the database-backed Boost queue, remove the nonexistent Purifier cache, include
+mode-dependent and effective RRD-storage permission checks, and carry the known
+structured-directory group defect. Filed website
+[#52](https://github.com/kadupulhq/website/issues/52) with native Bug type,
+complete metadata and assignee `somethingwithproof`.

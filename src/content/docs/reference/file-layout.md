@@ -82,8 +82,8 @@ uses its own kernel paths and trusted adapters where it has been migrated.
 | `scripts_path` | `<base_path>/scripts` | `$scripts_path` in `include/config.php` |
 | `resource_path` | `<base_path>/resource` | `$resource_path` in `include/config.php` |
 | `input_whitelist` | Unset | `$input_whitelist` in `include/config.php` |
-| `path_csrf_secret` | `include/vendor/csrf/csrf-secret.php` | `$path_csrf_secret` may select a file or directory elsewhere |
-| `url_path` | `$url_path`, falling back to `/` | `$url_path` in `include/config.php` |
+| `path_csrf_secret` | `include/vendor/csrf/csrf-secret.php` | `$path_csrf_secret` may select a file elsewhere |
+| `url_path` | `/cacti/` as shipped; `/` when the configured value is empty | `$url_path` in `include/config.php` |
 
 Remote collectors can place scripts and query definitions outside the install
 root. Treat every configured external path as part of the installation's
@@ -134,8 +134,11 @@ With structured paths on, `extended_paths_type` selects one of these shapes:
 
 `hash_id` is `host_id` modulo `extended_paths_hashes`. A missing data-query ID is
 represented as zero when a new path is generated. Changing these settings does
-not by itself relocate existing files; run `cli/structure_rra_paths.php` with its
-explicit `--proceed` option after reviewing its plan and taking a backup.
+not by itself relocate existing files. Before running
+`cli/structure_rra_paths.php`, inspect the current database paths and filesystem,
+confirm the target settings, and take a coordinated database and RRD backup. The
+command has no dry-run phase: its required `--proceed` option starts moving files
+and updating database paths.
 
 When a local-storage poller running as root creates structured directories and
 RRD files, it attempts to copy ownership from `rra/`. At the audited revision,
