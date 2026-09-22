@@ -197,32 +197,32 @@ launcher cannot meet a one-minute collection interval.
 
 ## Filesystem
 
-These are checked for writability at install, and on every run when the
-installation is a remote data collector.
+The installer classifies these as continuously writable paths:
 
 | Path | Written by |
 |---|---|
 | The system temporary directory | Several tools |
 | `log/` | The application log |
-| `cache/boost/` | Deferred RRD writes and cached images |
+| `cache/boost/` | Optional rendered-graph image cache; deferred RRD samples are held in database queue tables |
 | `cache/mibcache/` | The MIB cache and its lock file |
-| `cache/purifier/` | The HTML purifier's serializer cache |
 | `cache/realtime/` | Per-session realtime graph files |
-| `cache/spikekill/` | Spike removal working files |
+| `cache/spikekill/` | Spike-removal working files and, depending on settings, backups of original RRD files |
 
-`resource/snmp_queries/`, `resource/script_server/`, `resource/script_queries/`
-and `scripts/` are checked at install, and on every run on a remote data
-collector.
+`resource/snmp_queries/`, `resource/script_server/`, `resource/script_queries/`,
+`scripts/` and the CSRF secret destination are install-time checks on a primary
+installation. The installer classifies them as continuously writable for a
+remote data collector so synchronization can update them.
 
-`rra/` is not in either list and is the one that matters most. Both the web
-interface and the collector create RRD files there, so both accounts need to
-write it.
+RRD storage is validated separately according to the selected local or proxy
+configuration. The default local path is `rra/`, but individual data-source
+paths and external proxy storage can differ. Grant access to the effective
+storage paths used by the web and collector accounts.
 
 ### Ownership
 
 | Case | Result |
 |---|---|
-| The creating process runs as root | The new file, and any new directory under a structured path layout, takes the owner and group of `rra/` |
+| The creating process runs as root | New files attempt to copy the owner and group of `rra/`. Structured-directory group correction is unreliable at the audited revision because the comparison reads the owner twice; verify group ownership independently and see [application issue #287](https://github.com/kadupulhq/kadupul/issues/287). |
 | The creating process does not run as root | The file takes that process's own ownership, and nothing corrects it later |
 
 An installation where the web interface and the collector run as different

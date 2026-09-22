@@ -2201,3 +2201,49 @@ remain local outside PR #27; pre-commit skipped by request.
 Full `check:all` passed: 86 tests, 100% coverage, 3,168 pages, 385,812 internal
 links (123,562 anchors), zero broken. The 42 existing translation freshness
 warnings remain; `git diff --check` passed.
+
+## File-layout reference validation — 2026-09-22
+
+Reviewed `reference/file-layout.md` against application revision
+`661a57ff43ebf275e6b07211d4284dd727103959`: the top-level tree, legacy path
+derivation in `include/global.php`, Symfony bootstrap and migration notes,
+installer permission classification, HTMLPurifier configuration, structured RRD
+path generation and ownership handling, every committed `.htaccess`, runtime
+settings and `.gitignore`. No production web-server request, backup restore,
+root poller or remote synchronization was run.
+
+Replaced the inherited-only directory inventory with the current hybrid
+legacy/Symfony tree. Removed brittle file counts and the nonexistent Purifier
+cache; distinguished Boost images from database-backed deferred samples;
+corrected install-time versus continuously writable paths; and qualified local,
+custom and proxy RRD storage. Expanded the Apache-deny inventory from eleven to
+seventeen paths and made clear that `.htaccess` and redirecting `index.php` files
+are not a complete server policy. Replaced the blanket claim that `log/` and
+`cache/` are reproducible with conservative backup guidance covering queue
+state, logs, spike backups, external paths and deployment secrets.
+
+Filed application [#286](https://github.com/kadupulhq/kadupul/issues/286) for
+the committed `.gitignore` merge marker,
+[#287](https://github.com/kadupulhq/kadupul/issues/287) for the structured-RRD
+group comparison using `fileowner()` instead of `filegroup()`, and website
+[#50](https://github.com/kadupulhq/website/issues/50) for the inaccurate layout
+reference. All three have verified native Bug type, complete reproduction and
+acceptance details, appropriate `bug` plus subsystem/branch labels, and assignee
+`somethingwithproof`. No milestone or project was established. Application code
+remains unchanged; pre-commit is skipped by request.
+
+Full `check:all` passed through `mise` with Node 22.22.2: 91 tests, 100%
+coverage, 3,168 pages and 385,790 internal links (123,518 with anchors), zero
+broken. The 42 existing translation freshness warnings remain; `git diff
+--check` passed.
+
+Copilot review then identified four wording corrections in the file-layout page
+and a confirmed contradiction in `reference/requirements.md`. Clarified that
+`path_csrf_secret` selects a file, distinguished the shipped `/cacti/` URL path
+from the empty-value fallback, and documented that the RRD restructuring command
+has no dry-run phase. Corrected the requirements filesystem table to describe
+the database-backed Boost queue, remove the nonexistent Purifier cache, include
+mode-dependent and effective RRD-storage permission checks, and carry the known
+structured-directory group defect. Filed website
+[#52](https://github.com/kadupulhq/website/issues/52) with native Bug type,
+complete metadata and assignee `somethingwithproof`.

@@ -83,7 +83,7 @@ Looked up, not read through. Precise and scannable.
 - [SNMP](/reference/snmp/). Which SNMP versions, authentication and privacy protocols Kadupul supports, the port, timeout, retry and OID-count settings, and how failures are reported.
 - [Logging](/reference/logging/). Where the Kadupul log goes, what each verbosity level includes, how selective debug and rotation work, and why the poller output is not the log.
 - [Data input methods](/reference/data-input-methods/). The six ways Kadupul collects a value, the input and output fields each one takes, and the output each one must return.
-- [File layout](/reference/file-layout/). What lives in each Kadupul directory, which ones the poller writes to, which must never be served over HTTP, and which hold data worth backing up.
+- [File layout](/reference/file-layout/). What lives in the current hybrid application tree, which paths are writable, which must stay private, and what belongs in a backup.
 - [Realms and permissions](/reference/realms-and-permissions/). Every authorization realm in Kadupul, the page each one gates, and the object permissions and policy values that decide what a user can see.
 - [RRDtool integration](/reference/rrdtool-integration/). Which RRDtool subcommands Kadupul issues, how each command line is assembled and validated, the difference between pipe and per-command execution, and what changes with the configured RRDtool version.
 - [Data query XML](/reference/data-query-xml/). The elements of a data query resource file, the field attributes for SNMP and script queries, and how the parser reads them.
