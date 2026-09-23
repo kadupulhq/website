@@ -2247,3 +2247,40 @@ mode-dependent and effective RRD-storage permission checks, and carry the known
 structured-directory group defect. Filed website
 [#52](https://github.com/kadupulhq/website/issues/52) with native Bug type,
 complete metadata and assignee `somethingwithproof`.
+
+## Command-line tools reference validation — 2026-09-22
+
+Reviewed `reference/command-line-tools.md` against application `main` revision
+`4ed8f115644e0cc2171a0ba51f7ab50f00926f49`, including all 45 PHP tools under
+`cli/`, the redirecting `index.php`, each detailed command's parser and help,
+and the rejected-sample queue implementation in `lib/poller.php` and
+`lib/rrd_maintenance.php`. The archived Cacti 1.2.31 reference remains
+unchanged because the replay utility is Kadupul-specific.
+
+Added the omitted `replay_rejected_samples.php` inventory and usage, including
+its exclusive scope choices, dry-run behavior, main-collector restriction,
+InnoDB queue prerequisite and repair-before-replay sequence. Linked the poller
+lifecycle's rejected-sample section to that recovery command. Removed
+unsupported `change_device.php` multi-id, CSV and force options; documented its
+single-device contract and safe string state values. Corrected the
+`remove_graphs.php` selector union, mutation guard and read-only `--list`
+exception.
+
+The audit also found two application defects. Numeric `--disable` values in
+`change_device.php` are inverted relative to the built-in help, and the
+`remove_graphs.php` help incorrectly calls a graph-template id mandatory.
+Filed application
+[#320](https://github.com/kadupulhq/kadupul/issues/320) and
+[#321](https://github.com/kadupulhq/kadupul/issues/321), plus website
+[#53](https://github.com/kadupulhq/website/issues/53) and
+[#54](https://github.com/kadupulhq/website/issues/54). Every report has native
+Bug type, complete reproduction and acceptance details, appropriate labels and
+assignee `somethingwithproof`. No production device, graph, queue or RRD file
+was changed; command behavior was validated from source and existing tests.
+
+Full `check:all` passed through `mise` with Node 22: 91 tests, 100% coverage,
+3,168 generated pages and 385,878 internal links (123,584 with anchors), zero
+broken. The 42 existing translation freshness warnings remain. The option audit
+found no documented option absent from its detailed command implementation;
+the `import_package.php --info` comparison is intentionally described in the
+adjacent import section. The pre-commit gate was skipped by request.
