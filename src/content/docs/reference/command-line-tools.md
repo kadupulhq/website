@@ -38,7 +38,7 @@ production, because several change data in bulk with no confirmation step.
 | Script | Purpose |
 |---|---|
 | `add_device.php` | Create a device from a device template, with SNMP and availability settings. |
-| `change_device.php` | Change attributes on one device, a comma-separated list of devices, or every device listed in a CSV file. |
+| `change_device.php` | Change attributes on one device. |
 | `remove_device.php` | Delete devices matched by description, IP, or id list. |
 | `add_datasource.php` | Attach a data template to a device as a new data source. |
 | `add_data_query.php` | Associate a data query with a device and set its reindex method. Reindexes if already associated. |
@@ -250,9 +250,10 @@ remove_graphs.php [--graph-template-id=ID] [--host-template-id=ID] [--host-id=ID
 | `--preserve` | Keep the data sources. The default is to remove them. |
 | `--list` | List each graph that would be removed. Mutually exclusive with `--force`. |
 
-Provide at least one filtered selector or use `--all`; an empty selection is
-rejected. The command's built-in help still calls `--graph-template-id`
-mandatory; that mismatch is tracked in application
+Provide at least one filtered selector or use `--all` for a count or removal;
+those paths reject an empty selection. The read-only `--list` option is the
+exception: by itself, it lists every graph. The command's built-in help still
+calls `--graph-template-id` mandatory; that mismatch is tracked in application
 [bug #321](https://github.com/kadupulhq/kadupul/issues/321).
 
 ## remove_device.php

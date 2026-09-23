@@ -2263,7 +2263,8 @@ InnoDB queue prerequisite and repair-before-replay sequence. Linked the poller
 lifecycle's rejected-sample section to that recovery command. Removed
 unsupported `change_device.php` multi-id, CSV and force options; documented its
 single-device contract and safe string state values. Corrected the
-`remove_graphs.php` selector union and explicit all-graphs guard.
+`remove_graphs.php` selector union, mutation guard and read-only `--list`
+exception.
 
 The audit also found two application defects. Numeric `--disable` values in
 `change_device.php` are inverted relative to the built-in help, and the
