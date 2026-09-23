@@ -98,6 +98,7 @@ production, because several change data in bulk with no confirmation step.
 | `splice_rrd.php` | Merge two RRD files into a third. Also changes an RRD file's step when the new file already has the wanted step. |
 | `structure_rra_paths.php` | Convert a system from legacy RRA paths to structured paths. Interactive, and requires boost. |
 | `update_heartbeat.php` | Change the heartbeat on RRD files and update the database to match. |
+| `replay_rejected_samples.php` | Return terminally rejected samples to the live poller queue after repairing the underlying RRD problem. |
 
 ## Import and packaging
 
@@ -181,27 +182,23 @@ was given.
 ## change_device.php
 
 ```
-change_device.php --id=<device-id> [device attribute arguments] [--force] [--quiet]
-change_device.php --file=<path> [--force] [--quiet]
+change_device.php --id=<device-id> [device attribute arguments] [--quiet]
 ```
 
 Takes the same device attribute arguments as `add_device.php` and applies them to
-existing devices. `--id` accepts a comma-separated list. `--id` and `--file` are
-mutually exclusive.
+one existing device. The current command has no CSV or multi-device mode.
 
 | Argument | Meaning |
 |---|---|
-| `--id` | Device id, or a comma-separated list of them. |
-| `--file` | CSV file with a header row of per-device overrides. |
-| `--disable` | `1` or `on` disables checks, `0` or `off` enables them. |
-| `--force` | Skip the CSV confirmation prompt. |
-| `--quiet` | Suppress output and skip the CSV confirmation prompt. |
+| `--id` | One device id. Required. |
+| `--disable` | Use `on` to disable checks or `off` to enable them. |
+| `--quiet` | Suppress normal status output. |
 
-CSV rules, as stated by the script: the first column must be `id`; column names
-must be unique; every row must have the same field count; empty cells mean "no
-override" and cannot clear a field; duplicate device ids are rejected; rows with
-no changes are skipped. Rows are saved one at a time, so earlier successful rows
-stay applied if a later row fails.
+:::caution[Numeric disable values are currently inverted]
+The built-in help says `--disable=1` disables and `--disable=0` enables, but the
+current parser does the opposite. Use `on` or `off` until application
+[bug #320](https://github.com/kadupulhq/kadupul/issues/320) is fixed.
+:::
 
 ## add_graphs.php
 
@@ -238,13 +235,13 @@ List options: `--list-hosts`, `--list-graph-templates [--host-template-id=ID]`,
 ## remove_graphs.php
 
 ```
-remove_graphs.php --graph-template-id=ID [--host-template-id=ID] [--host-id=ID]
-    [--graph-regex=R] [--force] [--preserve]
+remove_graphs.php [--graph-template-id=ID] [--host-template-id=ID] [--host-id=ID]
+    [--graph-regex=R | --all] [--force] [--preserve]
 ```
 
 | Argument | Meaning |
 |---|---|
-| `--graph-template-id` | Required. Repeat the argument for more than one. |
+| `--graph-template-id` | Narrow to one or more graph templates. Repeatable. |
 | `--host-template-id` | Narrow to one or more device templates. Repeatable. |
 | `--host-id` | Narrow to one or more devices. Repeatable. |
 | `--graph-regex` | Narrow by graph name regular expression. |
@@ -252,6 +249,11 @@ remove_graphs.php --graph-template-id=ID [--host-template-id=ID] [--host-id=ID]
 | `--force` | Actually remove. Without it, the script only counts. |
 | `--preserve` | Keep the data sources. The default is to remove them. |
 | `--list` | List each graph that would be removed. Mutually exclusive with `--force`. |
+
+Provide at least one filtered selector or use `--all`; an empty selection is
+rejected. The command's built-in help still calls `--graph-template-id`
+mandatory; that mismatch is tracked in application
+[bug #321](https://github.com/kadupulhq/kadupul/issues/321).
 
 ## remove_device.php
 
@@ -295,6 +297,29 @@ poller_reindex_hosts.php --id=[host_id|all] [--qid=[ID|all]] [--host-descr=[desc
 | `--debug` | off | Verbose output. |
 
 `-id`, `-qid`, and `-host-descr` are accepted as single-dash aliases.
+
+## replay_rejected_samples.php
+
+```
+replay_rejected_samples.php --local-data-id=N | --all [--dry-run]
+```
+
+Returns records from `poller_output_rejected` to `poller_output` for the next
+poller drain. Repair the RRD file or other cause of rejection first, or the
+samples will be rejected again.
+
+| Argument | Meaning |
+|---|---|
+| `--local-data-id` | Replay one positive local data source id. |
+| `--all` | Replay every rejected sample. |
+| `--dry-run` | Report how many matching samples would move without changing either queue. |
+
+Specify exactly one scope: `--local-data-id=N` or `--all`. On an online remote
+collector, run the command on the main collector because that is where the
+remote queues its samples. A live replay also refuses to run unless
+`poller_output` uses InnoDB; stop all collectors and repair the queue
+configuration before retrying. `--dry-run` does not require that queue change
+because it does not move samples.
 
 ## import_template.php
 

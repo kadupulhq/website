@@ -239,7 +239,10 @@ Pending output is retry state, not disposable scratch data. Do not empty the
 queue to hide a writer error. Investigate the writer, storage permissions and
 maintenance state first. `poller_output_rejected` holds bounded terminal-rejection
 records; it is distinct from the retry queue. These database queues are not a
-backup or a promise of unlimited retention.
+backup or a promise of unlimited retention. After repairing the RRD file or
+other terminal cause, use the
+[`replay_rejected_samples.php` command](/reference/command-line-tools/) to count
+or return rejected records to the live queue for another drain.
 
 ## Phase 7: end of run
 
