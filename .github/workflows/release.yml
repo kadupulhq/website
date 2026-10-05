@@ -9,6 +9,6 @@ permissions:
 
 jobs:
   release:
-    uses: kadupulhq/.github/.github/workflows/release.yml@0bd907f8a3b77376b0cd79eaf111233defab41cf
+    uses: kadupulhq/.github/.github/workflows/release.yml@fa9a77df6be6cd5e301b8004e52e63acf91cabdc
     permissions:
       contents: write
