@@ -1,5 +1,8 @@
 # Kadupul website
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/measure?project=kadupulhq_website&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=kadupulhq_website)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/kadupulhq/website/badge)](https://scorecard.dev/viewer/?uri=github.com/kadupulhq/website)
+
 [Documentation website](https://kadupulhq.github.io/website/) for [Kadupul](https://github.com/kadupulhq/kadupul), built with
 [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
