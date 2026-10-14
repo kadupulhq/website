@@ -22,7 +22,9 @@ const BANNED = [
 function walk(dir) {
 	return readdirSync(dir).flatMap((name) => {
 		const p = join(dir, name);
-		return statSync(p).isDirectory() ? walk(p) : p.endsWith('.md') || p.endsWith('.mdx') ? [p] : [];
+		if (statSync(p).isDirectory()) return walk(p);
+		if (p.endsWith('.md') || p.endsWith('.mdx')) return [p];
+		return [];
 	});
 }
 
@@ -61,7 +63,7 @@ export function lintProse(ROOT) {
 				return;
 			}
 			if (fence) return;
-			const h = line.match(/^(#{1,4})\s/);
+			const h = /^(#{1,4})\s/.exec(line);
 			if (!h) return;
 			const level = h[1].length;
 			if (level === 1) report(lineNo, 'h1 in body; the frontmatter title is the h1');
@@ -76,7 +78,7 @@ export function lintProse(ROOT) {
 			// Skip fenced code and link targets when matching prose.
 			const prose = line.replace(/`[^`]*`/g, '').replace(/\]\([^)]*\)/g, ']');
 			for (const word of BANNED) {
-				if (new RegExp(`\\b${word}\\b`, 'i').test(prose)) report(n, `banned: "${word}"`);
+				if (new RegExp(String.raw`\b${word}\b`, 'i').test(prose)) report(n, `banned: "${word}"`);
 			}
 		});
 	}
