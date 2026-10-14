@@ -1,0 +1,107 @@
+name: Analyze reviewed Dependabot revision
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Reviewed Dependabot pull request
+        type: string
+        required: true
+      head_sha:
+        description: Full reviewed head commit SHA
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  pull-requests: read
+  actions: read
+
+jobs:
+  analyze:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Verify reviewed revision and successful build
+        id: revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          HEAD_SHA: ${{ inputs.head_sha }}
+        run: |
+          set -euo pipefail
+          [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ && "$HEAD_SHA" =~ ^[0-9a-f]{40}$ ]]
+          gh api "repos/$REPO/pulls/$PR_NUMBER" > "$RUNNER_TEMP/pr.json"
+          jq -e --arg sha "$HEAD_SHA" --arg repo "$REPO" '
+            .state == "open" and .user.login == "dependabot[bot]" and
+            .head.sha == $sha and .head.repo.full_name == $repo and .base.ref == "main"
+          ' "$RUNNER_TEMP/pr.json"
+          gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/reviews" --slurp |
+            jq -e --arg sha "$HEAD_SHA" '
+              flatten | map(select(.state | IN("APPROVED", "CHANGES_REQUESTED", "DISMISSED"))) |
+              group_by(.user.login) | map(max_by(.id)) |
+              any(.state == "APPROVED" and .commit_id == $sha and
+                (.author_association | IN("OWNER", "MEMBER", "COLLABORATOR")))
+            '
+          run_id=$(gh api "repos/$REPO/actions/workflows/ci.yml/runs?head_sha=$HEAD_SHA&event=pull_request&status=success" \
+            --jq '.workflow_runs | first | .id // empty')
+          test -n "$run_id"
+          echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+          echo "branch=$(jq -r .head.ref "$RUNNER_TEMP/pr.json")" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          path: trusted
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.head_sha }}
+          path: source
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: coverage
+          path: ${{ runner.temp }}/reviewed-coverage
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.revision.outputs.run_id }}
+      - name: Stage trusted configuration and coverage
+        run: |
+          set -euo pipefail
+          # Reject symlinks before writing into the reviewed checkout.
+          if [ -n "$(find source -type l -print -quit)" ]; then
+            echo '::error::Reviewed analysis does not accept symlinks.'
+            exit 1
+          fi
+          test -f "$RUNNER_TEMP/reviewed-coverage/lcov.info"
+          test ! -L "$RUNNER_TEMP/reviewed-coverage/lcov.info"
+          mkdir -p source/coverage
+          cp "$RUNNER_TEMP/reviewed-coverage/lcov.info" source/coverage/lcov.info
+          cp trusted/sonar-project.properties source/sonar-project.properties
+      - name: Recheck current revision before analysis
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ inputs.pr_number }}
+          HEAD_SHA: ${{ inputs.head_sha }}
+        run: |
+          set -euo pipefail
+          actual=$(gh api "repos/$REPO/pulls/$PR_NUMBER" --jq .head.sha)
+          test "$actual" = "$HEAD_SHA"
+      # Do not execute PR scripts or load PR-authored scanner configuration.
+      # The project token exists only for the pinned scanner step.
+      - name: Analyze reviewed source and CI coverage
+        uses: SonarSource/sonarqube-scan-action@ba9859eae8dd6bd29e412f25ddbbef3d032000f4
+        with:
+          projectBaseDir: source
+          args: >-
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.scm.revision=${{ inputs.head_sha }}
+            -Dsonar.pullrequest.key=${{ inputs.pr_number }}
+            -Dsonar.pullrequest.branch=${{ steps.revision.outputs.branch }}
+            -Dsonar.pullrequest.base=main
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
