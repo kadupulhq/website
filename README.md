@@ -34,6 +34,22 @@ LCOV reports are written to `coverage/` and uploaded by CI. Sonar reads that LCO
 report using the repository `SONAR_TOKEN` secret; automatic analysis must be off.
 Coverage measures executed code, not translation quality or completeness.
 
+Dependabot builds do not receive `SONAR_TOKEN`. After approving the exact current
+revision, a maintainer can run `sonar-reviewed-bot.yml` from `main`, passing the
+pull request number and full head SHA:
+
+```bash
+gh workflow run sonar-reviewed-bot.yml --ref main \
+  -f pr_number=PR_NUMBER -f head_sha=FULL_HEAD_SHA
+```
+
+The workflow requires an open same-repository Dependabot PR, approval from a
+dispatching maintainer for that SHA, and successful PR CI with its coverage artifact. It runs
+the scanner with configuration from `main`, without executing PR scripts, and
+publishes the real Sonar quality gate for the reviewed revision. A new commit
+requires another approval and analysis. Check the PR's required Sonar result
+before merging.
+
 ## Languages
 
 See [the translation workflow](TRANSLATING.md) for site catalogs, per-string
