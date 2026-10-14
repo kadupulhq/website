@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { buildMaps, frontmatter } from '../build-map.mjs';
+import { buildMaps, checkMaps, frontmatter } from '../build-map.mjs';
 import { lintProse } from '../lint-prose.mjs';
 import { translatedLocales } from '../../src/i18n/locales.mjs';
 
@@ -86,7 +86,7 @@ test('content CLIs report successful generation and actionable prose failures', 
 	const map = run('build-map', [root]);
 	assert.equal(map.status, 0, map.stderr);
 	assert.match(map.stdout, /maps generated/);
-	assert.doesNotThrow(() => buildMaps(root, undefined, { check: true }));
+	assert.doesNotThrow(() => checkMaps(root));
 	assert.equal(run('lint-prose', [root]).status, 0);
 	write('bad.md', page('Bad', '# Duplicate title'));
 	const lint = run('lint-prose', [root]);
@@ -111,15 +111,15 @@ test('check-only generation rejects stale English and translated maps without wr
 	write('start/a.md', page('A'));
 	write('es/start/a.md', page('A en español'));
 	buildMaps(root, ['es']);
-	assert.doesNotThrow(() => buildMaps(root, ['es'], { check: true }));
+	assert.doesNotThrow(() => checkMaps(root, ['es']));
 	const maps = ['map.md', 'es/map.md'];
 	const before = maps.map((path) => readFileSync(join(root, path), 'utf8'));
 	write('start/a.md', page('Changed English title'));
-	assert.throws(() => buildMaps(root, ['es'], { check: true }), /Stale documentation map/);
+	assert.throws(() => checkMaps(root, ['es']), /Stale documentation map/);
 	assert.deepEqual(maps.map((path) => readFileSync(join(root, path), 'utf8')), before);
 	write('start/a.md', page('A'));
 	write('es/start/a.md', page('Título cambiado'));
-	assert.throws(() => buildMaps(root, ['es'], { check: true }), /es.*map.md/);
+	assert.throws(() => checkMaps(root, ['es']), /es.*map.md/);
 	assert.deepEqual(maps.map((path) => readFileSync(join(root, path), 'utf8')), before);
 	write('start/a.md', page('Another changed English title'));
 	const result = run('build-map', ['--check', root]);
@@ -145,4 +145,10 @@ test('prose validation rejects unterminated frontmatter even with valid title an
 	const result = run('lint-prose', [root]);
 	assert.equal(result.status, 1);
 	assert.match(result.stderr, /unterminated frontmatter/);
+});
+
+test('empty frontmatter fields do not consume the following field', (t) => {
+	const { root, write } = fixture(t);
+	write('empty.md', '---\ntitle: \ndescription: A description\nsidebar:\n  order: 2\n---\n');
+	assert.deepEqual(frontmatter(join(root, 'empty.md')), { title: '', description: 'A description', order: 2 });
 });

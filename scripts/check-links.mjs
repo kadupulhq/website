@@ -31,7 +31,8 @@ const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
  * read as valid. Skipping links also makes a cycle impossible, which previously
  * crashed with exit 1, the same status as "broken links found".
  */
-function walk(dir, fs, acc = { files: [], skipped: [] }) {
+function walk(dir, fs, acc) {
+	acc ??= { files: [], skipped: [] };
 	for (const name of fs.readdirSync(dir)) {
 		const p = join(dir, name);
 		const st = fs.lstatSync(p);
@@ -47,6 +48,11 @@ function walk(dir, fs, acc = { files: [], skipped: [] }) {
 		else if (st.isFile()) acc.files.push(p);
 	}
 	return acc;
+}
+
+function isDottedPath(path) {
+	const dot = path.indexOf('.', path.lastIndexOf('/') + 1);
+	return dot !== -1 && dot < path.length - 1;
 }
 
 /** Split an href into its path, fragment and query. Returns null for non-routes.
@@ -83,7 +89,7 @@ export function classify(href, from = '') {
 	try { fragment = decodeURIComponent(fragment); } catch { /* keep raw */ }
 	// Whether a dotted path is an asset or a route is decided by the build, not
 	// by an extension list that goes stale the first time someone adds a feed.
-	const dotted = /\.[^/]+$/.test(path);
+	const dotted = isDottedPath(path);
 	if (!dotted && !path.endsWith('/')) path += '/';
 	return { path, fragment, dotted };
 }
@@ -143,7 +149,8 @@ function buildAssets(files, key0, aliases) {
 	const assets = new Set(files.map(key0));
 	// Expand each in-build symlink into the keys it serves.
 	for (const [from, to] of aliases) {
-		for (const k of [...assets]) {
+		const existingAssets = new Set(assets);
+		for (const k of existingAssets) {
 			if (k === to) assets.add(from);
 			else if (k.startsWith(to + '/')) assets.add(from + k.slice(to.length));
 		}

@@ -474,3 +474,10 @@ test('project Pages links resolve under the base and reject origin-root paths', 
 	assert.match(cli.stderr, /\/guide\/.*no such route/);
 	assert.match(cli.stdout, /1 broken/);
 });
+
+test('dotted assets and directory suffixes are classified without backtracking', () => {
+	for (const [path, dotted] of [['/a.', false], ['/a..', true], ['/.a.', true], ['/a.b/', false], ['/a.b/c', false]]) {
+		assert.equal(classify(path).dotted, dotted, path);
+	}
+	assert.equal(classify('/' + '.'.repeat(10_000) + '/').dotted, false);
+});
