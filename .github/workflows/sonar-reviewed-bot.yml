@@ -40,7 +40,8 @@ jobs:
           ' "$RUNNER_TEMP/pr.json"
           gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/reviews" --slurp |
             jq -e --arg sha "$HEAD_SHA" '
-              flatten | group_by(.user.login) | map(max_by(.id)) |
+              flatten | map(select(.state | IN("APPROVED", "CHANGES_REQUESTED", "DISMISSED"))) |
+              group_by(.user.login) | map(max_by(.id)) |
               any(.state == "APPROVED" and .commit_id == $sha and
                 (.author_association | IN("OWNER", "MEMBER", "COLLABORATOR")))
             '
