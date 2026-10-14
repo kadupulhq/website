@@ -45,8 +45,12 @@ function readSection(DOCS, dir) {
 }
 
 function readTranslation(DOCS, locale, dir, file) {
-	try { return frontmatter(join(DOCS, locale, dir, file)); }
-	catch (error) { if (error.code !== 'ENOENT') throw error; return null; }
+	try {
+		return frontmatter(join(DOCS, locale, dir, file));
+	} catch (error) {
+		if (error.code === 'ENOENT') return null;
+		throw error;
+	}
 }
 
 function englishSection(DOCS, { dir, heading, blurb, files }) {

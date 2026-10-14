@@ -50,6 +50,11 @@ function walk(dir, fs, acc) {
 	return acc;
 }
 
+function isDottedPath(path) {
+	const dot = path.indexOf('.', path.lastIndexOf('/') + 1);
+	return dot !== -1 && dot < path.length - 1;
+}
+
 /** Split an href into its path, fragment and query. Returns null for non-routes.
  *  `from` supplies the current page so a same-page "#x" resolves against it. */
 export function classify(href, from = '') {
@@ -84,8 +89,7 @@ export function classify(href, from = '') {
 	try { fragment = decodeURIComponent(fragment); } catch { /* keep raw */ }
 	// Whether a dotted path is an asset or a route is decided by the build, not
 	// by an extension list that goes stale the first time someone adds a feed.
-	const dot = path.indexOf('.', path.lastIndexOf('/') + 1);
-	const dotted = dot !== -1 && dot < path.length - 1;
+	const dotted = isDottedPath(path);
 	if (!dotted && !path.endsWith('/')) path += '/';
 	return { path, fragment, dotted };
 }
