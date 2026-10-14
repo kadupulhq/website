@@ -44,7 +44,7 @@ gh workflow run sonar-reviewed-bot.yml --ref main \
 ```
 
 The workflow requires an open same-repository Dependabot PR, approval from a
-maintainer for that SHA, and successful PR CI with its coverage artifact. It runs
+dispatching maintainer for that SHA, and successful PR CI with its coverage artifact. It runs
 the scanner with configuration from `main`, without executing PR scripts, and
 publishes the real Sonar quality gate for the reviewed revision. A new commit
 requires another approval and analysis. Check the PR's required Sonar result

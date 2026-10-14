@@ -30,6 +30,7 @@ jobs:
           REPO: ${{ github.repository }}
           PR_NUMBER: ${{ inputs.pr_number }}
           HEAD_SHA: ${{ inputs.head_sha }}
+          REVIEWER: ${{ github.actor }}
         run: |
           set -euo pipefail
           [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ && "$HEAD_SHA" =~ ^[0-9a-f]{40}$ ]]
@@ -39,12 +40,14 @@ jobs:
             .head.sha == $sha and .head.repo.full_name == $repo and .base.ref == "main"
           ' "$RUNNER_TEMP/pr.json"
           gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/reviews" --slurp |
-            jq -e --arg sha "$HEAD_SHA" '
+            jq -e --arg sha "$HEAD_SHA" --arg reviewer "$REVIEWER" '
               flatten | map(select(.state | IN("APPROVED", "CHANGES_REQUESTED", "DISMISSED"))) |
               group_by(.user.login) | map(max_by(.id)) |
               any(.state == "APPROVED" and .commit_id == $sha and
-                (.author_association | IN("OWNER", "MEMBER", "COLLABORATOR")))
+                .user.login == $reviewer and .user.type == "User")
             '
+          # GitHub requires write access to dispatch a workflow. Require that
+          # caller's approval; association labels can hide private membership.
           run_id=$(gh api "repos/$REPO/actions/workflows/ci.yml/runs?head_sha=$HEAD_SHA&event=pull_request&status=success" \
             --jq '.workflow_runs | first | .id // empty')
           test -n "$run_id"
