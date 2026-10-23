@@ -10,12 +10,6 @@ banner:
 A graph here is not a picture of your data. It is a picture of a summary of your
 data, and knowing which summary matters.
 
-:::caution[Validate before use]
-The source is available, but there is no supported Kadupul release or migration
-path. Test these procedures on an isolated copy with backups before relying on
-them. See [project status](/project/status/).
-:::
-
 ## What you are looking at
 
 Every graph is drawn from a round-robin archive. The archive stores recent samples

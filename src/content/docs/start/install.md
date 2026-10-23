@@ -77,14 +77,11 @@ GRANT ALL PRIVILEGES ON kadupul.* TO 'kadupul'@'localhost';
 ```
 
 Use the matching database account host if PHP connects from another machine.
-The user also
-needs read access to the server's time zone tables, which live in the `mysql`
-database. That is the one grant outside its own schema, and the check below
-fails without it.
 
-The database server also needs its time zone tables populated, and the Kadupul user
-needs to read them. Nothing about a monitoring system suggests this, and it is not
-optional.
+The database server also needs its time zone tables populated, and the Kadupul
+user needs read access to them, in the `mysql` database. That is the one grant
+outside its own schema. Nothing about a monitoring system suggests this, and it
+is not optional; the check below fails without it.
 
 ```bash
 # Populate the tables, then grant the one extra read the installer needs.
@@ -236,7 +233,7 @@ sequence, and each step gates the next:
 7. Template selection: which device templates to load.
 8. Table conversion, confirmation, and the install itself.
 
-Sub-step 6 is the one that is hard to undo. The profile you pick decides the step
+Item 6 in that list is the one that is hard to undo. The profile you pick decides the step
 and the archive set written into every RRD file created afterwards, and editing the profile does not migrate existing files. Retention changes need
 a separate, tested migration; they do not always require discarding history. If peaks matter, make
 sure the profile keeps maxima and not only averages: read [Data sources and
