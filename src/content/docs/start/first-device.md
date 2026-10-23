@@ -11,12 +11,6 @@ Add one device, confirm it is answering, and only then move on. Most trouble wit
 monitoring system traces back to a device that was never really answering in the
 first place.
 
-:::caution[Validate before use]
-The source is available, but there is no supported Kadupul release or migration
-path. Test these procedures on an isolated copy with backups before relying on
-them. See [project status](/project/status/).
-:::
-
 Pick a device you can afford to get wrong. A switch you own, on a network you
 control, with SNMP already enabled. Do not start with the device somebody is
 asking you about.
@@ -93,7 +87,9 @@ can still be reported down. A TCP ping against a port you know is open avoids th
 ## What the device template decides
 
 A device template associates graph templates and data queries with the device.
-Applying it also runs data queries to populate their indexes. With graph
+A data query walks a table on the device, such as its interfaces, and produces
+one index per row. Applying the template also runs its data queries to populate
+those indexes. With graph
 automation disabled, those associations do not by themselves create graphs.
 When graph automation is enabled, template/query hooks can create graphs under
 matching rules; inspect the existing graphs before adding another copy.
@@ -102,9 +98,7 @@ Changing a template can alter associations and run those hooks again. It is not
 a reset of existing graphs or data sources. Check the selected template and
 queried indexes before applying it to a device that already has history.
 
-A data query is the part that finds the repeating things: interfaces, disks,
-sensors. It walks a table on the device and produces one index per row, which is
-why you pick interfaces from a list rather than typing OIDs.
+Those indexes are why you pick interfaces from a list rather than typing OIDs.
 [Templates](/concepts/templates/) and [Data queries and
 indexes](/concepts/data-queries-and-indexes/) cover both properly.
 
