@@ -6,6 +6,10 @@
 [Documentation website](https://kadupulhq.github.io/website/) for [Kadupul](https://github.com/kadupulhq/kadupul), built with
 [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
+![The home page of the Kadupul documentation site](docs/images/home.png)
+
+The English home page of the built site, in the light theme.
+
 ## Develop
 
 ```bash
