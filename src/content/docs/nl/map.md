@@ -17,7 +17,7 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 ## Handleidingen
 
 - [Audit who can see what (English)](/nl/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/nl/guides/back-up-and-restore/)
+- [Back-up en herstel](/nl/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/nl/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/nl/guides/capacity-planning/)
 - [Coming from Cacti (English)](/nl/guides/coming-from-cacti/)
@@ -43,7 +43,7 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 - [Troubleshoot missing data (English)](/nl/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/nl/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/nl/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/nl/guides/upgrade-safely/)
+- [Veilig upgraden](/nl/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/nl/guides/worked-example/)
 - [Write a data collection script (English)](/nl/guides/write-a-data-collection-script/)
 

@@ -17,7 +17,7 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 ## Miongozo ya matumizi
 
 - [Audit who can see what (English)](/sw/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/sw/guides/back-up-and-restore/)
+- [Kuhifadhi nakala na kurejesha](/sw/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/sw/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/sw/guides/capacity-planning/)
 - [Coming from Cacti (English)](/sw/guides/coming-from-cacti/)
@@ -43,7 +43,7 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 - [Troubleshoot missing data (English)](/sw/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/sw/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/sw/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/sw/guides/upgrade-safely/)
+- [Boresha kwa usalama](/sw/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/sw/guides/worked-example/)
 - [Write a data collection script (English)](/sw/guides/write-a-data-collection-script/)
 

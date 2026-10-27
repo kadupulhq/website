@@ -51,6 +51,15 @@ check section counts, code fences, technical identifiers, source hashes and
 rendered locale pages as part of `test:coverage`. Update each translation before
 refreshing its source hash; only a fluent reviewer may approve it.
 
+The operational guides (`guides/back-up-and-restore.md` and `guides/upgrade-safely.md`)
+have full translations in every supported locale, recorded as `kind: translation`
+and `review: draft`. Keep all sections at the same content depth as English,
+including backup recipes, schema migration commands, recovery sequences,
+technical identifiers, and cross-references. The operational-guides translation tests
+check section counts, code fences, technical identifiers, source hashes and
+rendered locale pages as part of `test:coverage`. Update each translation before
+refreshing its source hash; only a fluent reviewer may approve it.
+
 `translations/site-reviews.json` records the source and target SHA-256 for each
 unit. Existing translations start as draft. Source changes produce needs-update;
 target edits invalidate approval and return the unit to draft. Changing one source

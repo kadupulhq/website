@@ -17,7 +17,7 @@ Le pagine non ancora tradotte vengono mostrate in inglese con un avviso.
 ## Guide pratiche
 
 - [Audit who can see what (English)](/it/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/it/guides/back-up-and-restore/)
+- [Backup e ripristino](/it/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/it/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/it/guides/capacity-planning/)
 - [Coming from Cacti (English)](/it/guides/coming-from-cacti/)
@@ -43,7 +43,7 @@ Le pagine non ancora tradotte vengono mostrate in inglese con un avviso.
 - [Troubleshoot missing data (English)](/it/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/it/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/it/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/it/guides/upgrade-safely/)
+- [Aggiornare in sicurezza](/it/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/it/guides/worked-example/)
 - [Write a data collection script (English)](/it/guides/write-a-data-collection-script/)
 

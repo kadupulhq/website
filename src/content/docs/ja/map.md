@@ -17,7 +17,7 @@ sidebar:
 ## 操作ガイド
 
 - [Audit who can see what (English)](/ja/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/ja/guides/back-up-and-restore/)
+- [バックアップと復元](/ja/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/ja/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/ja/guides/capacity-planning/)
 - [Coming from Cacti (English)](/ja/guides/coming-from-cacti/)
@@ -43,7 +43,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/ja/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/ja/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/ja/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/ja/guides/upgrade-safely/)
+- [安全なアップグレード](/ja/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/ja/guides/worked-example/)
 - [Write a data collection script (English)](/ja/guides/write-a-data-collection-script/)
 

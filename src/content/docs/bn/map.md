@@ -17,7 +17,7 @@ sidebar:
 ## ব্যবহার নির্দেশিকা
 
 - [Audit who can see what (English)](/bn/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/bn/guides/back-up-and-restore/)
+- [ব্যাকআপ এবং পুনরুদ্ধার](/bn/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/bn/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/bn/guides/capacity-planning/)
 - [Coming from Cacti (English)](/bn/guides/coming-from-cacti/)
@@ -43,7 +43,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/bn/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/bn/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/bn/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/bn/guides/upgrade-safely/)
+- [নিরাপদে আপগ্রেড করুন](/bn/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/bn/guides/worked-example/)
 - [Write a data collection script (English)](/bn/guides/write-a-data-collection-script/)
 

@@ -7,6 +7,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ar/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -59,6 +71,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"bn/index.md": {
@@ -115,6 +139,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"de/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -167,6 +203,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"es-419/index.md": {
@@ -223,6 +271,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"es/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -275,6 +335,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"fr-ca/index.md": {
@@ -331,6 +403,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"fr/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -383,6 +467,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ha/index.md": {
@@ -439,6 +535,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"hi/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -491,6 +599,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"id/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"id/index.md": {
@@ -547,6 +667,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"it/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -599,6 +731,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ja/index.md": {
@@ -655,6 +799,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ko/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -707,6 +863,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"nl/index.md": {
@@ -763,6 +931,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pl/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -815,6 +995,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"pt-br/index.md": {
@@ -871,6 +1063,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pt-pt/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -923,6 +1127,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"si/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"si/index.md": {
@@ -979,6 +1195,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"sw/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -1033,6 +1261,18 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"yo/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/index.md": {
 			"source": "index.mdx",
 			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
@@ -1085,6 +1325,18 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"zh-cn/index.md": {
