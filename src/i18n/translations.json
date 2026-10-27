@@ -123,7 +123,7 @@
 		},
 		"ar/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -255,7 +255,7 @@
 		},
 		"bn/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -387,7 +387,7 @@
 		},
 		"de/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -519,7 +519,7 @@
 		},
 		"es-419/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -651,7 +651,7 @@
 		},
 		"es/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -783,7 +783,7 @@
 		},
 		"fr-ca/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -915,7 +915,7 @@
 		},
 		"fr/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1047,7 +1047,7 @@
 		},
 		"ha/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1179,7 +1179,7 @@
 		},
 		"hi/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1311,7 +1311,7 @@
 		},
 		"id/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1443,7 +1443,7 @@
 		},
 		"it/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1575,7 +1575,7 @@
 		},
 		"ja/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1707,7 +1707,7 @@
 		},
 		"ko/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1839,7 +1839,7 @@
 		},
 		"nl/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1971,7 +1971,7 @@
 		},
 		"pl/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2103,7 +2103,7 @@
 		},
 		"pt-br/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2235,7 +2235,7 @@
 		},
 		"pt-pt/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2367,7 +2367,7 @@
 		},
 		"si/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2499,7 +2499,7 @@
 		},
 		"sw/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2631,7 +2631,7 @@
 		},
 		"yo/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2763,7 +2763,7 @@
 		},
 		"zh-cn/start/install.md": {
 			"source": "start/install.md",
-			"sourceSha256": "f6110a058c8f765c32ac64fdce8d875247d7925c89b485727a53c70e7b857c92",
+			"sourceSha256": "ea97f0a411fdda0fadc8f195a9a96e34c827610723d68d21e7d8e840a42aab89",
 			"kind": "translation",
 			"review": "draft"
 		},

@@ -110,7 +110,7 @@ Prepare os caminhos com permissão de gravação após a instalação das depend
 |---|---|---|
 | Durante a instalação | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Apenas durante a instalação ou atualização |
 | Durante a instalação | `include/vendor/csrf/` ou o local configurado em `path_csrf_secret` | O instalador precisa criar o segredo específico da instalação; preserve-o depois |
-| Sempre | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, o diretório temporário do sistema | Durante toda a vida útil da instalação |
+| Sempre | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, o diretório temporário do sistema | Durante toda a vida útil da instalação |
 | Runtime do Symfony | `var/cache`, e `var/log` se o log em arquivo estiver configurado | Para o runtime PHP e o usuário de pré-aquecimento de cache |
 
 O diretório RRD também deve ter permissão de gravação durante toda a vida útil da instalação. Ele armazena seu histórico, portanto dispense a ele o mesmo cuidado que teria com um diretório de banco de dados.

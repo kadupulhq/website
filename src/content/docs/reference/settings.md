@@ -18,9 +18,10 @@ The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/reference/configuration/).
 This page does not repeat that.
 
-Inherited from Cacti 1.2.x. 54 variables in the config file, 255 system settings
-in the database, 40 per-user settings, and 2 more per-user settings that appear
-only when the account holds the matching realm.
+Inherited from Cacti 1.2.x. 54 variables in the config file, 256 system settings
+in the database, 39 per-user settings, and 2 more per-user settings that appear
+only when the account holds the matching realm. Each count treats a checkbox
+group as one setting; `thumbnail_sections` stores one row per checkbox.
 
 ## Reading the tables
 

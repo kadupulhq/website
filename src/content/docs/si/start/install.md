@@ -110,7 +110,7 @@ Composer මඟින් `include/vendor/` පුරවන අතර අගු�
 |---|---|---|
 | ස්ථාපනය අතරතුර | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | ස්ථාපනය හෝ උත්ශ්‍රේණි කිරීම අතරතුර පමණි |
 | ස්ථාපනය අතරතුර | `include/vendor/csrf/`, හෝ වින්‍යාස කළ `path_csrf_secret` පිහිටීම | ස්ථාපකය ස්ථාපනයට විශේෂිත වූ රහස සෑදිය යුතුය; ඉන්පසු එය ආරක්ෂා කර තබන්න |
-| සැමවිටම | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, පද්ධති තාවකාලික නාමාවලිය | ස්ථාපනයේ ආයු කාලය පුරාම |
+| සැමවිටම | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, පද්ධති තාවකාලික නාමාවලිය | ස්ථාපනයේ ආයු කාලය පුරාම |
 | Symfony ධාවන කාලය | `var/cache`, සහ ගොනු ලොග් කිරීම වින්‍යාස කර ඇත්නම් `var/log` | PHP ධාවන කාලය සහ cache-warming පරිශීලකයා සඳහා |
 
 ස්ථාපනයේ ආයු කාලය පුරාම RRD නාමාවලියද ලිවිය හැකි විය යුතුය. එය ඔබගේ ඉතිහාසය රඳවා තබා ගනී, එබැවින් ඔබ දත්ත සමුදා නාමාවලියකට ලබා දෙන සැලකිල්ල ඊටත් ලබා දෙන්න.

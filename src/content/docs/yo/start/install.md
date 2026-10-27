@@ -110,7 +110,7 @@ Pèsè àwọn ọ̀nà tí a lè kọ̀wé sí lẹ́yìn fífisílẹ̀ àwọ
 |---|---|---|
 | Lásìkò fífisílẹ̀ | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Nígbà tí a bá ń fi sílẹ̀ tàbí gbé ẹ̀dà sókè nìkan |
 | Lásìkò fífisílẹ̀ | `include/vendor/csrf/`, tàbí ibi `path_csrf_secret` tí a ṣètò | Ètò fífisílẹ̀ gbọ́dọ̀ dá àṣírí pàtó ti fífisílẹ̀ náà sílẹ̀; pa á mọ́ lẹ́yìn náà |
-| Nígbà gbogbo | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, àpò ìgbà díẹ̀ ti ẹ̀rọ | Fún gbogbo àkókò tí ètò náà yóò fi wà lẹ́nu iṣẹ́ |
+| Nígbà gbogbo | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, àpò ìgbà díẹ̀ ti ẹ̀rọ | Fún gbogbo àkókò tí ètò náà yóò fi wà lẹ́nu iṣẹ́ |
 | Àyíká Symfony | `var/cache`, àti `var/log` bí a bá ṣètò àkọsílẹ̀ fáìlì | Fún àyíká PHP àti olùlo tí ń mú cache gbóná |
 
 Àpò RRD gbọ́dọ̀ ṣe é kọ̀wé sí fún gbogbo àkókò tí ètò náà yóò fi wà lẹ́nu iṣẹ́ pẹ̀lú. Ó ń tọ́jú ìtàn rẹ, nítorí náà fi ìtọ́jú tí o máa fún àpò ibùdó dátà fún un.

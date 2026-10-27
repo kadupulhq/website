@@ -110,7 +110,7 @@ Prepare las rutas con permisos de escritura tras instalar las dependencias:
 |---|---|---|
 | Durante la instalación | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Solo durante la instalación o actualización |
 | Durante la instalación | `include/vendor/csrf/`, o la ubicación configurada para `path_csrf_secret` | El instalador debe crear el secreto específico de la instalación; consérvelo después |
-| Siempre | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, el directorio temporal del sistema | Durante toda la vida útil de la instalación |
+| Siempre | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, el directorio temporal del sistema | Durante toda la vida útil de la instalación |
 | Entorno de ejecución de Symfony | `var/cache`, y `var/log` si se ha configurado el registro en fichero | Para el entorno de ejecución PHP y el usuario que precalienta la caché |
 
 El directorio RRD también debe tener permisos de escritura durante toda la vida útil de la instalación. Contiene su histórico, de modo que concédale el mismo cuidado que dedicaría al directorio de una base de datos.

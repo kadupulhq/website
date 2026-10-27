@@ -82,12 +82,9 @@ Tag `POLLER`. Written by `poller.php`, `cmd.php`, and the poller library.
 | `WARNING: There are <n> processes detected as overrunning a polling cycle, please investigate` | Collector processes from an earlier cycle are still alive. | The process registry and the devices those processes held. |
 | `ERROR: Process being killed due to timeout! (<tasktype>, <taskname>, <taskid>, Process <pid>, Time <elapsed>, Timeout <limit>, Timestamp <now>)` | A registered background process passed its timeout. | The matching Background Timeout setting on the Poller tab. |
 | `ERROR: Process killed due to timeout! (<tasktype>, <taskname>, <taskid>, <pid>)` | Same, from the sweep that runs at poller start. | As above. |
-| `WARNING: Refusing to kill registered process with a reserved system PID! (<tasktype>, <taskname>, <taskid>, <pid>)` | The registry holds a pid low enough to belong to the system. | A corrupt `processes` table. |
 | `ERROR: Failed registering process.  Invalid pid found.  Unable to kill! (<tasktype>, <taskname>, <taskid>, <pid>)` | Registration found an unusable pid. | As above. |
 | `WARNING: Detected process that is exited and did not unregister first! (<tasktype>, <taskname>, <taskid>, <pid>)` | A process died without cleaning up its registry row. | The log around its exit for the real cause. |
 | `ERROR: Detected process that is gone and did not unregister first! (<tasktype>, <taskname>, <taskid>, <pid>)` | Same, found by the start-of-run sweep. | As above. |
-| `WARNING: Refusing to start an invalid background executable` | A background task named a binary that failed validation. | `path_php_binary` and the task's own path setting. |
-| `WARNING: Unable to start a background process` | The fork or spawn failed. | System process limits and memory. |
 
 ### Collected values
 
@@ -105,8 +102,6 @@ Tag `POLLER`. Written by `poller.php`, `cmd.php`, and the poller library.
 | `WARNING: Invalid output! MULTI DS[<local_data_id>] Encountered [<value>] Expected [<names>]` | A multi-value data source returned names that do not match the data source items. | The script output against the data template's item names. |
 | `WARNING: Long Responses Errors[<n>] DS[<ids>]` | Output exceeded what the poller can store. Only checked when `poller_debug` is on. | Trim the script output. |
 | `WARNING: Poller Output Table not Empty.  Issues: <count>, <list>` | Rows remained in `poller_output` at the end of a cycle. | The listed data sources. |
-| `WARNING: There are <n> Data Sources not returning all data leaving rows in the poller output table.  Details to follow.` | The summary line before the per-template detail. | The lines that follow it. |
-| `WARNING: Data Template '<name>' is impacted by lack of complete information` | The per-template detail for the line above. | That template's data input method. |
 | `WARNING: You have <n> Devices with bad SNMP Indexes.  Devices: <list> totalling <n> Data Sources.  Please Either Re-Index, Delete or Disable these Data Sources.` | Data sources point at index values the device no longer reports. | Reindex the listed devices. |
 | `Device[<id>] ERROR: HOST EVENT: Device is DOWN Message: <reason>` | A device crossed `ping_failure_count`. | The reason text, then the device's availability settings. |
 | `WARNING: Unable to open session for System Mib collection for Device[<id>]` | The four-hourly system MIB collection could not open an SNMP session. | The device's SNMP credentials. |
@@ -141,9 +136,8 @@ unreachable.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `RECOVERY ERROR: Retaining local rows because their data-source ownership could not be verified.` | Local rows name data sources this collector does not own. | Whether devices moved between collectors. |
-| `RECOVERY ERROR: Main collector did not acknowledge the Boost batch; retaining local rows.` | The handoff to the main server was not confirmed. Rows stay for the next attempt. | Connectivity to the main database. |
-| `RECOVERY ERROR: Unable to remove acknowledged local Boost rows; they will be retried idempotently.` | The delete after a confirmed handoff failed. | Local database permissions and disk. |
+| `RECOVERY: Final packet delivery failed; local samples were retained.` | The last batch to the main server was not delivered. Rows stay for the next attempt. `RECOVERY: Partial packet delivery failed; local samples were retained.` is the same for an earlier batch. | Connectivity to the main database. |
+| `RECOVERY: Local acknowledgement cleanup failed; remaining samples were retained for retry.` | The delete after a confirmed handoff failed. | Local database permissions and disk. |
 | `RECOVERY WARNING: Recovery Poller terminated by user` | The recovery pass caught a signal. | Expected on shutdown. |
 | `RECOVERY STATS: Time:<seconds> Records:<n>` | Normal end-of-recovery summary. | Nothing. |
 
@@ -197,16 +191,13 @@ Tags `POLLER`, `BOOST`, `RRDCHECK`, `DSSTATS`, `MAINT`, `REALTIME`.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `ERROR: Invalid RRD file path for local_data_id: <id>.` | The stored path failed validation before an update. | That data source's path field. |
-| `ERROR: Invalid RRD file path in poller cache for local_data_id: <id>.` | Same, reading from the poller cache. | Rebuild the poller cache. |
-| `ERROR: Invalid RRD file path in boost cache.` | Same, in a boost row with no usable id. | The boost tables. |
-| `ERROR: Invalid RRD file path in boost update cache for local_data_id: <id>.` | Same, during the boost update pass. | The data source's path field. |
-| `ERROR: Invalid RRD data source name for local_data_id: <id>.` | A data source item name failed validation. | The data template's item names. |
-| `ERROR: Invalid RRD data source bounds for local_data_id: <id>.` | Minimum or maximum failed validation. | The data template's item bounds. |
-| `ERROR: Invalid RRD update time for local_data_id: <id>.` | The update timestamp failed validation. | Clock skew on the collector. |
-| `ERROR: Invalid RRD update data source name for local_data_id: <id>.` | The update named an item that failed validation. | The data template. |
-| `ERROR: Invalid RRD update template or value set for local_data_id: <id>.` | The update template and values do not agree. | The data template and the collected output. |
-| `ERROR: Invalid RRD update value set for local_data_id: <id>.` | The value list failed validation. | As above. |
+| `ERROR: RRD file for Data Source <id> was not created. Its path cannot be sent to RRDtool.` | The stored path failed validation before the file was created. | That data source's path field. |
+| `ERROR: RRD pending samples retained for Data Source <id>. Its path cannot be sent to RRDtool.` | The same, before an update. The samples are kept. | That data source's path field, then rebuild the poller cache. |
+| `ERROR: RRD update for Data Source <id> was not run. Its path cannot be sent to RRDtool.` | Same, during the boost update pass. Tag `BOOST`. | The data source's path field. |
+| `ERROR: RRD file for Data Source <id> was not created. Its minimum is not a number or U.` | The minimum failed validation. | The data template's item bounds. |
+| `ERROR: RRD file for Data Source <id> was not created. The data source maximum contains a line break or NUL.` | The maximum failed validation. | As above. |
+| `ERROR: RRD file for Data Source <id> was not created. Its maximum cannot be sent to RRDtool.` | The same, for a maximum that cannot be passed as an argument. | As above. |
+| `ERROR: Invalid RRD field discarded (not written): <json>` | The update named an item that failed validation. The JSON carries the path, time, field and value. | The data template. |
 | `ERROR: There are no RRA's assigned to local_data_id: <id>.` | The data source's profile carries no RRAs, so no file can be created. | The data source profile. |
 | `ERROR: Unable to create directory '<path>'` | The RRA subdirectory could not be made. | Ownership and permissions on `rra/`. |
 | `ERROR: Unable to create directory due to missing write permissions '<path>'` | The parent directory is not writable. | As above. |
@@ -228,11 +219,11 @@ Tag varies. All proxy messages carry the `CACTI2RRDP` prefix.
 | `CACTI2RRDP ERROR: Unable to connect to RRDtool Proxy Server #<n>` | The proxy did not answer. `#1` is the primary, `#2` the backup. | `rrdp_server` and `rrdp_port`, then the proxy itself. |
 | `CACTI2RRDP ERROR: Unable to connect to RRDtool proxy.` | The connection failed at command time. | As above. |
 | `CACTI2RRDP ERROR: Public RSA Key Exchange - Time-out while reading` | The proxy did not send its key in time. | Network latency and the proxy's load. |
-| `CACTI2RRDP ERROR: Invalid RSA public key returned by proxy.` | The key did not parse. | The proxy's key files. |
+| `CACTI2RRDP ERROR: Public RSA Key Exchange - RRDtool Proxy Server #<id> did not send an RSA public key.` | The key did not parse. | The proxy's key files. |
 | `CACTI2RRDP ERROR: Mismatch RSA Fingerprint.` | The proxy's key does not match the configured fingerprint. | `rrdp_fingerprint`, and whether the proxy's key was regenerated. |
 | `CACTI2RRDP ERROR: Session closed by Proxy.` | The proxy hung up. | The proxy's own log. |
 | `CACTI2RRDP ERROR: Data Transfer - Time-out while reading.` | The proxy stopped responding mid-command. | The proxy's load. |
-| `CACTI2RRDP ERROR: Proxy message encryption failed.` | Encrypting the outbound message failed. | The PHP OpenSSL extension. |
+| `CACTI2RRDP ERROR: Unable to encrypt the command for the RRDtool proxy; nothing was sent.` | Encrypting the outbound message failed. | The PHP OpenSSL extension. |
 | `CACTI2RRDP ERROR: Proxy message decryption failed: ###<packet>###` | The reply would not decrypt. | Key mismatch between the two sides. |
 
 ### Boost
@@ -252,18 +243,11 @@ Tag `BOOST`.
 | `WARNING: Killing Boost <task> PID <pid> due to another boost process starting.` | A previous boost run was still alive. | Whether boost takes longer than `boost_rrd_update_interval`. |
 | `WARNING: Detected Poller Boost Overrun, Possible Boost Poller Crash` | A boost run did not record its completion. Tag `BOOST SVR`. | The log around the previous run. |
 | `WARNING: RRD On Demand Updater Exceeded Runtime Limits. Continuing to Process!!!` | The run passed `boost_rrd_update_max_runtime` and kept going. | That setting, and the backlog size. |
-| `ERROR: Boost child refused to run without a valid parent run identifier.` | A boost child was started without its parent's run id. | Stale processes from an aborted run. |
-| `WARNING: Boost child exited without recording completion; retaining archive tables.` | A child died. Its rows are kept for the next run. | The log around the child's exit. |
-| `WARNING: Boost retained archive tables because the child run was incomplete or reported an RRD update failure.` | At least one child failed. Nothing is dropped. | The RRD update warnings in the same run. |
+| `ERROR: Boost child failure or unverifiable results; archives retained for retry.` | At least one child failed or did not report. Nothing is dropped. | The RRD update warnings in the same run. |
 | `WARNING: Boost retained samples for Local Data IDs <ids> after RRD update failures.` | Some RRD updates in a boost run failed. Those samples are kept. | The data sources named. |
 | `ERROR: Failed to retrieve archive table name` | The archive table could not be identified. | The boost tables. |
 | `ERROR: Failed to retrieve archive table name - check poller` | The same, at the start of a run. | As above. |
 | `ERROR: Failed to retrieve any rows from archive tables` | The archive tables were empty when rows were expected. | As above. |
-| `WARNING: Boost ignored an unexpected archive-like table name.` | A table matching the archive pattern was not one boost created. | Leftover tables in the database. |
-| `ERROR: Boost rejected a handoff containing data sources not assigned to this poller.` | A remote collector sent rows for data sources it does not own. | Whether devices moved between collectors. |
-| `WARNING: Boost staging ignored one or more duplicate sample keys.` | Two rows carried the same data source and timestamp. | Duplicate poller output, usually overlapping cycles. |
-| `WARNING: Boost archive forwarding encountered duplicate sample keys for Local Data ID '<id>'.` | The same, during forwarding. | As above. |
-| `WARNING: Boost retained staged rows for Local Data ID '<id>' because the handoff was not fully acknowledged.` | Rows are held rather than dropped. | Connectivity to the main database. |
 | `WARNING: Skipping <local_data_id>:<rrd_name> due to duplicate record...` | Two identical samples in one update batch. | As above. |
 | `WARNING: Stale Poller Data Found! Item Time:'<time>', RRD Time:'<time>' Ignoring Value!` | A sample is older than the file's last update. Only logged at high verbosity. | Clock skew, or a poller run that overtook itself. |
 | `WARNING: RRD Update Warning '<output>' for Local Data ID '<id>'` | RRDtool printed something on an update. | The quoted RRDtool text. |
@@ -277,8 +261,7 @@ Tag `BOOST`.
 | `WARNING: Killing rrdcheck <task> PID <pid> due to another due to signal or overrun.` | A previous check run was still alive. | `rrdcheck_interval` against how long a pass takes. |
 | `WARNING: rrdcheck Poller terminated by user` | The pass caught a signal. | Expected on shutdown. |
 | `WARNING: RRDcheck interval set to 'boost' and boost not enabled, resetting to default of 4 hours` | `rrdcheck_interval` is `boost` while `boost_rrd_update_enable` is off. | Either setting. |
-| `ERROR: Invalid RRD file path for DSStats local_data_id: <id>, path: <path>.` | The statistics pass rejected a stored path. Tag `DSSTATS`. | The data source's path field. |
-| `ERROR: Invalid RRD data source name for DSStats local_data_id: <id>, name: <name>.` | The same, for an item name. | The data template. |
+| `ERROR: Data Source statistics skipped for Local Data ID <id>. The RRD path contains a line break or NUL.` | The statistics pass rejected a stored path. Tag `DSSTATS`. | The data source's path field. |
 | `WARNING: File does not exist!  DS[<id>], FILE[<path>]` | The statistics pass found no file. | Whether the poller ever created it. |
 | `WARNING: Data Source '<name>' is damaged and contains no path.  Please delete and re-create both the Graph and Data Source.` | The data source row has an empty path. | That data source. |
 | `ERROR: Output from local_data_id <id>, for RRDfile DS Name '<name>', is invalid.  It outputs was : '<value>'. Please check your script or data input method for errors.` | A stored value is not a number. | The data input method. |
@@ -313,8 +296,8 @@ Tag `REALTIME` or `POLLER`.
 |---|---|---|
 | `FATAL: Realtime Cache Directory '<path>' Does Not Exist!` | `realtime_cache_path` is missing. | That setting. |
 | `FATAL: Realtime Cache Directory '<path>' is Not Writable!` | It exists but the web server cannot write it. | Permissions. |
-| `ERROR: Realtime rejected invalid RRD path for local_data_id <id>, realtime path: <path>, source path: <path>.` | A path failed validation before the realtime copy. | The data source's path field. |
-| `ERROR: Realtime skipped RRD create with control characters for local_data_id <id>.` | The create arguments held control characters. | The data source name and path. |
+| `ERROR: Realtime RRD for Data Source <id> was not created.` | The create command or the realtime path failed validation before the realtime copy. | The data source's path field. |
+| `ERROR: Realtime RRD for Data Source <id> was not created. RRDtool refused it.` | RRDtool rejected the realtime create. | The RRDtool output in the same run. |
 | `WARNING: Unable to locate the Realtime Hash for Realtime Graph` | The request carried no matching cache entry. | Usually a stale browser tab. |
 
 ### RRD file maintenance
@@ -326,7 +309,7 @@ Tag `MAINT`.
 | `WARNING: RRDfile Maintenance is unable to remove <file> from <path>!` | Deleting an orphaned file failed. | Permissions on `rra/`. |
 | `WARNING: RRDfile Maintenance is unable to move <file> to <target>!` | Archiving failed. | Permissions on `rrd_archive`. |
 | `ERROR: RRDfile Maintenance unable to create directory '<path>'` | The archive directory could not be made. | `rrd_archive`. |
-| `WARNING RRDfile Maintenance rejected invalid RRDproxy path <name>!` | A proxy-held filename failed validation. | The data source's path. |
+| `WARNING: RRDfile maintenance rejected an unsafe RRDproxy path; purge queue retained.` | A proxy-held filename failed validation. The purge entry is kept. | The data source's path. |
 | `WARNING RRDfile Maintenance is unable to remove <name> from the RRDproxy!` | The proxy refused the delete. | The proxy's own log. |
 | `WARNING RRDfile Maintenance is unable to move <name> to the RRDproxy Archive!` | The proxy refused the move. | As above. |
 
@@ -433,7 +416,6 @@ Tags `AUTH`, `SECURITY`, `WEBUI`.
 | `ERROR: No username passed with Web Basic Authentication enabled.` | The web server did not set a remote user. | The web server's authentication configuration. |
 | `WARNING: Username <name> not found in basic mapfile.` | Basic authentication mapping did not cover this user. | `path_basic_mapfile`. |
 | `WARNING: User attempted to access Kadupul from unknown URL` | The password change page was reached from a host the install does not recognise. | `$url_path` and the reverse proxy. |
-| `ERROR: Browser did not return the Cacti session cookie during CSRF validation; verify url_path and cacti_cookie_domain.` | The session cookie was not sent back. | `$url_path` and `$cacti_cookie_domain`. |
 | `Session "<id>" start failed! <backtrace>` or `Session "<id>" restart failed! <backtrace>` | The PHP session could not start, or could not restart after regeneration. The severity here sits in the environment field, which the call sets to `WARNING:`, not in the message. | The session save path and its permissions. |
 | `ERROR: Invalid Kadupul User ID <id> is being used in a permission that does not exist` | A permission row names a user that is gone. | The permission tables. |
 | `WARNING: Invalid view parameter '<view>' in is_view_allowed()` | A page asked about a view name that does not exist. | The plugin or page that called it. |
@@ -442,37 +424,10 @@ Tags `AUTH`, `SECURITY`, `WEBUI`.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: Attempt to use GET method for POST operations from IP <ip>` | A state-changing action arrived as a GET. | Bookmarks, link prefetching, or a scan. |
-| `WARNING: Rejected non-POST request to data_input.php?action=whitelist_update` | The whitelist update was requested without a POST. | As above. |
-| `WARNING: Rejected non-POST request to remove a Graph Item Input` | The same, for a graph item input delete. | As above. |
-| `WARNING: Request variable 'action' was passed as array in <script>.` | `action` arrived as an array rather than a string. | The caller. |
-| `ERROR: Invalid remote client IP Address found in header (<header>).` | A trusted proxy header held something that is not an address. Debug verbosity. | `$proxy_headers` and the proxy in front. |
-| `ERROR: Invalid remote agent client IP Address.  Exiting` | The remote agent endpoint was reached from an address it does not accept. | The collector's address, and `$proxy_headers`. |
-| `WARNING: PTR record for <ip> resolves to <name> but forward lookup does not match. Rejecting.` | Forward-confirmed reverse DNS failed for a remote agent caller. Tag `SECURITY`. | DNS for the collector. |
+| `Unauthorized or ambiguous remote agent access attempt from <ip>` | The caller's address matched no enabled collector, or more than one. Tag `SECURITY`. | The collector's address, and `$proxy_headers`. |
 | `ERROR: Invalid field name in build_where_from_array: <field>` | A filter named a column that failed validation. Tag `SECURITY`. | The page or plugin that built the filter. |
 | `ERROR: An attempt was made to perform a SQL Injection in Graph Automation from client address '<ip>'` | An automation rule field failed validation. Tag `SECURITY`. | The rule, and the address. |
 | `ERROR: An attempt was made to perform a SQL Injection in Tree automation from client address '<ip>'` | The same, on tree rules. | As above. |
-
-### Graph input ownership
-
-These all come from the same class of check: a graph item input must belong to
-the template it claims. Tag `SECURITY`.
-
-| Message | Condition |
-|---|---|
-| `ERROR: Graph save refused an invalid graph input field` | A save named a field that is not an input of that template. |
-| `ERROR: Graph save refused an invalid graph input value` | A save carried a value that failed validation. |
-| `ERROR: Graph input save refused a cross-template relationship` | An input was saved against a different template's item. |
-| `ERROR: Graph input delete refused a cross-template relationship` | The same, on delete. |
-| `ERROR: Graph template duplication refused an invalid Graph Item Input field` | A duplicate carried an input field that does not belong. |
-| `ERROR: Graph template duplication refused invalid input ownership` | A duplicate carried an input owned by another template. |
-| `ERROR: Graph template import refused an invalid Graph Item Input field` | The same, on import. |
-| `ERROR: Graph template import refused an invalid Graph Item hash` | An item hash failed validation. |
-| `ERROR: Graph template import refused an unresolved Graph Item Input relationship` | An input referenced an item the import did not create. |
-| `ERROR: Graph template import refused invalid input relationships before the write pass` | The pre-write check failed. |
-| `ERROR: push_out_graph_input() refused an invalid graph input field` | Pushing a template change out to its graphs hit a bad field. |
-| `ERROR: push_out_graph_input() refused an invalid graph input value` | The same, for a value. |
-| `ERROR: Graph rendering refused an invalid graph input field` | Rendering hit a bad field. |
 
 ## Import and export
 
@@ -486,10 +441,9 @@ Tag `IMPORT`.
 | `FATAL: Unable to parse XML structure.` | A template XML inside the package did not parse. | As above. |
 | `FATAL: Unable to read Kadupul Package <filename>` | The file could not be read. | Permissions and the upload directory. |
 | `FATAL: Unable to open file <filename>` | The file could not be opened. | As above. |
-| `FATAL: Package Public Key is not Official Cacti Public Key for Package <filename>` | The package is signed with a key the install does not treat as official. | Where the package came from. |
+| `FATAL: Package Public Key is not a built-in trusted key for Package <filename>` | The package is signed with a key the install does not trust. | Where the package came from. |
 | `FATAL: Could not Verify Signature.` | The signature check failed. | As above. |
 | `FATAL: Could not Verify Signature for file: <name>` | One file inside the package failed its check. | As above. |
-| `FATAL: Package signature validation failed for <file>` | The validation pass failed. | As above. |
 | `FATAL: File has been Tampered with.` | Content does not match the signature. | Do not install it. |
 | `WARNING: Skipping package file with path traversal attempt: <name>` | A package entry tried to write outside the install. Skipped, not fatal. | The package. Treat it as hostile. |
 | `WARNING: Skipping package file with absolute path: <name>` | A package entry carried an absolute path. Skipped. | As above. |

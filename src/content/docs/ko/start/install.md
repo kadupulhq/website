@@ -110,7 +110,7 @@ Composer는 `include/vendor/`를 채우고 고정된 호환성 파일을 복원�
 |---|---|---|
 | 설치 중 | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | 설치 또는 업그레이드 중에만 |
 | 설치 중 | `include/vendor/csrf/` 또는 구성된 `path_csrf_secret` 위치 | 설치 프로그램은 설치 고유의 비밀값을 생성해야 하며, 이후 이를 보존해야 합니다 |
-| 항상 | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, 시스템 임시 디렉터리 | 설치가 유지되는 전체 기간 동안 |
+| 항상 | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, 시스템 임시 디렉터리 | 설치가 유지되는 전체 기간 동안 |
 | Symfony 런타임 | `var/cache`, 파일 로깅이 구성된 경우 `var/log` | PHP 런타임 및 캐시 워밍 사용자를 위해 |
 
 RRD 디렉터리 역시 설치 수명 내내 쓰기가 가능해야 합니다. 이 디렉터리는 이력을 보관하므로 데이터베이스 디렉터리처럼 주의 깊게 관리하세요.

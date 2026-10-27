@@ -110,7 +110,7 @@ Composer は `include/vendor/` に依存関係を配置し、固定された互�
 |---|---|---|
 | インストール時 | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | インストール時またはアップグレード時のみ |
 | インストール時 | `include/vendor/csrf/`、または設定された `path_csrf_secret` の場所 | インストーラーがインストール固有のシークレットを作成する必要があるため。完了後も保持します |
-| 常時 | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, システム一時ディレクトリ | インストールの稼働期間全体 |
+| 常時 | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, システム一時ディレクトリ | インストールの稼働期間全体 |
 | Symfony ランタイム | `var/cache`、およびファイルログが設定されている場合は `var/log` | PHP ランタイムおよびキャッシュウォーミングユーザー用 |
 
 RRD ディレクトリも、インストールの稼働期間全体にわたって書き込み可能である必要があります。履歴が保持される場所であるため、データベースディレクトリと同等の配慮を払ってください。

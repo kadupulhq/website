@@ -110,7 +110,7 @@ Siapkan jalur yang dapat ditulis setelah memasang dependensi:
 |---|---|---|
 | Selama instalasi | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Hanya saat menginstal atau meningkatkan versi |
 | Selama instalasi | `include/vendor/csrf/`, atau lokasi `path_csrf_secret` yang dikonfigurasi | Penginstal harus membuat rahasia khusus instalasi; pertahankan setelahnya |
-| Selalu | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, direktori sementara sistem | Selama masa pakai instalasi |
+| Selalu | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, direktori sementara sistem | Selama masa pakai instalasi |
 | Runtime Symfony | `var/cache`, dan `var/log` jika pencatatan berkas dikonfigurasi | Untuk runtime PHP dan pengguna cache-warming |
 
 Direktori RRD juga harus dapat ditulis selama masa pakai instalasi. Direktori ini menyimpan riwayat Anda, jadi berikan perhatian seperti yang Anda berikan pada direktori basis data.

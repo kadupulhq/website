@@ -110,7 +110,7 @@ Composer `include/vendor/` को भरता है और पिन की �
 |---|---|---|
 | स्थापना के दौरान | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | केवल इंस्टॉल या अपग्रेड करते समय |
 | स्थापना के दौरान | `include/vendor/csrf/`, या कॉन्फ़िगर किया गया `path_csrf_secret` स्थान | इंस्टॉलर को इंस्टॉलेशन-विशिष्ट सीक्रेट बनाना होगा; बाद में इसे सुरक्षित रखें |
-| हमेशा | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, सिस्टम अस्थायी डायरेक्टरी | इंस्टॉलेशन के पूरे जीवनकाल के लिए |
+| हमेशा | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, सिस्टम अस्थायी डायरेक्टरी | इंस्टॉलेशन के पूरे जीवनकाल के लिए |
 | Symfony रनटाइम | `var/cache`, और `var/log` यदि फ़ाइल लॉगिंग कॉन्फ़िगर की गई है | PHP रनटाइम और कैश-वार्मिंग उपयोगकर्ता के लिए |
 
 RRD डायरेक्टरी को इंस्टॉलेशन के पूरे जीवनकाल के लिए लिखने योग्य होना चाहिए। यह आपके इतिहास को रखती है, इसलिए इसे उतनी ही सावधानी से रखें जितनी आप डेटाबेस डायरेक्टरी को देंगे।
