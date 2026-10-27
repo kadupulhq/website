@@ -756,6 +756,384 @@
       "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
       "kind": "translation",
       "review": "draft"
+    },
+    "zh-cn/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ar/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/guides/template-workflow.md": {
+      "source": "guides/template-workflow.md",
+      "sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "zh-cn/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ar/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/guides/install-on-windows.md": {
+      "source": "guides/install-on-windows.md",
+      "sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "zh-cn/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ar/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/guides/install-on-freebsd.md": {
+      "source": "guides/install-on-freebsd.md",
+      "sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
+      "kind": "translation",
+      "review": "draft"
     }
   }
 }

@@ -10,6 +10,8 @@ banner:
 Templates exist so that adding the hundredth switch costs the same as adding the
 second. There are four kinds, and they stack.
 
+For a practical sequence, follow [Use and validate templates](/guides/template-workflow/).
+
 **Data templates** define what to collect and how to store it: the fields, their
 types, their bounds, the storage profile, and which input method fetches the
 numbers. Per-object fields and existing RRD files can differ from the current
