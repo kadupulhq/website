@@ -123,8 +123,7 @@ which combination counts. The decision is one installation-wide setting.
 | Device based | Is the graph or the device allowed? | Two |
 | Graph template based | Is the graph or the template allowed? | Two |
 
-These rules describe the implemented authorization checks. The Settings help has a
-[known discrepancy](https://github.com/kadupulhq/kadupul/issues/222). Direct graph
+These rules describe the implemented authorization checks. Direct graph
 grants remain effective in all four methods; choosing Device based does not suppress
 them. Measure performance with the actual policy and estate rather than assuming
 an exception-set count predicts query cost.
@@ -174,9 +173,9 @@ method combine badly, which is another reason the coarse methods exist.
 The auditing consequence matters more than the performance one. **A tree view is not a
 report of what an account can access.** It is a report of what an account can access
 *and someone put on that tree*. To audit access, inspect policies and verify actual
-permitted and denied requests. The Effective Policy display has a
-[confirmed Restrictive-mode bug](https://github.com/kadupulhq/kadupul/issues/263), so
-its label and tooltip cannot be the only evidence. See
+permitted and denied requests. The Effective Policy display is a separate
+implementation from the authorization checks, so its label and tooltip should not
+be the only evidence. See
 [Audit who can see what](/guides/audit-who-can-see-what/).
 
 ## Caching, and why changes land at odd moments

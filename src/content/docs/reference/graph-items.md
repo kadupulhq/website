@@ -101,11 +101,8 @@ empty comment is emitted as a single space, because RRDtool rejects an empty one
 `vdef_id` is set, since a VDEF has already reduced the series to one value.
 
 **CSV and XPORT export** selects `AREA`, `AREA:STACK`, fixed-width
-`LINE1`–`LINE3`, and legacy `STACK` graph-item types. The current export path
-does not check `vdef_id` before emitting `XPORT`. A VDEF-backed drawing item
-can therefore produce an invalid export even when it renders as an image.
-See application [bug #273](https://github.com/kadupulhq/kadupul/issues/273)
-and [How graphs are drawn](/concepts/how-graphs-are-drawn/).
+`LINE1`–`LINE3`, and legacy `STACK` graph-item types, skipping any item with
+`vdef_id` set. See [How graphs are drawn](/concepts/how-graphs-are-drawn/).
 `LINE:STACK` is not in that export selection, and text/rule/tick items are
 not exported.
 

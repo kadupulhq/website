@@ -67,7 +67,7 @@ In order.
 |---|---|
 | `poller_interval` | Setting. Seconds between collection passes. |
 | `poller_lastrun_<id>` | Setting written by the previous run. |
-| `poller_mibsrun_<id>` | Setting. If more than 14400 seconds old, this run collects system MIBs and the timestamp is updated. |
+| System MIB collection | Runs when `poller_lastrun_<id>` and the current time fall in different 14440-second windows, or when there is no previous run. |
 | `cron_interval` | Setting, coerced to 60 if it equals 60, otherwise to 300. |
 | `max_step` | Largest `step` across data source profiles in use. |
 | `concurrent_processes` | The poller row's `processes` column, falling back to the `concurrent_processes` setting. Floored at 1. |

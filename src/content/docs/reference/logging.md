@@ -186,9 +186,9 @@ rotation entirely, which is the option to use when a distribution package
 installs its own `logrotate.d` rule. It is a file setting, not a database
 setting, so a packager can set it without touching a running install's data.
 
-Until application [bug #280](https://github.com/kadupulhq/kadupul/issues/280)
-is fixed, keep unrelated dated files whose names contain the application log
-basename out of that log directory; cleanup can mistake them for rotations.
+Cleanup removes only files named exactly as rotation creates them, the log
+basename followed by `-YYYYMMDD` and an optional `-N` suffix; other files in the
+directory are left alone.
 
 When rotation cannot proceed it says why rather than failing silently. A missing
 file logs "Skipped missing"; an unwritable file or directory logs a permissions
