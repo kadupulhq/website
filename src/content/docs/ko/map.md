@@ -77,7 +77,7 @@ sidebar:
 - [Plugin hook API (English)](/ko/reference/plugin-hook-api/)
 - [Poller lifecycle (English)](/ko/reference/poller-lifecycle/)
 - [Realms and permissions (English)](/ko/reference/realms-and-permissions/)
-- [Requirements (English)](/ko/reference/requirements/)
+- [요구 사항](/ko/reference/requirements/)
 - [RRDtool proxy (English)](/ko/reference/rrdproxy/)
 - [RRDtool integration (English)](/ko/reference/rrdtool-integration/)
 - [Settings (English)](/ko/reference/settings/)

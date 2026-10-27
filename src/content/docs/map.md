@@ -73,7 +73,7 @@ Why the system works the way it does. Read for understanding, not to perform a t
 
 Looked up, not read through. Precise and scannable.
 
-- [Requirements](/reference/requirements/). Versions and extensions, stated precisely.
+- [Requirements](/reference/requirements/). Runtime, storage and deployment requirements for 2026–2027 planning.
 - [Command line tools](/reference/command-line-tools/). Every script in the cli directory, what it does, and the arguments the most useful ones accept.
 - [Configuration](/reference/configuration/). Which settings live in the config file on disk and which live in the database, and what each group controls.
 - [Poller lifecycle](/reference/poller-lifecycle/). What happens on a poller run, in order, from the scheduler invoking poller.php to values landing in RRD files.
