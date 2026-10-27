@@ -12,7 +12,7 @@ sidebar:
 - [첫 장치 추가](/ko/start/first-device/)
 - [첫 그래프 읽기](/ko/start/first-graph/)
 - [설치](/ko/start/install/)
-- [Kadupul 소개](/ko/start/what-kadupul-is/)
+- [Kadupul이란](/ko/start/what-kadupul-is/)
 
 ## 사용 안내
 
@@ -87,11 +87,11 @@ sidebar:
 
 ## 프로젝트
 
-- [Compatibility with Cacti (English)](/ko/project/compatibility-with-cacti/)
+- [Cacti와의 호환성](/ko/project/compatibility-with-cacti/)
 - [Contributing (English)](/ko/project/contributing/)
 - [Questions (English)](/ko/project/faq/)
 - [License (English)](/ko/project/license/)
 - [보안 정책](/ko/project/security/)
 - [프로젝트 상태](/ko/project/status/)
-- [Why this fork exists (English)](/ko/project/why-this-fork/)
+- [이 포크가 존재하는 이유](/ko/project/why-this-fork/)
 

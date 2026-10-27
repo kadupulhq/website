@@ -12,7 +12,7 @@ sidebar:
 - [添加第一台设备](/zh-cn/start/first-device/)
 - [阅读第一张图表](/zh-cn/start/first-graph/)
 - [安装](/zh-cn/start/install/)
-- [Kadupul 简介](/zh-cn/start/what-kadupul-is/)
+- [Kadupul 是什么](/zh-cn/start/what-kadupul-is/)
 
 ## 操作指南
 
@@ -87,11 +87,11 @@ sidebar:
 
 ## 项目
 
-- [Compatibility with Cacti (English)](/zh-cn/project/compatibility-with-cacti/)
+- [与 Cacti 的兼容性](/zh-cn/project/compatibility-with-cacti/)
 - [Contributing (English)](/zh-cn/project/contributing/)
 - [Questions (English)](/zh-cn/project/faq/)
 - [License (English)](/zh-cn/project/license/)
 - [安全政策](/zh-cn/project/security/)
 - [项目状态](/zh-cn/project/status/)
-- [Why this fork exists (English)](/zh-cn/project/why-this-fork/)
+- [为什么创建这个分支](/zh-cn/project/why-this-fork/)
 

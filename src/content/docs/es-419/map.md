@@ -87,11 +87,11 @@ Las páginas aún no traducidas se muestran en inglés con un aviso.
 
 ## Proyecto
 
-- [Compatibility with Cacti (English)](/es-419/project/compatibility-with-cacti/)
+- [Compatibilidad con Cacti](/es-419/project/compatibility-with-cacti/)
 - [Contributing (English)](/es-419/project/contributing/)
 - [Questions (English)](/es-419/project/faq/)
 - [License (English)](/es-419/project/license/)
 - [Política de seguridad](/es-419/project/security/)
 - [Estado del proyecto](/es-419/project/status/)
-- [Why this fork exists (English)](/es-419/project/why-this-fork/)
+- [Por qué existe esta bifurcación](/es-419/project/why-this-fork/)
 

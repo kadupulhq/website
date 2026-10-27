@@ -151,6 +151,18 @@ keeps them in the review queue. The existing stricter check for stale project-po
 summaries is still active. A safe English fallback for urgent policy updates needs
 implementation before claiming that issue #3's urgent-fix acceptance test passes.
 
+## Development priorities and compatibility pages
+
+`project/why-this-fork.md` and `project/compatibility-with-cacti.md` have complete
+translations in every supported locale. Preserve all five sections, including
+the difference between goals, implemented behavior and verified compatibility.
+The translation records remain drafts pending fluent review.
+
+Project-page source drift is a validation failure. Update every translation before
+refreshing its English source hash. The priorities/compatibility tests check section
+coverage, protected identifiers, references, source tracking and rendered language,
+direction and unversioned policy routing; they do not approve translation quality.
+
 ## Glossary and regional style
 
 Preserve product names (Kadupul, Cacti, Spine, RRDtool and Net-SNMP), commands,
@@ -187,3 +199,15 @@ glossary component remain work for issue #3.
 - Extend CI validation to interface markup, links and protected code identifiers.
 - Publish separate summary, full-page and English-fallback coverage, and support
   urgent English policy fixes through a safe fallback.
+
+## Full introductory overview
+
+`start/what-kadupul-is.md` is translated in full in every supported locale. Each
+version contains the same ten sections as English, with the collection, retention,
+architecture, access and compatibility limitations intact. These pages replace
+the earlier summaries and remain drafts pending fluent review.
+
+Update all translations before refreshing their English source hashes in
+`src/i18n/translations.json`. The overview tests check section coverage, protected
+identifiers, references, source tracking and rendered language/direction. Those
+checks do not establish semantic accuracy or approve a translation.

@@ -12,7 +12,7 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 - [Ƙara na’ura ta farko](/ha/start/first-device/)
 - [Karanta jadawalin farko](/ha/start/first-graph/)
 - [Shigarwa](/ha/start/install/)
-- [Menene Kadupul](/ha/start/what-kadupul-is/)
+- [Mene ne Kadupul](/ha/start/what-kadupul-is/)
 
 ## Jagororin amfani
 
@@ -87,11 +87,11 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 
 ## Aiki
 
-- [Compatibility with Cacti (English)](/ha/project/compatibility-with-cacti/)
+- [Jituwa da Cacti](/ha/project/compatibility-with-cacti/)
 - [Contributing (English)](/ha/project/contributing/)
 - [Questions (English)](/ha/project/faq/)
 - [License (English)](/ha/project/license/)
 - [Manufar tsaro](/ha/project/security/)
 - [Halin aikin](/ha/project/status/)
-- [Why this fork exists (English)](/ha/project/why-this-fork/)
+- [Dalilin wannan fork](/ha/project/why-this-fork/)
 

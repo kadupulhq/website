@@ -12,7 +12,7 @@ task, understand a concept, look up a reference, or read project policies.
 
 Read in order, once. Takes you from nothing to a graph you can read.
 
-- [What Kadupul is](/start/what-kadupul-is/). A short, honest description of what the software does, what it does not do, and who it suits.
+- [What Kadupul is](/start/what-kadupul-is/). Collection, storage, architecture and project limits for 2026–2027 planning.
 - [Install](/start/install/). What Kadupul needs to run, and the order to put it together in.
 - [Add your first device](/start/first-device/). Get one device polling, and confirm the data is arriving before you build anything on top of it.
 - [Read your first graph](/start/first-graph/). What the lines actually mean, and the three mistakes that make people misread them.
@@ -98,8 +98,8 @@ Looked up, not read through. Precise and scannable.
 
 What this project is, where it stands, and the terms it is offered under.
 
-- [Why this fork exists](/project/why-this-fork/). Kadupul’s independent development priorities and migration goals.
-- [Compatibility with Cacti](/project/compatibility-with-cacti/). Compatibility goals and the evidence required for a release.
+- [Why this fork exists](/project/why-this-fork/). Independent development priorities and migration acceptance criteria for 2026–2027.
+- [Compatibility with Cacti](/project/compatibility-with-cacti/). Compatibility scope, verification evidence and limits for 2026–2027 planning.
 - [License](/project/license/). GPL-3.0-or-later, and the reasoning behind it.
 - [Status](/project/status/). Where the project actually is, stated plainly.
 - [Security policy](/project/security/). How to report a vulnerability, and how reports will be handled.

@@ -92,7 +92,7 @@ Portuguese `ficheiros`/`utilizadores` versus Brazilian `arquivos`/`usuários`.
 Keep Japanese and Korean prose in a consistent polite register and preserve
 Yoruba diacritics when editing.
 
-Each additional locale includes a homepage, introductory summary, project-status
+Each additional locale includes a homepage, full introductory overview, project-status
 summary, security-policy summary, error page and generated documentation map.
 The summaries link to the complete English pages. The requirements reference is
 translated in full in all 22 locales, including all ten sections of the

@@ -12,7 +12,7 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 - [Het eerste apparaat toevoegen](/nl/start/first-device/)
 - [De eerste grafiek lezen](/nl/start/first-graph/)
 - [Installatie](/nl/start/install/)
-- [Wat is Kadupul](/nl/start/what-kadupul-is/)
+- [Wat Kadupul is](/nl/start/what-kadupul-is/)
 
 ## Handleidingen
 
@@ -87,11 +87,11 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 
 ## Project
 
-- [Compatibility with Cacti (English)](/nl/project/compatibility-with-cacti/)
+- [Compatibiliteit met Cacti](/nl/project/compatibility-with-cacti/)
 - [Contributing (English)](/nl/project/contributing/)
 - [Questions (English)](/nl/project/faq/)
 - [License (English)](/nl/project/license/)
 - [Beveiligingsbeleid](/nl/project/security/)
 - [Projectstatus](/nl/project/status/)
-- [Why this fork exists (English)](/nl/project/why-this-fork/)
+- [Waarom deze fork bestaat](/nl/project/why-this-fork/)
 
