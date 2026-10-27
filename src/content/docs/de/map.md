@@ -12,7 +12,7 @@ Noch nicht übersetzte Seiten werden mit einem Hinweis auf Englisch angezeigt.
 - [Das erste Gerät hinzufügen](/de/start/first-device/)
 - [Das erste Diagramm lesen](/de/start/first-graph/)
 - [Installation](/de/start/install/)
-- [Was ist Kadupul?](/de/start/what-kadupul-is/)
+- [Was Kadupul ist](/de/start/what-kadupul-is/)
 
 ## Anleitungen
 

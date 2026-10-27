@@ -12,7 +12,7 @@ task, understand a concept, look up a reference, or read project policies.
 
 Read in order, once. Takes you from nothing to a graph you can read.
 
-- [What Kadupul is](/start/what-kadupul-is/). A short, honest description of what the software does, what it does not do, and who it suits.
+- [What Kadupul is](/start/what-kadupul-is/). Collection, storage, architecture and project limits for 2026–2027 planning.
 - [Install](/start/install/). What Kadupul needs to run, and the order to put it together in.
 - [Add your first device](/start/first-device/). Get one device polling, and confirm the data is arriving before you build anything on top of it.
 - [Read your first graph](/start/first-graph/). What the lines actually mean, and the three mistakes that make people misread them.
