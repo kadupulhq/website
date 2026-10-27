@@ -91,9 +91,9 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 ## Aiki
 
 - [Jituwa da Cacti](/ha/project/compatibility-with-cacti/)
-- [Contributing (English)](/ha/project/contributing/)
-- [Questions (English)](/ha/project/faq/)
-- [License (English)](/ha/project/license/)
+- [Ba da Gudunmawa](/ha/project/contributing/)
+- [Tambayoyi Masu Yawa](/ha/project/faq/)
+- [Lasisi](/ha/project/license/)
 - [Manufar tsaro](/ha/project/security/)
 - [Halin aikin](/ha/project/status/)
 - [Dalilin wannan fork](/ha/project/why-this-fork/)

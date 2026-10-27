@@ -91,9 +91,9 @@ sidebar:
 ## 프로젝트
 
 - [Cacti와의 호환성](/ko/project/compatibility-with-cacti/)
-- [Contributing (English)](/ko/project/contributing/)
-- [Questions (English)](/ko/project/faq/)
-- [License (English)](/ko/project/license/)
+- [기여하기](/ko/project/contributing/)
+- [질문과 답변](/ko/project/faq/)
+- [라이선스](/ko/project/license/)
 - [보안 정책](/ko/project/security/)
 - [프로젝트 상태](/ko/project/status/)
 - [이 포크가 존재하는 이유](/ko/project/why-this-fork/)

@@ -91,9 +91,9 @@ sidebar:
 ## Iṣẹ́ àkànṣe
 
 - [Ìbámu pẹ̀lú Cacti](/yo/project/compatibility-with-cacti/)
-- [Contributing (English)](/yo/project/contributing/)
-- [Questions (English)](/yo/project/faq/)
-- [License (English)](/yo/project/license/)
+- [Ṣíṣe Àfikún](/yo/project/contributing/)
+- [Àwọn Ìbéèrè tí a ń béèrè Nigbagbogbo](/yo/project/faq/)
+- [Àdéhùn Ìwé-àṣẹ](/yo/project/license/)
 - [Ìlànà ààbò](/yo/project/security/)
 - [Ipò iṣẹ́ àkànṣe](/yo/project/status/)
 - [Ìdí tí ẹ̀ka yìí fi wà](/yo/project/why-this-fork/)

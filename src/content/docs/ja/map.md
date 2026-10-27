@@ -91,9 +91,9 @@ sidebar:
 ## プロジェクト
 
 - [Cacti との互換性](/ja/project/compatibility-with-cacti/)
-- [Contributing (English)](/ja/project/contributing/)
-- [Questions (English)](/ja/project/faq/)
-- [License (English)](/ja/project/license/)
+- [コントリビューション](/ja/project/contributing/)
+- [よくある質問](/ja/project/faq/)
+- [ライセンス](/ja/project/license/)
 - [セキュリティポリシー](/ja/project/security/)
 - [プロジェクトの状況](/ja/project/status/)
 - [このフォークが存在する理由](/ja/project/why-this-fork/)

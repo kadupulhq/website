@@ -91,9 +91,9 @@ sidebar:
 ## المشروع
 
 - [التوافق مع Cacti](/ar/project/compatibility-with-cacti/)
-- [Contributing (English)](/ar/project/contributing/)
-- [Questions (English)](/ar/project/faq/)
-- [License (English)](/ar/project/license/)
+- [المساهمة](/ar/project/contributing/)
+- [الأسئلة الشائعة](/ar/project/faq/)
+- [الترخيص](/ar/project/license/)
 - [سياسة الأمان](/ar/project/security/)
 - [حالة المشروع](/ar/project/status/)
 - [لماذا يوجد هذا التفرع](/ar/project/why-this-fork/)
