@@ -1,246 +1,109 @@
 ---
 title: Requirements
-description: Versions and extensions, stated precisely.
+description: Runtime, storage and deployment requirements for 2026–2027 planning.
 sidebar:
   order: 1
 banner:
   content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
-Based on the inherited 1.2.31 implementation. Check the manifest and installer
-in the exact source version you use; these lists are not a production support policy.
+Checked on 26 October 2026 against application revision
+[`d579c33c6`](https://github.com/kadupulhq/kadupul/tree/d579c33c60cca7e4c9d84dbd9e1b2c6ba5492daf).
+Use this baseline for 2026–2027 planning; it is not a release or support commitment.
 
 ## Runtime
 
-| Component | Requirement | Absent |
-|---|---|---|
-| PHP | Main requires 8.4 or newer; use a security-supported version | Nothing runs |
-| Database | MySQL or MariaDB, InnoDB available | Nothing runs |
-| RRDtool | A local binary; proxy deployment is not supported | No graphs, no storage |
-| net-snmp | Command line tools, unless the PHP SNMP extension is present | No SNMP collection |
-| Web server | PHP as a module or through FPM | No interface |
-| Scheduler | cron, Windows Task Scheduler, or the shipped systemd unit | No collection |
-| Collector | The shipped PHP collector, or Spine | No collection |
+`main` requires PHP 8.4 or newer and combines Symfony 7.4 with legacy entry points.
+The `lts/1.2` line has separate requirements. Install MySQL or MariaDB, RRDtool,
+and a PHP collector or compatible Spine build. Source builds use the versions in
+`mise.toml` through `mise exec`; install locked dependencies rather than updating them.
 
 ## PHP
 
-Two lists of extensions exist and they are not the same list. The dependency
-manifest declares what the package requires. The installer checks a different set
-at run time. Both are given below.
+The manifest requires these extensions in addition to PHP:
 
-### Declared by the manifest
+`PDO`, `Phar`, `dom`, `gd`, `gmp`, `intl`, `json`, `ldap`, `mbstring`,
+`mysqlnd`, `openssl`, `pcntl`, `pdo_mysql`, `posix`, `sockets`, `sqlite3`, `xml`.
 
-| Extension | Used for | Missing |
-|---|---|---|
-| `PDO` | The whole database layer | No database access |
-| `pdo_mysql` | PDO's MySQL driver | No database access |
-| `mysqlnd` | The native driver PDO's MySQL driver is built against | No database access |
-| `Phar` | Archive handling expected by the dependency tooling | Package tooling fails |
-| `dom` | XML documents | Import, export and data query definitions fail |
-| `xml` | XML parsing | Import, export and data query definitions fail |
-| `gd` | Image generation | No error image when RRDtool fails, no graph images embedded in reports |
-| `gmp` | Arbitrary precision arithmetic in the bundled SNMP disk scripts | Those scripts fall back to floating point and lose precision on 64-bit counters |
-| `intl` | Locale-aware number formatting | Falls back to older formatting |
-| `json` | Settings, API payloads, the data input whitelist file | Widespread failure |
-| `ldap` | LDAP and Active Directory authentication | Only local and web basic authentication |
-| `mbstring` | Multibyte strings in device and graph text | Non-ASCII text corrupts |
-| `openssl` | Package signature verification on import, and TLS | Signed packages cannot be verified |
-| `pcntl` | Process control. The collector and several CLI tools fork | No concurrency |
-| `posix` | User, group and process identity | No ownership correction, no ICMP privilege raise |
-| `sockets` | Reachability checks, and the connection to a remote RRDtool | No ICMP, UDP or TCP ping, no remote RRDtool |
-| `sqlite3` | An in-memory working table in the RRD splice tool | That tool falls back to PHP arrays and runs slower |
-
-`gmp`, `intl` and `sqlite3` are guarded by a run-time check and have fallbacks.
-The manifest requires them anyway, so a package build fails without them even
-though the application would start.
-
-### Checked by the installer
-
-| Extension | Used for | Missing |
-|---|---|---|
-| `ctype` | Character class tests in input validation | Validation fails |
-| `date` | Date and time handling | Nothing runs |
-| `filter` | Request variable validation | Nothing runs |
-| `gd` | Image generation | As above |
-| `gmp` | As above | As above |
-| `hash` | HMAC and constant-time comparison for tokens | Token and CSRF handling fail |
-| `intl` | As above | As above |
-| `json` | As above | As above |
-| `ldap` | As above | As above |
-| `mbstring` | As above | As above |
-| `openssl` | As above | As above |
-| `pcre` | Regular expressions | Nothing runs |
-| `PDO` | As above | As above |
-| `pdo_mysql` | As above | As above |
-| `session` | Web sessions | No login |
-| `simplexml` | XML parsing | Import, export and data query definitions fail |
-| `sockets` | As above | As above |
-| `spl` | Standard library interfaces | Nothing runs |
-| `standard` | PHP's core function set | Nothing runs |
-| `xml` | As above | As above |
-| `zlib` | Compressing commands sent to a remote RRDtool | Remote RRDtool fails |
-
-On Unix the list adds `posix` and `pcntl`. On Windows it adds `com_dotnet`
-instead.
-
-`date`, `pcre`, `spl`, `standard` and `json` are part of every supported PHP
-build. They are checked so the report is explicit, not because they are commonly
-absent.
-
-Four names appear in the manifest and not in the installer check: `Phar`, `dom`,
-`mysqlnd` and `sqlite3`. Ten appear in the installer check and not the manifest.
-Satisfying one list does not satisfy the other.
-
-### Optional
-
-| Extension or feature | Used for | Absent |
-|---|---|---|
-| `snmp` | In-process SNMP | Kadupul runs the net-snmp command line tools instead |
-| `gettext` | Translation catalogues | English only |
-| TrueType support in `gd` | Text in the generated error image | The image renders without text |
-
-The PHP SNMP extension can also be switched off in the configuration file while
-installed. The installer advises against installing it where SNMPv3 over IPv6 is
-required. Which path a given call takes is in [SNMP](/reference/snmp/).
-
-### PHP settings
-
-| Setting | Recommended | Status when unmet |
-|---|---|---|
-| `memory_limit` | 400 MB, or unlimited | Warning |
-| `max_execution_time` | 60 seconds, or unlimited | Warning |
-| `date.timezone` | Any real zone | Error. The check fails when it is unset |
-
-CLI runs raise `memory_limit` and `max_execution_time` themselves. The web
-interface does not.
-
-On current `main`, both the manifest and the installer’s
-`CACTI_PHP_VERSION_MINIMUM` require PHP 8.4 or newer. Check the target branch’s
-manifest and installer together; archived LTS versions have separate requirements.
+The installer separately checks `ctype`, `date`, `filter`, `hash`, `pcre`,
+`session`, `simplexml`, `spl`, `standard` and `zlib`, among others. On Unix it
+checks `posix` and CLI `pcntl`; on Windows it checks `com_dotnet`. Passing the
+installer does not prove that Composer's requirements are satisfied.
+Check CLI and web PHP separately. Set `date.timezone`; the installer recommends
+`memory_limit=400M` and `max_execution_time=60` or unlimited values. Optional
+`snmp` enables in-process queries; `gettext` enables translation catalogues.
 
 ## Database
 
-| Item | Requirement |
-|---|---|
-| Engine | MySQL or MariaDB |
-| Version | The tuning check targets MySQL 5.6 and later, MariaDB 10.0 and later |
-| Table engine | InnoDB for persistent tables |
-| `poller_output` | MEMORY. The collector converts it back if it finds any other engine |
-| Time zone tables | `mysql.time_zone_name` populated |
-| Account grant | SELECT on `mysql.time_zone_name` |
-
-An unpopulated or inaccessible time zone table is a hard error at install. The
-reason is that collection timestamps are produced and converted by the database,
-not by the device and not by PHP. See
-[Time and intervals](/concepts/time-and-intervals/).
-
-The installer also reports on a set of MySQL tuning variables. Those are advice,
-not requirements, and the install proceeds without them.
+Use a vendor-maintained MySQL or MariaDB release and validate it with the target
+revision. Old installer thresholds for MySQL 5.6 and MariaDB 10.0 do not establish
+2026–2027 support. Current `main` uses InnoDB for `poller_output`,
+`poller_output_boost` and `poller_output_realtime`; some coordination tables
+still use MEMORY. Do not convert every table to one engine. Populate
+`mysql.time_zone_name` and grant the application account SELECT access to it.
+See [database tuning](/guides/tune-database-performance/).
 
 ## RRDtool
 
-| Item | Requirement |
-|---|---|
-| Binary | Local path set in the settings |
-| Versions selectable | 1.3, 1.4, 1.5, 1.6, 1.7, 1.7.1, 1.7.2, 1.8 |
-| 1.5 or later | Needed before `DCOUNTER` and `DDERIVE` are offered as data source types |
-
-The configured version changes which arguments Kadupul emits. Setting it higher
-than the installed binary produces command failures rather than a version warning.
-Details are in [RRDtool integration](/reference/rrdtool-integration/).
-
-The inherited remote RRDtool client uses a TCP connection and needs `sockets`
-and `zlib`. It is documented for reference, not as a supported deployment option.
-See [RRDtool proxy](/reference/rrdproxy/).
+Configure the executable's absolute path and match the configured version to the
+installed binary. `DCOUNTER` and `DDERIVE` require RRDtool 1.5 or newer.
+Local Unix storage requires POSIX identity checks and working directory `flock`.
+Stop external writers and cache daemons before exclusive maintenance.
+The inherited proxy path exists, but is not a validated deployment guarantee.
+See [RRDtool integration](/reference/rrdtool-integration/).
 
 ## net-snmp
 
-Five binaries, each with its own path setting.
-
-| Binary | Setting |
-|---|---|
-| `snmpget` | `path_snmpget` |
-| `snmpgetnext` | `path_snmpgetnext` |
-| `snmpwalk` | `path_snmpwalk` |
-| `snmpbulkwalk` | `path_snmpbulkwalk` |
-| `snmptrap` | `path_snmptrap` |
-
-Required when the PHP SNMP extension is absent or switched off. Kadupul does not
-bundle an SNMP implementation of its own.
+Install Net-SNMP tools when PHP `snmp` is absent or disabled. Configure
+`path_snmpget`, `path_snmpgetnext`, `path_snmpwalk`, `path_snmpbulkwalk` and
+`path_snmptrap` with the corresponding executable paths. Test the selected path
+with your device's SNMP version, including SNMPv3 over IPv6 where applicable;
+the inherited installer cautions against PHP `snmp` for that combination.
+See [SNMP](/reference/snmp/).
 
 ## Web server
 
-| Expectation | Detail |
-|---|---|
-| PHP execution | As a server module, or through FPM |
-| URL prefix | Must match `$url_path` in the configuration file |
-| Denied paths | Eleven directories must not be reachable over HTTP |
-| Rewrite rules | None needed |
-
-The eleven directories ship with `.htaccess` files that deny everything. nginx and
-any Apache configured with `AllowOverride None` ignore those files entirely and
-need equivalent rules in the server configuration. The list, and the reason each
-one is on it, is in [File layout](/reference/file-layout/).
+Serve PHP through the configured web runtime and use TLS. Preserve legacy routes
+alongside `/app.php/...`; do not switch the entire document root to `public/`
+while legacy pages remain. Configure PATH_INFO for the compatibility entry point.
+Nginx ignores `.htaccess`; apply explicit deny rules for source, configuration,
+dependencies, tools, tests, secrets and runtime state before PHP handling.
+Match the URL prefix to `$url_path`. See [file layout](/reference/file-layout/).
 
 ## Scheduler
 
-The collector is started from outside. Nothing in the web interface starts it.
-
-| Platform | Mechanism |
-|---|---|
-| Unix | cron, or the shipped systemd unit for the collector daemon |
-| Windows | Task Scheduler |
-
-Start the poller at least as often as the configured collection interval. A
-one-minute launcher can service a five-minute collection interval; a five-minute
-launcher cannot meet a one-minute collection interval.
+Use one launcher: cron, Task Scheduler, or the shipped collector daemon service.
+Match its cadence to the configured launcher interval. Sub-minute collection
+runs inside that interval; cron alone does not provide a sub-minute schedule.
+Run checks as the poller account with the regular launcher stopped to avoid
+overlap. See [installation](/start/install/).
 
 ## Filesystem
 
-The installer classifies these as continuously writable paths:
-
-| Path | Written by |
-|---|---|
-| The system temporary directory | Several tools |
-| `log/` | The application log |
-| `cache/boost/` | Optional rendered-graph image cache; deferred RRD samples are held in database queue tables |
-| `cache/mibcache/` | The MIB cache and its lock file |
-| `cache/realtime/` | Per-session realtime graph files |
-| `cache/spikekill/` | Spike-removal working files and, depending on settings, backups of original RRD files |
-
-`resource/snmp_queries/`, `resource/script_server/`, `resource/script_queries/`,
-`scripts/` and the CSRF secret destination are install-time checks on a primary
-installation. The installer classifies them as continuously writable for a
-remote data collector so synchronization can update them.
-
-RRD storage is validated separately according to the selected local or proxy
-configuration. The default local path is `rra/`, but individual data-source
-paths and external proxy storage can differ. Grant access to the effective
-storage paths used by the web and collector accounts.
-
-### Ownership
-
-| Case | Result |
-|---|---|
-| The creating process runs as root | New files attempt to copy the owner and group of `rra/`. Structured-directory group correction is unreliable at the audited revision because the comparison reads the owner twice; verify group ownership independently and see [application issue #287](https://github.com/kadupulhq/kadupul/issues/287). |
-| The creating process does not run as root | The file takes that process's own ownership, and nothing corrects it later |
-
-An installation where the web interface and the collector run as different
-unprivileged accounts will produce files one of them cannot update. Nothing
-reports this; the symptom is a flat graph.
+Grant only the required accounts access to effective RRD paths, logs, caches and
+Symfony runtime directories. The default RRD directory is `rra/`.
+Separate Unix web/poller accounts require explicit numeric
+`rrd_maintenance_trusted_uids` and, for writable groups,
+`rrd_maintenance_trusted_gids` in `include/config.php`. Every listed group member
+must be trusted. Normal permissions still apply; world-writable storage is rejected.
+Use identical trust settings across writers and check both accounts before upgrading.
+See [storage upgrade prerequisites](https://github.com/kadupulhq/kadupul/blob/d579c33c60cca7e4c9d84dbd9e1b2c6ba5492daf/docs/testing/spikekill-safety.md).
 
 ## Privilege
 
-Raw ICMP needs a privileged socket. The ping path raises its effective user id to
-zero for the duration of the socket and drops back afterwards. Where that is not
-possible, ICMP is unavailable and reachability has to be checked over UDP, TCP, or
-SNMP.
-
-No other part of Kadupul requires privilege.
+Run the web process and poller as dedicated unprivileged accounts. Raw ICMP needs
+additional operating-system privilege; use TCP, UDP or SNMP checks when unavailable.
+Do not run the whole application as root to enable ping. Windows lacks the ACL
+validation required for destructive local RRD maintenance; ordinary updates use
+synchronous RRDtool acknowledgements. Unix throughput evidence does not validate
+Windows capacity.
 
 ## On the PHP version
 
-The current `main` application manifest and runtime guard require PHP 8.4 or
-newer. This does not change the archived LTS requirements. A manifest constraint
-is not a tested compatibility matrix; choose a version from the [PHP supported-version list](https://www.php.net/supported-versions.php)
-and verify it with the target branch's tests and dependency checks.
+For 2026–2027 planning, PHP 8.4 receives active support through 31 December 2026
+and security fixes through 31 December 2028. PHP 8.5 receives active support
+through 31 December 2027 and security fixes through 31 December 2029.
+These are [PHP upstream dates](https://www.php.net/supported-versions.php),
+not a Kadupul compatibility matrix. Test newer runtimes with locked dependencies
+before adoption. Symfony's own lower PHP minimum does not lower Kadupul's 8.4 floor.
+Recheck upstream schedules and the target revision before deployment.
