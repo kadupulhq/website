@@ -52,9 +52,9 @@ sidebar:
 
 ## 概念
 
-- [Architecture (English)](/ja/concepts/architecture/)
+- [アーキテクチャ](/ja/concepts/architecture/)
 - [Data queries and indexes (English)](/ja/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/ja/concepts/data-sources-and-rras/)
+- [データソースとラウンドロビンアーカイブ](/ja/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ja/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/ja/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ja/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ sidebar:
 - [Remote data collection (English)](/ja/concepts/remote-data-collection/)
 - [Security model (English)](/ja/concepts/security-model/)
 - [Templates (English)](/ja/concepts/templates/)
-- [The poller cache (English)](/ja/concepts/the-poller-cache/)
+- [ポーラーキャッシュ](/ja/concepts/the-poller-cache/)
 - [Time and intervals (English)](/ja/concepts/time-and-intervals/)
 
 ## リファレンス

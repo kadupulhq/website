@@ -52,9 +52,9 @@ sidebar:
 
 ## 概念
 
-- [Architecture (English)](/zh-cn/concepts/architecture/)
+- [架构](/zh-cn/concepts/architecture/)
 - [Data queries and indexes (English)](/zh-cn/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/zh-cn/concepts/data-sources-and-rras/)
+- [数据源与循环归档 (RRA)](/zh-cn/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/zh-cn/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/zh-cn/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/zh-cn/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ sidebar:
 - [Remote data collection (English)](/zh-cn/concepts/remote-data-collection/)
 - [Security model (English)](/zh-cn/concepts/security-model/)
 - [Templates (English)](/zh-cn/concepts/templates/)
-- [The poller cache (English)](/zh-cn/concepts/the-poller-cache/)
+- [轮询器缓存](/zh-cn/concepts/the-poller-cache/)
 - [Time and intervals (English)](/zh-cn/concepts/time-and-intervals/)
 
 ## 参考

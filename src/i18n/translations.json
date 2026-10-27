@@ -7,6 +7,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ar/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -101,6 +119,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"bn/guides/back-up-and-restore.md": {
@@ -199,6 +235,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"de/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -293,6 +347,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"es-419/guides/back-up-and-restore.md": {
@@ -391,6 +463,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"es/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -485,6 +575,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"fr-ca/guides/back-up-and-restore.md": {
@@ -583,6 +691,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"fr/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -677,6 +803,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ha/guides/back-up-and-restore.md": {
@@ -775,6 +919,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"hi/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -869,6 +1031,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"id/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"id/guides/back-up-and-restore.md": {
@@ -967,6 +1147,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"it/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -1061,6 +1259,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ja/guides/back-up-and-restore.md": {
@@ -1159,6 +1375,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ko/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -1253,6 +1487,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"nl/guides/back-up-and-restore.md": {
@@ -1351,6 +1603,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pl/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -1445,6 +1715,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"pt-br/guides/back-up-and-restore.md": {
@@ -1543,6 +1831,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pt-pt/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -1637,6 +1943,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"si/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"si/guides/back-up-and-restore.md": {
@@ -1735,6 +2059,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"sw/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -1831,6 +2173,24 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"yo/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/back-up-and-restore.md": {
 			"source": "guides/back-up-and-restore.md",
 			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
@@ -1925,6 +2285,24 @@
 			"source": "404.md",
 			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/concepts/architecture.md": {
+			"source": "concepts/architecture.md",
+			"sourceSha256": "c7f52904b1e1af8d8a52fc4dc55c9184a1509f9273b47b99a7ebe380cec043e6",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/data-sources-and-rras.md": {
+			"source": "concepts/data-sources-and-rras.md",
+			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/the-poller-cache.md": {
+			"source": "concepts/the-poller-cache.md",
+			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"zh-cn/guides/back-up-and-restore.md": {
