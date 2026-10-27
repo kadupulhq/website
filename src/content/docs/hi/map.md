@@ -52,9 +52,9 @@ sidebar:
 
 ## अवधारणाएँ
 
-- [Architecture (English)](/hi/concepts/architecture/)
+- [वास्तुकला](/hi/concepts/architecture/)
 - [Data queries and indexes (English)](/hi/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/hi/concepts/data-sources-and-rras/)
+- [डेटा स्रोत और राउंड-रॉबिन अभिलेखागार](/hi/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/hi/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/hi/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/hi/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ sidebar:
 - [Remote data collection (English)](/hi/concepts/remote-data-collection/)
 - [Security model (English)](/hi/concepts/security-model/)
 - [Templates (English)](/hi/concepts/templates/)
-- [The poller cache (English)](/hi/concepts/the-poller-cache/)
+- [पोलर कैश](/hi/concepts/the-poller-cache/)
 - [Time and intervals (English)](/hi/concepts/time-and-intervals/)
 
 ## संदर्भ

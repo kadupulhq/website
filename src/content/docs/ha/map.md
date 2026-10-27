@@ -52,9 +52,9 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 
 ## Ka’idoji
 
-- [Architecture (English)](/ha/concepts/architecture/)
+- [Tsarin Gine-gine](/ha/concepts/architecture/)
 - [Data queries and indexes (English)](/ha/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/ha/concepts/data-sources-and-rras/)
+- [Hanyoyin samo bayanai da taskokin zagayawa (RRAs)](/ha/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ha/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/ha/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ha/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 - [Remote data collection (English)](/ha/concepts/remote-data-collection/)
 - [Security model (English)](/ha/concepts/security-model/)
 - [Templates (English)](/ha/concepts/templates/)
-- [The poller cache (English)](/ha/concepts/the-poller-cache/)
+- [Ma'ajiyar Poller](/ha/concepts/the-poller-cache/)
 - [Time and intervals (English)](/ha/concepts/time-and-intervals/)
 
 ## Bayanai na fasaha

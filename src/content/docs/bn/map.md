@@ -52,9 +52,9 @@ sidebar:
 
 ## ধারণা
 
-- [Architecture (English)](/bn/concepts/architecture/)
+- [আর্কিটেকচার](/bn/concepts/architecture/)
 - [Data queries and indexes (English)](/bn/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/bn/concepts/data-sources-and-rras/)
+- [ডেটা উৎস এবং রাউন্ড-রবিন আর্কাইভ](/bn/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/bn/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/bn/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/bn/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ sidebar:
 - [Remote data collection (English)](/bn/concepts/remote-data-collection/)
 - [Security model (English)](/bn/concepts/security-model/)
 - [Templates (English)](/bn/concepts/templates/)
-- [The poller cache (English)](/bn/concepts/the-poller-cache/)
+- [পোলার ক্যাশ](/bn/concepts/the-poller-cache/)
 - [Time and intervals (English)](/bn/concepts/time-and-intervals/)
 
 ## রেফারেন্স

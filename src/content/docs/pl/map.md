@@ -52,9 +52,9 @@ Strony, które nie zostały jeszcze przetłumaczone, są wyświetlane po angiels
 
 ## Pojęcia
 
-- [Architecture (English)](/pl/concepts/architecture/)
+- [Architektura](/pl/concepts/architecture/)
 - [Data queries and indexes (English)](/pl/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/pl/concepts/data-sources-and-rras/)
+- [Źródła danych i archiwa round-robin](/pl/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/pl/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/pl/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/pl/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ Strony, które nie zostały jeszcze przetłumaczone, są wyświetlane po angiels
 - [Remote data collection (English)](/pl/concepts/remote-data-collection/)
 - [Security model (English)](/pl/concepts/security-model/)
 - [Templates (English)](/pl/concepts/templates/)
-- [The poller cache (English)](/pl/concepts/the-poller-cache/)
+- [Pamięć podręczna pollera](/pl/concepts/the-poller-cache/)
 - [Time and intervals (English)](/pl/concepts/time-and-intervals/)
 
 ## Dokumentacja techniczna
