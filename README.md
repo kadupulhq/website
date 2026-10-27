@@ -24,7 +24,7 @@ is configured in `src/site.mjs`; Markdown links are prefixed during rendering.
 The link and locale checkers keep this base when given alternate directories.
 Use `--base /` explicitly to validate a build served at a domain root.
 
-Node 22.12 or newer. The pinned version is in `.node-version`.
+Node 22.23.4 or newer. The pinned version is in `.node-version`.
 
 Run `npm run check:all` before submitting changes. This runs type checks, prose
 checks, the static build, regression tests with coverage, and internal link and

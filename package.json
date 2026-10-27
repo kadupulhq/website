@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.23.4"
   },
   "scripts": {
     "dev": "astro dev",
@@ -23,15 +23,15 @@
     "translations:check": "node scripts/site-translations.mjs --check"
   },
   "dependencies": {
-    "@astrojs/markdown-satteri": "^0.4.4",
+    "@astrojs/markdown-satteri": "^0.4.5",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/starlight": "^0.42.6",
-    "astro": "^7.4.0",
+    "@astrojs/starlight": "^0.42.7",
+    "astro": "^7.4.2",
     "sharp": "^0.35.5",
     "starlight-versions": "^0.10.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.12",
     "@astrojs/compiler-rs": "^0.5.2",
     "c8": "^12.0.0",
     "parse5": "^8.0.1",

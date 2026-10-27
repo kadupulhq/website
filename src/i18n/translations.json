@@ -756,6 +756,384 @@
       "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
       "kind": "translation",
       "review": "draft"
+    },
+    "ar/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ar/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ar/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "zh-cn/start/first-device.md": {
+      "source": "start/first-device.md",
+      "sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "zh-cn/start/first-graph.md": {
+      "source": "start/first-graph.md",
+      "sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "zh-cn/start/install.md": {
+      "source": "start/install.md",
+      "sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+      "kind": "translation",
+      "review": "draft"
     }
   }
 }
