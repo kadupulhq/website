@@ -12,7 +12,7 @@ sidebar:
 - [Add your first device (English)](/ko/start/first-device/)
 - [Read your first graph (English)](/ko/start/first-graph/)
 - [Install (English)](/ko/start/install/)
-- [Kadupul 소개](/ko/start/what-kadupul-is/)
+- [Kadupul이란](/ko/start/what-kadupul-is/)
 
 ## 사용 안내
 

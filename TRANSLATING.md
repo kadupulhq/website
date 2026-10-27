@@ -169,3 +169,15 @@ glossary component remain work for issue #3.
 - Extend CI validation to interface markup, links and protected code identifiers.
 - Publish separate summary, full-page and English-fallback coverage, and support
   urgent English policy fixes through a safe fallback.
+
+## Full introductory overview
+
+`start/what-kadupul-is.md` is translated in full in every supported locale. Each
+version contains the same ten sections as English, with the collection, retention,
+architecture, access and compatibility limitations intact. These pages replace
+the earlier summaries and remain drafts pending fluent review.
+
+Update all translations before refreshing their English source hashes in
+`src/i18n/translations.json`. The overview tests check section coverage, protected
+identifiers, references, source tracking and rendered language/direction. Those
+checks do not establish semantic accuracy or approve a translation.

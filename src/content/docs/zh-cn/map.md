@@ -12,7 +12,7 @@ sidebar:
 - [Add your first device (English)](/zh-cn/start/first-device/)
 - [Read your first graph (English)](/zh-cn/start/first-graph/)
 - [Install (English)](/zh-cn/start/install/)
-- [Kadupul 简介](/zh-cn/start/what-kadupul-is/)
+- [Kadupul 是什么](/zh-cn/start/what-kadupul-is/)
 
 ## 操作指南
 

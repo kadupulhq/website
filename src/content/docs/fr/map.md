@@ -12,7 +12,7 @@ Les pages non encore traduites sont affichées en anglais avec un avertissement.
 - [Add your first device (English)](/fr/start/first-device/)
 - [Read your first graph (English)](/fr/start/first-graph/)
 - [Install (English)](/fr/start/install/)
-- [Présentation de Kadupul](/fr/start/what-kadupul-is/)
+- [Ce qu’est Kadupul](/fr/start/what-kadupul-is/)
 
 ## Guides pratiques
 

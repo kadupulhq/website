@@ -12,7 +12,7 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 - [Add your first device (English)](/nl/start/first-device/)
 - [Read your first graph (English)](/nl/start/first-graph/)
 - [Install (English)](/nl/start/install/)
-- [Wat is Kadupul](/nl/start/what-kadupul-is/)
+- [Wat Kadupul is](/nl/start/what-kadupul-is/)
 
 ## Handleidingen
 
