@@ -191,7 +191,6 @@ Applied when a device is created, not retroactively.
 | `automatic_reindex` | Schedule for reindexing every device. |
 | `snmp_bulk_walk_size`, `max_get_size` | SNMP request sizing. |
 | `enable_snmp_agent` | Kadupul's own SNMP agent. |
-| `poller_refresh_output_table` | Rebuild the `poller_output` MEMORY table each cycle. |
 | `disable_cache_replication` | Stop replicating the resource cache to remote collectors. |
 | `spine_log_level` | Whether invalid responses are logged individually. |
 | `remote_agent_timeout` | Timeout for the remote agent RPC. |
@@ -296,7 +295,6 @@ edited by hand.
 | Name | Written by |
 |---|---|
 | `poller_lastrun_<id>` | Start time of the last run for that poller. |
-| `poller_mibsrun_<id>` | Last system MIB collection, refreshed every four hours. |
 | `active_profiles` | Count of distinct active data source profiles, cached for the collector. |
 | `total_snmp_ports` | Count of distinct SNMP ports in the poller cache. |
 | `path_webroot` | Web root, recalculated each run. |

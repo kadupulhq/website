@@ -35,7 +35,7 @@ Most tables in the schema are definitions and stay small. These do not.
 |---|---|---|
 | `poller_item` | One row per data source item, per collector | InnoDB |
 | `host_snmp_cache` | One row per index per queried field per device | InnoDB |
-| `poller_output` | Results in flight during a single pass | Memory |
+| `poller_output` | Pending measurements, including retained failed writes | InnoDB |
 | `poller_output_boost` | Results waiting to be written to disk | InnoDB |
 | `poller_output_realtime` | Real-time graph requests | InnoDB |
 | `poller_reindex` | Data query re-index checks per device | InnoDB |
@@ -52,23 +52,16 @@ heavily for the same reason: everything that builds a graph name reads it.
 
 ## The memory tables
 
-Several tables are declared as memory tables on purpose. They hold results in
-flight and statistics caches, and they are written on every pass.
+Several tables are declared as memory tables on purpose: the hourly statistics
+caches, the boost and discovery work registries, and the process registry. The
+`poller_output` results queue is not one of them. It is InnoDB, and the upgrade
+converts an existing MEMORY copy.
 
-Two consequences follow, and both matter.
+Their contents are lost on a database restart, and they are capped by the
+server's memory table size limit, not by disk. Exceed it and inserts fail.
 
-They are lost on a database restart. That is intended. A collection pass that was
-in flight is lost with them and shows as one gap.
-
-They are capped by the server's memory table size limit, not by disk. Exceed it
-and inserts fail. On an install with deferred RRD writes enabled, the results
-table is the one to watch: it fills between flushes, and a flush that is late or
-failing means it keeps filling.
-
-The documented recommendation is to allow the memory table limit to reach a
-noticeable fraction of system memory, along with the same allowance for temporary
-tables. The other lever is the width of the output column in the results tables:
-narrower rows mean more of them fit.
+Deferred-write queues consume database disk space; monitor row counts, oldest
+pending timestamps and free space. A failed flush can retain a growing backlog.
 
 ## Deferred writes are a database tradeoff
 
@@ -91,10 +84,10 @@ Raising the items-per-pass value makes flushes faster and makes graphing slower
 while one is running, because both compete for the same tables. If graphs go slow
 on the hour, that is the setting to lower first.
 
-There is also an option to insert collector results straight into the durable
-table, skipping the memory table. It is documented as removing about a quarter of
-the time in each collection pass. It also removes the memory table as a buffer,
-so the durable table absorbs the full write rate.
+There is also an option to insert collector results straight into the boost
+table, skipping `poller_output`. The normal queue is already durable, so this is
+not a MEMORY-to-disk choice. Benchmark throughput and queue age before relying on
+any speedup.
 
 See [High volume writes](/1.2.31/concepts/high-volume-writes/) for the shape of the
 tradeoff.
@@ -163,7 +156,7 @@ starting points, not answers; the right number depends on the size of the box.
 | Variable | Recommendation | Why |
 |---|---|---|
 | `innodb_buffer_pool_size` | About a quarter of system memory | Holds tables and indexes in memory. Size it against the on-disk size of the database directory. |
-| `max_heap_table_size` | A noticeable fraction of system memory | Caps the memory tables. Too small and collector inserts fail. |
+| `max_heap_table_size` | A noticeable fraction of system memory | Caps the memory tables. Does not size the InnoDB `poller_output` queue. |
 | `tmp_table_size` | Same allowance | Keeps subquery temporaries in memory. |
 | `max_allowed_packet` | 16 MB or more | Collector synchronisation moves large blocks to remote collectors. |
 | `max_connections` | 100 or more | Collector processes multiply: processes times threads plus script servers plus one, with headroom for logins. |
@@ -206,10 +199,6 @@ do not spend time there.
 
 **Analyze is not repair, and repair is not upgrade.** Three scripts, three jobs.
 Running the wrong one because the symptom is vague wastes a maintenance window.
-
-**Do not convert the memory tables to a durable engine.** They are memory tables
-because they are rewritten every pass. Converting them moves the whole collection
-write rate onto disk.
 
 **A schema repair on a large table locks it.** Preview with `--alters`, size the
 window against the largest table in the list, and do it when collection is
