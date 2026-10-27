@@ -87,11 +87,11 @@ sidebar:
 
 ## 项目
 
-- [Compatibility with Cacti (English)](/zh-cn/project/compatibility-with-cacti/)
+- [与 Cacti 的兼容性](/zh-cn/project/compatibility-with-cacti/)
 - [Contributing (English)](/zh-cn/project/contributing/)
 - [Questions (English)](/zh-cn/project/faq/)
 - [License (English)](/zh-cn/project/license/)
 - [安全政策](/zh-cn/project/security/)
 - [项目状态](/zh-cn/project/status/)
-- [Why this fork exists (English)](/zh-cn/project/why-this-fork/)
+- [为什么创建这个分支](/zh-cn/project/why-this-fork/)
 

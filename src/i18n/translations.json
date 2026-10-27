@@ -13,6 +13,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ar/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -23,6 +29,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ar/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ar/reference/requirements.md": {
@@ -67,6 +79,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"bn/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -77,6 +95,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"bn/reference/requirements.md": {
@@ -121,6 +145,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"de/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -131,6 +161,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"de/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"de/reference/requirements.md": {
@@ -175,6 +211,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"es-419/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -185,6 +227,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"es-419/reference/requirements.md": {
@@ -229,6 +277,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"es/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -239,6 +293,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"es/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"es/reference/requirements.md": {
@@ -283,6 +343,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"fr-ca/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -293,6 +359,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"fr-ca/reference/requirements.md": {
@@ -337,6 +409,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"fr/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -347,6 +425,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"fr/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"fr/reference/requirements.md": {
@@ -391,6 +475,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ha/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -401,6 +491,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ha/reference/requirements.md": {
@@ -445,6 +541,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"hi/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -455,6 +557,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"hi/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"hi/reference/requirements.md": {
@@ -499,6 +607,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"id/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -509,6 +623,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"id/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"id/reference/requirements.md": {
@@ -553,6 +673,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"it/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -563,6 +689,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"it/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"it/reference/requirements.md": {
@@ -607,6 +739,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ja/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -617,6 +755,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ja/reference/requirements.md": {
@@ -661,6 +805,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ko/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -671,6 +821,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"ko/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"ko/reference/requirements.md": {
@@ -715,6 +871,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"nl/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -725,6 +887,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"nl/reference/requirements.md": {
@@ -769,6 +937,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pl/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -779,6 +953,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"pl/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"pl/reference/requirements.md": {
@@ -823,6 +1003,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pt-br/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -833,6 +1019,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"pt-br/reference/requirements.md": {
@@ -877,6 +1069,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pt-pt/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -887,6 +1085,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-pt/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"pt-pt/reference/requirements.md": {
@@ -931,6 +1135,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"si/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -941,6 +1151,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"si/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"si/reference/requirements.md": {
@@ -985,6 +1201,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"sw/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -995,6 +1217,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"sw/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"sw/reference/requirements.md": {
@@ -1039,6 +1267,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"yo/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -1049,6 +1283,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"yo/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"yo/reference/requirements.md": {
@@ -1093,6 +1333,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"zh-cn/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -1103,6 +1349,12 @@
 			"source": "project/status.md",
 			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
 			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
 			"review": "draft"
 		},
 		"zh-cn/reference/requirements.md": {

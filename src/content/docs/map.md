@@ -98,8 +98,8 @@ Looked up, not read through. Precise and scannable.
 
 What this project is, where it stands, and the terms it is offered under.
 
-- [Why this fork exists](/project/why-this-fork/). Kadupul’s independent development priorities and migration goals.
-- [Compatibility with Cacti](/project/compatibility-with-cacti/). Compatibility goals and the evidence required for a release.
+- [Why this fork exists](/project/why-this-fork/). Independent development priorities and migration acceptance criteria for 2026–2027.
+- [Compatibility with Cacti](/project/compatibility-with-cacti/). Compatibility scope, verification evidence and limits for 2026–2027 planning.
 - [License](/project/license/). GPL-3.0-or-later, and the reasoning behind it.
 - [Status](/project/status/). Where the project actually is, stated plainly.
 - [Security policy](/project/security/). How to report a vulnerability, and how reports will be handled.
