@@ -9,8 +9,8 @@ Strony, które nie zostały jeszcze przetłumaczone, są wyświetlane po angiels
 
 ## Pierwsze kroki
 
-- [Add your first device (English)](/pl/start/first-device/)
-- [Read your first graph (English)](/pl/start/first-graph/)
+- [Dodaj pierwsze urządzenie](/pl/start/first-device/)
+- [Odczytaj pierwszy wykres](/pl/start/first-graph/)
 - [Install (English)](/pl/start/install/)
 - [Czym jest Kadupul](/pl/start/what-kadupul-is/)
 

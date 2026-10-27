@@ -9,8 +9,8 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 
 ## Fara a nan
 
-- [Add your first device (English)](/ha/start/first-device/)
-- [Read your first graph (English)](/ha/start/first-graph/)
+- [Ƙara na’ura ta farko](/ha/start/first-device/)
+- [Karanta jadawalin farko](/ha/start/first-graph/)
 - [Install (English)](/ha/start/install/)
 - [Menene Kadupul](/ha/start/what-kadupul-is/)
 

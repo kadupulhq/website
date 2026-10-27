@@ -9,8 +9,8 @@ sidebar:
 
 ## 시작하기
 
-- [Add your first device (English)](/ko/start/first-device/)
-- [Read your first graph (English)](/ko/start/first-graph/)
+- [첫 장치 추가](/ko/start/first-device/)
+- [첫 그래프 읽기](/ko/start/first-graph/)
 - [Install (English)](/ko/start/install/)
 - [Kadupul 소개](/ko/start/what-kadupul-is/)
 

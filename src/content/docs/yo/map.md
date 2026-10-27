@@ -9,8 +9,8 @@ sidebar:
 
 ## Bẹ̀rẹ̀ níbí
 
-- [Add your first device (English)](/yo/start/first-device/)
-- [Read your first graph (English)](/yo/start/first-graph/)
+- [Fi ẹ̀rọ àkọ́kọ́ kún un](/yo/start/first-device/)
+- [Ka àwòrán ìṣirò àkọ́kọ́](/yo/start/first-graph/)
 - [Install (English)](/yo/start/install/)
 - [Kí ni Kadupul](/yo/start/what-kadupul-is/)
 

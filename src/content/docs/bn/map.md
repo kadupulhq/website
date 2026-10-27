@@ -9,8 +9,8 @@ sidebar:
 
 ## এখানে শুরু করুন
 
-- [Add your first device (English)](/bn/start/first-device/)
-- [Read your first graph (English)](/bn/start/first-graph/)
+- [প্রথম ডিভাইস যোগ করুন](/bn/start/first-device/)
+- [প্রথম গ্রাফ বুঝুন](/bn/start/first-graph/)
 - [Install (English)](/bn/start/install/)
 - [Kadupul কী](/bn/start/what-kadupul-is/)
 

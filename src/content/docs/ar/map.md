@@ -9,8 +9,8 @@ sidebar:
 
 ## ابدأ هنا
 
-- [Add your first device (English)](/ar/start/first-device/)
-- [Read your first graph (English)](/ar/start/first-graph/)
+- [إضافة أول جهاز](/ar/start/first-device/)
+- [قراءة أول رسم بياني](/ar/start/first-graph/)
 - [Install (English)](/ar/start/install/)
 - [ما هو Kadupul](/ar/start/what-kadupul-is/)
 

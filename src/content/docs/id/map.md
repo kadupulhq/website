@@ -9,8 +9,8 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 
 ## Mulai di sini
 
-- [Add your first device (English)](/id/start/first-device/)
-- [Read your first graph (English)](/id/start/first-graph/)
+- [Tambahkan perangkat pertama](/id/start/first-device/)
+- [Baca grafik pertama](/id/start/first-graph/)
 - [Install (English)](/id/start/install/)
 - [Apa itu Kadupul](/id/start/what-kadupul-is/)
 

@@ -9,8 +9,8 @@ sidebar:
 
 ## 入门
 
-- [Add your first device (English)](/zh-cn/start/first-device/)
-- [Read your first graph (English)](/zh-cn/start/first-graph/)
+- [添加第一台设备](/zh-cn/start/first-device/)
+- [阅读第一张图表](/zh-cn/start/first-graph/)
 - [Install (English)](/zh-cn/start/install/)
 - [Kadupul 简介](/zh-cn/start/what-kadupul-is/)
 
