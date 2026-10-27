@@ -87,11 +87,11 @@ sidebar:
 
 ## Iṣẹ́ àkànṣe
 
-- [Compatibility with Cacti (English)](/yo/project/compatibility-with-cacti/)
+- [Ìbámu pẹ̀lú Cacti](/yo/project/compatibility-with-cacti/)
 - [Contributing (English)](/yo/project/contributing/)
 - [Questions (English)](/yo/project/faq/)
 - [License (English)](/yo/project/license/)
 - [Ìlànà ààbò](/yo/project/security/)
 - [Ipò iṣẹ́ àkànṣe](/yo/project/status/)
-- [Why this fork exists (English)](/yo/project/why-this-fork/)
+- [Ìdí tí ẹ̀ka yìí fi wà](/yo/project/why-this-fork/)
 

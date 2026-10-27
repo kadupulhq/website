@@ -87,11 +87,11 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 
 ## Project
 
-- [Compatibility with Cacti (English)](/nl/project/compatibility-with-cacti/)
+- [Compatibiliteit met Cacti](/nl/project/compatibility-with-cacti/)
 - [Contributing (English)](/nl/project/contributing/)
 - [Questions (English)](/nl/project/faq/)
 - [License (English)](/nl/project/license/)
 - [Beveiligingsbeleid](/nl/project/security/)
 - [Projectstatus](/nl/project/status/)
-- [Why this fork exists (English)](/nl/project/why-this-fork/)
+- [Waarom deze fork bestaat](/nl/project/why-this-fork/)
 

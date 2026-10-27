@@ -87,11 +87,11 @@ sidebar:
 
 ## المشروع
 
-- [Compatibility with Cacti (English)](/ar/project/compatibility-with-cacti/)
+- [التوافق مع Cacti](/ar/project/compatibility-with-cacti/)
 - [Contributing (English)](/ar/project/contributing/)
 - [Questions (English)](/ar/project/faq/)
 - [License (English)](/ar/project/license/)
 - [سياسة الأمان](/ar/project/security/)
 - [حالة المشروع](/ar/project/status/)
-- [Why this fork exists (English)](/ar/project/why-this-fork/)
+- [لماذا يوجد هذا التفرع](/ar/project/why-this-fork/)
 
