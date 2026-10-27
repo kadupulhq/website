@@ -91,9 +91,9 @@ sidebar:
 ## প্রকল্প
 
 - [Cacti-এর সঙ্গে সামঞ্জস্য](/bn/project/compatibility-with-cacti/)
-- [Contributing (English)](/bn/project/contributing/)
-- [Questions (English)](/bn/project/faq/)
-- [License (English)](/bn/project/license/)
+- [অবদান রাখা](/bn/project/contributing/)
+- [সাধারণ প্রশ্নোত্তর](/bn/project/faq/)
+- [লাইসেন্স](/bn/project/license/)
 - [নিরাপত্তা নীতি](/bn/project/security/)
 - [প্রকল্পের অবস্থা](/bn/project/status/)
 - [এই ফর্ক কেন আছে](/bn/project/why-this-fork/)

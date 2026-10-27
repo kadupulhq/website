@@ -85,6 +85,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -214,6 +232,24 @@
 		"bn/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -349,6 +385,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -478,6 +532,24 @@
 		"es-419/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -613,6 +685,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -742,6 +832,24 @@
 		"fr-ca/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -877,6 +985,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -1006,6 +1132,24 @@
 		"ha/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1141,6 +1285,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -1270,6 +1432,24 @@
 		"id/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1405,6 +1585,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -1534,6 +1732,24 @@
 		"ja/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1669,6 +1885,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -1798,6 +2032,24 @@
 		"nl/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1933,6 +2185,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -2062,6 +2332,24 @@
 		"pt-br/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2197,6 +2485,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -2326,6 +2632,24 @@
 		"si/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2461,6 +2785,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -2593,6 +2935,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/project/security.md": {
 			"source": "project/security.md",
 			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
@@ -2722,6 +3082,24 @@
 		"zh-cn/project/compatibility-with-cacti.md": {
 			"source": "project/compatibility-with-cacti.md",
 			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/project/contributing.md": {
+			"source": "project/contributing.md",
+			"sourceSha256": "1d8d91a967229cd8774263cc7a401df40c9f158d4e36179298706dfdedc47bbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/project/faq.md": {
+			"source": "project/faq.md",
+			"sourceSha256": "e3693329d39c3c999d8af2d96503ab7856eb11a5a25ed2d75e7f03622e3b59a5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/project/license.md": {
+			"source": "project/license.md",
+			"sourceSha256": "7d6326910e8c261118444d01ed57df5fcc292e82f199d84e78be3bfd25cd4a64",
 			"kind": "translation",
 			"review": "draft"
 		},

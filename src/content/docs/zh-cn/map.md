@@ -91,9 +91,9 @@ sidebar:
 ## 项目
 
 - [与 Cacti 的兼容性](/zh-cn/project/compatibility-with-cacti/)
-- [Contributing (English)](/zh-cn/project/contributing/)
-- [Questions (English)](/zh-cn/project/faq/)
-- [License (English)](/zh-cn/project/license/)
+- [参与贡献](/zh-cn/project/contributing/)
+- [常见问题](/zh-cn/project/faq/)
+- [许可证](/zh-cn/project/license/)
 - [安全政策](/zh-cn/project/security/)
 - [项目状态](/zh-cn/project/status/)
 - [为什么创建这个分支](/zh-cn/project/why-this-fork/)

@@ -91,9 +91,9 @@ Las páginas aún no traducidas se muestran en inglés con un aviso.
 ## Proyecto
 
 - [Compatibilidad con Cacti](/es/project/compatibility-with-cacti/)
-- [Contributing (English)](/es/project/contributing/)
-- [Questions (English)](/es/project/faq/)
-- [License (English)](/es/project/license/)
+- [Colaborar](/es/project/contributing/)
+- [Preguntas frecuentes](/es/project/faq/)
+- [Licencia](/es/project/license/)
 - [Política de seguridad](/es/project/security/)
 - [Estado del proyecto](/es/project/status/)
 - [Por qué existe esta bifurcación](/es/project/why-this-fork/)

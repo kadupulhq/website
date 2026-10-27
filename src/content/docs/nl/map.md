@@ -91,9 +91,9 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 ## Project
 
 - [Compatibiliteit met Cacti](/nl/project/compatibility-with-cacti/)
-- [Contributing (English)](/nl/project/contributing/)
-- [Questions (English)](/nl/project/faq/)
-- [License (English)](/nl/project/license/)
+- [Bijdragen](/nl/project/contributing/)
+- [Vragen](/nl/project/faq/)
+- [Licentie](/nl/project/license/)
 - [Beveiligingsbeleid](/nl/project/security/)
 - [Projectstatus](/nl/project/status/)
 - [Waarom deze fork bestaat](/nl/project/why-this-fork/)

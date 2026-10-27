@@ -91,9 +91,9 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 ## Mradi
 
 - [Uoanifu na Cacti](/sw/project/compatibility-with-cacti/)
-- [Contributing (English)](/sw/project/contributing/)
-- [Questions (English)](/sw/project/faq/)
-- [License (English)](/sw/project/license/)
+- [Kuchangia](/sw/project/contributing/)
+- [Maswali Yanayoulizwa Mara kwa Mara](/sw/project/faq/)
+- [Leseni](/sw/project/license/)
 - [Sera ya usalama](/sw/project/security/)
 - [Hali ya mradi](/sw/project/status/)
 - [Kwa nini tawi hili lipo](/sw/project/why-this-fork/)
