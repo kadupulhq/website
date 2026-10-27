@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/ja/concepts/data-queries-and-indexes/)
 - [データソースとラウンドロビンアーカイブ](/ja/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ja/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/ja/concepts/how-graphs-are-drawn/)
+- [グラフはどのように描画されるか](/ja/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ja/concepts/permissions-and-access/)
 - [Plugins (English)](/ja/concepts/plugins/)
 - [Remote data collection (English)](/ja/concepts/remote-data-collection/)
 - [Security model (English)](/ja/concepts/security-model/)
-- [Templates (English)](/ja/concepts/templates/)
+- [テンプレート](/ja/concepts/templates/)
 - [ポーラーキャッシュ](/ja/concepts/the-poller-cache/)
-- [Time and intervals (English)](/ja/concepts/time-and-intervals/)
+- [時間とインターバル](/ja/concepts/time-and-intervals/)
 
 ## リファレンス
 

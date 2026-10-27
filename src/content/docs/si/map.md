@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/si/concepts/data-queries-and-indexes/)
 - [දත්ත මූලාශ්‍ර සහ රවුන්ඩ්-රොබින් ලේඛනාගාර](/si/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/si/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/si/concepts/how-graphs-are-drawn/)
+- [ප්‍රස්තාර අඳින ආකාරය](/si/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/si/concepts/permissions-and-access/)
 - [Plugins (English)](/si/concepts/plugins/)
 - [Remote data collection (English)](/si/concepts/remote-data-collection/)
 - [Security model (English)](/si/concepts/security-model/)
-- [Templates (English)](/si/concepts/templates/)
+- [සැකිලි](/si/concepts/templates/)
 - [පෝලර් හැඹිලිය](/si/concepts/the-poller-cache/)
-- [Time and intervals (English)](/si/concepts/time-and-intervals/)
+- [කාලය සහ පරතරයන්](/si/concepts/time-and-intervals/)
 
 ## තාක්ෂණික යොමුව
 

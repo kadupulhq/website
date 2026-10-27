@@ -56,14 +56,14 @@ Noch nicht übersetzte Seiten werden mit einem Hinweis auf Englisch angezeigt.
 - [Data queries and indexes (English)](/de/concepts/data-queries-and-indexes/)
 - [Datenquellen und Round-Robin-Archive](/de/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/de/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/de/concepts/how-graphs-are-drawn/)
+- [Wie Diagramme gezeichnet werden](/de/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/de/concepts/permissions-and-access/)
 - [Plugins (English)](/de/concepts/plugins/)
 - [Remote data collection (English)](/de/concepts/remote-data-collection/)
 - [Security model (English)](/de/concepts/security-model/)
-- [Templates (English)](/de/concepts/templates/)
+- [Vorlagen](/de/concepts/templates/)
 - [Der Poller-Cache](/de/concepts/the-poller-cache/)
-- [Time and intervals (English)](/de/concepts/time-and-intervals/)
+- [Zeit und Intervalle](/de/concepts/time-and-intervals/)
 
 ## Referenz
 
