@@ -42,6 +42,15 @@ identifiers, source hashes and rendered locale pages as part of `test:coverage`.
 Those checks do not establish semantic accuracy or fluent review. Update each
 translation before refreshing its source hash; only a fluent reviewer may approve it.
 
+The Getting Started tutorial pages (`start/install.md`, `start/first-device.md` and
+`start/first-graph.md`) have full translations in every supported locale, recorded
+as `kind: translation` and `review: draft`. Keep all sections at the same content
+depth as English, including command examples, code fences, configuration tables,
+technical identifiers, and cross-references. The start-tutorial translation tests
+check section counts, code fences, technical identifiers, source hashes and
+rendered locale pages as part of `test:coverage`. Update each translation before
+refreshing its source hash; only a fluent reviewer may approve it.
+
 `translations/site-reviews.json` records the source and target SHA-256 for each
 unit. Existing translations start as draft. Source changes produce needs-update;
 target edits invalidate approval and return the unit to draft. Changing one source

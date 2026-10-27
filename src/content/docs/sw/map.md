@@ -9,9 +9,9 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 
 ## Anza hapa
 
-- [Add your first device (English)](/sw/start/first-device/)
-- [Read your first graph (English)](/sw/start/first-graph/)
-- [Install (English)](/sw/start/install/)
+- [Ongeza kifaa chako cha kwanza](/sw/start/first-device/)
+- [Soma grafu yako ya kwanza](/sw/start/first-graph/)
+- [Usakinishaji](/sw/start/install/)
 - [Kadupul ni nini](/sw/start/what-kadupul-is/)
 
 ## Miongozo ya matumizi
