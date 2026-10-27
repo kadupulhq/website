@@ -266,28 +266,16 @@ Derived from the declared widths, deliberately pessimistic.
 
 ### Results in flight
 
-The results table is a `MEMORY` table with a fixed row shape: a data source id, a
-19 character name, a timestamp, and a 512 character output column. `MEMORY` stores
-`VARCHAR` at its declared maximum rather than its actual length, so the row
-footprint is set by the declaration.
+The `poller_output` queue is InnoDB and retains unacknowledged samples. Its
+declared 512-character output width is not a fixed MEMORY-row allocation. Measure
+actual InnoDB data and index bytes per queued row and allow for redo, binlog,
+transaction and temporary-work overhead.
 
-That makes the character set part of the sizing. At one byte per character a row
-is about 0.6 KB. At `utf8mb4`'s four bytes per character it is about 2.2 KB.
-`utf8mb4` is the recommended server character set, so provision against the larger
-figure.
-
-| Scale | Worst-case rows | At 2.2 KB |
-|---|---|---|
-| A | 4,000 | 9 MB |
-| B | 40,000 | 88 MB |
-| C | 400,000 | 880 MB |
-
-Derived. The worst case is a full pass landing before the drain catches up, which
-is what you size the server's memory table limit against. The same allowance is
-wanted for temporary tables, so double it when budgeting memory.
-
-Exceeding the limit does not degrade. Inserts fail and the samples in that pass are
-lost. See [Tune database performance](/1.2.31/guides/tune-database-performance/).
+A full collection pass is not the worst-case backlog: writer failures can retain
+many passes. Estimate retained rows from arrival rate and the maximum outage you
+plan to tolerate, then measure recovery drain rate while new samples arrive.
+Increasing a heap-table limit does not change this queue's capacity. See
+[Tune database performance](/1.2.31/guides/tune-database-performance/).
 
 ### The deferred write buffer
 

@@ -252,9 +252,8 @@ After bulk changes, verify effective cache entries and rebuild when needed:
 php cli/rebuild_poller_cache.php
 ```
 
-The current `--host-id` filter can rebuild unrelated enabled devices; see
-[application #197](https://github.com/kadupulhq/kadupul/issues/197). Do not assume
-it scopes a diagnostic rebuild to one device.
+`--host-id=N` limits the rebuild to that device; the worker processes receive the
+same filter.
 
 ## RRD write behaviour
 

@@ -7,15 +7,14 @@ sidebar:
   order: 6
 ---
 
-Kadupul inherits the Cacti 1.2.x schema: 113 tables in `cacti.sql`. Most of them
+Kadupul inherits the Cacti 1.2.x schema: 116 tables in `cacti.sql`. Most of them
 are leaf tables for one feature. This page covers the ones you need to read or
 join against, grouped by what they belong to.
 
-Everything is InnoDB with `ROW_FORMAT=Dynamic` except eight `MEMORY` tables:
+Everything is InnoDB with `ROW_FORMAT=Dynamic` except seven `MEMORY` tables:
 `automation_ips`, `automation_processes`, `data_source_stats_hourly_cache`,
-`data_source_stats_hourly_last`, `poller_output`,
-`poller_output_boost_local_data_ids`, `poller_output_boost_processes` and
-`processes`. Their contents do not survive a database restart.
+`data_source_stats_hourly_last`, `poller_output_boost_local_data_ids`,
+`poller_output_boost_processes` and `processes`. Their contents do not survive a database restart.
 
 ## Three conventions that run through the schema
 
@@ -116,7 +115,7 @@ trail behind a device showing as down.
 | Table | Purpose |
 |---|---|
 | `poller_item` | The poller cache. One row per thing to collect, with the device's SNMP credentials denormalised into it so the collector needs no join. |
-| `poller_output` | Values handed back by the collector, drained into RRD files and deleted. `MEMORY`. |
+| `poller_output` | Values handed back by the collector, drained into RRD files and deleted. |
 | `poller_output_realtime` | The same for realtime graphing, kept on disk because it is read back by the web tier. |
 | `poller_reindex` | One row per reindex assertion. The collector evaluates `op` against `assert_value` each cycle and triggers a data query rerun when it fails. |
 | `poller_time` | Start and end timestamp per collector process, one row per PID per run. |
@@ -342,8 +341,8 @@ ON pi.local_data_id = po.local_data_id
 AND pi.rrd_name = po.rrd_name;
 ```
 
-`poller_output` is a `MEMORY` table. It does not survive a database restart, and
-anything in it at that moment is lost.
+`poller_output` is an InnoDB table, so rows not yet drained survive a database
+restart.
 
 ### Putting it together
 

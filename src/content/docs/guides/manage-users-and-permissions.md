@@ -125,11 +125,8 @@ devices, choose the device based method, set graph defaults to Deny, and remove
 unintended graph grants from both the user and its groups. Direct graph grants
 remain effective in that mode.
 
-The current Settings help describes Restrictive as requiring all three grants and
-omits the graph-grant alternative from Device based and Graph template based. The
-table above describes the implemented permission checks; verify actual access when
-changing the method. See
-[issue #222](https://github.com/kadupulhq/kadupul/issues/222).
+The table above describes the implemented permission checks; verify actual access
+when changing the method.
 
 Device based and graph template based exist because the first two get slow on large
 installations. They are also considerably easier to reason about.

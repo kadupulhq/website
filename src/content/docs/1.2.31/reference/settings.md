@@ -21,7 +21,7 @@ The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/1.2.31/reference/configuration/).
 This page does not repeat that.
 
-Inherited from Cacti 1.2.x. 46 variables in the config file, 255 system settings
+Inherited from Cacti 1.2.x. 51 variables in the config file, 255 system settings
 in the database, 40 per-user settings, and 2 more per-user settings that appear
 only when the account holds the matching realm.
 
@@ -110,12 +110,17 @@ effect unless this install is a remote poller. Note that there is no
 | `$php_path` | Explicit path to the PHP binary. | string | `# '/bin/php'` |
 | `$php_snmp_support` | Set `false` to stop using the PHP SNMP extension. Defaults to `class_exists('SNMP')`. | boolean | `# false` |
 | `$path_csrf_secret` | External CSRF secret file. Must sit outside the document root and hold 32 to 4096 bytes. | string | `# '/usr/share/cacti/resource/csrf-secret.php'` |
+| `$trusted_hosts` | Host names, besides the web server's own name, that the forced HTTPS redirect may send a browser to. | array | `# array('cacti.example.com')` |
+| `$config['rrd_maintenance_trusted_uids']` | Numeric Unix user ids trusted to share RRD storage with the web and poller accounts. Empty trusts root and the current user. | array | `array()` |
+| `$config['rrd_maintenance_trusted_gids']` | Numeric Unix group ids trusted the same way. | array | `array()` |
+| `$config['rrd_command_timeout']` | Seconds one acknowledged RRDtool command may take. `1` to `3600`; `60` when unset. | integer | `# 60` |
 
 ### Client address and language
 
 | Name | Controls | Type | Default |
 |---|---|---|---|
 | `$proxy_headers` | Which request headers may be trusted for the client address. `false` or `null` uses `REMOTE_ADDR` only, `true` uses every allowed header, an array names the ones to accept. `REMOTE_ADDR` is always checked. | mixed | `null` |
+| `$trusted_proxies` | Addresses or CIDR ranges of the reverse proxies allowed to supply `$proxy_headers`. Unset keeps the earlier behavior. | array | `null` |
 | `$i18n_handler` | Default i18n handler when the database does not set one. Numeric value of a `CACTI_LANGUAGE_HANDLER` constant. | integer | `null` |
 | `$i18n_force_language` | Force one language regardless of anything else, such as `'es-ES'`. | string | `null` |
 | `$i18n_log` | File for general i18n call logging. | string | `null` |
@@ -233,7 +238,7 @@ Each is checked for an existing binary when saved.
 | Name | Setting | Controls | Type | Default |
 |---|---|---|---|---|
 | `force_https` | Force Connections over HTTPS | Redirect plain HTTP to HTTPS. | boolean | |
-| `allow_unsafe_https` | Allow Unsafe Remote Data Collector HTTPS | Accept self signed certificates and hostname mismatches when talking to a remote data collector. | boolean | `on` |
+| `allow_unsafe_https` | Allow Unsafe Remote Data Collector HTTPS | Accept self signed certificates and hostname mismatches when talking to a remote data collector. | boolean | |
 | `allow_unsafe_metachars` | Allow Unsafe Metacharacters in Data Input Methods | Permit shell metacharacters in data input methods. Unchecked, quotation marks, curly brackets, vertical bars, backslashes, and backticks are rejected; greater-than and less-than remain allowed for `<path_cacti>` and input parameters. | boolean | |
 | `content_security_policy_script` | Content-Security Script Policy | The `script-src` policy. `0` allows non-nonced inline JavaScript, `unsafe-eval` allows that plus `unsafe-eval`, `nonce-report` is nonce mode with reporting only. | select | |
 | `content_security_report_uri` | CSP Violation Report URI | Where browsers POST violation reports in the nonce modes. Empty uses `<url_path>/csp_report.php`. | text | |
@@ -329,7 +334,6 @@ Applied when a device is created. Changing them does not touch existing devices.
 | `remote_agent_timeout` | Remote Agent Timeout | Seconds the central web server waits on a remote collector RPC. `5`, `10`, `15`, `20`, `30`, or `60`. | select | `5` |
 | `snmp_bulk_walk_size` | SNMP Bulkwalk Fetch Size | OIDs returned per `snmpbulkwalk`. `10` to `200`. | select | `10` |
 | `max_get_size` | SNMP Get OID Limit | OIDs per `snmpget` when the SNMP API is called directly from a script or plugin. Devices set their own. | text | `10` |
-| `poller_refresh_output_table` | Refresh Poller Table Per Cycle | Rebuild the `poller_output` memory table each cycle. Single poller systems only. | boolean | |
 | `disable_cache_replication` | Disable Resource Cache Replication | Stop replicating the resource cache to remote collectors. | boolean | |
 
 ### Additional data collector settings
@@ -443,7 +447,6 @@ Presets only. From 1.2 onward the live values are held on the data collector.
 |---|---|---|---|---|
 | `min_tree_width` | Minimum Tree Width | Pixels the tree contracts to. | text | `170` |
 | `max_tree_width` | Maximum Tree Width | Pixels the tree expands to before branches scroll. | text | `300` |
-| `tree_site_includes_templates` | Site Graph Template Expansion | Include the graph templates branch as a site sub-branch. | boolean | `on` |
 
 ### Filters
 
@@ -768,7 +771,6 @@ anyone who has not chosen their own.
 | `default_tree_id` | Default Tree | Tree opened in tree mode. | select | `0` |
 | `treeview_graphs_per_page` | Graphs Per Page | Graphs per page in tree mode. | select | `10` |
 | `expand_hosts` | Expand Devices | Expand a device's graph templates and data queries on the tree. | boolean | |
-| `tree_site_includes_templates` | Site Graph Template Expansion | Include the graph templates branch as a site sub-branch. | boolean | system `tree_site_includes_templates` |
 | `tree_history` | Tree History | Remember tree position between visits and logins. | boolean | `on` |
 | `min_tree_width` | Minimum Tree Width | Pixels. | text | system `min_tree_width` |
 | `max_tree_width` | Maximum Tree Width | Pixels. | text | system `max_tree_width` |

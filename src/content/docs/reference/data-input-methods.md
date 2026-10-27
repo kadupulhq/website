@@ -191,10 +191,9 @@ Space separated `name:value` pairs, where each name is an output field's
 users:14 load:0.42 procs:198
 ```
 
-`prepare_validate_result()` accepts `:` or `!` when it counts name/value
-separators, but downstream `process_poller_output()` splits each token only on
-`:`, so `!` output is not mapped into RRD fields. Use `:` in scripts and test
-the resulting RRD updates; see application [bug #284](https://github.com/kadupulhq/kadupul/issues/284). The validator also
+`prepare_validate_result()` and `process_poller_output()` accept `:` or `!` as the
+name/value separator; when every token has the `name!value` form, `!` is treated
+as `:` before fields are mapped. The validator also
 requires the delimiter count to equal the space count plus one for multi-token
 output. The output processor splits on whitespace and maps the name to a
 `data_template_rrd.data_source_name`. A value that is neither numeric nor `U`

@@ -171,22 +171,14 @@ This is the part that costs people history.
 | Change an aggregation level | Applied | None |
 | Add or remove a consolidation function | Applied | None |
 | Change the step | New data sources inherit it; creation uses their stored step | No automatic file migration |
-| Change the heartbeat | Creation uses stored data-source item metadata; see save bugs below | No automatic file tuning |
-| Delete the profile | Removes the definitions needed for subsequent creation | Existing file remains, but dangling database references can break later creation |
+| Change the heartbeat | Creation uses stored data-source item metadata; see below | No automatic file tuning |
+| Delete the profile | Refused while a template or data source references it, and for the default profile | None |
 
-**Avoid changing the heartbeat through an in-use profile's edit form for now.**
-Two bugs affect this path:
+**Changing the heartbeat of an in-use profile updates metadata only.** Saving a new
+heartbeat stores it on the profile and on the data-source items of templates and
+local data sources that use the profile; other templates are not changed.
 
-- The form disables step, but the save handler only stores the profile heartbeat
-  when step is submitted. A tested save of 900 left the profile at 600 while
-  changing the local data-source metadata to 900. Tracked in
-  [#232](https://github.com/kadupulhq/kadupul/issues/232).
-- If a template also references the profile, the propagation query can update
-  unrelated templates through their shared `local_data_id=0`. In the same test,
-  another template's heartbeat changed from 1200 to 900. Tracked in
-  [#233](https://github.com/kadupulhq/kadupul/issues/233).
-
-Neither change tuned the existing RRD file. Back up metadata as well as files,
+The save does not tune existing RRD files. Back up metadata as well as files,
 and compare the profile, template items, local data-source items and actual
 `rrdtool info` output after heartbeat maintenance.
 
@@ -213,13 +205,9 @@ editor; archive add/delete controls are also hidden. Duplicate the profile and
 edit the copy. These interface restrictions do not constitute server-side
 validation of submitted requests.
 
-**Keep profiles while anything references them.** The list disables selection
-when a template or local data source uses a profile. However, the server's bulk
-delete handler currently accepts a submitted in-use ID and removes its archives
-and functions without reassigning those references. Existing files survive, but
-subsequent creation fails because no archives are assigned. Do not bypass the
-disabled control; inventory and reassign references before deleting. Tracked in
-[#234](https://github.com/kadupulhq/kadupul/issues/234).
+**Reassign references before deleting a profile.** The list disables selection
+when a template or local data source uses a profile, and the server refuses to
+delete a profile that is still referenced.
 
 ## Moving data sources between profiles
 

@@ -50,11 +50,8 @@ must still occur, and process checks, preparation or writer failures can delay w
 Forced runs, draining after disabling, and on-demand graph updates are additional paths;
 the defaults are not a one-hour freshness guarantee.
 
-The scheduler also has known defects in its disabled-mode collector query and
-numeric-zero interval fallback. See
-[application bug #270](https://github.com/kadupulhq/kadupul/issues/270).
-Use an explicit valid interval and inspect the resulting state; the normal default
-is 60 minutes, not the defective fallback case.
+An interval that is zero or not a positive integer is replaced with 120 minutes;
+the normal default is 60 minutes.
 
 ## The rotation, and why it is there
 
@@ -104,10 +101,8 @@ late delivery does not guarantee that a sample appears in the graph.
 **Operational surface.** There is a database buffer, a flush process with a memory
 limit, optional parallel workers, and retained archives or requeued samples to monitor.
 Local writer failures generally retain samples for retry, but this does not establish
-end-to-end losslessness. In particular, the remote recovery path has a confirmed
-unchecked-insert/deletion defect; see
-[Remote data collection](/concepts/remote-data-collection/) and
-[application bug #268](https://github.com/kadupulhq/kadupul/issues/268).
+end-to-end losslessness. For the remote recovery path, see
+[Remote data collection](/concepts/remote-data-collection/).
 
 ## When it is worth it
 

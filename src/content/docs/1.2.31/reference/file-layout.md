@@ -19,14 +19,14 @@ root, which the code calls `$config['base_path']`.
 | Directory | Contents |
 |---|---|
 | `cache/` | Working files for boost, the MIB cache, HTMLPurifier, realtime graphs and spike kill. Five subdirectories. |
-| `cli/` | 45 command line scripts plus an `index.php` that redirects to the site root. |
+| `cli/` | 46 command line scripts plus an `index.php` that redirects to the site root. |
 | `contrib/` | Third party contributions. Not part of the running system. |
 | `docs/` | `audit_schema.sql`, `security-headers.md`, and a security policy note. |
 | `formats/` | Four `.format` files used for graph formatting presets. |
 | `images/` | Static images served to the browser. |
 | `include/` | Configuration, global arrays, constants, form definitions, settings, session handling, page headers, themes, fonts, JavaScript and the Composer vendor tree. |
 | `install/` | The installer, its templates, and one upgrade script per schema version. |
-| `lib/` | The libraries. 57 of them, plus an `index.php`. Everything substantive lives here. |
+| `lib/` | The libraries. 60 of them, plus an `index.php`. Everything substantive lives here. |
 | `locales/` | Translation catalogues and the scripts that build them. |
 | `log/` | `cacti.log` and `cacti_stderr.log`. |
 | `mibs/` | The three Kadupul MIB files: `CACTI-MIB`, `CACTI-BOOST-MIB`, `CACTI-SNMPAGENT-MIB`. |
@@ -34,7 +34,7 @@ root, which the code calls `$config['base_path']`.
 | `resource/` | Data query XML definitions. Three subdirectories: `snmp_queries`, `script_queries`, `script_server`. |
 | `rra/` | RRD files. Ships with only an `.htaccess`. |
 | `scripts/` | Data collection scripts, 31 of them. Perl and PHP. |
-| `service/` | A systemd unit for the Spine daemon and a README. |
+| `service/` | A systemd unit for the `cactid.php` poller daemon and a README. |
 | `tests/` | The test suite. Not installed. |
 
 Web entry points, the poller, and `script_server.php` sit in the root itself.
@@ -52,7 +52,7 @@ Web entry points, the poller, and `script_server.php` sit in the root itself.
 | `include/global_arrays.php` | Enumerations: realms, input types, RRDtool versions, timespans. |
 | `include/global_settings.php` | Every setting, with its type, default and description. |
 | `include/global_form.php` | Form field definitions for the edit pages. |
-| `include/vendor/` | Composer packages. Ignored by git and installed from `composer.lock`. |
+| `include/vendor/` | Composer packages. Tracked in git, although `.gitignore` lists the directory. |
 | `include/themes/` | One directory per theme. Each may carry an `rrdtheme.php`. |
 
 ### `$config` path variables
@@ -118,12 +118,14 @@ structured directories to the owner and group of `rra/` itself.
 
 ## Directories that must not be served
 
-Eleven directories ship with an `.htaccess` that denies everything. Under Apache
+Sixteen directories ship with an `.htaccess`. Fifteen deny everything. Under Apache
 2.4 it is `Require all denied`; the file carries an `Order Allow,Deny` fallback
-for 2.2.
+for 2.2. `include/.htaccess` is narrower: it denies the `config`, `global` and
+`plugins` PHP files and anything under `include/vendor/` other than static assets.
 
 | Directory | Why |
 |---|---|
+| `cache/` | Parent of the working-file directories below. |
 | `cache/boost/` | Cached images and staged data. |
 | `cache/mibcache/` | MIB cache and lock file. |
 | `cache/purifier/` | Purifier serializer cache. |
@@ -131,10 +133,14 @@ for 2.2.
 | `cache/spikekill/` | Spike kill working files. |
 | `cli/` | Command line scripts. |
 | `contrib/` | Unreviewed third party files. |
+| `docs/` | Schema audit and security notes. |
+| `include/` | Configuration and bootstrap files, and the Composer vendor tree. |
+| `lib/` | Application libraries. |
 | `log/` | Contains the application log. |
 | `mibs/` | MIB sources. |
 | `rra/` | Every RRD file on the system. |
 | `scripts/` | Collection scripts, several of which take arguments. |
+| `tests/` | The test suite. |
 
 `log/.htaccess` adds two further blocks: a `<Files .htaccess>` deny, and a
 `<FilesMatch "\.(log)$">` deny.
@@ -165,7 +171,7 @@ own config file rather than enable this one.
 | `resource/` | Data query XML. Gitignored, so a source checkout will not restore customised files. |
 | `scripts/` | Collection scripts. Gitignored below the shipped set. |
 | `plugins/` | Installed plugins and their own data. |
-| `include/themes/` | Any theme directory beyond the eleven shipped ones. |
+| `include/themes/` | Any theme directory beyond the seven shipped ones. |
 | The input whitelist file | Wherever `$input_whitelist` points. Often outside the tree. |
 
 `log/` and `cache/` are reproducible. `rra/` is not; there is no second copy of
@@ -184,7 +190,7 @@ cache/**
 plugins/**
 resource/**
 scripts/**
-include/themes/*        (the eleven shipped themes are re-included)
+include/themes/*        (eleven theme names are re-included; seven ship)
 include/vendor/*
 locales/po/*.mo
 ```

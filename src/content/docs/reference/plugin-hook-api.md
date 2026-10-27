@@ -221,6 +221,9 @@ distinct hook names**: 140 written as a string literal on the call line,
 `substitute_host_data` written on the line below the opening parenthesis, and
 `graph_buttons_thumbnails` reached through a variable. The list is believed complete
 for 1.2.x. Nothing outside `include/vendor/` dispatches a hook from a non-PHP file.
+On main, 16 of those names lost their dispatch site when the device pages moved to
+Symfony; they are listed under [Names with no dispatch site](#names-with-no-dispatch-site),
+and the table holds the remaining 126.
 
 In the **Via** column, `hook` is `api_plugin_hook()` and `fn` is
 `api_plugin_hook_function()`. For `hook` rows, **Receives** describes element 1 of
@@ -229,7 +232,7 @@ says whether the call site uses what comes back.
 
 | Hook | Via | Fires at | Receives | Return |
 |---|---|---|---|---|
-| `add_graph_template_to_host` | fn | `cli/add_graph_template.php`, `cli/host_update_template.php`, `host.php` graph-template add, `lib/api_device.php` `api_device_update_host_template()` | `array('host_id', 'graph_template_id')` | Discarded |
+| `add_graph_template_to_host` | fn | `cli/add_graph_template.php`, `cli/host_update_template.php`, `src/Inventory/Infrastructure/Legacy/DeviceAssociationWriter.php` graph-template add, `lib/api_device.php` `api_device_update_host_template()` | `array('host_id', 'graph_template_id')` | Discarded |
 | `api_device_new` | fn | `lib/api_device.php` `api_device_save()`, after the row is written | The saved `host` row plus `id` | Discarded |
 | `api_device_save` | fn | `lib/api_device.php` `api_device_save()`, before `sql_save()` | The `host` row about to be saved | Used |
 | `auth_alternate_realms` | fn | `include/auth.php`, when `auth_method != 0` | Nothing | Discarded |
@@ -268,25 +271,11 @@ says whether the call site uses what comes back.
 | `data_source_remove` | fn | `lib/api_data_source.php` `api_data_source_remove()` and `api_data_source_remove_multi()` | Array of `local_data_id` | Discarded |
 | `data_source_to_poller_items` | fn | `lib/utility.php` `update_poller_cache()`, for an unhandled input type | `array('poller_items', 'data_source', 'data_input')` | Used, when the returned `poller_items` is an array larger than the current one |
 | `data_sources_table` | fn | `data_sources.php`, per list row | One data source row | Used |
-| `device_action_array` | fn | `host.php`, action dropdown | Action array, id => label | Used |
-| `device_action_bottom` | fn | `host.php`, after actions run | `array(<drp_action>, <selected_items>)` | Discarded |
-| `device_action_execute` | fn | `host.php`, for an unrecognised action | The `drp_action` value | Discarded |
-| `device_action_prepare` | fn | `host.php`, action confirmation form | `array('drp_action', 'host_list', 'host_array')` | Discarded |
-| `device_change_javascript` | hook | `host.php`, inside the edit page's script block | Nothing | Discarded |
-| `device_display_text` | fn | `host.php`, device list columns | Column array, key => `array('display', 'align', 'sort', 'tip')` | Used |
-| `device_edit_pre_bottom` | hook | `host.php`, before the edit form closes | Nothing | Discarded |
-| `device_edit_top_links` | hook | `host.php`, edit page link row | Nothing | Discarded |
-| `device_filter_end` | hook | `host.php`, end of the filter box | Nothing | Discarded |
-| `device_filter_start` | hook | `host.php`, start of the filter box | Nothing | Discarded |
-| `device_filters` | fn | `host.php`, request variable validation | Filter definition array passed to `validate_store_request_vars()` | Used |
+| `device_action_bottom` | fn | `bin/legacy-device-placement.php`, `bin/legacy-device-remove.php` and `bin/legacy-device-state.php`, after actions run | `array(<drp_action>, <selected_items>)` | Discarded |
 | `device_remove` | fn | `lib/api_device.php` `api_device_remove()` and `api_device_remove_multi()` | Array of device ids | Discarded |
-| `device_sql_where` | fn | `host.php` `get_device_records()` | SQL `WHERE` fragment | Used |
-| `device_table_bottom` | hook | `host.php`, after the device table | Nothing | Discarded |
-| `device_table_replace` | fn | `host.php`, only when `device_display_text` changed the column count | The device rows | Discarded |
 | `device_template_change` | fn | `lib/api_device.php` `api_device_update_host_template()` | `array('device_id', 'device_template_id')` | Discarded |
 | `device_template_edit` | hook | `host_templates.php`, edit form | Nothing | Discarded |
 | `device_template_top` | hook | `host_templates.php`, top of the page | Nothing | Discarded |
-| `device_top` | hook | `host.php`, after the action array is built | Nothing | Discarded |
 | `draw_navigation_text` | fn | `lib/functions.php` `draw_navigation_text()` | The global `$navigation` array | Used |
 | `expand_title` | fn | `lib/variables.php` `expand_title()` | `array('host_id', 'snmp_query_id', 'snmp_index', 'title')` | Used, the `title` key only |
 | `export_action` | fn | `lib/export.php` `get_item_xml()`, for an unknown dependency type | `array('dep_id', 'dep_type', 'xml_text')` | Used, the `xml_text` key only |
@@ -313,9 +302,7 @@ says whether the call site uses what comes back.
 | `hmib_get_cpu` | fn | `scripts/ss_host_cpu.php` | `array('host_id', 'arg', 'index')` | Used |
 | `hmib_get_cpu_indexes` | fn | `scripts/ss_host_cpu.php`, three call sites | `array('host_id')` | Used |
 | `hmib_get_disk` | fn | `scripts/ss_host_disk.php` | `array('host_id', 'arg', 'index')` | Used |
-| `host_edit_bottom` | hook | `host.php`, bottom of the edit page | Nothing | Discarded |
-| `host_edit_top` | hook | `host.php`, top of the edit page | Nothing | Discarded |
-| `host_save` | fn | `host.php`, after a device is saved | `array('host_id')` | Discarded |
+| `host_save` | fn | `bin/legacy-device-create.php`, `bin/legacy-device-edit.php`, `bin/legacy-device-template.php`, and the bulk assignment and collector transfer writers in `src/Inventory/`, after a device is saved | `array('host_id')` | Discarded |
 | `import_action` | fn | `lib/import.php` `import_xml_data()`, for an unknown type | `array('hash', 'xml_array', 'hash_cache', 'type', 'version')` | Used, the `hash_cache` key is merged into the caller's cache |
 | `is_console_page` | fn | `lib/html.php` `is_console_page()` | The URL | Used. Any return differing from the input marks the URL a console page |
 | `login_after` | hook | `auth_login.php`, after the form | Nothing | Discarded |
@@ -382,6 +369,15 @@ not dispatched anywhere in 1.2.x. Registering against them does nothing.
 | `top_header` | `api_plugin_run_plugin_hook_function()` capability map |
 | `top_graph_header` | `api_plugin_run_plugin_hook_function()` capability map |
 | `update_host_status` | `api_plugin_run_plugin_hook()` capability map |
+
+The core device pages now run through Symfony, and `host.php` only forwards to
+`app.php/inventory/devices/legacy`. These device page hooks are no longer
+dispatched there: `device_action_array`, `device_action_execute`,
+`device_action_prepare`, `device_change_javascript`, `device_display_text`,
+`device_edit_pre_bottom`, `device_edit_top_links`, `device_filter_end`,
+`device_filter_start`, `device_filters`, `device_sql_where`,
+`device_table_bottom`, `device_table_replace`, `device_top`, `host_edit_bottom`
+and `host_edit_top`.
 
 The map in `api_plugin_run_plugin_hook()` also lists `page_head` twice, once at the
 start and once at the end. Both entries carry the same value, so the duplicate has

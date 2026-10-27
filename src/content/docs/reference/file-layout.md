@@ -141,16 +141,18 @@ command has no dry-run phase: its required `--proceed` option starts moving file
 and updating database paths.
 
 When a local-storage poller running as root creates structured directories and
-RRD files, it attempts to copy ownership from `rra/`. At the audited revision,
-the directory group comparison reads the owner twice, so verify group ownership
-independently; see [application issue #287](https://github.com/kadupulhq/kadupul/issues/287).
+RRD files, it attempts to copy the owner and group of `rra/`.
 
 ## Paths that must stay private
 
-The audited tree contains deny `.htaccess` files in these 17 directories:
+The audited tree contains `.htaccess` files in these 21 directories. All but
+`include/` deny every request; `include/.htaccess` denies the `config`, `global`
+and `plugins` PHP files and anything under `include/vendor/` other than static
+assets.
 
 ```text
 bin/
+cache/
 cache/boost/
 cache/mibcache/
 cache/realtime/
@@ -158,6 +160,9 @@ cache/spikekill/
 cli/
 config/
 contrib/
+docs/
+include/
+lib/
 log/
 mibs/
 rra/
@@ -240,6 +245,3 @@ themes, cache guards and selected placeholders. A clean clone therefore restores
 versioned defaults, not local additions or runtime state. Back up local content
 explicitly rather than relying on whether `git status` displays it.
 
-At the audited application revision, `.gitignore` also contains a residual merge
-marker; see [application issue #286](https://github.com/kadupulhq/kadupul/issues/286).
-The interpreted policy above excludes that unintended line.

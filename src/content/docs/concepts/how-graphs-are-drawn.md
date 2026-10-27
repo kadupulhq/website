@@ -172,11 +172,9 @@ supports a VDEF-backed line. See the upstream
 [graph-element documentation](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
 CSV export selects supported drawing types as series columns; legend items are not
-exported as equivalent columns. Contrary to an earlier description, the current code
-does not generally skip VDEF-backed drawing items. It can emit an invalid `XPORT` of
-a scalar VDEF: an isolated RRDtool test renders a VDEF line successfully but rejects
-that export. See [application bug #273](https://github.com/kadupulhq/kadupul/issues/273).
-Use series-backed drawing items for export and verify the resulting columns.
+exported as equivalent columns. VDEF-backed drawing items still render in the graph
+image but are omitted from the export, because a VDEF is a single value rather than
+a time series.
 
 ## Why the same data looks different
 

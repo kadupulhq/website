@@ -168,14 +168,14 @@ inputs.
 
 | Message | Condition | Where to look |
 |---|---|---|
-| `WARNING: Script file '<path>' resolves outside the allowed script roots. Rejected.` | A data input named a script outside `scripts/` and the configured script paths. | The data input method's command. |
+| `WARNING: Script file '<path>' resolves outside scripts directory. Rejected.` | A data input named a script outside `scripts/` and the configured script paths. | The data input method's command. |
 | `WARNING: Script file '<path>' could not be resolved. Rejected.` | The path does not resolve to a real file. | The same. |
 | `WARNING: PHP Script File to be included, does not exist` | The include file is absent. | The data input method's command and `$scripts_path`. |
 | `WARNING: Function does not exist  INC: '<file>' FUNC: '<function>' PARMS: '<parameters>'` | The named function is missing from the script. | The script. |
 | `WARNING: Function '<function>' not introspectable. Rejected.` | Reflection on the function failed. | The script. |
 | `WARNING: Refusing to dispatch PHP internal function '<function>' from script server.` | A data input named a PHP builtin rather than a script function. | The data input method. |
 | `WARNING: Function '<function>' has no source file. Rejected.` | The function is not defined in a file on disk. | The script. |
-| `WARNING: Function '<function>' defined outside the allowed script roots ('<file>'). Rejected.` | The function's file lies outside the allowed roots. | The script's location. |
+| `WARNING: Function '<function>' was not defined by script file '<file>'. Rejected.` | The function is defined somewhere other than the named script file. | The script, and whether another file defines the same function. |
 | `WARNING: Script Server count not parse '<parameters>' for <function>` | The parameter string could not be split. | Quoting in the data input method. |
 | `WARNING: Script Server terminated with signal '<signal>' in file:'<file>', function:'<function>', params:'<parameters>'` | The script server died while running that call. | The script for a crash or an exit. |
 | `WARNING: Script Server received signal '<signal>' in file:'<file>', function:'<function>', params:'<parameters>'` | A signal arrived mid-call and was handled. | As above. |
@@ -252,13 +252,13 @@ Tag `BOOST`.
 | `WARNING: Boost Debug Log <path> is not writable.  Change the path to a writable location` | The same check at startup. | As above. |
 | `WARNING: Boost Poller forced by command line.` | The boost poller was started with `--force`. | Expected. |
 | `WARNING: Boost Poller terminated by user` | It caught a signal. | Expected on shutdown. |
-| `WARNING: Killing Boost <task> PID <pid> due to another boost process starting.` | A previous boost run was still alive. | Whether boost takes longer than `boost_rrd_update_interval`. |
+| `WARNING: Stopping Boost <task> PID <pid> due to another boost process starting.` | A previous boost run was still alive. | Whether boost takes longer than `boost_rrd_update_interval`. |
 | `WARNING: Detected Poller Boost Overrun, Possible Boost Poller Crash` | A boost run did not record its completion. Tag `BOOST SVR`. | The log around the previous run. |
 | `WARNING: RRD On Demand Updater Exceeded Runtime Limits. Continuing to Process!!!` | The run passed `boost_rrd_update_max_runtime` and kept going. | That setting, and the backlog size. |
 | `ERROR: Boost child refused to run without a valid parent run identifier.` | A boost child was started without its parent's run id. | Stale processes from an aborted run. |
 | `WARNING: Boost child exited without recording completion; retaining archive tables.` | A child died. Its rows are kept for the next run. | The log around the child's exit. |
 | `WARNING: Boost retained archive tables because the child run was incomplete or reported an RRD update failure.` | At least one child failed. Nothing is dropped. | The RRD update warnings in the same run. |
-| `WARNING: Boost retained shard <n> through local data ID <id> because one or more RRD updates failed.` | One shard failed part way. | The data source named. |
+| `WARNING: Boost retained the current page for shard <n> because one or more RRD updates failed.` | One shard failed part way. | The RRD update warnings in the same run. |
 | `ERROR: Failed to retrieve archive table name` | The archive table could not be identified. | The boost tables. |
 | `ERROR: Failed to retrieve archive table name - check poller` | The same, at the start of a run. | As above. |
 | `ERROR: Failed to retrieve any rows from archive tables` | The archive tables were empty when rows were expected. | As above. |
@@ -412,7 +412,7 @@ Tag `UPGRADE`, from `cli/audit_database.php`.
 | `WARNING: Plugin <name> lacks an upgrade function.` | The plugin's setup file defines no upgrade entry point. | The plugin author. |
 | `WARNING: Plugin <name> lacks a setup file.` | No setup file was found. | The plugin's installation. |
 | `WARNING: Plugin <name> lacks an INFO file.  Can not upgrade!` | No INFO file was found. | As above. |
-| `ANALYSIS STATS: Analyzing Cacti Tables Complete.  Total time <seconds> seconds.` | End of `cli/analyze_database.php`. | Nothing. |
+| `ANALYSIS STATS: Analyzing Cacti Tables complete. Total time <seconds> seconds.` | End of `cli/analyze_database.php`. It reads `completed with errors` instead of `complete` when a table failed. | The earlier lines of the same run, if it failed. |
 
 ### Sequence checks
 
@@ -447,7 +447,6 @@ Tags `AUTH`, `SECURITY`, `WEBUI`.
 |---|---|---|
 | `WARNING: Attempt to use GET method for POST operations from IP <ip>` | A state-changing action arrived as a GET. | Bookmarks, link prefetching, or a scan. |
 | `WARNING: Rejected non-POST request to data_input.php?action=whitelist_update` | The whitelist update was requested without a POST. | As above. |
-| `WARNING: Rejected non-POST request to remove a Graph Item Input` | The same, for a graph item input delete. | As above. |
 | `WARNING: Request variable 'action' was passed as array in <script>.` | `action` arrived as an array rather than a string. | The caller. |
 | `ERROR: Invalid remote client IP Address found in header (<header>).` | A trusted proxy header held something that is not an address. Debug verbosity. | `$proxy_headers` and the proxy in front. |
 | `ERROR: Invalid remote agent client IP Address.  Exiting` | The remote agent endpoint was reached from an address it does not accept. | The collector's address, and `$proxy_headers`. |

@@ -75,11 +75,10 @@ Unknown records that a usable measurement is unavailable. `last` and `avg`
 substitute values that can look measured to someone reading the graph later.
 Choose the replacement deliberately and verify the actual stored result.
 
-**Window-method limitation:** `float` and `fill` currently accept `--avgnan=nan`
-but leave the selected values unchanged, despite returning success. Do not rely
-on that combination. Statistical methods with optional time bounds can replace
-detected outliers with unknown, but are not equivalent to blanking a whole window.
-Tracked in [#237](https://github.com/kadupulhq/kadupul/issues/237).
+**Window methods with NaN:** with `--avgnan=nan`, `float` replaces every known value
+in the window with unknown, and `fill` replaces zero or non-numeric values in the
+window with unknown. Statistical methods with optional time bounds replace only
+detected outliers, so they are not equivalent to blanking a whole window.
 
 ## Preview, then commit
 
@@ -162,13 +161,11 @@ result. Restrict the template list tightly if you turn it on at all.
 failed; it has told you the values are within the band you asked for. Tighten the
 threshold rather than switching methods at random.
 
-**Do not rely on Max kills per RRA as a safety boundary.** Review the complete
-preview and use a narrow time window. The implementation resets its counter per
-row rather than maintaining an archive-wide count.
-In a test with one field and one archive, `--number=1` still replaced three peaks
-with unknown and reported zero total changes. NaN edits are also missing from the
-summary counter. Verify stored values, not just the message. Tracked in
-[#238](https://github.com/kadupulhq/kadupul/issues/238).
+**Max kills per RRA limits the statistical methods only.** For `stddev` and
+`variance`, the count covers all data sources in one archive and resets at the next
+archive. The `float` and `fill` window methods replace every matching value in the
+window. The summary count includes NaN replacements. Review the complete preview
+and use a narrow time window.
 
 **A consolidated value cannot be recovered.** Older archives hold one value per
 bucket, already averaged. Replacing that value does not restore the true

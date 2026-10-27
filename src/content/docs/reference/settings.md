@@ -18,7 +18,7 @@ The enumeration of every setting. For where settings live, how the two stores
 relate, and what each group is for, read [Configuration](/reference/configuration/).
 This page does not repeat that.
 
-Inherited from Cacti 1.2.x. 46 variables in the config file, 255 system settings
+Inherited from Cacti 1.2.x. 54 variables in the config file, 255 system settings
 in the database, 40 per-user settings, and 2 more per-user settings that appear
 only when the account holds the matching realm.
 
@@ -69,6 +69,8 @@ it.
 | `$database_ssl_cert` | Client certificate file. | string | `''` |
 | `$database_ssl_ca` | Certificate authority file. | string | `''` |
 | `$database_persist` | Use a persistent connection. | boolean | `false` |
+| `$database_read_username` | Optional `SELECT`-only user for the Symfony Inventory read connection. Set both or neither; unset reuses the credentials above. | string | `# 'kadupul_read'` |
+| `$database_read_password` | Password for that user. | string | `# 'change-me'` |
 
 ### Remote data collector connection
 
@@ -97,22 +99,28 @@ effect unless this install is a remote poller. Note that there is no
 | `$poller_id` | This system's poller id. `1` is the main web server. | integer | `1` |
 | `$url_path` | URL prefix the install is served under. | string | `/cacti/` |
 | `$cacti_session_name` | Session name. Must contain alphabetic characters. | string | `Cacti` |
-| `$cacti_cookie_domain` | Cookie domain. Unset gives a host-only cookie. | string | `# 'cacti.net'` |
+| `$cacti_cookie_domain` | Cookie domain. Unset gives a host-only cookie. | string | `# 'monitoring.example.com'` |
 | `$cacti_db_session` | Store sessions in the database. | boolean | `false` |
 | `$disable_log_rotation` | Turn off internal log rotation for packagers who rotate externally. | boolean | `false` |
 | `$scripts_path` | Alternate location for data input scripts. | string | `# '/var/www/html/cacti/scripts'` |
 | `$resource_path` | Alternate location for resource files. | string | `# '/var/www/html/cacti/resource/'` |
-| `$config['purifier_cache_path']` | HTMLPurifier definition cache. Falls back to `cache/purifier` under the install path. | string | `# '/var/cache/cacti/purifier'` |
 | `$input_whitelist` | Path to the data input whitelist JSON file. | string | `# '/usr/local/etc/cacti/input_whitelist.json'` |
 | `$php_path` | Explicit path to the PHP binary. | string | `# '/bin/php'` |
 | `$php_snmp_support` | Set `false` to stop using the PHP SNMP extension. Defaults to `class_exists('SNMP')`. | boolean | `# false` |
-| `$path_csrf_secret` | External CSRF secret file. Must sit outside the document root and hold 32 to 4096 bytes. | string | `# '/usr/share/cacti/resource/csrf-secret.php'` |
+| `$path_csrf_secret` | External CSRF secret file. Must sit outside the document root and hold 32 to 4096 bytes. | string | `# '/etc/kadupul/csrf-secret.php'` |
+| `$path_csrf_web_root` | Served document root to check the external CSRF secret against, for CLI runs and web requests without `DOCUMENT_ROOT`. | string | `# '/var/www/html'` |
+| `$installer_allowed_php_binaries` | Trusted absolute PHP executables for installer probes. An empty array disables probes. | array | `# array('/usr/bin/php', '/opt/php/bin/php')` |
+| `$auth_login_timing_floor_ms` | Minimum duration of a local login, in milliseconds. `1000` to `60000`; invalid values use `1000`. | integer | `# 1000` |
+| `$config['rrd_maintenance_trusted_uids']` | Numeric Unix user ids trusted to share RRD storage with the web and poller accounts. Empty trusts root and the current user. | array | `array()` |
+| `$config['rrd_maintenance_trusted_gids']` | Numeric Unix group ids trusted the same way. | array | `array()` |
+| `$config['rrd_command_timeout']` | Seconds one acknowledged RRDtool command, one-shot call or proxy reply may take. `1` to `3600`; `60` when unset. | integer | `# 60` |
 
 ### Client address and language
 
 | Name | Controls | Type | Default |
 |---|---|---|---|
-| `$proxy_headers` | Which request headers may be trusted for the client address. `false` or `null` uses `REMOTE_ADDR` only, `true` uses every allowed header, an array names the ones to accept. `REMOTE_ADDR` is always checked. | mixed | `null` |
+| `$proxy_headers` | An array naming the one request header that carries the client address when the request comes from an address in `$proxy_trusted_addresses`. Other requests use `REMOTE_ADDR`. | mixed | `null` |
+| `$proxy_trusted_addresses` | Exact IP addresses of the reverse proxies allowed to supply that header. CIDR ranges are not supported. | array | `array()` |
 | `$i18n_handler` | Default i18n handler when the database does not set one. Numeric value of a `CACTI_LANGUAGE_HANDLER` constant. | integer | `null` |
 | `$i18n_force_language` | Force one language regardless of anything else, such as `'es-ES'`. | string | `null` |
 | `$i18n_log` | File for general i18n call logging. | string | `null` |
@@ -326,7 +334,6 @@ Applied when a device is created. Changing them does not touch existing devices.
 | `remote_agent_timeout` | Remote Agent Timeout | Seconds the central web server waits on a remote collector RPC. `5`, `10`, `15`, `20`, `30`, or `60`. | select | `5` |
 | `snmp_bulk_walk_size` | SNMP Bulkwalk Fetch Size | OIDs returned per `snmpbulkwalk`. `10` to `200`. | select | `10` |
 | `max_get_size` | SNMP Get OID Limit | OIDs per `snmpget` when the SNMP API is called directly from a script or plugin. Devices set their own. | text | `10` |
-| `poller_refresh_output_table` | Refresh Poller Table Per Cycle | Rebuild the `poller_output` memory table each cycle. Single poller systems only. | boolean | |
 | `disable_cache_replication` | Disable Resource Cache Replication | Stop replicating the resource cache to remote collectors. | boolean | |
 
 ### Additional data collector settings
@@ -440,7 +447,6 @@ Presets only. From 1.2 onward the live values are held on the data collector.
 |---|---|---|---|---|
 | `min_tree_width` | Minimum Tree Width | Pixels the tree contracts to. | text | `170` |
 | `max_tree_width` | Maximum Tree Width | Pixels the tree expands to before branches scroll. | text | `300` |
-| `tree_site_includes_templates` | Site Graph Template Expansion | Include the graph templates branch as a site sub-branch. | boolean | `on` |
 
 ### Filters
 
@@ -488,7 +494,7 @@ Presets only. From 1.2 onward the live values are held on the data collector.
 
 | Name | Setting | Controls | Type | Default |
 |---|---|---|---|---|
-| `graph_watermark` | Custom Watermark | Text at the bottom centre of every graph. | text | `Generated by Cacti®` |
+| `graph_watermark` | Custom Watermark | Text at the bottom centre of every graph. | text | `Generated by Kadupul` |
 | `graph_dateformat` | Custom Date Format | Format applied to `\|date_time\|` on a graph. | text | `D d M H:i:s T Y` |
 | `rrdtool_watermark` | Disable RRDtool Watermark | Suppress RRDtool's own advertisement, where the installed version allows it. | boolean | |
 | `font_method` | Font Selection Method | `0` system, `1` theme. | select | `1` |
@@ -570,7 +576,7 @@ These apply to local accounts. They do not reach an external directory.
 | `ldap_bind_timeout` | Bind Timeout | Seconds. | text | `5` |
 | `ldap_debug` | LDAP Debug Mode | Log extra detail during bind and search. | boolean | |
 | `ldap_encryption` | Encryption | `0` none, `1` LDAPS, `2` LDAP with TLS. LDAP with TLS requires version 3. | select | `0` |
-| `ldap_tls_certificate` | TLS Certificate Requirements | Never, hard, demand, allow, or try. Stored as the PHP `LDAP_OPT_X_TLS_*` value. | select | `LDAP_OPT_X_TLS_NEVER` |
+| `ldap_tls_certificate` | TLS Certificate Requirements | Never, hard, demand, allow, or try. Stored as the PHP `LDAP_OPT_X_TLS_*` value. | select | `LDAP_OPT_X_TLS_DEMAND` |
 | `ldap_referrals` | Referrals | `0` disabled, `1` enabled. Disabling can speed up searches. | select | `0` |
 | `ldap_mode` | Mode | `0` no searching, `1` anonymous searching, `2` specific searching. | select | `0` |
 | `ldap_dn` | Distinguished Name (DN) | DN template with `<username>` substituted at login, such as `uid=<username>,ou=people,dc=domain,dc=local` or the AD form `<username>@win2kdomain.local`. Used in no-searching mode and when group membership is required. | text | |
@@ -765,7 +771,6 @@ anyone who has not chosen their own.
 | `default_tree_id` | Default Tree | Tree opened in tree mode. | select | `0` |
 | `treeview_graphs_per_page` | Graphs Per Page | Graphs per page in tree mode. | select | `10` |
 | `expand_hosts` | Expand Devices | Expand a device's graph templates and data queries on the tree. | boolean | |
-| `tree_site_includes_templates` | Site Graph Template Expansion | Include the graph templates branch as a site sub-branch. | boolean | system `tree_site_includes_templates` |
 | `tree_history` | Tree History | Remember tree position between visits and logins. | boolean | `on` |
 | `min_tree_width` | Minimum Tree Width | Pixels. | text | system `min_tree_width` |
 | `max_tree_width` | Maximum Tree Width | Pixels. | text | system `max_tree_width` |
