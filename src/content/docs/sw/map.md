@@ -77,7 +77,7 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 - [Plugin hook API (English)](/sw/reference/plugin-hook-api/)
 - [Poller lifecycle (English)](/sw/reference/poller-lifecycle/)
 - [Realms and permissions (English)](/sw/reference/realms-and-permissions/)
-- [Requirements (English)](/sw/reference/requirements/)
+- [Mahitaji](/sw/reference/requirements/)
 - [RRDtool proxy (English)](/sw/reference/rrdproxy/)
 - [RRDtool integration (English)](/sw/reference/rrdtool-integration/)
 - [Settings (English)](/sw/reference/settings/)

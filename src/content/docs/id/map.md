@@ -77,7 +77,7 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 - [Plugin hook API (English)](/id/reference/plugin-hook-api/)
 - [Poller lifecycle (English)](/id/reference/poller-lifecycle/)
 - [Realms and permissions (English)](/id/reference/realms-and-permissions/)
-- [Requirements (English)](/id/reference/requirements/)
+- [Persyaratan](/id/reference/requirements/)
 - [RRDtool proxy (English)](/id/reference/rrdproxy/)
 - [RRDtool integration (English)](/id/reference/rrdtool-integration/)
 - [Settings (English)](/id/reference/settings/)
