@@ -9,9 +9,9 @@ sidebar:
 
 ## はじめに
 
-- [Add your first device (English)](/ja/start/first-device/)
-- [Read your first graph (English)](/ja/start/first-graph/)
-- [Install (English)](/ja/start/install/)
+- [最初のデバイスを追加](/ja/start/first-device/)
+- [最初のグラフを読む](/ja/start/first-graph/)
+- [インストール](/ja/start/install/)
 - [Kadupul とは](/ja/start/what-kadupul-is/)
 
 ## 操作ガイド

@@ -9,9 +9,9 @@ Le pagine non ancora tradotte vengono mostrate in inglese con un avviso.
 
 ## Primi passi
 
-- [Add your first device (English)](/it/start/first-device/)
-- [Read your first graph (English)](/it/start/first-graph/)
-- [Install (English)](/it/start/install/)
+- [Aggiungere il primo dispositivo](/it/start/first-device/)
+- [Interpretare il primo grafico](/it/start/first-graph/)
+- [Installazione](/it/start/install/)
 - [Che cos’è Kadupul](/it/start/what-kadupul-is/)
 
 ## Guide pratiche

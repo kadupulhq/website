@@ -42,6 +42,15 @@ identifiers, source hashes and rendered locale pages as part of `test:coverage`.
 Those checks do not establish semantic accuracy or fluent review. Update each
 translation before refreshing its source hash; only a fluent reviewer may approve it.
 
+The Getting Started tutorial pages (`start/install.md`, `start/first-device.md` and
+`start/first-graph.md`) have full translations in every supported locale, recorded
+as `kind: translation` and `review: draft`. Keep all sections at the same content
+depth as English, including command examples, code fences, configuration tables,
+technical identifiers, and cross-references. The start-tutorial translation tests
+check section counts, code fences, technical identifiers, source hashes and
+rendered locale pages as part of `test:coverage`. Update each translation before
+refreshing its source hash; only a fluent reviewer may approve it.
+
 `translations/site-reviews.json` records the source and target SHA-256 for each
 unit. Existing translations start as draft. Source changes produce needs-update;
 target edits invalidate approval and return the unit to draft. Changing one source
@@ -181,3 +190,15 @@ rendered language/direction. Structural checks do not establish semantic accurac
 - Extend CI validation to interface markup, links and protected code identifiers.
 - Publish separate summary, full-page and English-fallback coverage, and support
   urgent English policy fixes through a safe fallback.
+
+## Full introductory overview
+
+`start/what-kadupul-is.md` is translated in full in every supported locale. Each
+version contains the same ten sections as English, with the collection, retention,
+architecture, access and compatibility limitations intact. These pages replace
+the earlier summaries and remain drafts pending fluent review.
+
+Update all translations before refreshing their English source hashes in
+`src/i18n/translations.json`. The overview tests check section coverage, protected
+identifiers, references, source tracking and rendered language/direction. Those
+checks do not establish semantic accuracy or approve a translation.
