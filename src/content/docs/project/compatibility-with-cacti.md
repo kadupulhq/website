@@ -1,35 +1,41 @@
 ---
 title: Compatibility with Cacti
-description: Compatibility goals and the evidence required for a release.
+description: Compatibility scope, verification evidence and limits for 2026–2027 planning.
 sidebar:
   order: 2
 banner:
   content: Kadupul is pre-alpha. Validate these procedures in an isolated test installation.
 ---
 
-Preserving compatibility with Cacti is a release goal. It requires validation
-for the versions, plugins and templates you use.
+Compatibility is a release goal, not a claim that every Cacti version, plugin or
+template works unchanged. Kadupul remains pre-alpha. Evaluate the exact source
+revision and the components you use before relying on the behavior.
 
 ## What that covers
 
-Plugins, templates, the database schema, and RRD files on disk. Something written
-against Cacti is meant to keep working, and history already recorded is meant to be
-read in place rather than converted.
+Check plugin hooks, argument/return behavior and permissions; template identities,
+input mappings and propagation; schema/default/reference semantics; and existing
+RRD paths, fields, archives and retained values. A matching database profile does
+not prove the RRD file has the same layout. Plugins run as trusted application code,
+not in a sandbox. See [templates](/concepts/templates/) and
+[plugin evaluation](/guides/install-and-vet-plugins/).
 
 ## What it means in practice
 
-Where Kadupul and Cacti diverge, the divergence gets documented. The failure mode
-worth avoiding is not divergence, which is the point of a fork. It is divergence
-nobody wrote down, which turns every upgrade into an investigation.
-
-Compatibility does not require downloads, builds, plugins, documentation, or
-support from the Cacti organization. Kadupul uses its own maintained forks.
-Components without verified Kadupul sources are not part of the supported setup.
+Record the application branch/revision, PHP and locked dependencies, plugin versions,
+schema state and storage configuration. Test collection, graph rendering,
+authorization, failures and recovery on an isolated restored copy. Include remote
+collectors and background work when used. Document intentional differences and
+remaining gaps; tests cover only the paths they exercise.
+See [upgrade rehearsal](/guides/upgrade-safely/) and [backup](/guides/back-up-and-restore/).
 
 ## What it is not
 
-It is not a promise of permanent identity, and it is not a claim of endorsement.
+There is no blanket binary, schema or plugin compatibility guarantee, no supported
+production release and no validated production migration path. A code-only rollback
+cannot undo schema or RRD changes; recovery may require the matched backup set.
+Use the project's maintained sources and record provenance rather than assuming
+another project's archives form a tested Kadupul bundle. Kadupul is not affiliated
+with or endorsed by The Cacti Group. See [status](/project/status/).
 
-Kadupul is not affiliated with or endorsed by The Cacti Group. Cacti is their
-project and their name. Kadupul describes itself as a fork of Cacti because that is
-a factual statement about its origin, and for no other reason.
+Application baseline checked on 26 October 2026: [cbd6117d6](https://github.com/kadupulhq/kadupul/tree/cbd6117d6e1092ef887c66f9844bef004a65119e).

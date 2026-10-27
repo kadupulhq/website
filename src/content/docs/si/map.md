@@ -90,11 +90,11 @@ sidebar:
 
 ## ව්‍යාපෘතිය
 
-- [Compatibility with Cacti (English)](/si/project/compatibility-with-cacti/)
+- [Cacti සමඟ ගැළපීම](/si/project/compatibility-with-cacti/)
 - [Contributing (English)](/si/project/contributing/)
 - [Questions (English)](/si/project/faq/)
 - [License (English)](/si/project/license/)
 - [ආරක්ෂක ප්‍රතිපත්තිය](/si/project/security/)
 - [ව්‍යාපෘතියේ තත්ත්වය](/si/project/status/)
-- [Why this fork exists (English)](/si/project/why-this-fork/)
+- [මෙම ශාඛාව පවතින්නේ ඇයි](/si/project/why-this-fork/)
 

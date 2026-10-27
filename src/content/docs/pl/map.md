@@ -90,11 +90,11 @@ Strony, które nie zostały jeszcze przetłumaczone, są wyświetlane po angiels
 
 ## Projekt
 
-- [Compatibility with Cacti (English)](/pl/project/compatibility-with-cacti/)
+- [Zgodność z Cacti](/pl/project/compatibility-with-cacti/)
 - [Contributing (English)](/pl/project/contributing/)
 - [Questions (English)](/pl/project/faq/)
 - [License (English)](/pl/project/license/)
 - [Polityka bezpieczeństwa](/pl/project/security/)
 - [Stan projektu](/pl/project/status/)
-- [Why this fork exists (English)](/pl/project/why-this-fork/)
+- [Dlaczego istnieje ten fork](/pl/project/why-this-fork/)
 

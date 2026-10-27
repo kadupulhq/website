@@ -142,6 +142,18 @@ keeps them in the review queue. The existing stricter check for stale project-po
 summaries is still active. A safe English fallback for urgent policy updates needs
 implementation before claiming that issue #3's urgent-fix acceptance test passes.
 
+## Development priorities and compatibility pages
+
+`project/why-this-fork.md` and `project/compatibility-with-cacti.md` have complete
+translations in every supported locale. Preserve all five sections, including
+the difference between goals, implemented behavior and verified compatibility.
+The translation records remain drafts pending fluent review.
+
+Project-page source drift is a validation failure. Update every translation before
+refreshing its English source hash. The priorities/compatibility tests check section
+coverage, protected identifiers, references, source tracking and rendered language,
+direction and unversioned policy routing; they do not approve translation quality.
+
 ## Glossary and regional style
 
 Preserve product names (Kadupul, Cacti, Spine, RRDtool and Net-SNMP), commands,

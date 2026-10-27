@@ -90,11 +90,11 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 
 ## Proyek
 
-- [Compatibility with Cacti (English)](/id/project/compatibility-with-cacti/)
+- [Kompatibilitas dengan Cacti](/id/project/compatibility-with-cacti/)
 - [Contributing (English)](/id/project/contributing/)
 - [Questions (English)](/id/project/faq/)
 - [License (English)](/id/project/license/)
 - [Kebijakan keamanan](/id/project/security/)
 - [Status proyek](/id/project/status/)
-- [Why this fork exists (English)](/id/project/why-this-fork/)
+- [Mengapa fork ini ada](/id/project/why-this-fork/)
 

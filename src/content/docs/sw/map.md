@@ -90,11 +90,11 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 
 ## Mradi
 
-- [Compatibility with Cacti (English)](/sw/project/compatibility-with-cacti/)
+- [Uoanifu na Cacti](/sw/project/compatibility-with-cacti/)
 - [Contributing (English)](/sw/project/contributing/)
 - [Questions (English)](/sw/project/faq/)
 - [License (English)](/sw/project/license/)
 - [Sera ya usalama](/sw/project/security/)
 - [Hali ya mradi](/sw/project/status/)
-- [Why this fork exists (English)](/sw/project/why-this-fork/)
+- [Kwa nini tawi hili lipo](/sw/project/why-this-fork/)
 

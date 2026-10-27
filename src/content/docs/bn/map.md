@@ -90,11 +90,11 @@ sidebar:
 
 ## প্রকল্প
 
-- [Compatibility with Cacti (English)](/bn/project/compatibility-with-cacti/)
+- [Cacti-এর সঙ্গে সামঞ্জস্য](/bn/project/compatibility-with-cacti/)
 - [Contributing (English)](/bn/project/contributing/)
 - [Questions (English)](/bn/project/faq/)
 - [License (English)](/bn/project/license/)
 - [নিরাপত্তা নীতি](/bn/project/security/)
 - [প্রকল্পের অবস্থা](/bn/project/status/)
-- [Why this fork exists (English)](/bn/project/why-this-fork/)
+- [এই ফর্ক কেন আছে](/bn/project/why-this-fork/)
 
