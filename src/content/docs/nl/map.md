@@ -52,9 +52,9 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 
 ## Concepten
 
-- [Architecture (English)](/nl/concepts/architecture/)
+- [Architectuur](/nl/concepts/architecture/)
 - [Data queries and indexes (English)](/nl/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/nl/concepts/data-sources-and-rras/)
+- [Gegevensbronnen en round-robin archieven](/nl/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/nl/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/nl/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/nl/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 - [Remote data collection (English)](/nl/concepts/remote-data-collection/)
 - [Security model (English)](/nl/concepts/security-model/)
 - [Templates (English)](/nl/concepts/templates/)
-- [The poller cache (English)](/nl/concepts/the-poller-cache/)
+- [De pollercache](/nl/concepts/the-poller-cache/)
 - [Time and intervals (English)](/nl/concepts/time-and-intervals/)
 
 ## Naslagwerk

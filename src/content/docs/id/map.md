@@ -52,9 +52,9 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 
 ## Konsep
 
-- [Architecture (English)](/id/concepts/architecture/)
+- [Arsitektur](/id/concepts/architecture/)
 - [Data queries and indexes (English)](/id/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/id/concepts/data-sources-and-rras/)
+- [Sumber data dan arsip round-robin](/id/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/id/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/id/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/id/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 - [Remote data collection (English)](/id/concepts/remote-data-collection/)
 - [Security model (English)](/id/concepts/security-model/)
 - [Templates (English)](/id/concepts/templates/)
-- [The poller cache (English)](/id/concepts/the-poller-cache/)
+- [Cache poller](/id/concepts/the-poller-cache/)
 - [Time and intervals (English)](/id/concepts/time-and-intervals/)
 
 ## Referensi

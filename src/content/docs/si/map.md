@@ -52,9 +52,9 @@ sidebar:
 
 ## සංකල්ප
 
-- [Architecture (English)](/si/concepts/architecture/)
+- [ගෘහ නිර්මාණ ශිල්පය](/si/concepts/architecture/)
 - [Data queries and indexes (English)](/si/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/si/concepts/data-sources-and-rras/)
+- [දත්ත මූලාශ්‍ර සහ රවුන්ඩ්-රොබින් ලේඛනාගාර](/si/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/si/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/si/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/si/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ sidebar:
 - [Remote data collection (English)](/si/concepts/remote-data-collection/)
 - [Security model (English)](/si/concepts/security-model/)
 - [Templates (English)](/si/concepts/templates/)
-- [The poller cache (English)](/si/concepts/the-poller-cache/)
+- [පෝලර් හැඹිලිය](/si/concepts/the-poller-cache/)
 - [Time and intervals (English)](/si/concepts/time-and-intervals/)
 
 ## තාක්ෂණික යොමුව

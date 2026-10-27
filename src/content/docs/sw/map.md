@@ -52,9 +52,9 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 
 ## Dhana
 
-- [Architecture (English)](/sw/concepts/architecture/)
+- [Usanifu](/sw/concepts/architecture/)
 - [Data queries and indexes (English)](/sw/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/sw/concepts/data-sources-and-rras/)
+- [Vyanzo vya data na nyaraka za round-robin](/sw/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/sw/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/sw/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/sw/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 - [Remote data collection (English)](/sw/concepts/remote-data-collection/)
 - [Security model (English)](/sw/concepts/security-model/)
 - [Templates (English)](/sw/concepts/templates/)
-- [The poller cache (English)](/sw/concepts/the-poller-cache/)
+- [Akiba ya poller](/sw/concepts/the-poller-cache/)
 - [Time and intervals (English)](/sw/concepts/time-and-intervals/)
 
 ## Marejeo

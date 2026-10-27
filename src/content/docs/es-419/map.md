@@ -52,9 +52,9 @@ Las páginas aún no traducidas se muestran en inglés con un aviso.
 
 ## Conceptos
 
-- [Architecture (English)](/es-419/concepts/architecture/)
+- [Arquitectura](/es-419/concepts/architecture/)
 - [Data queries and indexes (English)](/es-419/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/es-419/concepts/data-sources-and-rras/)
+- [Fuentes de datos y archivos round-robin](/es-419/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/es-419/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/es-419/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/es-419/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ Las páginas aún no traducidas se muestran en inglés con un aviso.
 - [Remote data collection (English)](/es-419/concepts/remote-data-collection/)
 - [Security model (English)](/es-419/concepts/security-model/)
 - [Templates (English)](/es-419/concepts/templates/)
-- [The poller cache (English)](/es-419/concepts/the-poller-cache/)
+- [La caché del poller](/es-419/concepts/the-poller-cache/)
 - [Time and intervals (English)](/es-419/concepts/time-and-intervals/)
 
 ## Referencia

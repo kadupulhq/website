@@ -52,9 +52,9 @@ sidebar:
 
 ## المفاهيم
 
-- [Architecture (English)](/ar/concepts/architecture/)
+- [البنية المعمارية](/ar/concepts/architecture/)
 - [Data queries and indexes (English)](/ar/concepts/data-queries-and-indexes/)
-- [Data sources and round-robin archives (English)](/ar/concepts/data-sources-and-rras/)
+- [مصادر البيانات وأرشيفات التناوب الدائري (RRAs)](/ar/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ar/concepts/high-volume-writes/)
 - [How graphs are drawn (English)](/ar/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ar/concepts/permissions-and-access/)
@@ -62,7 +62,7 @@ sidebar:
 - [Remote data collection (English)](/ar/concepts/remote-data-collection/)
 - [Security model (English)](/ar/concepts/security-model/)
 - [Templates (English)](/ar/concepts/templates/)
-- [The poller cache (English)](/ar/concepts/the-poller-cache/)
+- [ذاكرة التخزين المؤقت للمستطلع (Poller Cache)](/ar/concepts/the-poller-cache/)
 - [Time and intervals (English)](/ar/concepts/time-and-intervals/)
 
 ## المرجع
