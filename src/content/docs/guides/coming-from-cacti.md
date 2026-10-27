@@ -52,10 +52,9 @@ It is different from creating empty replacement RRDs. See
   [Scale the poller](/guides/scale-the-poller/).
 - **Cutover and rollback.** Stop competing writers for the final matched backup,
   validate restored history and fresh collection in isolation, and prepare a
-  rollback that restores code, database and configuration together. Do not infer
-  upgrade success from exit status alone: see the
-  [reported upgrade CLI defect](https://github.com/kadupulhq/kadupul/issues/240).
-  Record the completed checks and unresolved limitations before considering a
+  rollback that restores code, database and configuration together. The upgrade
+  CLI exits nonzero when it refuses or fails an upgrade; still confirm the recorded
+  schema version and fresh collection. Record the completed checks and unresolved limitations before considering a
   cutover; a rehearsal does not create a supported production migration path.
 
 ## What is not promised

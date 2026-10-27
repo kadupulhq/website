@@ -37,10 +37,9 @@ Two files do the work.
 **`INFO`** is an INI file describing the plugin: its name, long name, version,
 author, homepage, the minimum core version it supports, and any capabilities it
 claims. The management listing marks a plugin incompatible when its declared
-minimum core version is newer than the running version. Do not assume every
-installation path enforces that result: the current CLI can install it anyway.
-Check `compat` in `INFO` before invoking the CLI. See
-[issue #223](https://github.com/kadupulhq/kadupul/issues/223).
+minimum core version is newer than the running version. The CLI applies the same
+check and refuses to install such a plugin, or one whose `INFO` lacks a valid
+`compat` value.
 
 **`setup.php`** defines two functions the installer requires, named after the
 plugin directory:
@@ -190,12 +189,10 @@ are separate, though the CLI also accepts `--install --enable`. Use repeated
 is no dry-run option. The CLI's success messages and exit status do not establish
 compatibility or successful configuration.
 
-Do not rely on `--allperms` to grant existing plugin realms. It re-registers them,
-but the current registration code only auto-grants when creating a new realm.
-A realm initially registered without auto-grant can remain unassigned after
-`--install --allperms`. Review and grant it explicitly in user/group management.
-This flag is intended for administrative accounts, not every user. See
-[issue #224](https://github.com/kadupulhq/kadupul/issues/224).
+`--install --allperms` grants every realm the plugin has registered, including
+realms registered earlier, to the configured administrator account, and exits
+nonzero if a grant cannot be confirmed. It does not grant other users or groups;
+assign those in user/group management.
 
 ## Traps
 

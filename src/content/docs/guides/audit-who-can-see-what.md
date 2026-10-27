@@ -31,10 +31,8 @@ exclude objects under an Allow default or grant them under a Deny default. Audit
 all contributing sources before planning revocation.
 
 Use the permission views to locate relevant policies and contributors, then verify
-actual access. The display and authorization code are separate implementations:
-a [confirmed Restrictive-mode display bug](https://github.com/kadupulhq/kadupul/issues/263)
-can invert the Graph Perms result when the template policy defaults to Deny. Neither
-the label nor its tooltip is sufficient audit evidence on its own.
+actual access. The display and authorization code are separate implementations,
+so neither the label nor its tooltip is sufficient audit evidence on its own.
 
 ## Before you start, write down two things
 
@@ -59,8 +57,7 @@ explain. It is also the default.
 
 In Restrictive mode, evaluate each source separately: a device grant on one group
 and a template grant on another do not form the required pair. Direct graph grants
-remain effective in every method. The current Settings help also has a
-[known wording defect](https://github.com/kadupulhq/kadupul/issues/222).
+remain effective in every method.
 
 The setting changes the interface: under device based the template permission tab is
 hidden, and under graph template based the device permission tab is hidden. If a tab

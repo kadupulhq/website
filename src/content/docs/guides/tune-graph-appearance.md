@@ -71,13 +71,7 @@ renderer value: PHP 8.4 accepts `1024 ` in this numeric comparison.
 axis reads in thousands at every zoom level, which is what you want for two graphs
 that have to be compared side by side.
 
-Only non-negative integers reach the graphing tool here. The field help mentions
-using -6 to display in micro units; a negative value does not pass the check and is
-dropped. As a workaround, scale the displayed series with a CDEF and update its
-axis and legend units together; this changes displayed values rather than merely
-pinning an axis prefix.
-The negative-exponent rendering bug is tracked in
-[#228](https://github.com/kadupulhq/kadupul/issues/228).
+Negative integers are accepted too: -6 displays the axis in micro units.
 
 **Unit length** reserves horizontal space for the axis labels. Increase it when your
 labels are being clipped, usually after you have pinned an exponent.
@@ -123,12 +117,9 @@ filled area at full opacity hides everything behind it. Drop it to 40 or 50 perc
 when an area and a line have to share space, and leave stacked areas opaque, because
 a translucent stack reads as a different colour per band and defeats the point.
 
-Line width accepts integer or decimal text, such as `2` or `2.00`, despite the
-field help saying decimal precision is required. Use a decimal point for fractions.
-The renderer uses this field only for LINE:STACK. For ordinary lines, choose
-LINE1, LINE2 or LINE3 to select the width; their visible line-width field currently
-has no effect. This editor mismatch is tracked in
-[#229](https://github.com/kadupulhq/kadupul/issues/229).
+Line width applies only to LINE:STACK and accepts integer or decimal text, such as
+`2` or `2.00`. For ordinary lines, choose LINE1, LINE2 or LINE3 to select the width;
+the editor hides the line-width field for those types.
 
 Dashes and a dash offset are available for the case where two series must be
 distinguishable in print or by a colour-blind reader. A dashed line and a solid line
