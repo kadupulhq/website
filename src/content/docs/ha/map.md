@@ -56,14 +56,14 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 - [Data queries and indexes (English)](/ha/concepts/data-queries-and-indexes/)
 - [Hanyoyin samo bayanai da taskokin zagayawa (RRAs)](/ha/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ha/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/ha/concepts/how-graphs-are-drawn/)
+- [Yadda ake zana zane-zane](/ha/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ha/concepts/permissions-and-access/)
 - [Plugins (English)](/ha/concepts/plugins/)
 - [Remote data collection (English)](/ha/concepts/remote-data-collection/)
 - [Security model (English)](/ha/concepts/security-model/)
-- [Templates (English)](/ha/concepts/templates/)
+- [Samfura](/ha/concepts/templates/)
 - [Ma'ajiyar Poller](/ha/concepts/the-poller-cache/)
-- [Time and intervals (English)](/ha/concepts/time-and-intervals/)
+- [Lokaci da tazara](/ha/concepts/time-and-intervals/)
 
 ## Bayanai na fasaha
 

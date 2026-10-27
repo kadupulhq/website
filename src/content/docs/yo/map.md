@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/yo/concepts/data-queries-and-indexes/)
 - [Àwọn orísun data àti àwọn àpamọ́ yípo (RRAs)](/yo/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/yo/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/yo/concepts/how-graphs-are-drawn/)
+- [Bí a ṣe ń ya àwọn graph](/yo/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/yo/concepts/permissions-and-access/)
 - [Plugins (English)](/yo/concepts/plugins/)
 - [Remote data collection (English)](/yo/concepts/remote-data-collection/)
 - [Security model (English)](/yo/concepts/security-model/)
-- [Templates (English)](/yo/concepts/templates/)
+- [Àwọn Àkọsílẹ̀ Àwòṣe](/yo/concepts/templates/)
 - [Cache ti poller](/yo/concepts/the-poller-cache/)
-- [Time and intervals (English)](/yo/concepts/time-and-intervals/)
+- [Àkókò àti àwọn ààlà àkókò](/yo/concepts/time-and-intervals/)
 
 ## Ìtọ́kasí
 

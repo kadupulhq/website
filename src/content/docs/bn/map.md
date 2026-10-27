@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/bn/concepts/data-queries-and-indexes/)
 - [ডেটা উৎস এবং রাউন্ড-রবিন আর্কাইভ](/bn/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/bn/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/bn/concepts/how-graphs-are-drawn/)
+- [যেভাবে গ্রাফ আঁকা হয়](/bn/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/bn/concepts/permissions-and-access/)
 - [Plugins (English)](/bn/concepts/plugins/)
 - [Remote data collection (English)](/bn/concepts/remote-data-collection/)
 - [Security model (English)](/bn/concepts/security-model/)
-- [Templates (English)](/bn/concepts/templates/)
+- [টেমপ্লেট](/bn/concepts/templates/)
 - [পোলার ক্যাশ](/bn/concepts/the-poller-cache/)
-- [Time and intervals (English)](/bn/concepts/time-and-intervals/)
+- [সময় এবং ব্যবধান](/bn/concepts/time-and-intervals/)
 
 ## রেফারেন্স
 

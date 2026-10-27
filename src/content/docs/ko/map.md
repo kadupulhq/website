@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/ko/concepts/data-queries-and-indexes/)
 - [데이터 소스와 라운드 로빈 아카이브](/ko/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ko/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/ko/concepts/how-graphs-are-drawn/)
+- [그래프가 그려지는 방식](/ko/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ko/concepts/permissions-and-access/)
 - [Plugins (English)](/ko/concepts/plugins/)
 - [Remote data collection (English)](/ko/concepts/remote-data-collection/)
 - [Security model (English)](/ko/concepts/security-model/)
-- [Templates (English)](/ko/concepts/templates/)
+- [템플릿](/ko/concepts/templates/)
 - [폴러 캐시](/ko/concepts/the-poller-cache/)
-- [Time and intervals (English)](/ko/concepts/time-and-intervals/)
+- [시간 및 인터벌](/ko/concepts/time-and-intervals/)
 
 ## 참조
 
