@@ -326,6 +326,10 @@ and `--update`.
 
 ## Editing consequences
 
-`data_input_save_message()` counts the templates and data sources attached to a
-method and raises a different message for each case. Output field editing is
-disabled once any data source uses the method.
+The Symfony editor shows how many data templates and data sources use the
+method. After a save, when either count is above zero, it asks you to update the
+dependent data templates before collectors use new or changed input fields
+(`templates/data_input/edit.html.twig`). An output field that a data template
+or data source uses cannot be renamed or removed; the save worker refuses with
+"Output fields in use cannot be removed or renamed."
+(`lib/data_input_worker.php`).
