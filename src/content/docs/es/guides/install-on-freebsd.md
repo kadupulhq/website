@@ -24,8 +24,8 @@ Compruebe PHP web por separado. Para PHP-FPM instalado como paquete, configure e
 
 ## Programar y verificar con las cuentas de servicio
 
-Use un solo mecanismo cron con rutas absolutas y el intervalo configurado; no instale la unidad systemd de Linux. Valide identidad POSIX, bloqueo de directorios, propiedad y confianza explícita de UID/GID con cada cuenta web y del sondeador antes de recopilar. En jails, verifique red, montajes y permisos dentro de la jail. Ejecute un ciclo sin solapamiento, revise filas retenidas en cola y marcas de tiempo de gráficos, y ensaye una restauración dla copia de seguridad coherente. Que el proceso arranque no es suficiente. Consulte requisitos y copias de seguridad.
+Use un solo mecanismo cron con rutas absolutas y el intervalo configurado; no instale la unidad systemd de Linux. Valide identidad POSIX, bloqueo de directorios, propiedad y confianza explícita de UID/GID con cada cuenta web y del sondeador antes de recopilar. En jails, verifique red, montajes y permisos dentro de la jail. Ejecute un ciclo sin solapamiento, revise filas retenidas en cola y marcas de tiempo de gráficos, y ensaye una restauración de la copia de seguridad coherente. Que el proceso arranque no es suficiente. Consulte requisitos y copias de seguridad.
 
-[Versiones compatibles de FreeBSD](https://www.freebsd.org/security/) · [Paquetes y ports](https://docs.freebsd.org/en/books/handbook/ports/) · [Servicios de FreeBSD](https://docs.freebsd.org/en/books/handbook/config/) · [Instalación](/es/start/install/) · [Requisitos](/es/reference/requirements/) · [Respaldos](/es/guides/back-up-and-restore/)
+[Versiones compatibles de FreeBSD](https://www.freebsd.org/security/) · [Paquetes y ports](https://docs.freebsd.org/en/books/handbook/ports/) · [Servicios de FreeBSD](https://docs.freebsd.org/en/books/handbook/config/) · [Instalación](/es/start/install/) · [Requisitos](/es/reference/requirements/) · [Copias de seguridad](/es/guides/back-up-and-restore/)
 
 Base de la aplicación verificada el 26 de octubre de 2026: [cbd6117d6](https://github.com/kadupulhq/kadupul/tree/cbd6117d6e1092ef887c66f9844bef004a65119e).

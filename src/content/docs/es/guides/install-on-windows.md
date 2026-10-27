@@ -24,6 +24,6 @@ Confirme la versión 2. Complete la creación de la cuenta Linux y siga la insta
 
 Use cuentas dedicadas sin privilegios y un solo mecanismo de inicio de la recopilación. Verifique la confianza del almacenamiento, el sondeo, las marcas de tiempo de los gráficos y el reinicio después de reiniciar el equipo o apagar WSL. No suponga que una sesión de escritorio mantiene la recopilación. Haga copias de seguridad conjuntas de base de datos, configuración y RRD. El mantenimiento destructivo de RRD y la purga o archivo automáticos locales siguen sin estar disponibles en Windows nativo; el comportamiento de Linux no los valida. Consulte requisitos y copias de seguridad.
 
-[Limitaciones de PHP](https://www.php.net/manual/en/pcntl.installation.php) · [Instalación](/es/start/install/) · [Guía WSL de Microsoft](https://learn.microsoft.com/en-us/windows/wsl/install) · [Sistemas de archivos](https://learn.microsoft.com/en-us/windows/wsl/filesystems) · [Requisitos](/es/reference/requirements/) · [Respaldos](/es/guides/back-up-and-restore/)
+[Limitaciones de PHP](https://www.php.net/manual/en/pcntl.installation.php) · [Instalación](/es/start/install/) · [Guía WSL de Microsoft](https://learn.microsoft.com/en-us/windows/wsl/install) · [Sistemas de ficheros](https://learn.microsoft.com/en-us/windows/wsl/filesystems) · [Requisitos](/es/reference/requirements/) · [Copias de seguridad](/es/guides/back-up-and-restore/)
 
 Base de la aplicación verificada el 26 de octubre de 2026: [cbd6117d6](https://github.com/kadupulhq/kadupul/tree/cbd6117d6e1092ef887c66f9844bef004a65119e).
