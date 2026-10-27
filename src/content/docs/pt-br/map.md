@@ -11,7 +11,7 @@ As páginas ainda não traduzidas são exibidas em inglês com um aviso.
 
 - [Adicionar o primeiro dispositivo](/pt-br/start/first-device/)
 - [Interpretar o primeiro gráfico](/pt-br/start/first-graph/)
-- [Install (English)](/pt-br/start/install/)
+- [Instalação](/pt-br/start/install/)
 - [O que é o Kadupul](/pt-br/start/what-kadupul-is/)
 
 ## Guias práticos

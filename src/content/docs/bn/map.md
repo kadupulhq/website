@@ -11,7 +11,7 @@ sidebar:
 
 - [প্রথম ডিভাইস যোগ করুন](/bn/start/first-device/)
 - [প্রথম গ্রাফ বুঝুন](/bn/start/first-graph/)
-- [Install (English)](/bn/start/install/)
+- [ইনস্টলেশন](/bn/start/install/)
 - [Kadupul কী](/bn/start/what-kadupul-is/)
 
 ## ব্যবহার নির্দেশিকা

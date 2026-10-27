@@ -11,7 +11,7 @@ sidebar:
 
 - [පළමු උපාංගය එක් කරන්න](/si/start/first-device/)
 - [පළමු ප්‍රස්තාරය කියවන්න](/si/start/first-graph/)
-- [Install (English)](/si/start/install/)
+- [ස්ථාපනය](/si/start/install/)
 - [Kadupul යනු කුමක්ද](/si/start/what-kadupul-is/)
 
 ## භාවිත මාර්ගෝපදේශ

@@ -11,7 +11,7 @@ sidebar:
 
 - [إضافة أول جهاز](/ar/start/first-device/)
 - [قراءة أول رسم بياني](/ar/start/first-graph/)
-- [Install (English)](/ar/start/install/)
+- [التثبيت](/ar/start/install/)
 - [ما هو Kadupul](/ar/start/what-kadupul-is/)
 
 ## أدلة الاستخدام

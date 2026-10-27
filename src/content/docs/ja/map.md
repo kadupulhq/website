@@ -11,7 +11,7 @@ sidebar:
 
 - [最初のデバイスを追加](/ja/start/first-device/)
 - [最初のグラフを読む](/ja/start/first-graph/)
-- [Install (English)](/ja/start/install/)
+- [インストール](/ja/start/install/)
 - [Kadupul とは](/ja/start/what-kadupul-is/)
 
 ## 操作ガイド

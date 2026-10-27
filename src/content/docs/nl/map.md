@@ -11,7 +11,7 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 
 - [Het eerste apparaat toevoegen](/nl/start/first-device/)
 - [De eerste grafiek lezen](/nl/start/first-graph/)
-- [Install (English)](/nl/start/install/)
+- [Installatie](/nl/start/install/)
 - [Wat is Kadupul](/nl/start/what-kadupul-is/)
 
 ## Handleidingen

@@ -11,7 +11,7 @@ Strony, które nie zostały jeszcze przetłumaczone, są wyświetlane po angiels
 
 - [Dodaj pierwsze urządzenie](/pl/start/first-device/)
 - [Odczytaj pierwszy wykres](/pl/start/first-graph/)
-- [Install (English)](/pl/start/install/)
+- [Instalacja](/pl/start/install/)
 - [Czym jest Kadupul](/pl/start/what-kadupul-is/)
 
 ## Poradniki

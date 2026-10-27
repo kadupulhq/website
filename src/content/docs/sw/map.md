@@ -11,7 +11,7 @@ Kurasa ambazo bado hazijatafsiriwa zinaonyeshwa kwa Kiingereza pamoja na taarifa
 
 - [Ongeza kifaa chako cha kwanza](/sw/start/first-device/)
 - [Soma grafu yako ya kwanza](/sw/start/first-graph/)
-- [Install (English)](/sw/start/install/)
+- [Usakinishaji](/sw/start/install/)
 - [Kadupul ni nini](/sw/start/what-kadupul-is/)
 
 ## Miongozo ya matumizi

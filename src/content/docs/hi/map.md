@@ -11,7 +11,7 @@ sidebar:
 
 - [पहला उपकरण जोड़ें](/hi/start/first-device/)
 - [पहला ग्राफ़ समझें](/hi/start/first-graph/)
-- [Install (English)](/hi/start/install/)
+- [स्थापना](/hi/start/install/)
 - [Kadupul क्या है](/hi/start/what-kadupul-is/)
 
 ## कार्य मार्गदर्शिकाएँ

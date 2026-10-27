@@ -12,6 +12,7 @@ const fences = (text) => [...text.matchAll(/^```[^\n]*\n[\s\S]*?^```/gm)].map((m
 const identifiers = (text) => [...new Set([...text.replace(/^```[^\n]*\n[\s\S]*?^```/gm, '').matchAll(/`([^`\n]+)`/g)].map((m) => m[1]))].sort();
 
 const testPages = [
+	{ slug: 'install', expectedSections: 11, expectedFences: 10 },
 	{ slug: 'first-device', expectedSections: 8, expectedFences: 3 },
 	{ slug: 'first-graph', expectedSections: 6, expectedFences: 1 },
 ];

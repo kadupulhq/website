@@ -11,7 +11,7 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 
 - [Tambahkan perangkat pertama](/id/start/first-device/)
 - [Baca grafik pertama](/id/start/first-graph/)
-- [Install (English)](/id/start/install/)
+- [Instalasi](/id/start/install/)
 - [Apa itu Kadupul](/id/start/what-kadupul-is/)
 
 ## Panduan penggunaan
