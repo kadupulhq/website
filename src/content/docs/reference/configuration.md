@@ -48,10 +48,8 @@ including `APP_SECRET`; see [Installation](/start/install/) for setup.
 ### Remote data collector
 
 The same set prefixed `$rdatabase_`, pointing at the main server. Commented out in
-the template. They are used by remote-poller connection paths. The current connection call
-uses `$database_retries` for the main-server connection, so setting
-`$rdatabase_retries` alone does not change its retry count; see application
-[bug #281](https://github.com/kadupulhq/kadupul/issues/281).
+the template. They are used by remote-poller connection paths. The main-server
+connection uses `$rdatabase_retries`, which defaults to `2` when unset.
 
 `$rdatabase_type`, `$rdatabase_default`, `$rdatabase_hostname`,
 `$rdatabase_username`, `$rdatabase_password`, `$rdatabase_port`,
@@ -82,7 +80,6 @@ and resources are not under the main web root.
 | `$installer_allowed_php_binaries` | Optional trusted absolute PHP executables for installer probes. Keep the binaries and their parent directories outside the web user’s write permissions; an empty array disables probes. |
 | `$scripts_path` | Alternate location for data input scripts. |
 | `$resource_path` | Alternate location for resource files. |
-| `$config['purifier_cache_path']` | HTMLPurifier definition cache. Must exist and be writable by the web server user. Falls back to `cache/purifier` under the install path. |
 | `$input_whitelist` | Path to the data input whitelist JSON file. |
 | `$php_path` | Explicit path to the PHP binary. |
 | `$php_snmp_support` | Set `false` to disable the PHP SNMP extension. Defaults to `class_exists('SNMP')`. |
@@ -90,14 +87,17 @@ and resources are not under the main web root.
 
 ### Client address and proxies
 
-`$proxy_headers` controls which request headers may be trusted for the client
-address. `REMOTE_ADDR` is always checked.
+`$proxy_headers` and `$proxy_trusted_addresses` control whether a request header
+may supply the client address.
 
-| Value | Effect |
+| Request | Client address |
 |---|---|
-| `null` or `false` | Use `REMOTE_ADDR` only. |
-| `true` | Use every allowed header. The template advises against this. |
-| array | Use only the named headers. |
+| `REMOTE_ADDR` not listed in `$proxy_trusted_addresses` | `REMOTE_ADDR`, whatever `$proxy_headers` holds. |
+| Listed, and `$proxy_headers` is an array of one allowed header that holds a single IP address | The address in that header. |
+| Listed, anything else, including the old boolean `true` | None. |
+
+`$proxy_trusted_addresses` takes exact IP addresses. CIDR ranges and multiple
+headers are not supported.
 
 Headers that may be named: `X-Forwarded-For`, `X-Client-IP`, `X-Real-IP`,
 `X-ProxyUser-Ip`, `CF-Connecting-IP`, `True-Client-IP`, `HTTP_X_FORWARDED`,
@@ -197,8 +197,6 @@ Applied when a device is created, not retroactively.
 | `automatic_reindex` | Schedule for reindexing every device. |
 | `snmp_bulk_walk_size`, `max_get_size` | SNMP request sizing. |
 | `enable_snmp_agent` | Kadupul's own SNMP agent. |
-| `poller_refresh_output_table` | Legacy setting still displayed in the form, but the current application has no runtime reader for it. It does not rebuild `poller_output` or make a MEMORY queue safe; see
-application [bug #282](https://github.com/kadupulhq/kadupul/issues/282). |
 | `disable_cache_replication` | Stop replicating the resource cache to remote collectors. |
 | `spine_log_level` | Whether invalid responses are logged individually. |
 | `remote_agent_timeout` | Timeout for the remote agent RPC. |
@@ -305,7 +303,6 @@ edited by hand.
 | Name | Written by |
 |---|---|
 | `poller_lastrun_<id>` | Start time of the last run for that poller. |
-| `poller_mibsrun_<id>` | Last system MIB collection, refreshed every four hours. |
 | `active_profiles` | Count of distinct active data source profiles, cached for the collector. |
 | `total_snmp_ports` | Count of distinct SNMP ports in the poller cache. |
 | `path_webroot` | Web root, recalculated each run. |

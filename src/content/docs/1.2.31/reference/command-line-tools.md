@@ -10,7 +10,7 @@ sidebar:
 slug: 1.2.31/reference/command-line-tools
 ---
 
-Kadupul inherits the Cacti 1.2.x `cli/` directory: 45 scripts plus an `index.php`
+Kadupul inherits the Cacti 1.2.x `cli/` directory: 46 scripts plus an `index.php`
 that redirects to the site root. They exist for work the web interface handles
 badly: bulk changes, scheduled maintenance, and recovery when the interface itself
 is the broken thing.
@@ -41,7 +41,7 @@ production, because several change data in bulk with no confirmation step.
 | Script | Purpose |
 |---|---|
 | `add_device.php` | Create a device from a device template, with SNMP and availability settings. |
-| `change_device.php` | Change attributes on one device, a comma-separated list of devices, or every device listed in a CSV file. |
+| `change_device.php` | Change attributes on one device. |
 | `remove_device.php` | Delete devices matched by description, IP, or id list. |
 | `add_datasource.php` | Attach a data template to a device as a new data source. |
 | `add_data_query.php` | Associate a data query with a device and set its reindex method. Reindexes if already associated. |
@@ -57,6 +57,7 @@ production, because several change data in bulk with no confirmation step.
 |---|---|
 | `add_perms.php` | Grant a user access to a graph, tree, device, or graph template. |
 | `copy_user.php` | Copy a local user and their settings to a new username. Local accounts only. |
+| `reset_password.php` | Set a new password for a local account, read from standard input, and require a change at the next login. Ends the account's sessions and remember-me tokens. |
 
 ## Poller and cache maintenance
 
@@ -116,6 +117,7 @@ production, because several change data in bulk with no confirmation step.
 | `md5sum.php` | Create or verify the `.md5sum` manifest of installed files. |
 | `input_whitelist.php` | Audit or update the data input whitelist file, and optionally push changed input strings out. |
 | `refresh_csrf.php` | Rotate the CSRF secret. Invalidates in-flight forms, so run it outside production hours. |
+| `audit_graph_template_inputs.php` | Report graph template input integrity findings without changing the database. |
 
 ## Automation and plugins
 
@@ -184,27 +186,17 @@ was given.
 ## change\_device.php
 
 ```
-change_device.php --id=<device-id> [device attribute arguments] [--force] [--quiet]
-change_device.php --file=<path> [--force] [--quiet]
+change_device.php --id=<device-id> [device attribute arguments] [--quiet]
 ```
 
 Takes the same device attribute arguments as `add_device.php` and applies them to
-existing devices. `--id` accepts a comma-separated list. `--id` and `--file` are
-mutually exclusive.
+one existing device. There is no CSV or multi-device mode.
 
 | Argument | Meaning |
 |---|---|
-| `--id` | Device id, or a comma-separated list of them. |
-| `--file` | CSV file with a header row of per-device overrides. |
+| `--id` | One device id, a positive integer. Required. |
 | `--disable` | `1` or `on` disables checks, `0` or `off` enables them. |
-| `--force` | Skip the CSV confirmation prompt. |
-| `--quiet` | Suppress output and skip the CSV confirmation prompt. |
-
-CSV rules, as stated by the script: the first column must be `id`; column names
-must be unique; every row must have the same field count; empty cells mean "no
-override" and cannot clear a field; duplicate device ids are rejected; rows with
-no changes are skipped. Rows are saved one at a time, so earlier successful rows
-stay applied if a later row fails.
+| `--quiet` | Suppress normal status output. |
 
 ## add\_graphs.php
 

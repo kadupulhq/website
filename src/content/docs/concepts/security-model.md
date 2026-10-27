@@ -102,10 +102,10 @@ method when it contains shell metacharacters, logging
 ERROR: Refusing to import data input method '<hash>' - input_string contains shell metacharacters
 ```
 
-A **package import** is signed. `import_validate_signature()` reads the package's
-embedded public key and compares it against the two keys compiled into
-`lib/import.php`; a key that is neither of those fails. A package with no
-`<publickey>` element is read as claiming the older of those two, and then has to
+A **package import** is signed. `import_read_package_data()` reads the package's
+embedded public key and compares it against the three keys compiled into
+`lib/import.php`: the two Cacti keys and the Kadupul key. Any other key fails. A
+package with no `<publickey>` element is read as claiming the older Cacti key, and then has to
 produce a signature that verifies against it. `import_read_package_data()` refuses
 any key below 2048 bits before attempting verification, which the older key, at 512
 bits, does not clear. Each contained file carries its own signature, verified

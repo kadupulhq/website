@@ -127,10 +127,8 @@ php cli/import_template.php --filename=template.xml --profile-id=2
 For a package, preview also reports, per file, whether the destination is
 writable and whether the incoming content differs from what is already there.
 Read that list before you import and keep copies of locally modified files.
-Template CLI preview output currently contains HTML and uses an imported-results
-heading even when rows say `[preview]`. Inspect the row results; the heading is
-not evidence that the requested import took place. See
-[issue #217](https://github.com/kadupulhq/kadupul/issues/217).
+Template CLI preview output is plain text, and its heading reports the changes
+the import would make rather than an import that took place.
 
 ## The import options that change behaviour
 

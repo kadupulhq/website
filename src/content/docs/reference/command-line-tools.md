@@ -194,12 +194,6 @@ one existing device. The current command has no CSV or multi-device mode.
 | `--disable` | Use `on` to disable checks or `off` to enable them. |
 | `--quiet` | Suppress normal status output. |
 
-:::caution[Numeric disable values are currently inverted]
-The built-in help says `--disable=1` disables and `--disable=0` enables, but the
-current parser does the opposite. Use `on` or `off` until application
-[bug #320](https://github.com/kadupulhq/kadupul/issues/320) is fixed.
-:::
-
 ## add_graphs.php
 
 ```
@@ -252,9 +246,7 @@ remove_graphs.php [--graph-template-id=ID] [--host-template-id=ID] [--host-id=ID
 
 Provide at least one filtered selector or use `--all` for a count or removal;
 those paths reject an empty selection. The read-only `--list` option is the
-exception: by itself, it lists every graph. The command's built-in help still
-calls `--graph-template-id` mandatory; that mismatch is tracked in application
-[bug #321](https://github.com/kadupulhq/kadupul/issues/321).
+exception: by itself, it lists every graph.
 
 ## remove_device.php
 

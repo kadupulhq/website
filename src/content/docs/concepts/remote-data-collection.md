@@ -57,7 +57,8 @@ connectivity and the selected tables. Check the collector's actual configuration
 cache rather than assuming either immediate consistency or a fixed delay.
 
 Full replication can be requested from the main collector with
-`php cli/poller_replicate.php --force`, when enabled remote collectors are configured.
+`php cli/poller_replicate.php`, when enabled remote collectors are configured. It
+replicates every enabled remote collector unless `--poller=N` selects one.
 See [Scale the poller](/guides/scale-the-poller/) and
 [Migrate to new hardware](/guides/migrate-to-new-hardware/) for operational context.
 
@@ -93,18 +94,14 @@ main install flushes them into RRD files on its own schedule, exactly as it woul
 samples it collected itself. The collector's samples are not special once they arrive.
 
 Offline and during recovery, samples accumulate in the local Boost queue. When the
-central database is reachable again, `poller_recovery.php` attempts to insert buffered
-rows into the central Boost queue with `INSERT IGNORE`.
+central database is reachable again, `poller_recovery.php` inserts buffered rows into
+the central Boost queue, updating the output of a row that already exists there.
 
-:::caution[Recovery is not verified lossless]
-In the reviewed revision, recovery does not check the central insert results before
-deleting local rows through the batch timestamp. An isolated failure probe confirmed
-that a failed insert is followed by a local deletion attempt and an increased inserted
-counter. See [application bug #268](https://github.com/kadupulhq/kadupul/issues/268).
-Retain a matched backup of buffered data and investigate recovery write failures;
-a counter increase is not acknowledgement of delivery. This page does not establish
-a validated multi-collector recovery procedure.
-:::
+Recovery deletes a local row only after the central insert for its packet succeeds,
+and only when the local row still matches what was sent. A failed insert, an
+oversized sample or a row changed during cleanup leaves the local samples in place
+for the next attempt. This page does not establish a validated multi-collector
+recovery procedure.
 
 The recovery inserts carry data-source identifiers, names, timestamps and values;
 they do not check those rows against collector assignments. Do not rely on a universal

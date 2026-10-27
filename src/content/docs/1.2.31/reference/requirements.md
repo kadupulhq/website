@@ -16,7 +16,7 @@ in the exact source version you use; these lists are not a production support po
 
 | Component | Requirement | Absent |
 |---|---|---|
-| PHP | Manifest declares 8.0 or newer; use a security-supported version | Nothing runs |
+| PHP | Manifest declares 8.1 or newer; use a security-supported version | Nothing runs |
 | Database | MySQL or MariaDB, InnoDB available | Nothing runs |
 | RRDtool | A local binary; proxy deployment is not supported | No graphs, no storage |
 | net-snmp | Command line tools, unless the PHP SNMP extension is present | No SNMP collection |
@@ -116,9 +116,7 @@ required. Which path a given call takes is in [SNMP](/1.2.31/reference/snmp/).
 CLI runs raise `memory_limit` and `max_execution_time` themselves. The web
 interface does not.
 
-The installer's own version check compares against a floor inherited from a much
-older release and will pass on versions the manifest rejects. The manifest is the
-gate that matters.
+The installer's own version check uses the same 8.1.0 floor as the manifest.
 
 ## Database
 
@@ -127,7 +125,7 @@ gate that matters.
 | Engine | MySQL or MariaDB |
 | Version | The tuning check targets MySQL 5.6 and later, MariaDB 10.0 and later |
 | Table engine | InnoDB for persistent tables |
-| `poller_output` | MEMORY. The collector converts it back if it finds any other engine |
+| `poller_output` | InnoDB. The upgrade converts an existing MEMORY table |
 | Time zone tables | `mysql.time_zone_name` populated |
 | Account grant | SELECT on `mysql.time_zone_name` |
 
@@ -176,11 +174,12 @@ bundle an SNMP implementation of its own.
 |---|---|
 | PHP execution | As a server module, or through FPM |
 | URL prefix | Must match `$url_path` in the configuration file |
-| Denied paths | Eleven directories must not be reachable over HTTP |
+| Denied paths | Sixteen directories ship with `.htaccess` guards |
 | Rewrite rules | None needed |
 
-The eleven directories ship with `.htaccess` files that deny everything. nginx and
-any Apache configured with `AllowOverride None` ignore those files entirely and
+Fifteen of those `.htaccess` files deny everything, and `include/.htaccess`
+denies selected files. nginx and any Apache configured with `AllowOverride None`
+ignore those files entirely and
 need equivalent rules in the server configuration. The list, and the reason each
 one is on it, is in [File layout](/1.2.31/reference/file-layout/).
 
@@ -242,7 +241,7 @@ No other part of Kadupul requires privilege.
 
 ## On the PHP version
 
-The application manifest declares PHP 8.0 or newer. A manifest constraint is not
-a tested compatibility matrix. PHP 8.0 and 8.1 are no longer security-supported;
+The application manifest declares PHP 8.1 or newer. A manifest constraint is not
+a tested compatibility matrix. PHP 8.1 is no longer security-supported;
 choose a version from the [PHP supported-version list](https://www.php.net/supported-versions.php)
 and verify it with the target branch's tests and dependency checks.

@@ -61,7 +61,7 @@ In order.
 |---|---|
 | `poller_interval` | Setting. Seconds between collection passes. |
 | `poller_lastrun_<id>` | Setting written by the previous run. |
-| `poller_mibsrun_<id>` | Setting. If more than 14400 seconds old, this run collects system MIBs and the timestamp is updated. |
+| System MIB collection | Runs when `poller_lastrun_<id>` and the current time fall in different 14440-second windows, or when there is no previous run. |
 | `cron_interval` | Setting, coerced to 60 if it equals 60, otherwise to 300. |
 | `max_step` | Largest `step` across data source profiles in use. |
 | `concurrent_processes` | The poller row's `processes` column, falling back to the `concurrent_processes` setting. Floored at 1. |
@@ -121,13 +121,12 @@ Repeated `poller_runs` times. One pass is one collection cycle.
 | 2 | `path_webroot` is rewritten to this run's directory. |
 | 3 | `max_threads` comes from the poller row, forced to 1 when `poller_type` is 1. |
 | 4 | Rows in `poller_time` with no end time mean processes that overran the previous cycle. They are logged and the primary admin is mailed. Completed rows are deleted. |
-| 5 | Leftover `poller_output` rows for this poller are logged (first 20 data source ids), mailed, and deleted. On a remote poller only rows older than 600 seconds count, because other collectors insert asynchronously. Data left here means a previous cycle never got a complete set of values for those data sources. |
-| 6 | On poller 1 with `poller_refresh_output_table` on and only one poller, `poller_output` is swapped for a fresh table and converted back to the MEMORY engine if the swapped-in copy is not already MEMORY. |
-| 7 | If `poller_enabled` is off, the loop logs a warning and does nothing else. |
-| 8 | `hosts_per_process = ceil(devices / concurrent_processes)`. |
-| 9 | If `poller_type` selects spine and `path_spine` does not exist, log, mail, and exit. |
-| 10 | Build the command. Spine: the spine binary, plus `-C <path_spine_config>` when that file exists. Otherwise `<path_php_binary> -q cmd.php`. When `path_stderrlog` is set on a non-Windows host, stderr is appended to it. Remote pollers add `--mode=<connection>`. |
-| 11 | Walk the device list, launching a background collector per chunk with `--poller=N --first=<id> --last=<id>`, and `--mibs` when this run collects MIBs. 100 ms between launches. |
+| 5 | Leftover `poller_output` rows for this poller are logged (first 20 data source ids) and mailed, at most once every 30 minutes. Rows whose data source or device no longer exists are deleted; valid rows stay for a retry. On a remote poller only rows older than 600 seconds count, because other collectors insert asynchronously. Data left here means a previous cycle never got a complete set of values for those data sources, or a write failed. |
+| 6 | If `poller_enabled` is off, the loop logs a warning and does nothing else. |
+| 7 | `hosts_per_process = ceil(devices / concurrent_processes)`. |
+| 8 | If `poller_type` selects spine and `path_spine` does not exist, log, mail, and exit. |
+| 9 | Build the command. Spine: the spine binary, plus `-C <path_spine_config>` when that file exists. Otherwise `<path_php_binary> -q cmd.php`. When `path_stderrlog` is set on a non-Windows host, stderr is appended to it. Remote pollers add `--mode=<connection>`. |
+| 10 | Walk the device list, launching a background collector per chunk with `--poller=N --first=<id> --last=<id>`, and `--mibs` when this run collects MIBs. 100 ms between launches. |
 
 With `process_leveling` on, a chunk closes when its accumulated data source count
 reaches `total_items / concurrent_processes` rather than when its device count
@@ -195,14 +194,15 @@ the drain loop.
 
 | Step | Detail |
 |---|---|
-| 1 | Select up to 40000 rows joining `poller_output` to `poller_item` and `data_local`, ordered by `local_data_id`. This brings `rrd_path`, `rrd_name`, and `rrd_num` alongside the value. |
+| 1 | Select up to 40000 rows joining `poller_output` to `poller_item` and `data_local`, ordered by `local_data_id`, time and `rrd_name`, starting after the last key of the previous page. A full page also takes the rest of its last timestamp group. This brings `rrd_path`, `rrd_name`, and `rrd_num` alongside the value. |
 | 2 | Load `poller_data_template_field_mappings` once per process. |
-| 3 | Parse each value into an update array keyed by RRD path and then by timestamp. |
-| 4 | Discard any timestamp where the number of parsed values is below that data source's `rrd_num`. A partial set waits for the rest rather than writing a short update. |
-| 5 | Delete the consumed `poller_output` rows, in batches of 10000 data source ids. |
-| 6 | `dsstats_poller_output()` and `dsdebug_poller_output()` run, then the `poller_output` plugin hook. |
-| 7 | `boost_poller_on_demand()` decides where the values go. With boost off it returns true and `rrdtool_function_update()` writes the RRD files now, through the pipe the parent opened. With boost on the values are handed to the boost table and written later. |
-| 8 | If rows remain, the function calls itself for the next chunk. |
+| 3 | `boost_poller_on_demand()` decides where the values go. With boost on the values are handed to the boost table and written later. If that handoff fails, the rows stay for the next pass. |
+| 4 | Parse each value into an update array keyed by RRD path and then by timestamp. |
+| 5 | Discard any timestamp where the number of parsed values is below that data source's `rrd_num`. A partial set waits for the rest rather than writing a short update. |
+| 6 | With boost off, `rrdtool_function_update()` writes the RRD files now, through the pipe the parent opened. Samples RRDtool did not acknowledge stay in `poller_output` for a retry. |
+| 7 | `dsstats_poller_output()` and `dsdebug_poller_output()` run, then the `poller_output` plugin hook, for the accepted samples only. |
+| 8 | Delete the consumed `poller_output` rows by exact key (data source id, RRD name, time and value), in chunks of 500. |
+| 9 | If rows remain, the function calls itself for the next page. |
 
 ### Value parsing
 
@@ -247,7 +247,7 @@ Other pollers: flush boost if the connection is in recovery, then
 | `poller` | One row per data collector. Holds process and thread counts, item counts by type, status, and last status time. |
 | `poller_item` | The poller cache. One row per value to collect, with the RRD path, RRD name, action, and step scheduling. |
 | `poller_time` | Process registry for the current cycle. A row with no end time is a running collector. |
-| `poller_output` | Raw collected values awaiting parsing. Normally a MEMORY table, and normally empty between cycles. |
+| `poller_output` | Raw collected values awaiting parsing. An InnoDB table, normally empty between cycles. |
 | `poller_output_boost` | The same values written for boost to consume. |
 | `poller_command` | Queued reindex and recache work, drained by `poller_commands.php`. |
 | `poller_data_template_field_mappings` | Data input field name to data source name, used to parse multi-value output. |

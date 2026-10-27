@@ -150,8 +150,7 @@ access, but direct graph grants remain effective. Set graph defaults to Deny and
 remove unintended graph grants from the user and every enabled group if content
 should follow device permissions.
 
-These formulas correct the Settings help tracked in
-[#222](https://github.com/kadupulhq/kadupul/issues/222). Effective access combines
+Effective access combines
 the user's result with results from enabled groups. See
 [Manage users and permissions](/guides/manage-users-and-permissions/) for the
 group rules and access checks.
@@ -177,17 +176,13 @@ php cli/add_tree.php --type=node --node-type=host --tree-id=2 --parent-node=5 \
   --host-id=42 --host-group-style=2
 ```
 
-**Create site nodes in the web tree editor for now.** The advertised
-`--node-type=site --site-id=ID` command rejects `--site-id`. The CLI also lacks the
-site type mapping, and its generic save helper does not persist the site ID.
-The editor's site-copy path does preserve it. Tracked in
-[#235](https://github.com/kadupulhq/kadupul/issues/235).
+**Site nodes can be created from the CLI or the web tree editor.** Use
+`--node-type=site --site-id=ID`; `--list-sites` lists valid IDs, and an unknown
+site ID is rejected.
 
-**Verify parent IDs before creating nodes.** The CLI currently accepts a missing
-parent and reports success while storing an orphan node. Use `--list-trees` and
-`--list-nodes --tree-id=ID` to resolve IDs, confirm the parent belongs to the target
-tree, and inspect the resulting node. Tracked in
-[#236](https://github.com/kadupulhq/kadupul/issues/236).
+**Parent IDs must name a header in the target tree.** The CLI rejects a parent that
+does not exist in that tree or is not a header. Use `--list-trees` and
+`--list-nodes --tree-id=ID` to resolve IDs.
 
 Permissions the same way.
 
