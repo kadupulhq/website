@@ -17,7 +17,7 @@ sidebar:
 ## 사용 안내
 
 - [Audit who can see what (English)](/ko/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/ko/guides/back-up-and-restore/)
+- [백업 및 복원](/ko/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/ko/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/ko/guides/capacity-planning/)
 - [Coming from Cacti (English)](/ko/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/ko/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/ko/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/ko/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/ko/guides/upgrade-safely/)
+- [안전한 업그레이드](/ko/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/ko/guides/worked-example/)
 - [Write a data collection script (English)](/ko/guides/write-a-data-collection-script/)
 

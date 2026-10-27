@@ -17,7 +17,7 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 ## Panduan penggunaan
 
 - [Audit who can see what (English)](/id/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/id/guides/back-up-and-restore/)
+- [Pencadangan dan Pemulihan](/id/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/id/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/id/guides/capacity-planning/)
 - [Coming from Cacti (English)](/id/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 - [Troubleshoot missing data (English)](/id/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/id/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/id/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/id/guides/upgrade-safely/)
+- [Meningkatkan Versi Secara Aman](/id/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/id/guides/worked-example/)
 - [Write a data collection script (English)](/id/guides/write-a-data-collection-script/)
 

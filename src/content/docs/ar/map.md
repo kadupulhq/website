@@ -17,7 +17,7 @@ sidebar:
 ## أدلة الاستخدام
 
 - [Audit who can see what (English)](/ar/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/ar/guides/back-up-and-restore/)
+- [النسخ الاحتياطي والاستعادة](/ar/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/ar/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/ar/guides/capacity-planning/)
 - [Coming from Cacti (English)](/ar/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/ar/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/ar/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/ar/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/ar/guides/upgrade-safely/)
+- [الترقية بأمان](/ar/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/ar/guides/worked-example/)
 - [Write a data collection script (English)](/ar/guides/write-a-data-collection-script/)
 

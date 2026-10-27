@@ -17,7 +17,7 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 ## Jagororin amfani
 
 - [Audit who can see what (English)](/ha/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/ha/guides/back-up-and-restore/)
+- [Ajiye da dawo da bayanai](/ha/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/ha/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/ha/guides/capacity-planning/)
 - [Coming from Cacti (English)](/ha/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 - [Troubleshoot missing data (English)](/ha/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/ha/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/ha/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/ha/guides/upgrade-safely/)
+- [Haɓaka cikin aminci](/ha/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/ha/guides/worked-example/)
 - [Write a data collection script (English)](/ha/guides/write-a-data-collection-script/)
 

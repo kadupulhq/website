@@ -17,7 +17,7 @@ sidebar:
 ## Àwọn ìtọ́sọ́nà lílo
 
 - [Audit who can see what (English)](/yo/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/yo/guides/back-up-and-restore/)
+- [Ìfipamọ́ àti ìmúbọ̀sípò](/yo/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/yo/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/yo/guides/capacity-planning/)
 - [Coming from Cacti (English)](/yo/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/yo/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/yo/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/yo/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/yo/guides/upgrade-safely/)
+- [Ìgbélárugẹ pẹ̀lú ààbò](/yo/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/yo/guides/worked-example/)
 - [Write a data collection script (English)](/yo/guides/write-a-data-collection-script/)
 

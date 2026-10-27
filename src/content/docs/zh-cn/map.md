@@ -17,7 +17,7 @@ sidebar:
 ## 操作指南
 
 - [Audit who can see what (English)](/zh-cn/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/zh-cn/guides/back-up-and-restore/)
+- [备份与恢复](/zh-cn/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/zh-cn/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/zh-cn/guides/capacity-planning/)
 - [Coming from Cacti (English)](/zh-cn/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/zh-cn/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/zh-cn/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/zh-cn/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/zh-cn/guides/upgrade-safely/)
+- [安全升级](/zh-cn/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/zh-cn/guides/worked-example/)
 - [Write a data collection script (English)](/zh-cn/guides/write-a-data-collection-script/)
 

@@ -7,6 +7,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ar/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -22,6 +28,12 @@
 		"ar/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -91,6 +103,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"bn/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -106,6 +124,12 @@
 		"bn/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -175,6 +199,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"de/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -190,6 +220,12 @@
 		"de/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -259,6 +295,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"es-419/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -274,6 +316,12 @@
 		"es-419/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -343,6 +391,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"es/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -358,6 +412,12 @@
 		"es/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -427,6 +487,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"fr-ca/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -442,6 +508,12 @@
 		"fr-ca/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -511,6 +583,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"fr/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -526,6 +604,12 @@
 		"fr/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -595,6 +679,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ha/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -610,6 +700,12 @@
 		"ha/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -679,6 +775,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"hi/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -694,6 +796,12 @@
 		"hi/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -763,6 +871,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"id/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -778,6 +892,12 @@
 		"id/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -847,6 +967,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"it/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -862,6 +988,12 @@
 		"it/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -931,6 +1063,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ja/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -946,6 +1084,12 @@
 		"ja/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1015,6 +1159,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"ko/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1030,6 +1180,12 @@
 		"ko/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1099,6 +1255,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"nl/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1114,6 +1276,12 @@
 		"nl/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1183,6 +1351,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pl/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1198,6 +1372,12 @@
 		"pl/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1267,6 +1447,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pt-br/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1282,6 +1468,12 @@
 		"pt-br/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1351,6 +1543,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"pt-pt/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1366,6 +1564,12 @@
 		"pt-pt/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1435,6 +1639,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"si/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1450,6 +1660,12 @@
 		"si/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1519,6 +1735,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"sw/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1534,6 +1756,12 @@
 		"sw/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1603,6 +1831,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"yo/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1618,6 +1852,12 @@
 		"yo/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1687,6 +1927,12 @@
 			"kind": "summary",
 			"review": "draft"
 		},
+		"zh-cn/guides/back-up-and-restore.md": {
+			"source": "guides/back-up-and-restore.md",
+			"sourceSha256": "1fe80544c815ac33ead8b243df8cfb70ba873251d1014407292f1c5442d054ee",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1702,6 +1948,12 @@
 		"zh-cn/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/upgrade-safely.md": {
+			"source": "guides/upgrade-safely.md",
+			"sourceSha256": "ba1c0e157e285cc1b547ed400241735705761de594caad49670553b2fb587e91",
 			"kind": "translation",
 			"review": "draft"
 		},

@@ -17,7 +17,7 @@ sidebar:
 ## कार्य मार्गदर्शिकाएँ
 
 - [Audit who can see what (English)](/hi/guides/audit-who-can-see-what/)
-- [Back up and restore (English)](/hi/guides/back-up-and-restore/)
+- [बैकअप और पुनर्स्थापना](/hi/guides/back-up-and-restore/)
 - [Build aggregate graphs (English)](/hi/guides/build-aggregate-graphs/)
 - [Capacity planning (English)](/hi/guides/capacity-planning/)
 - [Coming from Cacti (English)](/hi/guides/coming-from-cacti/)
@@ -46,7 +46,7 @@ sidebar:
 - [Troubleshoot missing data (English)](/hi/guides/troubleshoot-missing-data/)
 - [Tune database performance (English)](/hi/guides/tune-database-performance/)
 - [Tune graph appearance (English)](/hi/guides/tune-graph-appearance/)
-- [Upgrade safely (English)](/hi/guides/upgrade-safely/)
+- [सुरक्षित रूप से अपग्रेड करें](/hi/guides/upgrade-safely/)
 - [A worked example, start to finish (English)](/hi/guides/worked-example/)
 - [Write a data collection script (English)](/hi/guides/write-a-data-collection-script/)
 
