@@ -17,6 +17,8 @@ Completate questa procedura una sola volta, nell'ordine indicato. Ogni passaggio
 verifica. Eseguite la verifica prima di proseguire: ogni problema qui indicato è economico da
 individuare adesso e costoso da scoprire dopo che il poller ha funzionato per una settimana.
 
+Per i prerequisiti specifici dell’host, consulta [Linux su un host Windows](/it/guides/install-on-windows/) e [FreeBSD](/it/guides/install-on-freebsd/). Queste procedure non costituiscono una prova di collaudo completo.
+
 ## Ciò di cui avete bisogno prima
 
 Kadupul è un'applicazione PHP che memorizza la configurazione in MySQL o MariaDB e
@@ -131,6 +133,7 @@ del file `mise.toml` del repository installati, eseguite dalla directory radice 
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

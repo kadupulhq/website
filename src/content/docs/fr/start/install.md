@@ -13,6 +13,8 @@ Le code source est disponible, mais il n'existe aucune version publiée ni proc�
 
 Suivez ces étapes une par une, dans l'ordre. Chaque étape se termine par une vérification. Effectuez la vérification avant de continuer : chaque problème listé ici est facile à détecter maintenant, mais coûteux à corriger après une semaine de fonctionnement du collecteur.
 
+Pour les prérequis propres à l’hôte, consultez [Linux sur un hôte Windows](/fr/guides/install-on-windows/) et [FreeBSD](/fr/guides/install-on-freebsd/). Ces procédures ne constituent pas une preuve de validation de bout en bout.
+
 ## Ce dont vous avez besoin au préalable
 
 Kadupul est une application PHP qui stocke sa configuration dans MySQL ou MariaDB et ses mesures dans des fichiers RRD sur le disque. Cette page décrit une nouvelle installation sur un serveur principal à partir du code source `main` actuel, et non une mise à niveau ou la branche LTS archivée. Quatre éléments doivent exister avant qu'elle ne puisse fonctionner.
@@ -94,6 +96,7 @@ Une extraction Git nécessite à la fois les dépendances PHP et les ressources 
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

@@ -17,6 +17,10 @@ Work through this once, in order. Each step ends with a check. Do the check befo
 moving on: every failure listed here is cheap to find now and expensive to find
 after the poller has been running for a week.
 
+For host-specific prerequisites, see [Windows-hosted Linux](/guides/install-on-windows/)
+and [FreeBSD](/guides/install-on-freebsd/). These platform procedures are not
+end-to-end acceptance evidence.
+
 ## What you need first
 
 Kadupul is a PHP application that stores configuration in MySQL or MariaDB and
@@ -129,6 +133,7 @@ the repository’s `mise.toml` runtimes installed, run from the repository root:
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

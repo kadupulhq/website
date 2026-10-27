@@ -208,9 +208,10 @@ identity with something in the incoming file. Preview output names every object
 it would change. Read it.
 
 
-**A successful CLI exit does not establish a successful template import.** The
-plain-template CLI can return exit status 0 for malformed XML without importing
-an object. Check the per-object results and application log, and verify the
-intended template in the destination. Do not use exit status alone as the success
-condition in unattended import scripts. See
-[issue #216](https://github.com/kadupulhq/kadupul/issues/216).
+**Check CLI status and object results together.** Current `main` returns a nonzero
+status for unreadable input, malformed XML and recorded object failures, including
+preview failures. Earlier revisions could report success for malformed XML; that
+behavior is historical, not the current contract. Check diagnostics, per-object
+results and destination state as well: a nonzero result does not establish that
+all earlier changes were rolled back. Follow the
+[template workflow](/guides/template-workflow/) for a staged verification sequence.

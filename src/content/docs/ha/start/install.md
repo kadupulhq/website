@@ -13,6 +13,8 @@ Ana iya samun lambar tushe, amma babu ingantaccen sakin Kadupul ko hanyar ƙaura
 
 Bi waɗannan matakai sau ɗaya, bisa tsari. Kowane mataki yana ƙarewa da binciken tabbatarwa. Yi binciken kafin ci gaba: kowane kuskure da aka lissafa a nan yana da sauƙin gyarawa yanzu amma zai yi tsada a gano shi bayan poller ya yi aiki na mako guda.
 
+Don bukatun da suka shafi na’urar, duba [Linux a kan Windows](/ha/guides/install-on-windows/) da [FreeBSD](/ha/guides/install-on-freebsd/). Waɗannan matakai ba su tabbatar da gwajin aiki daga farko zuwa ƙarshe ba.
+
 ## Abin da kake buƙata da farko
 
 Kadupul manhaja ce ta PHP wadda ke adana saiti a MySQL ko MariaDB kuma tana adana ma’aunin bayanai a fayilolin RRD a faifai. Wannan shafin yana bayanin sabuwar shigarwa ta babbar uwar garke daga tushen `main` na yanzu, ba haɓakawa ba ko tsohon layin LTS da aka ajiye. Dole ne abubuwa huɗu su kasance kafin ya fara aiki.
@@ -94,6 +96,7 @@ Kwafin Git yana buƙatar duka abubuwan dogaro na PHP da kuma kayan aikin burawsa
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

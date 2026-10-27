@@ -13,6 +13,8 @@ Msimbo chanzo unapatikana, lakini hakuna toleo linalotumika la Kadupul au njia y
 
 Fanya kazi kupitia hatua hizi mara moja, kwa mpangilio. Kila hatua inaishia na ukaguzi. Fanya ukaguzi kabla ya kuendelea: kila hitilafu iliyoorodheshwa hapa ni rahisi na nafuu kuigundua sasa kuliko kuipata baada ya poller kufanya kazi kwa wiki moja.
 
+Kwa mahitaji maalumu ya mwenyeji, angalia [Linux kwenye mwenyeji wa Windows](/sw/guides/install-on-windows/) na [FreeBSD](/sw/guides/install-on-freebsd/). Taratibu hizi si ushahidi wa majaribio ya kukubalika kutoka mwanzo hadi mwisho.
+
 ## Kile unachohitaji kwanza
 
 Kadupul ni programu ya PHP inayohifadhi usanidi katika MySQL au MariaDB na kuhifadhi vipimo katika faili za RRD kwenye diski. Ukurasa huu unaelezea usakinishaji mpya wa seva kuu kutoka kwa msimbo chanzo wa sasa wa `main`, si uboreshaji au laini iliyohifadhiwa ya LTS. Mambo manne lazima yawepo kabla haijaanza kufanya kazi.
@@ -94,6 +96,7 @@ Nakala ya Git inahitaji vitegemezi vya PHP na vipengee vya kivinjari vilivyozali
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

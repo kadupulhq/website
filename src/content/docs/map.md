@@ -51,6 +51,9 @@ Task pages for someone who already has it running and has a specific goal.
 - [A worked example, start to finish](/guides/worked-example/). One switch taken from an empty install to a graph you can trust, naming every decision along the way and what the alternative would have cost.
 - [Monitor Kadupul itself](/guides/monitor-kadupul-itself/). Which numbers tell you the monitoring system is healthy, which of them Kadupul already records about itself, the thresholds worth watching, and what each symptom arrives before.
 - [Capacity planning](/guides/capacity-planning/). Work out the disk, memory, poll window and database size an install needs from the number of devices and data sources it will carry, with the arithmetic shown so you can redo it for your own numbers.
+- [Install from a Windows host](/guides/install-on-windows/). Evaluate Kadupul in Linux on a Windows host and understand the native Windows blockers.
+- [Install on FreeBSD](/guides/install-on-freebsd/). Prepare FreeBSD services, PHP extensions and local storage for an isolated Kadupul evaluation.
+- [Use and validate templates](/guides/template-workflow/). Choose template identities, preview imports and verify propagation without losing RRD history.
 
 ## Concepts
 

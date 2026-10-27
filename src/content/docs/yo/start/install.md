@@ -13,6 +13,8 @@ Kóòdù orísun wà ní àrọ́wọ́tó, ṣùgbọ́n kò sí ẹ̀dà Kadup
 
 Tẹ̀lé àwọn ìgbésẹ̀ wọ̀nyí lẹ́ẹ̀kan ṣoṣo, ní tẹ̀léra. Ìgbésẹ̀ kọ̀ọ̀kan máa ń parí pẹ̀lú àyẹ̀wò. Ṣe àyẹ̀wò náà kí o tó tẹ̀síwájú: gbogbo ìkùnà tí a kọ síbí ní owó pọ́ọ́kú láti mọ̀ báyìí, ó sì gbówó lórí gidigidi láti wá a lẹ́yìn tí poller ti ṣiṣẹ́ fún ọ̀sẹ̀ kan.
 
+Fún àwọn ohun tí ẹ̀rọ náà nílò, wo [Linux lórí ẹ̀rọ Windows](/yo/guides/install-on-windows/) àti [FreeBSD](/yo/guides/install-on-freebsd/). Àwọn ìlànà wọ̀nyí kì í ṣe ẹ̀rí ìdánwò ìtẹ́wọ́gbà láti ìbẹ̀rẹ̀ dé òpin.
+
 ## Ohun tí o nílò kọ́kọ́
 
 Kadupul jẹ́ ètò PHP kan tí ó ń tọ́jú ètò ìṣètò rẹ̀ sínú MySQL tàbí MariaDB tí ó sì ń tọ́jú àwọn ìwọ̀n sínú àwọn fáìlì RRD lórí disk. Ojú-ewé yìí ń ṣe àlàyé nípa fífisílẹ̀ tuntun fún sáfà àkọ́kọ́ láti orísun `main` lọ́wọ́lọ́wọ́, kì í ṣe ìgbéga ẹ̀dà tàbí ẹ̀ka LTS tí a ti fi pamọ́. Àwọn ohun mẹ́rin gbọ́dọ̀ wà kí ó tó bẹ̀rẹ̀ sí ní ṣiṣẹ́.
@@ -94,6 +96,7 @@ Fi ètò náà sí ibìkan tí sáfà wẹ́ẹ̀bù rẹ ti lè pèsè rẹ̀, 
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

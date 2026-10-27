@@ -17,6 +17,8 @@ Przejdź przez to jeden raz, po kolei. Każdy krok kończy się weryfikacją. Wy
 weryfikację przed przejściem dalej: każdy wymieniony tutaj błąd łatwo znaleźć teraz,
 a bardzo trudno po tym, jak poller działał już przez tydzień.
 
+Wymagania dotyczące konkretnego hosta opisano w przewodnikach [Linux na hoście Windows](/pl/guides/install-on-windows/) i [FreeBSD](/pl/guides/install-on-freebsd/). Te procedury nie stanowią dowodu pełnych testów akceptacyjnych.
+
 ## Czego potrzebujesz na początek
 
 Kadupul to aplikacja PHP, która przechowuje konfigurację w bazie danych MySQL lub MariaDB,
@@ -130,6 +132,7 @@ zainstalowaniu środowisk wykonawczych z pliku `mise.toml` repozytorium uruchom 
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

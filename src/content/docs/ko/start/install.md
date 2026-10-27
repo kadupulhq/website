@@ -13,6 +13,8 @@ banner:
 
 순서대로 한 번 진행하세요. 각 단계는 점검으로 끝납니다. 다음 단계로 넘어가기 전에 점검을 수행하세요. 여기에 나열된 모든 문제는 지금 발견하면 해결 비용이 적게 들지만, 폴러가 일주일 동안 실행된 후 발견하면 해결 비용이 많이 듭니다.
 
+호스트별 사전 요구 사항은 [Windows 호스트의 Linux](/ko/guides/install-on-windows/)와 [FreeBSD](/ko/guides/install-on-freebsd/)를 참조하십시오. 이 절차는 전체 과정을 검증한 인수 테스트의 증거가 아닙니다.
+
 ## 시작하기 전에 필요한 사항
 
 Kadupul은 MySQL 또는 MariaDB에 구성을 저장하고 디스크의 RRD 파일에 측정값을 저장하는 PHP 애플리케이션입니다. 이 페이지는 업그레이드나 보관된 LTS 계열이 아닌 현재 `main` 소스 기반의 새로운 메인 서버 설치를 설명합니다. 실행하기 전에 네 가지 구성 요소가 준비되어 있어야 합니다.
@@ -94,6 +96,7 @@ Git 체크아웃에는 PHP 종속성과 생성된 브라우저 자산이 모두 
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

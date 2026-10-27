@@ -13,6 +13,8 @@ banner:
 
 اتّبع هذه الخطوات بالترتيب، مرة واحدة. تنتهي كل خطوة بعملية فحص. نفّذ الفحص قبل الانتقال إلى ما بعده: فاكتشاف أي مشكلة مدرجة هنا الآن أمر يسير وغير مكلّف، بينما يصعب اكتشافها وتصحيحها بعد تشغيل أداة الاستقصاء لمدة أسبوع.
 
+للمتطلبات الخاصة بالمضيف، راجع [Linux على مضيف Windows](/ar/guides/install-on-windows/) و[FreeBSD](/ar/guides/install-on-freebsd/). هذه الإجراءات لا تُعد دليلاً على اجتياز اختبار قبول شامل.
+
 ## ما تحتاجه أولاً
 
 تطبيق Kadupul هو تطبيق PHP يخزن إعداداته في MySQL أو MariaDB ويخزن القياسات في ملفات RRD على القرص. تصف هذه الصفحة تثبيتًا جديدًا على خادم رئيسي انطلاقًا من شيفرة `main` المصدرية الحالية، وليس ترقية أو تثبيتًا لخط LTS المؤرشف. هناك أربعة متطلبات أساسية يجب توافرها قبل تشغيل التطبيق.
@@ -94,6 +96,7 @@ SELECT COUNT(*) FROM mysql.time_zone_name;
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 
