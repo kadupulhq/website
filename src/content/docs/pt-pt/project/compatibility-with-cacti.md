@@ -11,7 +11,7 @@ Compatibilidade é uma meta de lançamento, não a afirmação de que toda vers�
 
 ## O que isso abrange
 
-Verifique hooks de plugins, comportamento de argumentos e retornos e permissões; identidades de modelos, mapeamentos de entrada e propagação; semântica de esquema, padrões e referências; e caminhos, campos, arquivos de consolidação e valores retidos de RRD existentes. Um perfil correspondente na base de dados não comprova a mesma estrutura no ficheiro RRD. Plugins executam como código confiável da aplicação, não em sandbox. Consulte modelos e avaliação de plugins.
+Verifique hooks de plugins, comportamento de argumentos e retornos e permissões; identidades de modelos, mapeamentos de entrada e propagação; semântica de esquema, padrões e referências; e caminhos, campos, ficheiros de consolidação e valores retidos de RRD existentes. Um perfil correspondente na base de dados não comprova a mesma estrutura no ficheiro RRD. Plugins executam como código confiável da aplicação, não em sandbox. Consulte modelos e avaliação de plugins.
 
 ## O que significa na prática
 

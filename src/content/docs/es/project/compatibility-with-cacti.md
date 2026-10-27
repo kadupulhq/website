@@ -15,7 +15,7 @@ Compruebe hooks de plugins, comportamiento de argumentos y retornos, y permisos;
 
 ## Qué significa en la práctica
 
-Registre rama y revisión de la aplicación, PHP y dependencias bloqueadas, versiones de plugins, estado del esquema y configuración de almacenamiento. Pruebe recopilación, gráficos, autorización, fallos y recuperación en una copia restaurada aislada. Incluya recolectores remotos y trabajo en segundo plano cuando los utilice. Documente diferencias intencionales y carencias pendientes; las pruebas solo cubren las rutas que ejecutan. Consulte ensayo de actualización y respaldos.
+Registre rama y revisión de la aplicación, PHP y dependencias bloqueadas, versiones de plugins, estado del esquema y configuración de almacenamiento. Pruebe recopilación, gráficos, autorización, fallos y recuperación en una copia restaurada aislada. Incluya recolectores remotos y trabajo en segundo plano cuando los utilice. Documente diferencias intencionales y carencias pendientes; las pruebas solo cubren las rutas que ejecutan. Consulte ensayo de actualización y copias de seguridad.
 
 ## Qué no garantiza
 
