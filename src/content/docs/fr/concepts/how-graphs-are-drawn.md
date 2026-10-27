@@ -96,7 +96,7 @@ Un VDEF réduit une série à un scalaire : maximum, minimum, moyenne, écart-ty
 
 Un `GPRINT` adossé à un VDEF ne prend aucun argument de fonction de consolidation : le VDEF a déjà fourni la réduction requise. Les VDEF peuvent également fournir des valeurs scalaires pour le tracé ; RRDtool prend en charge les lignes basées sur un VDEF. Voir la [documentation des éléments graphiques](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-L'export CSV sélectionne les types de tracés pris en charge sous forme de colonnes de séries ; les éléments de légende ne sont pas exportés sous forme de colonnes équivalentes. Contrairement à une description antérieure, le code actuel n'ignore pas systématiquement les éléments de tracé reposant sur un VDEF. Il peut émettre une directive `XPORT` non valide pour un VDEF scalaire : un test isolé de RRDtool affiche une ligne VDEF avec succès mais rejette cet export. Voir l'[anomalie logicielle #273](https://github.com/kadupulhq/kadupul/issues/273). Utilisez des éléments de tracé adossés à des séries pour l'export et vérifiez les colonnes produites.
+L'exportation CSV sélectionne les types de tracé pris en charge comme colonnes de séries ; les éléments de légende ne sont pas exportés comme des colonnes équivalentes. Les éléments de tracé basés sur un VDEF s'affichent toujours dans l'image du graphique mais sont omis de l'exportation, car un VDEF est une valeur unique et non une série temporelle.
 
 ## Pourquoi les mêmes données semblent différentes
 

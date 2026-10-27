@@ -96,7 +96,7 @@ VDEF yana rage jeri zuwa lamba ɗaya: matsakaicin, mafi ƙanƙanta, matsakaici, 
 
 `GPRINT` wanda ke samun goyon bayan VDEF ba ya karɓar hujjar aikin haɗawa: VDEF ta riga ta ba da raguwa. VDEFs na iya ba da ƙimar lamba don zane; RRDtool yana tallafawa layin da VDEF ke goyan baya. Duba takardun asali na [abubuwan zane na RRDtool](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-Fitar da CSV yana zaɓar nau'ikan zane masu tallafi azaman ginshiƙan jeri; ba a fitar da abubuwan bayani azaman ginshiƙai daidai ba. Ba kamar kwatancen da suka gabata ba, lambar yanzu gabaɗaya ba ta tsallake abubuwan zane masu goyan bayan VDEF ba. Yana iya fitar da `XPORT` mara aiki na lambar VDEF: keɓaɓɓen gwajin RRDtool yana ba da layin VDEF cikin nasara amma yana ƙin wannan fitarwa. Duba [kuskuren manhaja #273](https://github.com/kadupulhq/kadupul/issues/273). Yi amfani da abubuwan zane masu goyan bayan jeri don fitarwa kuma tabbatar da ginshiƙan da aka samu.
+Fitar da CSV yana zaɓar nau'ikan zane masu tallafi azaman ginshiƙan jeri; ba a fitar da abubuwan bayani azaman ginshiƙai daidai ba. Abubuwan zane masu goyan bayan VDEF har yanzu suna fitowa a cikin hoton zane amma an cire su daga fitarwa, saboda VDEF ƙima ce guda ɗaya maimakon jerin lokaci.
 
 ## Dalilin da ya sa bayanai ɗaya ke kama da daban
 

@@ -96,7 +96,7 @@ VDEF ń dín ọ̀wọ́ kan kù sí nọ́mbà kan ṣoṣo: títóbi jùlọ, 
 
 `GPRINT` tí ó ní àtìlẹ́yìn VDEF kì í gba àríyànjiyàn iṣẹ́ ìdapọ̀: VDEF ti pèsè ìdínkù náà tẹ́lẹ̀. Àwọn VDEF tún lè pèsè àwọn iye nọ́mbà fún yíyà; RRDtool ń ti ìlà tí ó ní àtìlẹ́yìn VDEF lẹ́yìn. Wo àwọn àkọsílẹ̀ [àwọn èròjà graph RRDtool](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html) lókè.
 
-Ìkójáde CSV ń yan àwọn irú yíyà tí a tì lẹ́yìn bí àwọn ọwọ̀n ọ̀wọ́; a kì í kó àwọn ohun àlàyé jáde bí àwọn ọwọ̀n tí ó báramu. Kò dà bí àwọn àpèjúwe tẹ́lẹ̀, kóòdù ìsinsìnyí kì í sábà fò àwọn ohun yíyà tí ó ní àtìlẹ́yìn VDEF dà. Ó lè gbé `XPORT` tí kò tọ́ jáde fún nọ́mbà VDEF kan: àyẹ̀wò RRDtool tí a yà sọ́tọ̀ ń gbé ìlà VDEF jáde pẹ̀lú àṣeyọrí ṣùgbọ́n ó ń kọ ìkójáde yẹn. Wo [àbùkù ìṣàfilọ́lẹ̀ #273](https://github.com/kadupulhq/kadupul/issues/273). Lo àwọn ohun yíyà tí ó ní àtìlẹ́yìn ọ̀wọ́ fún ìkójáde kí o sì fọwọ́ sí àwọn ọwọ̀n tí a rí.
+Ìkójáde CSV ń yan àwọn irú yíyà tí a tì lẹ́yìn bí àwọn ọwọ̀n ọ̀wọ́; a kì í kó àwọn ohun àlàyé jáde bí àwọn ọwọ̀n tí ó báramu. Àwọn ohun yíyà tí ó ní àtìlẹ́yìn VDEF ṣì ń hàn nínú àwòrán graph ṣùgbọ́n a ń yọ wọ́n kúrò nínú ìkójáde náà, nítorí pé VDEF jẹ́ iye ẹyọ kan dípò ọ̀wọ́ àkókò.
 
 ## Ìdí tí data kan náà fi ń rí lọtọ̀
 

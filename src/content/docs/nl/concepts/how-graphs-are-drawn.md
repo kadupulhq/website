@@ -96,7 +96,7 @@ Een VDEF reduceert een reeks tot een scalair: maximum, minimum, gemiddelde, stan
 
 Een door een VDEF ondersteunde `GPRINT` vereist geen argument voor een consolidatiefunctie: de VDEF heeft de reductie al geleverd. VDEF's kunnen ook scalaire tekenwaarden leveren; RRDtool ondersteunt een door VDEF ondersteunde lijn. Zie de upstream [documentatie over grafiekelementen](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-CSV-export selecteert ondersteunde tekentypen als reekskolommen; legende-items worden niet als gelijkwaardige kolommen geëxporteerd. In tegenstelling tot een eerdere beschrijving slaat de huidige code VDEF-ondersteunde tekenitems over het algemeen niet over. Het kan een ongeldige `XPORT` van een scalaire VDEF uitzenden: een geïsoleerde RRDtool-test rendert een VDEF-lijn met succes, maar wijst die export af. Zie [toepassingsfout #273](https://github.com/kadupulhq/kadupul/issues/273). Gebruik reeks-ondersteunde tekenitems voor export en controleer de resulterende kolommen.
+CSV-export selecteert ondersteunde tekentypen als reekskolommen; legenda-items worden niet geëxporteerd als equivalente kolommen. Tekenitems met een VDEF worden nog steeds weergegeven in de grafiekafbeelding, maar worden weggelaten uit de export, omdat een VDEF een enkele waarde is in plaats van een tijdreeks.
 
 ## Waarom dezelfde gegevens er anders uitzien
 

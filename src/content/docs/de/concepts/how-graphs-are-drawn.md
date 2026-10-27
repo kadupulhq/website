@@ -96,7 +96,7 @@ Ein VDEF reduziert eine Serie auf einen Skalar: Maximum, Minimum, Durchschnitt, 
 
 Ein durch ein VDEF gestütztes `GPRINT` erfordert kein Konsolidierungsfunktions-Argument: Das VDEF lieferte bereits die Reduktion. VDEFs können auch skalare Zeichenwerte liefern; RRDtool unterstützt eine VDEF-gestützte Linie. Siehe die vorgelagerte [Grafikelement-Dokumentation](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-Der CSV-Export wählt unterstützte Zeichentypen als Serienspalten; Legendenelemente werden nicht als gleichwertige Spalten exportiert. Im Gegensatz zu einer früheren Beschreibung überspringt der aktuelle Code VDEF-gestützte Zeichenelemente nicht generell. Er kann ein ungültiges `XPORT` eines skalaren VDEF ausgeben: Ein isolierter RRDtool-Test rendert eine VDEF-Linie erfolgreich, weist diesen Export jedoch ab. Siehe [Anwendungsfehler #273](https://github.com/kadupulhq/kadupul/issues/273). Verwenden Sie serienbasierte Zeichenelemente für den Export und prüfen Sie die erzeugten Spalten.
+Der CSV-Export wählt unterstützte Zeichnungstypen als Reihenspalten aus; Legendenelemente werden nicht als gleichwertige Spalten exportiert. VDEF-gestützte Zeichnungselemente werden weiterhin im Diagrammbild dargestellt, beim Export jedoch weggelassen, da ein VDEF ein einzelner Wert und keine Zeitreihe ist.
 
 ## Warum dieselben Daten unterschiedlich aussehen
 

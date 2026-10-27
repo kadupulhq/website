@@ -96,7 +96,7 @@ VDEF inapunguza mfululizo kuwa nambari moja: kiwango cha juu, kiwango cha chini,
 
 `GPRINT` inayoungwa mkono na VDEF haikubali hoja ya kitendakazi cha ujumuishaji: VDEF tayari imetoa upunguzaji huo. VDEF pia zinaweza kutoa thamani za nambari kwa ajili ya kuchora; RRDtool inaunga mkono mstari unaoungwa mkono na VDEF. Tazama nyaraka rasmi za [vipengele vya grafu vya RRDtool](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-Usafirishaji wa CSV huchagua aina za michoro zinazoungwa mkono kama safu wima za mfululizo; vipengee vya maelezo havisafirishwi kama safu wima zinazolingana. Tofauti na maelezo ya awali, msimbo wa sasa kwa ujumla hauruki vipengee vya kuchora vinavyoungwa mkono na VDEF. Inaweza kutoa `XPORT` batili ya VDEF ya nambari: jaribio lililotengwa la RRDtool hutoa mstari wa VDEF kwa mafanikio lakini linakataa usafirishaji huo. Tazama [hitilafu ya programu #273](https://github.com/kadupulhq/kadupul/issues/273). Tumia vipengee vya kuchora vinavyoungwa mkono na mfululizo kwa usafirishaji na uthibitishe safu wima zinazotokana.
+Usafirishaji wa CSV huchagua aina za michoro zinazoungwa mkono kama safu wima za mfululizo; vipengee vya maelezo havisafirishwi kama safu wima zinazolingana. Vipengee vya kuchora vinavyoungwa mkono na VDEF bado vinatolewa katika picha ya grafu lakini vinaachwa kwenye usafirishaji, kwa sababu VDEF ni thamani moja badala ya mfululizo wa muda.
 
 ## Kwa nini data ile ile inaonekana tofauti
 

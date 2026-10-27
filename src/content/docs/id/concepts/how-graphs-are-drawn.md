@@ -96,7 +96,7 @@ VDEF mereduksi deret menjadi nilai skalar: maksimum, minimum, rata-rata, deviasi
 
 Suatu `GPRINT` yang didukung oleh VDEF tidak memerlukan argumen fungsi konsolidasi: VDEF telah menyediakan hasil reduksi. VDEF juga dapat menyediakan nilai skalar untuk penggambaran; RRDtool mendukung garis berbasis VDEF. Lihat dokumentasi hulu [elemen grafik](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-Ekspor CSV memilih jenis gambar yang didukung sebagai kolom deret; item legenda tidak diekspor sebagai kolom yang setara. Berbeda dengan deskripsi sebelumnya, kode saat ini tidak serta-merta melewati item gambar berbasis VDEF. Kode dapat mengeluarkan `XPORT` yang tidak valid dari VDEF skalar: pengujian RRDtool yang terisolasi berhasil merender garis VDEF tetapi menolak ekspor tersebut. Lihat [bug aplikasi #273](https://github.com/kadupulhq/kadupul/issues/273). Gunakan item gambar berbasis deret untuk ekspor dan verifikasi kolom yang dihasilkan.
+Ekspor CSV memilih jenis gambar yang didukung sebagai kolom deret; item legenda tidak diekspor sebagai kolom yang setara. Item gambar yang didukung VDEF tetap dirender dalam gambar grafik tetapi dihilangkan dari ekspor, karena VDEF adalah nilai tunggal dan bukan deret waktu.
 
 ## Mengapa data yang sama terlihat berbeda
 

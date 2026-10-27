@@ -96,7 +96,7 @@ VDEF redukuje serię danych do wartości skalarnej: maksimum, minimum, średniej
 
 Instrukcja `GPRINT` zasilana przez VDEF nie wymaga argumentu funkcji konsolidacji: VDEF dokonał już wymaganej redukcji. VDEF może również dostarczać wartości skalarne do rysowania; RRDtool obsługuje linię opartą na VDEF. Zobacz [dokumentację elementów wykresu](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-Eksport do pliku CSV wybiera obsługiwane typy rysowania jako kolumny serii; elementy legendy nie są eksportowane jako równoważne kolumny. Wbrew wcześniejszym opisom obecny kod zasadniczo nie pomija elementów rysujących opartych na VDEF. Może wyemitować nieprawidłowe polecenie `XPORT` skalarnego VDEF: test RRDtool poprawnie rysuje linię VDEF, lecz odrzuca taki eksport. Zobacz [błąd aplikacji #273](https://github.com/kadupulhq/kadupul/issues/273). Do eksportu należy używać elementów opartych na seriach i weryfikować wynikowe kolumny.
+Eksport CSV wybiera obsługiwane typy rysowania jako kolumny serii; elementy legendy nie są eksportowane jako równoważne kolumny. Elementy rysunku oparte na VDEF nadal są renderowane na obrazie wykresu, ale są pomijane w eksporcie, ponieważ VDEF jest pojedynczą wartością, a nie szeregiem czasowym.
 
 ## Dlaczego te same dane wyglądają inaczej
 

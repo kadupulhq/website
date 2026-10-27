@@ -96,7 +96,7 @@ Un VDEF riduce una serie a un unico scalare: massimo, minimo, media, deviazione 
 
 Un'istruzione `GPRINT` alimentata da un VDEF non richiede il parametro della funzione di consolidamento: il VDEF ha già fornito la riduzione. I VDEF possono anche fornire valori scalari per il disegno; RRDtool supporta una linea basata su VDEF. Consultare la [documentazione sugli elementi del grafico](https://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html).
 
-L'esportazione CSV seleziona i tipi di disegno supportati come colonne della serie; le voci di legenda non vengono esportate come colonne equivalenti. A differenza di quanto riportato in descrizioni precedenti, il codice attuale non ignora gli elementi di disegno basati su VDEF. Può tuttavia emettere un'istruzione `XPORT` non valida per un VDEF scalare: un test isolato con RRDtool renderizza correttamente una linea VDEF ma rifiuta tale esportazione. Si veda il [bug applicativo #273](https://github.com/kadupulhq/kadupul/issues/273). Utilizzare elementi basati su serie temporali per l'esportazione e verificare le colonne risultanti.
+L'esportazione CSV seleziona i tipi di disegno supportati come colonne di serie; gli elementi della legenda non vengono esportati come colonne equivalenti. Gli elementi di disegno basati su VDEF vengono comunque visualizzati nell'immagine del grafico ma vengono omessi dall'esportazione, poiché un VDEF è un valore singolo anziché una serie temporale.
 
 ## Perché gli stessi dati possono apparire differenti
 
