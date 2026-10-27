@@ -174,6 +174,18 @@ usage. Portuguese `ficheiros`/`utilizadores` and Brazilian `arquivos`/`usuários
 are intentional differences. Shared inheritance, regional overrides and a Weblate
 glossary component remain work for issue #3.
 
+## Template and platform guides
+
+`guides/template-workflow.md`, `guides/install-on-windows.md` and
+`guides/install-on-freebsd.md` have complete translations in every supported
+locale. Keep commands, configuration identifiers, references and platform
+limitations aligned with English. These drafts require fluent review; the
+platform installation procedures also require end-to-end acceptance testing.
+
+The platform/template translation tests check all three sections of each page,
+unchanged command examples, protected identifiers, source hashes, references and
+rendered language/direction. Structural checks do not establish semantic accuracy.
+
 ## Remaining acceptance work
 
 - Complete the human translation/review/export round trip; GitHub App transport

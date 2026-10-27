@@ -13,6 +13,8 @@ Kode sumber telah tersedia, tetapi belum ada rilis Kadupul yang didukung atau ja
 
 Selesaikan panduan ini sekali, secara berurutan. Setiap langkah diakhiri dengan pemeriksaan. Lakukan pemeriksaan sebelum melanjutkan: setiap kegagalan yang tercantum di sini mudah ditemukan sekarang, tetapi akan memakan biaya besar jika baru ditemukan setelah poller berjalan selama seminggu.
 
+Untuk prasyarat khusus host, lihat [Linux pada host Windows](/id/guides/install-on-windows/) dan [FreeBSD](/id/guides/install-on-freebsd/). Prosedur ini bukan bukti validasi menyeluruh dari awal hingga akhir.
+
 ## Hal yang Anda butuhkan terlebih dahulu
 
 Kadupul adalah aplikasi PHP yang menyimpan konfigurasi di MySQL atau MariaDB dan menyimpan pengukuran dalam berkas RRD di disk. Halaman ini menjelaskan instalasi server utama baru dari sumber `main` saat ini, bukan peningkatan versi atau lini LTS yang diarsipkan. Empat hal harus sudah ada sebelum aplikasi ini dapat berjalan.
@@ -94,6 +96,7 @@ Checkout Git membutuhkan dependensi PHP sekaligus aset peramban yang dihasilkan.
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

@@ -13,6 +13,8 @@ banner:
 
 इसे क्रम से एक बार पूरा करें। प्रत्येक चरण एक जाँच के साथ समाप्त होता है। आगे बढ़ने से पहले जाँच करें: यहाँ सूचीबद्ध हर विफलता का पता लगाना अभी आसान है और पोलर के एक सप्ताह तक चलने के बाद बहुत कठिन।
 
+होस्ट-विशिष्ट पूर्वापेक्षाओं के लिए [Windows होस्ट पर Linux](/hi/guides/install-on-windows/) और [FreeBSD](/hi/guides/install-on-freebsd/) देखें। ये प्रक्रियाएँ शुरू से अंत तक स्वीकृति परीक्षण का प्रमाण नहीं हैं।
+
 ## पहले आपको क्या चाहिए
 
 Kadupul एक PHP एप्लिकेशन है जो कॉन्फ़िगरेशन को MySQL या MariaDB में और मापों को डिस्क पर RRD फ़ाइलों में संग्रहीत करता है। यह पृष्ठ वर्तमान `main` स्रोत से एक नए मुख्य-सर्वर इंस्टॉलेशन का वर्णन करता है, न कि अपग्रेड या संग्रहीत LTS शाखा का। इसके चलने से पहले चार चीज़ें मौजूद होनी चाहिए।
@@ -94,6 +96,7 @@ SELECT COUNT(*) FROM mysql.time_zone_name;
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

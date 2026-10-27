@@ -13,6 +13,8 @@ banner:
 
 请按顺序完整执行一次本流程。每个步骤均以验证检查结束。在继续下一步之前务必完成检查：此处列出的所有故障在当下排查成本极低，而一旦轮询器运行一周后再去排查，成本将十分高昂。
 
+有关主机特定的前提条件，请参阅 [Windows 主机上的 Linux](/zh-cn/guides/install-on-windows/) 和 [FreeBSD](/zh-cn/guides/install-on-freebsd/)。这些操作步骤并不能证明已完成端到端验收测试。
+
 ## 前提条件
 
 Kadupul 是一个 PHP 应用程序，它将配置存储在 MySQL 或 MariaDB 中，并将度量数据保存在磁盘上的 RRD 文件中。本页面介绍了基于当前 `main` 分支源代码全新安装主服务器的过程，而非版本升级或已归档的 LTS 分支。在运行之前，必须具备四个组件。
@@ -94,6 +96,7 @@ Git 检出既需要 PHP 依赖项，也需要生成的浏览器静态资源。�
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

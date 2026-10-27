@@ -17,6 +17,8 @@ Gehen Sie dies einmal der Reihe nach durch. Jeder Schritt endet mit einer Prüfu
 Führen Sie die Prüfung durch, bevor Sie fortfahren: Jeder hier aufgeführte Fehler
 ist jetzt kostengünstig zu finden und teuer zu beheben, nachdem der Poller eine Woche lang gelaufen ist.
 
+Hostspezifische Voraussetzungen finden Sie unter [Linux auf einem Windows-Host](/de/guides/install-on-windows/) und [FreeBSD](/de/guides/install-on-freebsd/). Diese Anleitungen belegen keine durchgängige Abnahmeprüfung.
+
 ## Was Sie zuerst benötigen
 
 Kadupul ist eine PHP-Anwendung, die ihre Konfiguration in MySQL oder MariaDB speichert und
@@ -132,6 +134,7 @@ vom Stammverzeichnis des Repositorys aus folgenden Befehl aus, sobald die Laufze
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

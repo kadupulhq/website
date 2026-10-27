@@ -13,6 +13,8 @@ O código-fonte está disponível, mas não existe uma versão com suporte nem u
 
 Percorra este processo uma vez, por ordem. Cada passo termina com uma verificação. Efetue a verificação antes de avançar: todas as falhas listadas aqui são fáceis de identificar agora e dispendiosas de resolver depois de o sondador estar a funcionar durante uma semana.
 
+Para os requisitos específicos do anfitrião, consulte [Linux num anfitrião Windows](/pt-pt/guides/install-on-windows/) e [FreeBSD](/pt-pt/guides/install-on-freebsd/). Estes procedimentos não comprovam uma validação completa de princípio a fim.
+
 ## O que necessita primeiro
 
 O Kadupul é uma aplicação PHP que armazena a configuração no MySQL ou MariaDB e guarda medições em ficheiros RRD no disco. Esta página descreve uma nova instalação de servidor principal a partir do código-fonte atual de `main`, e não uma atualização ou a linha LTS antiga. Quatro elementos têm de existir antes da sua execução.
@@ -94,6 +96,7 @@ Uma cópia de trabalho do Git necessita tanto das dependências PHP como dos rec
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

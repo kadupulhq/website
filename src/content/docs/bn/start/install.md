@@ -13,6 +13,8 @@ banner:
 
 এই ধাপগুলো ক্রমানুসারে একবার সম্পন্ন করুন। প্রতিটি ধাপ একটি পরীক্ষার মাধ্যমে শেষ হয়। পরবর্তী ধাপে যাওয়ার আগে পরীক্ষাটি সম্পন্ন করুন: এখানে তালিকাভুক্ত প্রতিটি ব্যর্থতা এখন শনাক্ত করা সহজ, কিন্তু পোলার এক সপ্তাহ চলার পর তা শনাক্ত করা অত্যন্ত কঠিন।
 
+হোস্টভিত্তিক পূর্বশর্তের জন্য [Windows হোস্টে Linux](/bn/guides/install-on-windows/) এবং [FreeBSD](/bn/guides/install-on-freebsd/) দেখুন। এই পদ্ধতিগুলো পূর্ণাঙ্গ গ্রহণযোগ্যতা পরীক্ষার প্রমাণ নয়।
+
 ## প্রথমে আপনার যা প্রয়োজন
 
 Kadupul হলো একটি PHP অ্যাপ্লিকেশন যা MySQL বা MariaDB-তে কনফিগারেশন সংরক্ষণ করে এবং ডিস্কের RRD ফাইলে পরিমাপসমূহ সংরক্ষণ করে। এই পৃষ্ঠাটি বর্তমান `main` সোর্স থেকে একটি নতুন মূল-সার্ভার ইনস্টলেশন বর্ণনা করে, কোনো আপগ্রেড বা সংরক্ষিত LTS শাখা নয়। এটি চলার আগে চারটি উপাদান বিদ্যমান থাকতে হবে।
@@ -94,6 +96,7 @@ SELECT COUNT(*) FROM mysql.time_zone_name;
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

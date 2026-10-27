@@ -13,6 +13,8 @@ banner:
 
 この手順を順番に一度通して実行してください。各ステップの最後には確認手順が用意されています。次に進む前に必ず確認を行ってください。ここに記載されている不具合は、今なら容易に特定できますが、ポーラーが1週間稼働した後に特定しようとすると多大なコストがかかります。
 
+ホスト固有の前提条件については、[Windows 上の Linux](/ja/guides/install-on-windows/) と [FreeBSD](/ja/guides/install-on-freebsd/) を参照してください。これらの手順は、エンドツーエンドの検証に合格したことを示すものではありません。
+
 ## 最初に必要なもの
 
 Kadupul は、MySQL または MariaDB に設定を保存し、ディスク上の RRD ファイルに測定値を保存する PHP アプリケーションです。このページでは、アップグレードやアーカイブされた LTS 系列ではなく、現在の `main` ソースコードからの新規メインサーバーのインストールについて説明します。実行する前に、4つの要素が揃っている必要があります。
@@ -94,6 +96,7 @@ Git チェックアウトでは、PHP の依存関係と生成されるブラウ
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 

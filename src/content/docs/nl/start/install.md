@@ -17,6 +17,8 @@ Doorloop dit eenmaal, op volgorde. Elke stap eindigt met een controle. Voer de c
 uit voordat je verdergaat: elke hier vermelde fout is nu goedkoop te vinden en duur om
 te ontdekken nadat de poller een week heeft gedraaid.
 
+Zie [Linux op een Windows-host](/nl/guides/install-on-windows/) en [FreeBSD](/nl/guides/install-on-freebsd/) voor hostspecifieke vereisten. Deze procedures vormen geen bewijs van een volledige acceptatietest.
+
 ## Wat je eerst nodig hebt
 
 Kadupul is een PHP-applicatie die configuratie opslaat in MySQL of MariaDB en
@@ -132,6 +134,7 @@ van de repository zijn geïnstalleerd:
 mise exec -- php "$(command -v composer)" install --no-dev --optimize-autoloader
 mise exec -- npm ci --ignore-scripts
 mise exec -- npm run build
+mise exec -- php bin/console asset-map:compile
 mise exec -- php bin/console about
 ```
 
