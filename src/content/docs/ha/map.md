@@ -12,7 +12,7 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 - [Ƙara na’ura ta farko](/ha/start/first-device/)
 - [Karanta jadawalin farko](/ha/start/first-graph/)
 - [Shigarwa](/ha/start/install/)
-- [Menene Kadupul](/ha/start/what-kadupul-is/)
+- [Mene ne Kadupul](/ha/start/what-kadupul-is/)
 
 ## Jagororin amfani
 
