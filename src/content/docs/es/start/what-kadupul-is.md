@@ -36,13 +36,13 @@ Un dispositivo es un punto supervisado. Una consulta de datos descubre elementos
 
 ## Componentes de la instalación
 
-Una instalación funcional combina la aplicación web PHP, MySQL o MariaDB, almacenamiento RRD, RRDtool y un mecanismo de inicio de la recopilación. Las credenciales de dispositivos y la configuración residen en la base de datos o en archivos de configuración protegidos. Haga una copia de seguridad del código, la configuración, las colas de la base de datos y el historial RRD como un conjunto coherente, y ensaye la restauración. Un volcado de la base de datos por sí solo no restaura los gráficos históricos.
+Una instalación funcional combina la aplicación web PHP, MySQL o MariaDB, almacenamiento RRD, RRDtool y un mecanismo de inicio de la recopilación. Las credenciales de dispositivos y la configuración residen en la base de datos o en ficheros de configuración protegidos. Haga una copia de seguridad del código, la configuración, las colas de la base de datos y el historial RRD como un conjunto coherente, y ensaye la restauración. Un volcado de la base de datos por sí solo no restaura los gráficos históricos.
 
 [Copias de seguridad y recuperación](/es/guides/back-up-and-restore/)
 
 ## Main y la migración a Symfony
 
-La rama `main` de la aplicación requiere PHP 8.4 o posterior y combina servicios de Symfony 7.4 con puntos de entrada web, del sondeador y de CLI heredados. La línea de mantenimiento `lts/1.2` tiene requisitos propios. Las rutas migradas coexisten con las heredadas; la existencia de un servicio Symfony no demuestra que el flujo antiguo se haya retirado. Las copias del código fuente necesitan dependencias PHP bloqueadas y recursos del navegador generados. Use los entornos de ejecución del archivo `mise.toml` de la aplicación.
+La rama `main` de la aplicación requiere PHP 8.4 o posterior y combina servicios de Symfony 7.4 con puntos de entrada web, del sondeador y de CLI heredados. La línea de mantenimiento `lts/1.2` tiene requisitos propios. Las rutas migradas coexisten con las heredadas; la existencia de un servicio Symfony no demuestra que el flujo antiguo se haya retirado. Las copias del código fuente necesitan dependencias PHP bloqueadas y recursos del navegador generados. Use los entornos de ejecución del fichero `mise.toml` de la aplicación.
 
 [Guía de migración](https://github.com/kadupulhq/kadupul/blob/005d797cca3884f7f60e7778f631f2fcfedad4cf/docs/symfony-migration.md)
 

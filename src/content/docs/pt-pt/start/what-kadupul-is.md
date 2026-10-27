@@ -24,9 +24,9 @@ Um agendador externo inicia o poller. Este lê uma lista de recolha preparada, c
 
 ## Retenção e armazenamento
 
-Um ficheiro RRD tem uma estrutura de armazenamento escolhida na criação. As medições recentes podem manter mais detalhes do que os valores antigos consolidados; a retenção é limitada pelos arquivos de consolidação configurados. Não guarda todas as amostras para sempre. Os valores desconhecidos representam observações ausentes ou inutilizáveis, não zero. Filas, registos e estatísticas da base de dados podem crescer mesmo quando os ficheiros RRD existentes mantêm um tamanho fixo.
+Um ficheiro RRD tem uma estrutura de armazenamento escolhida na criação. As medições recentes podem manter mais detalhes do que os valores antigos consolidados; a retenção é limitada pelos ficheiros de consolidação configurados. Não guarda todas as amostras para sempre. Os valores desconhecidos representam observações ausentes ou inutilizáveis, não zero. Filas, registos e estatísticas da base de dados podem crescer mesmo quando os ficheiros RRD existentes mantêm um tamanho fixo.
 
-[Fontes de dados e arquivos de consolidação](/pt-pt/concepts/data-sources-and-rras/)
+[Fontes de dados e ficheiros de consolidação](/pt-pt/concepts/data-sources-and-rras/)
 
 ## Gráficos e termos partilhados
 
