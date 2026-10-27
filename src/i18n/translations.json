@@ -19,9 +19,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -133,9 +151,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"bn/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -247,9 +283,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -361,9 +415,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es-419/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -475,9 +547,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -589,9 +679,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr-ca/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -703,9 +811,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -817,9 +943,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ha/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -931,9 +1075,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1045,9 +1207,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"id/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1159,9 +1339,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1273,9 +1471,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ja/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1387,9 +1603,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1501,9 +1735,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"nl/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1615,9 +1867,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1729,9 +1999,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-br/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1843,9 +2131,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1957,9 +2263,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"si/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2071,9 +2395,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2185,9 +2527,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2299,9 +2659,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"zh-cn/concepts/how-graphs-are-drawn.md": {
+			"source": "concepts/how-graphs-are-drawn.md",
+			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/templates.md": {
+			"source": "concepts/templates.md",
+			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/concepts/the-poller-cache.md": {
 			"source": "concepts/the-poller-cache.md",
 			"sourceSha256": "633a8dc522afffca81d3347660a61a22d0d0d71cc383560da5838f1ad63b5813",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/time-and-intervals.md": {
+			"source": "concepts/time-and-intervals.md",
+			"sourceSha256": "60d83f6571176f6064255547707c9160d39dd7e069a0ddf0b50c085e2de33dd8",
 			"kind": "translation",
 			"review": "draft"
 		},

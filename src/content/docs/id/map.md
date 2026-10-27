@@ -56,14 +56,14 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 - [Data queries and indexes (English)](/id/concepts/data-queries-and-indexes/)
 - [Sumber data dan arsip round-robin](/id/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/id/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/id/concepts/how-graphs-are-drawn/)
+- [Bagaimana grafik digambar](/id/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/id/concepts/permissions-and-access/)
 - [Plugins (English)](/id/concepts/plugins/)
 - [Remote data collection (English)](/id/concepts/remote-data-collection/)
 - [Security model (English)](/id/concepts/security-model/)
-- [Templates (English)](/id/concepts/templates/)
+- [Templat](/id/concepts/templates/)
 - [Cache poller](/id/concepts/the-poller-cache/)
-- [Time and intervals (English)](/id/concepts/time-and-intervals/)
+- [Waktu dan interval](/id/concepts/time-and-intervals/)
 
 ## Referensi
 

@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/hi/concepts/data-queries-and-indexes/)
 - [डेटा स्रोत और राउंड-रॉबिन अभिलेखागार](/hi/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/hi/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/hi/concepts/how-graphs-are-drawn/)
+- [ग्राफ़ कैसे बनाए जाते हैं](/hi/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/hi/concepts/permissions-and-access/)
 - [Plugins (English)](/hi/concepts/plugins/)
 - [Remote data collection (English)](/hi/concepts/remote-data-collection/)
 - [Security model (English)](/hi/concepts/security-model/)
-- [Templates (English)](/hi/concepts/templates/)
+- [टेम्पलेट](/hi/concepts/templates/)
 - [पोलर कैश](/hi/concepts/the-poller-cache/)
-- [Time and intervals (English)](/hi/concepts/time-and-intervals/)
+- [समय और अंतराल](/hi/concepts/time-and-intervals/)
 
 ## संदर्भ
 

@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/zh-cn/concepts/data-queries-and-indexes/)
 - [数据源与循环归档 (RRA)](/zh-cn/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/zh-cn/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/zh-cn/concepts/how-graphs-are-drawn/)
+- [图表是如何绘制的](/zh-cn/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/zh-cn/concepts/permissions-and-access/)
 - [Plugins (English)](/zh-cn/concepts/plugins/)
 - [Remote data collection (English)](/zh-cn/concepts/remote-data-collection/)
 - [Security model (English)](/zh-cn/concepts/security-model/)
-- [Templates (English)](/zh-cn/concepts/templates/)
+- [模板](/zh-cn/concepts/templates/)
 - [轮询器缓存](/zh-cn/concepts/the-poller-cache/)
-- [Time and intervals (English)](/zh-cn/concepts/time-and-intervals/)
+- [时间与时间间隔](/zh-cn/concepts/time-and-intervals/)
 
 ## 参考
 

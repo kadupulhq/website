@@ -56,14 +56,14 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 - [Data queries and indexes (English)](/nl/concepts/data-queries-and-indexes/)
 - [Gegevensbronnen en round-robin archieven](/nl/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/nl/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/nl/concepts/how-graphs-are-drawn/)
+- [Hoe grafieken worden getekend](/nl/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/nl/concepts/permissions-and-access/)
 - [Plugins (English)](/nl/concepts/plugins/)
 - [Remote data collection (English)](/nl/concepts/remote-data-collection/)
 - [Security model (English)](/nl/concepts/security-model/)
-- [Templates (English)](/nl/concepts/templates/)
+- [Sjablonen](/nl/concepts/templates/)
 - [De pollercache](/nl/concepts/the-poller-cache/)
-- [Time and intervals (English)](/nl/concepts/time-and-intervals/)
+- [Tijd en intervallen](/nl/concepts/time-and-intervals/)
 
 ## Naslagwerk
 

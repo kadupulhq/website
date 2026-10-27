@@ -56,14 +56,14 @@ Le pagine non ancora tradotte vengono mostrate in inglese con un avviso.
 - [Data queries and indexes (English)](/it/concepts/data-queries-and-indexes/)
 - [Fonti di dati e archivi round-robin](/it/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/it/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/it/concepts/how-graphs-are-drawn/)
+- [Come vengono disegnati i grafici](/it/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/it/concepts/permissions-and-access/)
 - [Plugins (English)](/it/concepts/plugins/)
 - [Remote data collection (English)](/it/concepts/remote-data-collection/)
 - [Security model (English)](/it/concepts/security-model/)
-- [Templates (English)](/it/concepts/templates/)
+- [Modelli](/it/concepts/templates/)
 - [La cache del poller](/it/concepts/the-poller-cache/)
-- [Time and intervals (English)](/it/concepts/time-and-intervals/)
+- [Tempo e intervalli](/it/concepts/time-and-intervals/)
 
 ## Riferimento
 

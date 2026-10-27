@@ -56,14 +56,14 @@ sidebar:
 - [Data queries and indexes (English)](/ar/concepts/data-queries-and-indexes/)
 - [مصادر البيانات وأرشيفات التناوب الدائري (RRAs)](/ar/concepts/data-sources-and-rras/)
 - [High volume writes (English)](/ar/concepts/high-volume-writes/)
-- [How graphs are drawn (English)](/ar/concepts/how-graphs-are-drawn/)
+- [كيف تُرسَم المخططات البيانية](/ar/concepts/how-graphs-are-drawn/)
 - [Permissions and access (English)](/ar/concepts/permissions-and-access/)
 - [Plugins (English)](/ar/concepts/plugins/)
 - [Remote data collection (English)](/ar/concepts/remote-data-collection/)
 - [Security model (English)](/ar/concepts/security-model/)
-- [Templates (English)](/ar/concepts/templates/)
+- [القوالب](/ar/concepts/templates/)
 - [ذاكرة التخزين المؤقت للمستطلع (Poller Cache)](/ar/concepts/the-poller-cache/)
-- [Time and intervals (English)](/ar/concepts/time-and-intervals/)
+- [الوقت والفترات الزمنية](/ar/concepts/time-and-intervals/)
 
 ## المرجع
 
