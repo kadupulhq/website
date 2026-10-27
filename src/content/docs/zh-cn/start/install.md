@@ -110,7 +110,7 @@ Composer 会填充 `include/vendor/` 并恢复锁定的兼容性文件。npm 构
 |---|---|---|
 | 安装期间 | `resource/snmp_queries`、`resource/script_server`、`resource/script_queries`、`scripts` | 仅在安装或升级期间 |
 | 安装期间 | `include/vendor/csrf/`，或已配置的 `path_csrf_secret` 位置 | 安装程序必须创建特定于该安装的密钥；之后予以保留 |
-| 始终 | `log`、`cache/boost`、`cache/mibcache`、`cache/purifier`、`cache/realtime`、`cache/spikekill` 以及系统临时目录 | 整个安装运行生命周期内 |
+| 始终 | `log`、`cache/boost`、`cache/mibcache`、`cache/realtime`、`cache/spikekill` 以及系统临时目录 | 整个安装运行生命周期内 |
 | Symfony 运行时 | `var/cache`，以及在配置了文件日志时的 `var/log` | 供 PHP 运行时和缓存预热用户使用 |
 
 RRD 目录在整个安装运行生命周期内也必须保持可写。它保存着你的历史数据，因此请像对待数据库目录一样给予妥善维护。

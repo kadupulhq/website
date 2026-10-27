@@ -110,7 +110,7 @@ Shirya hanyoyin da za a iya rubutawa bayan shigar da abubuwan dogaro:
 |---|---|---|
 | Yayin shigarwa | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Yayin shigarwa ko haɓakawa kaɗai |
 | Yayin shigarwa | `include/vendor/csrf/`, ko wurin `path_csrf_secret` da aka saita | Dole ne mai girkawa ya ƙirƙiri sirrin da ya dace da wannan shigarwar; kiyaye shi bayan haka |
-| Koyaushe | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, kundin wucin gadi na tsarin | Don tsawon rayuwar shigarwar |
+| Koyaushe | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, kundin wucin gadi na tsarin | Don tsawon rayuwar shigarwar |
 | Yanayin aiki na Symfony | `var/cache`, da kuma `var/log` idan an saita rajistar fayil | Don yanayin aiki na PHP da mai amfani mai ɗumama cache |
 
 Dole ne a iya rubuta wa kundin adireshi na RRD don tsawon rayuwar shigarwar kuma. Yana riƙe da tarihin ku, don haka ku kula da shi yadda za ku kula da kundin adireshi na ma’ajiyar bayanai.

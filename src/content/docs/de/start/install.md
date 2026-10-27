@@ -153,7 +153,7 @@ Bereiten Sie die beschreibbaren Pfade nach der Installation der Abhängigkeiten 
 |---|---|---|
 | Während der Installation | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Nur während der Installation oder Aktualisierung |
 | Während der Installation | `include/vendor/csrf/` oder der konfigurierte Speicherort für `path_csrf_secret` | Das Installationsprogramm muss das installationsspezifische Geheimnis erstellen; bewahren Sie es danach auf |
-| Immer | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, das temporäre Systemverzeichnis | Für die gesamte Lebensdauer der Installation |
+| Immer | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, das temporäre Systemverzeichnis | Für die gesamte Lebensdauer der Installation |
 | Symfony-Laufzeit | `var/cache` und `var/log`, falls dateibasiertes Logging konfiguriert ist | Für die PHP-Laufzeit und den Cache-Warming-Benutzer |
 
 Das RRD-Verzeichnis muss für die gesamte Lebensdauer der Installation ebenfalls beschreibbar sein.

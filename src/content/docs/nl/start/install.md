@@ -153,7 +153,7 @@ Bereid de beschrijfbare paden voor na het installeren van afhankelijkheden:
 |---|---|---|
 | Tijdens installatie | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Alleen tijdens installeren of upgraden |
 | Tijdens installatie | `include/vendor/csrf/`, of de geconfigureerde locatie van `path_csrf_secret` | Het installatieprogramma moet het installatiespecifieke geheim aanmaken; bewaar het daarna |
-| Altijd | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, de tijdelijke systeemmap | Voor de gehele levensduur van de installatie |
+| Altijd | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, de tijdelijke systeemmap | Voor de gehele levensduur van de installatie |
 | Symfony-runtime | `var/cache`, en `var/log` als bestandsregistratie is geconfigureerd | Voor de PHP-runtime en de cache-warming-gebruiker |
 
 De RRD-map moet ook gedurende de hele levensduur van de installatie beschrijfbaar zijn. Deze

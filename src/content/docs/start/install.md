@@ -152,7 +152,7 @@ Prepare the writable paths after installing dependencies:
 |---|---|---|
 | During install | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Only while installing or upgrading |
 | During install | `include/vendor/csrf/`, or the configured `path_csrf_secret` location | The installer must create the installation-specific secret; preserve it afterward |
-| Always | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, the system temporary directory | For the life of the install |
+| Always | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, the system temporary directory | For the life of the install |
 | Symfony runtime | `var/cache`, and `var/log` if file logging is configured | For the PHP runtime and cache-warming user |
 
 The RRD directory has to be writable for the life of the install too. It holds your

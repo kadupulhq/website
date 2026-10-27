@@ -110,7 +110,7 @@ Andaa njia zinazoweza kuandikwa baada ya kusakinisha vitegemezi:
 |---|---|---|
 | Wakati wa usakinishaji | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Wakati wa kusakinisha au kuboresha pekee |
 | Wakati wa usakinishaji | `include/vendor/csrf/`, au eneo la `path_csrf_secret` lililosanidiwa | Kisakinishaji lazima kiunde siri mahususi ya usakinishaji; ihifadhi baada ya hapo |
-| Daima | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, saraka ya muda ya mfumo | Katika kipindi chote cha maisha ya usakinishaji |
+| Daima | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, saraka ya muda ya mfumo | Katika kipindi chote cha maisha ya usakinishaji |
 | Mazingira ya Symfony | `var/cache`, na `var/log` ikiwa uwekaji kumbukumbu wa faili umesanidiwa | Kwa mazingira ya PHP na mtumiaji wa kupasha kache joto |
 
 Saraka ya RRD lazima iweze kuandikwa katika maisha yote ya usakinishaji pia. Inashikilia historia yako, kwa hivyo ipe uangalizi sawa na ambao ungeupa saraka ya hifadhidata.

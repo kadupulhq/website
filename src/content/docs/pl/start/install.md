@@ -151,7 +151,7 @@ Przygotuj ścieżki zapisu po zainstalowaniu zależności:
 |---|---|---|
 | Podczas instalacji | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Tylko podczas instalacji lub aktualizacji |
 | Podczas instalacji | `include/vendor/csrf/` lub skonfigurowana lokalizacja `path_csrf_secret` | Instalator musi utworzyć sekret specyficzny dla instalacji; zachowaj go później |
-| Zawsze | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, systemowy katalog tymczasowy | Przez cały okres działania instalacji |
+| Zawsze | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, systemowy katalog tymczasowy | Przez cały okres działania instalacji |
 | Środowisko Symfony | `var/cache` oraz `var/log`, jeśli skonfigurowano logowanie do plików | Dla środowiska PHP i użytkownika rozgrzewającego pamięć podręczną |
 
 Katalog RRD również musi być zapisywalny przez cały okres działania instalacji. Zawiera on

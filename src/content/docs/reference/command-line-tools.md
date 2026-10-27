@@ -266,7 +266,7 @@ rebuild_poller_cache.php [--threads=N] [--host-id=N] [--host-template-id=N]
 
 | Argument | Default | Meaning |
 |---|---|---|
-| `--threads` | `5` | Parallel rebuild threads. |
+| `--threads` | `commands_processes` setting (default `1`) | Parallel rebuild threads. |
 | `--host-id` | all | Rebuild one device. |
 | `--host-template-id` | all | Rebuild every device on one device template. |
 | `--data-template-id` | all | Rebuild every data source on one data template. |

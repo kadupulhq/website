@@ -110,7 +110,7 @@ Préparez les chemins accessibles en écriture après avoir installé les dépen
 |---|---|---|
 | Pendant l'installation | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Uniquement pendant l'installation ou la mise à niveau |
 | Pendant l'installation | `include/vendor/csrf/`, ou l'emplacement configuré pour `path_csrf_secret` | L'installateur doit créer le secret propre à l'installation ; conservez-le ensuite |
-| Toujours | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, le répertoire temporaire du système | Pendant toute la durée de vie de l'installation |
+| Toujours | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, le répertoire temporaire du système | Pendant toute la durée de vie de l'installation |
 | Environnement d'exécution Symfony | `var/cache`, et `var/log` si la journalisation dans des fichiers est configurée | Pour l'environnement d'exécution PHP et l'utilisateur qui préchauffe le cache |
 
 Le répertoire RRD doit également être accessible en écriture pendant toute la durée de vie de l'installation. Il contient votre historique, alors accordez-lui la même attention qu'à un répertoire de base de données.

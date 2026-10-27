@@ -152,7 +152,7 @@ Preparate i percorsi scrivibili dopo l'installazione delle dipendenze:
 |---|---|---|
 | Durante l'installazione | `resource/snmp_queries`, `resource/script_server`, `resource/script_queries`, `scripts` | Solo durante l'installazione o l'aggiornamento |
 | Durante l'installazione | `include/vendor/csrf/` o la posizione configurata per `path_csrf_secret` | Il programma di installazione deve creare il segreto specifico per l'installazione; conservatelo successivamente |
-| Sempre | `log`, `cache/boost`, `cache/mibcache`, `cache/purifier`, `cache/realtime`, `cache/spikekill`, la directory temporanea di sistema | Per tutta la durata dell'installazione |
+| Sempre | `log`, `cache/boost`, `cache/mibcache`, `cache/realtime`, `cache/spikekill`, la directory temporanea di sistema | Per tutta la durata dell'installazione |
 | Runtime di Symfony | `var/cache`, e `var/log` se è configurata la registrazione su file | Per il runtime PHP e l'utente che riscalda la cache |
 
 Anche la directory RRD deve essere scrivibile per l'intera durata dell'installazione. Essa contiene

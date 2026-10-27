@@ -110,7 +110,7 @@ mise exec -- php bin/console about
 |---|---|---|
 | أثناء التثبيت | `resource/snmp_queries`، و`resource/script_server`، و`resource/script_queries`، و`scripts` | أثناء التثبيت أو الترقية فقط |
 | أثناء التثبيت | `include/vendor/csrf/`، أو موقع `path_csrf_secret` المضبوط | يجب على برنامج التثبيت إنشاء السر الخاص بالتثبيت؛ واحتفظ به بعد ذلك |
-| دائمًا | `log`، و`cache/boost`، و`cache/mibcache`، و`cache/purifier`، و`cache/realtime`، و`cache/spikekill`، والدليل المؤقت للنظام | طوال فترة عمل التثبيت |
+| دائمًا | `log`، و`cache/boost`، و`cache/mibcache`، و`cache/realtime`، و`cache/spikekill`، والدليل المؤقت للنظام | طوال فترة عمل التثبيت |
 | بيئة تشغيل Symfony | `var/cache`، وكذلك `var/log` إذا تم ضبط تسجيل الملفات | لبيئة تشغيل PHP ومستخدم تجهيز ذاكرة التخزين المؤقت |
 
 يجب أن يكون دليل RRD قابلاً للكتابة طوال عمر التثبيت أيضًا؛ فهو يحفظ سجل بياناتك التاريخي، لذا عامله بنفس العناية التي توليها لدليل قاعدة البيانات.
