@@ -1,1013 +1,1391 @@
 {
-  "schemaVersion": 1,
-  "pages": {
-    "es/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "de/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "de/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "de/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "de/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "de/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "zh-cn/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "zh-cn/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "zh-cn/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "zh-cn/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "zh-cn/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ja/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ja/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ja/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ja/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ja/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "hi/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "hi/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "hi/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "hi/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "hi/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ar/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ar/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ar/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ar/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ar/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es-419/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es-419/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es-419/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es-419/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "es-419/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr-ca/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr-ca/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr-ca/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr-ca/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "fr-ca/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "sw/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "sw/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "sw/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "sw/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "sw/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ha/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ha/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ha/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ha/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ha/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-pt/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-pt/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-pt/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-pt/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-pt/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-br/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-br/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-br/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-br/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pt-br/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "yo/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "yo/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "yo/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "yo/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "yo/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "it/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "it/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "it/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "it/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "it/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ko/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ko/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ko/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ko/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "ko/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "id/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "id/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "id/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "id/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "id/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "nl/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "nl/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "nl/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "nl/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "nl/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pl/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pl/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pl/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pl/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "pl/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "bn/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "bn/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "bn/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "bn/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "bn/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "si/index.md": {
-      "source": "index.mdx",
-      "sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "si/start/what-kadupul-is.md": {
-      "source": "start/what-kadupul-is.md",
-      "sourceSha256": "5dcb1cc04f5b8bc46e179add54ae7f063910123c2aa76ac659fd0f39b62aa68c",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "si/project/status.md": {
-      "source": "project/status.md",
-      "sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "si/project/security.md": {
-      "source": "project/security.md",
-      "sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "si/404.md": {
-      "source": "404.md",
-      "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
-      "kind": "summary",
-      "review": "draft"
-    },
-    "zh-cn/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "hi/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "es/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ar/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "fr/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "de/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ja/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "es-419/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "fr-ca/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "sw/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ha/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pt-pt/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pt-br/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "yo/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "it/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ko/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "id/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "nl/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pl/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "bn/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "si/reference/requirements.md": {
-      "source": "reference/requirements.md",
-      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "zh-cn/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "hi/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "es/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ar/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "fr/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "de/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ja/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "es-419/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "fr-ca/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "sw/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ha/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pt-pt/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pt-br/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "yo/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "it/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ko/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "id/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "nl/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pl/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "bn/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "si/project/why-this-fork.md": {
-      "source": "project/why-this-fork.md",
-      "sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "zh-cn/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "hi/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "es/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ar/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "fr/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "de/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ja/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "es-419/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "fr-ca/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "sw/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ha/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pt-pt/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pt-br/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "yo/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "it/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "ko/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "id/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "nl/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "pl/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "bn/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    },
-    "si/project/compatibility-with-cacti.md": {
-      "source": "project/compatibility-with-cacti.md",
-      "sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
-      "kind": "translation",
-      "review": "draft"
-    }
-  }
+	"schemaVersion": 1,
+	"pages": {
+		"ar/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ar/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ar/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ar/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ar/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"bn/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"de/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"de/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"de/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"de/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es-419/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"es/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr-ca/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"fr/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ha/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"hi/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"hi/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"hi/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"hi/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"id/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"id/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"id/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"id/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"it/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"it/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"it/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"it/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ja/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ko/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ko/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ko/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"ko/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"nl/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pl/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pl/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pl/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pl/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-br/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-pt/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-pt/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-pt/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"pt-pt/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"si/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"si/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"si/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"si/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"sw/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"sw/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"sw/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"sw/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"yo/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"yo/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"yo/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"yo/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/404.md": {
+			"source": "404.md",
+			"sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/index.md": {
+			"source": "index.mdx",
+			"sourceSha256": "b5a7ddc3a2ea803481e49daa239e7b58e21457659362d611723d8fc667d73163",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/project/compatibility-with-cacti.md": {
+			"source": "project/compatibility-with-cacti.md",
+			"sourceSha256": "4878a04e9d5f9c7693cdf8f7c6cece3236071ece9485b3e9f179165a879e02f5",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/project/security.md": {
+			"source": "project/security.md",
+			"sourceSha256": "2cb403afc5d6521e67dea1adb5a97104c4e32c6f00abecf36949b006f2084b22",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/project/status.md": {
+			"source": "project/status.md",
+			"sourceSha256": "4e0c1e741fde0d1f28b7014407fe4f9c9bdfe9da2575293c8104f3afd974596d",
+			"kind": "summary",
+			"review": "draft"
+		},
+		"zh-cn/project/why-this-fork.md": {
+			"source": "project/why-this-fork.md",
+			"sourceSha256": "f670477540e7648d98c9afd91d650bba3055f4b385f31102b87b1a432d8ee4d4",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/reference/requirements.md": {
+			"source": "reference/requirements.md",
+			"sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/start/first-device.md": {
+			"source": "start/first-device.md",
+			"sourceSha256": "1dd49863838f7d34425c9a791054332ee71c5bac7f388fbb6890068f8b9c4486",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/start/first-graph.md": {
+			"source": "start/first-graph.md",
+			"sourceSha256": "52f6bd0f803bb3d02d6a2808943a0a30f932dd1c503bd9941d6d54682d0c2fbd",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/start/install.md": {
+			"source": "start/install.md",
+			"sourceSha256": "ea14a63e4ab3a2c0ff93aaca328aeb6773b9c40abe95908c04ecb133b1678257",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/start/what-kadupul-is.md": {
+			"source": "start/what-kadupul-is.md",
+			"sourceSha256": "e57d8ee0aec64f313e23ab841108b28bd8554cab0890d77496655d5028967b5b",
+			"kind": "translation",
+			"review": "draft"
+		}
+	}
 }

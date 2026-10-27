@@ -9,10 +9,10 @@ Noch nicht übersetzte Seiten werden mit einem Hinweis auf Englisch angezeigt.
 
 ## Erste Schritte
 
-- [Add your first device (English)](/de/start/first-device/)
-- [Read your first graph (English)](/de/start/first-graph/)
-- [Install (English)](/de/start/install/)
-- [Was ist Kadupul?](/de/start/what-kadupul-is/)
+- [Das erste Gerät hinzufügen](/de/start/first-device/)
+- [Das erste Diagramm lesen](/de/start/first-graph/)
+- [Installation](/de/start/install/)
+- [Was Kadupul ist](/de/start/what-kadupul-is/)
 
 ## Anleitungen
 

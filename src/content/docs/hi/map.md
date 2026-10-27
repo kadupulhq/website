@@ -9,9 +9,9 @@ sidebar:
 
 ## यहाँ से शुरू करें
 
-- [Add your first device (English)](/hi/start/first-device/)
-- [Read your first graph (English)](/hi/start/first-graph/)
-- [Install (English)](/hi/start/install/)
+- [पहला उपकरण जोड़ें](/hi/start/first-device/)
+- [पहला ग्राफ़ समझें](/hi/start/first-graph/)
+- [स्थापना](/hi/start/install/)
 - [Kadupul क्या है](/hi/start/what-kadupul-is/)
 
 ## कार्य मार्गदर्शिकाएँ
