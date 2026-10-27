@@ -77,7 +77,7 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 - [Plugin hook API (English)](/ha/reference/plugin-hook-api/)
 - [Poller lifecycle (English)](/ha/reference/poller-lifecycle/)
 - [Realms and permissions (English)](/ha/reference/realms-and-permissions/)
-- [Requirements (English)](/ha/reference/requirements/)
+- [Bukatun tsarin](/ha/reference/requirements/)
 - [RRDtool proxy (English)](/ha/reference/rrdproxy/)
 - [RRDtool integration (English)](/ha/reference/rrdtool-integration/)
 - [Settings (English)](/ha/reference/settings/)

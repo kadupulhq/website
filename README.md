@@ -94,10 +94,13 @@ Yoruba diacritics when editing.
 
 Each additional locale includes a homepage, introductory summary, project-status
 summary, security-policy summary, error page and generated documentation map.
-The summaries link to the complete English pages. Other pages, including archived
-documentation, use Starlight's English fallback with a translated notice. These
-are initial translations awaiting fluent-speaker review, not complete translations
-of the reference manual.
+The summaries link to the complete English pages. The requirements reference is
+translated in full in all 22 locales, including all ten sections of the
+2026–2027 revision. Latin American Spanish uses neutral `es-419` wording;
+Brazilian Portuguese uses `pt-BR`, separately from Portugal Portuguese.
+Other untranslated pages, including archived documentation, use Starlight's
+English fallback with a translated notice. Translations remain drafts awaiting
+fluent-speaker review; the rest of the reference manual is not fully translated.
 
 - Edit translated Markdown under `src/content/docs/<locale>/`, using the same
   paths as English pages. Keep command names, settings and filenames unchanged.

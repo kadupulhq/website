@@ -77,7 +77,7 @@ Las páginas aún no traducidas se muestran en inglés con un aviso.
 - [Plugin hook API (English)](/es-419/reference/plugin-hook-api/)
 - [Poller lifecycle (English)](/es-419/reference/poller-lifecycle/)
 - [Realms and permissions (English)](/es-419/reference/realms-and-permissions/)
-- [Requirements (English)](/es-419/reference/requirements/)
+- [Requisitos](/es-419/reference/requirements/)
 - [RRDtool proxy (English)](/es-419/reference/rrdproxy/)
 - [RRDtool integration (English)](/es-419/reference/rrdtool-integration/)
 - [Settings (English)](/es-419/reference/settings/)

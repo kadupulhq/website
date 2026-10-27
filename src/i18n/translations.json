@@ -630,6 +630,132 @@
       "sourceSha256": "9db5dd704c90f56a5a0e480a7752454496654bc02114ab6ce0a8220a1e9b0ba6",
       "kind": "summary",
       "review": "draft"
+    },
+    "zh-cn/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "hi/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ar/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "de/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ja/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "es-419/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "fr-ca/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "sw/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ha/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-pt/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pt-br/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "yo/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "it/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "ko/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "id/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "nl/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "pl/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "bn/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
+    },
+    "si/reference/requirements.md": {
+      "source": "reference/requirements.md",
+      "sourceSha256": "1a6c19151ec5559e9ea5d0eb6e300ce01ea816c5dbae10fb5dd1bea3bb7cdcaa",
+      "kind": "translation",
+      "review": "draft"
     }
   }
 }

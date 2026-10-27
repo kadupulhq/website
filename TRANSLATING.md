@@ -31,7 +31,16 @@ The published `/site-translation-status.json` report covers only the 15 site
 labels in each of the 21 non-English locales. It separates missing, draft,
 needs-update and reviewed units. It does not count framework interface strings,
 summaries, archived pages or full manual translations. Existing documentation
-summary tracking remains in `src/i18n/translations.json`.
+translation tracking remains in `src/i18n/translations.json`.
+
+The requirements reference (`reference/requirements.md`) has full translations
+in every supported locale, recorded as `kind: translation` and `review: draft`.
+Keep all ten sections at the same content depth as English, including limitations,
+configuration names, version dates and references. Do not replace a full translation
+with a summary. The requirements translation tests check section counts, technical
+identifiers, source hashes and rendered locale pages as part of `test:coverage`.
+Those checks do not establish semantic accuracy or fluent review. Update each
+translation before refreshing its source hash; only a fluent reviewer may approve it.
 
 `translations/site-reviews.json` records the source and target SHA-256 for each
 unit. Existing translations start as draft. Source changes produce needs-update;
