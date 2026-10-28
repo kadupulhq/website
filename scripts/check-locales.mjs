@@ -65,7 +65,7 @@ export function checkLocales(root = fileURLToPath(new URL('../', import.meta.url
 		assertPage(locale, `${locale}/index.html`);
 		assertPage(locale, `${locale}/project/security/index.html`);
 		for (const version of ['', '1.2.31/']) {
-			const path = `${locale}/${version}guides/recover-a-corrupted-rrd/index.html`;
+			const path = `${locale}/${version}guides/tune-database-performance/index.html`;
 			const nodes = assertPage(locale, path);
 			assert.ok(nodes.some((n) => n.tagName === 'span' && text(n) === getMessages(locale).fallback), `Missing English fallback notice: ${path}`);
 			const main = nodes.find((n) => n.tagName === 'main');
