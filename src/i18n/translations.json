@@ -109,6 +109,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -328,6 +346,24 @@
 		"bn/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -553,6 +589,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -772,6 +826,24 @@
 		"es-419/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -997,6 +1069,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -1216,6 +1306,24 @@
 		"fr-ca/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1441,6 +1549,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -1660,6 +1786,24 @@
 		"ha/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1885,6 +2029,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -2104,6 +2266,24 @@
 		"id/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2329,6 +2509,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -2548,6 +2746,24 @@
 		"ja/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2773,6 +2989,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -2992,6 +3226,24 @@
 		"nl/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3217,6 +3469,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -3436,6 +3706,24 @@
 		"pt-br/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3661,6 +3949,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -3880,6 +4186,24 @@
 		"si/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -4105,6 +4429,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -4327,6 +4669,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/recover-a-corrupted-rrd.md": {
 			"source": "guides/recover-a-corrupted-rrd.md",
 			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
@@ -4546,6 +4906,24 @@
 		"zh-cn/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/monitor-a-linux-server.md": {
+			"source": "guides/monitor-a-linux-server.md",
+			"sourceSha256": "f012c806be1b557501d38181797f1ba440a50fe44ca2e8e7f34991d65e6eaa56",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/monitor-a-switch.md": {
+			"source": "guides/monitor-a-switch.md",
+			"sourceSha256": "69ba256ce67e8dc87f112ac2c938f12e5d8813b6d2454a5b66499266f77e6c33",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/monitor-a-windows-host.md": {
+			"source": "guides/monitor-a-windows-host.md",
+			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
 			"kind": "translation",
 			"review": "draft"
 		},
