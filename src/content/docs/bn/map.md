@@ -53,11 +53,11 @@ sidebar:
 ## ধারণা
 
 - [আর্কিটেকচার](/bn/concepts/architecture/)
-- [Data queries and indexes (English)](/bn/concepts/data-queries-and-indexes/)
+- [ডেটা কোয়েরি এবং ইনডেক্স](/bn/concepts/data-queries-and-indexes/)
 - [ডেটা উৎস এবং রাউন্ড-রবিন আর্কাইভ](/bn/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/bn/concepts/high-volume-writes/)
+- [উচ্চ পরিমাণের ডেটা রাইট](/bn/concepts/high-volume-writes/)
 - [যেভাবে গ্রাফ আঁকা হয়](/bn/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/bn/concepts/permissions-and-access/)
+- [অনুমতি এবং অ্যাক্সেস](/bn/concepts/permissions-and-access/)
 - [Plugins (English)](/bn/concepts/plugins/)
 - [Remote data collection (English)](/bn/concepts/remote-data-collection/)
 - [Security model (English)](/bn/concepts/security-model/)

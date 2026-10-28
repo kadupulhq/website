@@ -53,11 +53,11 @@ Nog niet vertaalde pagina’s worden met een melding in het Engels weergegeven.
 ## Concepten
 
 - [Architectuur](/nl/concepts/architecture/)
-- [Data queries and indexes (English)](/nl/concepts/data-queries-and-indexes/)
+- [Gegevensquery's en indexen](/nl/concepts/data-queries-and-indexes/)
 - [Gegevensbronnen en round-robin archieven](/nl/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/nl/concepts/high-volume-writes/)
+- [Schrijfbewerkingen met hoog volume](/nl/concepts/high-volume-writes/)
 - [Hoe grafieken worden getekend](/nl/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/nl/concepts/permissions-and-access/)
+- [Machtigingen en toegang](/nl/concepts/permissions-and-access/)
 - [Plugins (English)](/nl/concepts/plugins/)
 - [Remote data collection (English)](/nl/concepts/remote-data-collection/)
 - [Security model (English)](/nl/concepts/security-model/)

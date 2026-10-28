@@ -53,11 +53,11 @@ sidebar:
 ## 개념
 
 - [아키텍처](/ko/concepts/architecture/)
-- [Data queries and indexes (English)](/ko/concepts/data-queries-and-indexes/)
+- [데이터 쿼리와 인덱스](/ko/concepts/data-queries-and-indexes/)
 - [데이터 소스와 라운드 로빈 아카이브](/ko/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/ko/concepts/high-volume-writes/)
+- [대량 쓰기](/ko/concepts/high-volume-writes/)
 - [그래프가 그려지는 방식](/ko/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/ko/concepts/permissions-and-access/)
+- [권한과 접근 제어](/ko/concepts/permissions-and-access/)
 - [Plugins (English)](/ko/concepts/plugins/)
 - [Remote data collection (English)](/ko/concepts/remote-data-collection/)
 - [Security model (English)](/ko/concepts/security-model/)

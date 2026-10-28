@@ -53,11 +53,11 @@ Strony, które nie zostały jeszcze przetłumaczone, są wyświetlane po angiels
 ## Pojęcia
 
 - [Architektura](/pl/concepts/architecture/)
-- [Data queries and indexes (English)](/pl/concepts/data-queries-and-indexes/)
+- [Zapytania o dane i indeksy](/pl/concepts/data-queries-and-indexes/)
 - [Źródła danych i archiwa round-robin](/pl/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/pl/concepts/high-volume-writes/)
+- [Zapisy o dużym wolumenie](/pl/concepts/high-volume-writes/)
 - [Jak rysowane są wykresy](/pl/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/pl/concepts/permissions-and-access/)
+- [Uprawnienia i dostęp](/pl/concepts/permissions-and-access/)
 - [Plugins (English)](/pl/concepts/plugins/)
 - [Remote data collection (English)](/pl/concepts/remote-data-collection/)
 - [Security model (English)](/pl/concepts/security-model/)

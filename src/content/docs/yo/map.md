@@ -53,11 +53,11 @@ sidebar:
 ## Àwọn èrò ìpìlẹ̀
 
 - [Àkópọ̀ Ètò](/yo/concepts/architecture/)
-- [Data queries and indexes (English)](/yo/concepts/data-queries-and-indexes/)
+- [Àwọn ìbéèrè data àti àwọn ìtọ́ka](/yo/concepts/data-queries-and-indexes/)
 - [Àwọn orísun data àti àwọn àpamọ́ yípo (RRAs)](/yo/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/yo/concepts/high-volume-writes/)
+- [Kíkọ data ní iye púpọ̀](/yo/concepts/high-volume-writes/)
 - [Bí a ṣe ń ya àwọn graph](/yo/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/yo/concepts/permissions-and-access/)
+- [Àwọn àṣẹ àti ìwọlé](/yo/concepts/permissions-and-access/)
 - [Plugins (English)](/yo/concepts/plugins/)
 - [Remote data collection (English)](/yo/concepts/remote-data-collection/)
 - [Security model (English)](/yo/concepts/security-model/)

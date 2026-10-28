@@ -53,11 +53,11 @@ sidebar:
 ## 概念
 
 - [アーキテクチャ](/ja/concepts/architecture/)
-- [Data queries and indexes (English)](/ja/concepts/data-queries-and-indexes/)
+- [データクエリとインデックス](/ja/concepts/data-queries-and-indexes/)
 - [データソースとラウンドロビンアーカイブ](/ja/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/ja/concepts/high-volume-writes/)
+- [大量書き込み](/ja/concepts/high-volume-writes/)
 - [グラフはどのように描画されるか](/ja/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/ja/concepts/permissions-and-access/)
+- [権限とアクセス](/ja/concepts/permissions-and-access/)
 - [Plugins (English)](/ja/concepts/plugins/)
 - [Remote data collection (English)](/ja/concepts/remote-data-collection/)
 - [Security model (English)](/ja/concepts/security-model/)

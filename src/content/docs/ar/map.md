@@ -53,11 +53,11 @@ sidebar:
 ## المفاهيم
 
 - [البنية المعمارية](/ar/concepts/architecture/)
-- [Data queries and indexes (English)](/ar/concepts/data-queries-and-indexes/)
+- [استعلامات البيانات والفهارس](/ar/concepts/data-queries-and-indexes/)
 - [مصادر البيانات وأرشيفات التناوب الدائري (RRAs)](/ar/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/ar/concepts/high-volume-writes/)
+- [عمليات الكتابة عالية الحجم](/ar/concepts/high-volume-writes/)
 - [كيف تُرسَم المخططات البيانية](/ar/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/ar/concepts/permissions-and-access/)
+- [الأذونات والوصول](/ar/concepts/permissions-and-access/)
 - [Plugins (English)](/ar/concepts/plugins/)
 - [Remote data collection (English)](/ar/concepts/remote-data-collection/)
 - [Security model (English)](/ar/concepts/security-model/)

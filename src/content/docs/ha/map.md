@@ -53,11 +53,11 @@ Ana nuna shafukan da ba a fassara ba da Turanci tare da sanarwa.
 ## Ka’idoji
 
 - [Tsarin Gine-gine](/ha/concepts/architecture/)
-- [Data queries and indexes (English)](/ha/concepts/data-queries-and-indexes/)
+- [Tambayoyin bayanai da fihirisai](/ha/concepts/data-queries-and-indexes/)
 - [Hanyoyin samo bayanai da taskokin zagayawa (RRAs)](/ha/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/ha/concepts/high-volume-writes/)
+- [Rubuce-rubuce masu yawa (High volume writes)](/ha/concepts/high-volume-writes/)
 - [Yadda ake zana zane-zane](/ha/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/ha/concepts/permissions-and-access/)
+- [Izini da samun dama](/ha/concepts/permissions-and-access/)
 - [Plugins (English)](/ha/concepts/plugins/)
 - [Remote data collection (English)](/ha/concepts/remote-data-collection/)
 - [Security model (English)](/ha/concepts/security-model/)
