@@ -97,6 +97,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -280,6 +298,24 @@
 		"bn/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -469,6 +505,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -652,6 +706,24 @@
 		"es-419/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -841,6 +913,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -1024,6 +1114,24 @@
 		"fr-ca/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1213,6 +1321,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -1396,6 +1522,24 @@
 		"ha/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1585,6 +1729,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -1768,6 +1930,24 @@
 		"id/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1957,6 +2137,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -2140,6 +2338,24 @@
 		"ja/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2329,6 +2545,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -2512,6 +2746,24 @@
 		"nl/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2701,6 +2953,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -2884,6 +3154,24 @@
 		"pt-br/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3073,6 +3361,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -3256,6 +3562,24 @@
 		"si/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3445,6 +3769,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -3631,6 +3973,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/template-workflow.md": {
 			"source": "guides/template-workflow.md",
 			"sourceSha256": "d3c97dd9af3a3345aa72cb0121b82eb3d2431b40a5a9560c005dc9401aa65b7c",
@@ -3814,6 +4174,24 @@
 		"zh-cn/guides/install-on-windows.md": {
 			"source": "guides/install-on-windows.md",
 			"sourceSha256": "d72e6ab41027161dcde3b95f6e50cd4feb372843809b0ae928315ac93f15bf5a",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/migrate-to-new-hardware.md": {
+			"source": "guides/migrate-to-new-hardware.md",
+			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/scale-the-poller.md": {
+			"source": "guides/scale-the-poller.md",
+			"sourceSha256": "a0265affc538683c15b30605863bf14b14ae2f17eac5024dcfbf69da09b325de",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/secure-an-internet-facing-install.md": {
+			"source": "guides/secure-an-internet-facing-install.md",
+			"sourceSha256": "4ceb3d420e3eb64999d622cfe647681e7c8aada506c132cb7fd26392837fb31a",
 			"kind": "translation",
 			"review": "draft"
 		},
