@@ -23,7 +23,7 @@ function fixture(t) {
 		const options = Object.entries(locales).map(([key, value]) => `<option value="/${key === 'root' ? '' : key + '/'}">${value.label}</option>`).join('');
 		const html = `<html lang="${config.lang}" dir="${config.dir || 'ltr'}"><body><span>Idioma</span><span>Buscar</span><select>${options}</select><p>${t.independent}</p><main lang="en" dir="ltr"><span>${t.fallback}</span><h2>${t.reference}</h2></main></body></html>`;
 		write(`dist/${prefix}404/index.html`, html.replace('<body>', '<head><meta charset="utf-8"><meta name="robots" content="noindex, follow"></head><body>'));
-		for (const path of ['index.html', 'project/security/index.html', 'guides/recover-a-corrupted-rrd/index.html', '1.2.31/guides/recover-a-corrupted-rrd/index.html']) write(`dist/${prefix}${path}`, html);
+		for (const path of ['index.html', 'project/security/index.html', 'guides/tune-database-performance/index.html', '1.2.31/guides/tune-database-performance/index.html']) write(`dist/${prefix}${path}`, html);
 	}
 	write('src/i18n/messages.json', JSON.stringify(messages));
 	write('src/content/docs/project/security.md', 'English source');
@@ -62,10 +62,10 @@ test('missing language-switch destinations fail validation', (t) => {
 
 test('Arabic layout and English fallback direction are independently enforced', (t) => {
 	const { root, write } = fixture(t);
-	const path = 'dist/ar/guides/recover-a-corrupted-rrd/index.html';
+	const path = 'dist/ar/guides/tune-database-performance/index.html';
 	const html = readFileSync(join(root, path), 'utf8');
 	write(path, html.replace('dir="rtl"', 'dir="ltr"'));
-	assert.throws(() => checkLocales(root), /ar\/guides\/recover-a-corrupted-rrd/);
+	assert.throws(() => checkLocales(root), /ar\/guides\/tune-database-performance/);
 	write(path, html.replace('<main lang="en" dir="ltr">', '<main lang="en" dir="rtl">'));
 	assert.throws(() => checkLocales(root), /Fallback direction/);
 });
@@ -89,7 +89,7 @@ test('localized labels, empty options and explicit HTML switch destinations are 
 	const path = 'dist/es-419/index.html';
 	write('src/content/i18n/es-419.json', JSON.stringify({ 'languageSelect.accessibleLabel': 'Idioma', 'search.label': 'Buscar' }));
 	write('dist/manual.html', '<p>Manual</p>');
-	for (const page of ['project/security/index.html', 'guides/recover-a-corrupted-rrd/index.html', '1.2.31/guides/recover-a-corrupted-rrd/index.html']) {
+	for (const page of ['project/security/index.html', 'guides/tune-database-performance/index.html', '1.2.31/guides/tune-database-performance/index.html']) {
 		const target = `dist/es-419/${page}`;
 		write(target, readFileSync(join(root, target), 'utf8').replace('<body>', '<body><span>Buscar</span>'));
 	}
@@ -104,9 +104,9 @@ test('missing content, incorrect fallback and versioned policy pages cannot pass
 	for (const [path, before, after, error] of [
 		['dist/fr/index.html', messages.fr.independent, '', /Missing localized footer/],
 		['dist/fr/index.html', 'English', 'Not English', /Missing language picker/],
-		['dist/fr/guides/recover-a-corrupted-rrd/index.html', messages.fr.fallback, 'not the notice', /Missing English fallback notice/],
-		['dist/fr/guides/recover-a-corrupted-rrd/index.html', 'lang="en"', 'lang="fr"', /Fallback language/],
-		['dist/fr/guides/recover-a-corrupted-rrd/index.html', messages.fr.reference, 'not the sidebar', /Missing sidebar translation/],
+		['dist/fr/guides/tune-database-performance/index.html', messages.fr.fallback, 'not the notice', /Missing English fallback notice/],
+		['dist/fr/guides/tune-database-performance/index.html', 'lang="en"', 'lang="fr"', /Fallback language/],
+		['dist/fr/guides/tune-database-performance/index.html', messages.fr.reference, 'not the sidebar', /Missing sidebar translation/],
 		['dist/fr/project/security/index.html', '</body>', '<starlight-version-select></starlight-version-select></body>', /Project policy must stay unversioned/],
 	]) {
 		const original = readFileSync(join(root, path), 'utf8');
@@ -179,7 +179,7 @@ test('locale switches must include the configured project Pages base', (t) => {
 	assert.throws(() => checkLocales(root, { base: '/website/' }), /Switch escapes site base/);
 	for (const locale of Object.keys(locales)) {
 		const prefix = locale === 'root' ? '' : `${locale}/`;
-		for (const page of ['index.html', 'project/security/index.html', 'guides/recover-a-corrupted-rrd/index.html', '1.2.31/guides/recover-a-corrupted-rrd/index.html']) {
+		for (const page of ['index.html', 'project/security/index.html', 'guides/tune-database-performance/index.html', '1.2.31/guides/tune-database-performance/index.html']) {
 			const path = `dist/${prefix}${page}`;
 			write(path, readFileSync(join(root, path), 'utf8').replaceAll('value="/', 'value="/website/'));
 		}

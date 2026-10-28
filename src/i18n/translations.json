@@ -97,9 +97,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -301,9 +319,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"bn/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -505,9 +541,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -709,9 +763,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es-419/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -913,9 +985,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1117,9 +1207,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr-ca/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1321,9 +1429,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1525,9 +1651,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ha/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1729,9 +1873,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1933,9 +2095,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"id/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2137,9 +2317,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2341,9 +2539,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ja/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2545,9 +2761,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2749,9 +2983,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"nl/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2953,9 +3205,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3157,9 +3427,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-br/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3361,9 +3649,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3565,9 +3871,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"si/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3769,9 +4093,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3973,9 +4315,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -4177,9 +4537,27 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"zh-cn/guides/manage-data-retention.md": {
+			"source": "guides/manage-data-retention.md",
+			"sourceSha256": "dc1e8b395b5104c54d3522873f0c878665cdd5b9010c902224304e939e9c7c8c",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/guides/migrate-to-new-hardware.md": {
 			"source": "guides/migrate-to-new-hardware.md",
 			"sourceSha256": "234d7a46ea8a336ffe244924fa07d94b8c209ce55efcd0a134e4f3edab58c5af",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/recover-a-corrupted-rrd.md": {
+			"source": "guides/recover-a-corrupted-rrd.md",
+			"sourceSha256": "ddbdf86603fff0551fae89ed28935bf30e279f02b0a246e08f5901b3da096341",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/remove-spikes-from-data.md": {
+			"source": "guides/remove-spikes-from-data.md",
+			"sourceSha256": "b4148fbc023260e6e16a19648373c53267df3a7e77f5da018089774e53e9b47f",
 			"kind": "translation",
 			"review": "draft"
 		},
