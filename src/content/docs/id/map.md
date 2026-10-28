@@ -53,11 +53,11 @@ Halaman yang belum diterjemahkan ditampilkan dalam bahasa Inggris dengan pemberi
 ## Konsep
 
 - [Arsitektur](/id/concepts/architecture/)
-- [Data queries and indexes (English)](/id/concepts/data-queries-and-indexes/)
+- [Kueri data dan indeks](/id/concepts/data-queries-and-indexes/)
 - [Sumber data dan arsip round-robin](/id/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/id/concepts/high-volume-writes/)
+- [Penulisan volume tinggi](/id/concepts/high-volume-writes/)
 - [Bagaimana grafik digambar](/id/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/id/concepts/permissions-and-access/)
+- [Izin dan akses](/id/concepts/permissions-and-access/)
 - [Plugins (English)](/id/concepts/plugins/)
 - [Remote data collection (English)](/id/concepts/remote-data-collection/)
 - [Security model (English)](/id/concepts/security-model/)

@@ -53,11 +53,11 @@ Noch nicht übersetzte Seiten werden mit einem Hinweis auf Englisch angezeigt.
 ## Konzepte
 
 - [Architektur](/de/concepts/architecture/)
-- [Data queries and indexes (English)](/de/concepts/data-queries-and-indexes/)
+- [Datenabfragen und Indizes](/de/concepts/data-queries-and-indexes/)
 - [Datenquellen und Round-Robin-Archive](/de/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/de/concepts/high-volume-writes/)
+- [Schreibvorgänge mit hohem Volumen](/de/concepts/high-volume-writes/)
 - [Wie Diagramme gezeichnet werden](/de/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/de/concepts/permissions-and-access/)
+- [Berechtigungen und Zugriff](/de/concepts/permissions-and-access/)
 - [Plugins (English)](/de/concepts/plugins/)
 - [Remote data collection (English)](/de/concepts/remote-data-collection/)
 - [Security model (English)](/de/concepts/security-model/)

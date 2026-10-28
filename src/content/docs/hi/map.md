@@ -53,11 +53,11 @@ sidebar:
 ## अवधारणाएँ
 
 - [वास्तुकला](/hi/concepts/architecture/)
-- [Data queries and indexes (English)](/hi/concepts/data-queries-and-indexes/)
+- [डेटा क्वेरी और इंडेक्स](/hi/concepts/data-queries-and-indexes/)
 - [डेटा स्रोत और राउंड-रॉबिन अभिलेखागार](/hi/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/hi/concepts/high-volume-writes/)
+- [उच्च मात्रा में लेखन (High volume writes)](/hi/concepts/high-volume-writes/)
 - [ग्राफ़ कैसे बनाए जाते हैं](/hi/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/hi/concepts/permissions-and-access/)
+- [अनुमतियाँ और पहुँच (Permissions and access)](/hi/concepts/permissions-and-access/)
 - [Plugins (English)](/hi/concepts/plugins/)
 - [Remote data collection (English)](/hi/concepts/remote-data-collection/)
 - [Security model (English)](/hi/concepts/security-model/)

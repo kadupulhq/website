@@ -53,11 +53,11 @@ sidebar:
 ## සංකල්ප
 
 - [ගෘහ නිර්මාණ ශිල්පය](/si/concepts/architecture/)
-- [Data queries and indexes (English)](/si/concepts/data-queries-and-indexes/)
+- [දත්ත විමසුම් සහ සුචි](/si/concepts/data-queries-and-indexes/)
 - [දත්ත මූලාශ්‍ර සහ රවුන්ඩ්-රොබින් ලේඛනාගාර](/si/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/si/concepts/high-volume-writes/)
+- [අධි පරිමා ලිවීම්](/si/concepts/high-volume-writes/)
 - [ප්‍රස්තාර අඳින ආකාරය](/si/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/si/concepts/permissions-and-access/)
+- [අවසර සහ ප්‍රවේශය](/si/concepts/permissions-and-access/)
 - [Plugins (English)](/si/concepts/plugins/)
 - [Remote data collection (English)](/si/concepts/remote-data-collection/)
 - [Security model (English)](/si/concepts/security-model/)

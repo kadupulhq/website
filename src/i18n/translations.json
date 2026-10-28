@@ -13,15 +13,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -163,15 +181,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"bn/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"bn/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -313,15 +349,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -463,15 +517,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es-419/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es-419/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -613,15 +685,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -763,15 +853,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr-ca/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr-ca/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -913,15 +1021,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1063,15 +1189,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ha/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ha/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1213,15 +1357,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1363,15 +1525,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"id/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"id/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1513,15 +1693,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1663,15 +1861,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ja/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ja/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1813,15 +2029,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1963,15 +2197,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"nl/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"nl/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2113,15 +2365,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2263,15 +2533,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-br/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-br/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2413,15 +2701,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2563,15 +2869,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"si/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"si/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2713,15 +3037,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2863,15 +3205,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3013,15 +3373,33 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"zh-cn/concepts/data-queries-and-indexes.md": {
+			"source": "concepts/data-queries-and-indexes.md",
+			"sourceSha256": "d79a296725efc3fb42371861c2577d66796c75d367590eaf30c1ba0d86332097",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/concepts/data-sources-and-rras.md": {
 			"source": "concepts/data-sources-and-rras.md",
 			"sourceSha256": "e30798b8e38af2be1380bd0531bbdee328f04b0a3e908243341db12e4a02fcec",
 			"kind": "translation",
 			"review": "draft"
 		},
+		"zh-cn/concepts/high-volume-writes.md": {
+			"source": "concepts/high-volume-writes.md",
+			"sourceSha256": "9f6358854b8e3058f09c5e20bac1daf7064200308e91b75fd546cd349057dab9",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/concepts/how-graphs-are-drawn.md": {
 			"source": "concepts/how-graphs-are-drawn.md",
 			"sourceSha256": "cff31fb1e459952716ae7fc729c67e49dc8b99491336f4490093b142dcdc5261",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/permissions-and-access.md": {
+			"source": "concepts/permissions-and-access.md",
+			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
 			"kind": "translation",
 			"review": "draft"
 		},

@@ -53,11 +53,11 @@ sidebar:
 ## 概念
 
 - [架构](/zh-cn/concepts/architecture/)
-- [Data queries and indexes (English)](/zh-cn/concepts/data-queries-and-indexes/)
+- [数据查询与索引](/zh-cn/concepts/data-queries-and-indexes/)
 - [数据源与循环归档 (RRA)](/zh-cn/concepts/data-sources-and-rras/)
-- [High volume writes (English)](/zh-cn/concepts/high-volume-writes/)
+- [大批量写入](/zh-cn/concepts/high-volume-writes/)
 - [图表是如何绘制的](/zh-cn/concepts/how-graphs-are-drawn/)
-- [Permissions and access (English)](/zh-cn/concepts/permissions-and-access/)
+- [权限与访问控制](/zh-cn/concepts/permissions-and-access/)
 - [Plugins (English)](/zh-cn/concepts/plugins/)
 - [Remote data collection (English)](/zh-cn/concepts/remote-data-collection/)
 - [Security model (English)](/zh-cn/concepts/security-model/)
