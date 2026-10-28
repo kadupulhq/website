@@ -43,6 +43,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -208,6 +226,24 @@
 		"bn/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -379,6 +415,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -544,6 +598,24 @@
 		"es-419/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -715,6 +787,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -880,6 +970,24 @@
 		"fr-ca/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1051,6 +1159,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -1216,6 +1342,24 @@
 		"ha/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1387,6 +1531,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -1552,6 +1714,24 @@
 		"id/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1723,6 +1903,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -1888,6 +2086,24 @@
 		"ja/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2059,6 +2275,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -2224,6 +2458,24 @@
 		"nl/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2395,6 +2647,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -2560,6 +2830,24 @@
 		"pt-br/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2731,6 +3019,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -2896,6 +3202,24 @@
 		"si/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3067,6 +3391,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -3235,6 +3577,24 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/concepts/templates.md": {
 			"source": "concepts/templates.md",
 			"sourceSha256": "492f578f42d862e78642c036e023765eaf4565f4141c0d119a87e9d164c25d0b",
@@ -3400,6 +3760,24 @@
 		"zh-cn/concepts/permissions-and-access.md": {
 			"source": "concepts/permissions-and-access.md",
 			"sourceSha256": "57aa49b48fee29ce924a76f50ed3c3bc298bf91db528a4ae23d333614cfe1967",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/plugins.md": {
+			"source": "concepts/plugins.md",
+			"sourceSha256": "f332663403337763539597176680a2176fc07c2d45520da0c5cb9d4f8f243e09",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/remote-data-collection.md": {
+			"source": "concepts/remote-data-collection.md",
+			"sourceSha256": "054ede243312895b74222c61a9c6152564f513e9890b5d6da76afffff6f7acde",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/concepts/security-model.md": {
+			"source": "concepts/security-model.md",
+			"sourceSha256": "5b94b46c0af14270f5a456c0bd2e4dea6590b5bb27a52d8df816c74f5151a494",
 			"kind": "translation",
 			"review": "draft"
 		},
