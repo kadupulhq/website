@@ -85,6 +85,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -121,9 +127,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ar/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ar/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ar/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -325,6 +343,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"bn/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -361,9 +385,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"bn/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"bn/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"bn/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -565,6 +601,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -601,9 +643,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"de/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"de/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"de/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -805,6 +859,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es-419/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -841,9 +901,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es-419/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es-419/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es-419/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1045,6 +1117,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1081,9 +1159,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"es/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"es/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"es/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1285,6 +1375,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr-ca/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1321,9 +1417,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr-ca/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr-ca/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr-ca/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1525,6 +1633,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1561,9 +1675,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"fr/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"fr/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"fr/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -1765,6 +1891,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ha/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -1801,9 +1933,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ha/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ha/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ha/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2005,6 +2149,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -2041,9 +2191,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"hi/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"hi/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"hi/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2245,6 +2407,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"id/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -2281,9 +2449,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"id/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"id/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"id/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2485,6 +2665,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -2521,9 +2707,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"it/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"it/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"it/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2725,6 +2923,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ja/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -2761,9 +2965,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ja/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ja/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ja/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -2965,6 +3181,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -3001,9 +3223,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"ko/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"ko/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"ko/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3205,6 +3439,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"nl/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -3241,9 +3481,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"nl/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"nl/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"nl/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3445,6 +3697,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -3481,9 +3739,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pl/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pl/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pl/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3685,6 +3955,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-br/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -3721,9 +3997,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-br/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-br/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-br/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -3925,6 +4213,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -3961,9 +4255,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"pt-pt/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"pt-pt/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"pt-pt/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -4165,6 +4471,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"si/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -4201,9 +4513,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"si/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"si/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"si/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -4405,6 +4729,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -4441,9 +4771,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"sw/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"sw/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"sw/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -4645,6 +4987,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -4681,9 +5029,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"yo/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"yo/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"yo/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
@@ -4885,6 +5245,12 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"zh-cn/guides/discover-devices-automatically.md": {
+			"source": "guides/discover-devices-automatically.md",
+			"sourceSha256": "1379bb6fb7b83e108d3a020e71fc90f52cc08d18db00b836ac9e57a92f68e670",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/guides/install-on-freebsd.md": {
 			"source": "guides/install-on-freebsd.md",
 			"sourceSha256": "3cc7a27a8c3fbf85e90b2d374f112714d527a161ea6f86afe5a5adefd83eaa66",
@@ -4921,9 +5287,21 @@
 			"kind": "translation",
 			"review": "draft"
 		},
+		"zh-cn/guides/monitor-a-virtualization-host.md": {
+			"source": "guides/monitor-a-virtualization-host.md",
+			"sourceSha256": "f4139d010644c4b002fd4452f60782cb74b08c9269548ae585eafbe1ea2c3e2b",
+			"kind": "translation",
+			"review": "draft"
+		},
 		"zh-cn/guides/monitor-a-windows-host.md": {
 			"source": "guides/monitor-a-windows-host.md",
 			"sourceSha256": "9a9648810c2532b1ee6ab200a45f01dcfc77430946d7ece4063975a25b5a08f9",
+			"kind": "translation",
+			"review": "draft"
+		},
+		"zh-cn/guides/monitor-environmental-sensors.md": {
+			"source": "guides/monitor-environmental-sensors.md",
+			"sourceSha256": "2622df7b1382cbd9f37469f4dc81d04b39d64720863079cae48563e67b5e7f08",
 			"kind": "translation",
 			"review": "draft"
 		},
