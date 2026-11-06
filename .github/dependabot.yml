@@ -4,6 +4,8 @@ updates:
   # Security fixes arrive as their own pull requests. Grouping is applied only to
   # routine version bumps, so a vulnerability fix is never buried in a batch.
   - package-ecosystem: npm
+    cooldown:
+      default-days: 7
     directory: /
     schedule:
       interval: weekly
@@ -26,6 +28,8 @@ updates:
   # Actions are pinned to commit SHAs, which Dependabot understands and updates
   # in place, keeping the version comment alongside.
   - package-ecosystem: github-actions
+    cooldown:
+      default-days: 7
     directory: /
     schedule:
       interval: weekly
