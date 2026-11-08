@@ -97,7 +97,7 @@ jobs:
       # Do not execute PR scripts or load PR-authored scanner configuration.
       # The project token exists only for the pinned scanner step.
       - name: Analyze reviewed source and CI coverage
-        uses: SonarSource/sonarqube-scan-action@d209202bc7d53ff1cc128f7f907dac145c9d6ae9
+        uses: SonarSource/sonarqube-scan-action@4d1dc0c91ee400dcf8a6dddf2f705ac36542e304
         with:
           projectBaseDir: source
           args: >-
