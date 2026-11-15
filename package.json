@@ -26,7 +26,7 @@
     "@astrojs/markdown-satteri": "^0.4.6",
     "@astrojs/sitemap": "^3.7.4",
     "@astrojs/starlight": "^0.42.9",
-    "astro": "^7.4.5",
+    "astro": "^7.4.12",
     "sharp": "^0.35.5",
     "starlight-versions": "^0.10.2"
   },
@@ -35,6 +35,7 @@
     "@astrojs/compiler-rs": "^0.5.2",
     "c8": "^12.0.0",
     "parse5": "^8.1.0",
+    "satteri": "^0.11.7",
     "typescript": "^6.0.3"
   }
 }
