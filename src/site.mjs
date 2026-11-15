@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 // GitHub Pages serves this repository below /website/.
 export const site = 'https://kadupulhq.github.io';
 export const base = '/website/';

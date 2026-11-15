@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /**
  * Internal link and orphan checks over the built site.
  *

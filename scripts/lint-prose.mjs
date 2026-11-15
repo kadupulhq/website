@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /**
  * Prose checks the build cannot make. Fails on the tells that make documentation
  * read as generated, and on frontmatter a page needs to be findable.

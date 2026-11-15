@@ -1,4 +1,7 @@
 #!/bin/sh
+# SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Run as root on the Weblate host. Credentials stay inside the database container.
 set -eu
 umask 077
