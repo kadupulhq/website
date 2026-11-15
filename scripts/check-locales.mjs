@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import assert from 'node:assert/strict';
 import { base as siteBase } from '../src/site.mjs';
 import { readFileSync, existsSync } from 'node:fs';

@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Thomas Vincent <thomasvincent@gmail.com>
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 /* Kadupul palette. Forest green #004C38, gold #FBBB02, ivory #FDFAF1. */
 :root {
 	--kadupul-green: #004c38;
